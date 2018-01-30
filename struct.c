@@ -1,6 +1,7 @@
-#define N 20 //taille de la matrice//
+#define nb_max 10
+
 typedef struct mur_s {
-	int murN;
+	int murN;	//mur :1 , pas mur :0//
 	int murS;
 	int murE;
 	int murO;
@@ -13,7 +14,7 @@ typedef struct canard_s {
 	
 typedef struct case_s{
 	mur_t mur;
-	canard_t tab_canard[N];
+	canard_t tab_canard[nb_max];
 	int nb_occupant; 
 }case_t
 
