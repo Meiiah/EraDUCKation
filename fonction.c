@@ -43,8 +43,9 @@ void reproduction(){
 				}
 			}
 			for(l=0;l<compteur/2;l++){
-				matrice[i][j].nb_occupant+=compteur; //Ajout des nouveaux canards//
+				matrice[i][j].nb_occupant++; //Ajout des nouveaux canards//
 				matrice[i][j].tab_canard[l].etat=0;
+				matrice[i][j].tab_canard[k].nourriture=100;
 			}
 		}
 	}
