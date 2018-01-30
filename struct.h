@@ -9,7 +9,7 @@ typedef struct mur_s {
 
 typedef struct canard_s {
 	int nourriture;	// /!\ POURCENTAGE//
-	int etat; // 0: oeuf,1:adulte//
+	int etat; // 0: oeuf,1:adulte, -1:inexistant//
 }canard_t;
 	
 typedef struct case_s{
