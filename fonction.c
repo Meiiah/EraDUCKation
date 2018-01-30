@@ -1,6 +1,6 @@
 #include "struct.h"
 #define taille_mat 20 //taille de la matrice//
-
+#define pourc_nourriture 50 //pourcentage de nourriture pour reproduction//
 case_t matrice[taille_mat][taille_mat];
 
 void init_matrice(){
@@ -23,6 +23,26 @@ void init_matrice(){
 			
 			//Initilisation nombre de canard//
 			matrice[i][j].nb_occupant=0;
+		}
+	}
+}
+
+void reproduction(){
+	int i;
+	int j;
+	int k;
+	int compteur;
+	for(i=0;i<taille_mat;i++){
+		for(j=0;j<taille_mat;j++){
+			//Parcours du nombre de canard//
+			compteur=0;//compteur du nombre de canard favorable a la reproduction//
+			for(k=0;k<nb_max;k++){
+				if(matrice[i][j].tab_canard[k].nourriture>=50){
+					compteur++;
+				}
+			compteur=compteur/2 //compteur devient le nombre de couple favorable a la reproduction//
+			matrice[i][j].nb_occupant=matrice[i][j].nb_occupant+compteur; //Ajout des nouveaux canards//
+			}
 		}
 	}
 }
