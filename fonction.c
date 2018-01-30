@@ -31,6 +31,7 @@ void reproduction(){
 	int i;
 	int j;
 	int k;
+	int l;
 	int compteur;
 	for(i=0;i<taille_mat;i++){
 		for(j=0;j<taille_mat;j++){
@@ -40,8 +41,10 @@ void reproduction(){
 				if(matrice[i][j].tab_canard[k].nourriture>=50){
 					compteur++;
 				}
-			compteur=compteur/2 //compteur devient le nombre de couple favorable a la reproduction//
-			matrice[i][j].nb_occupant=matrice[i][j].nb_occupant+compteur; //Ajout des nouveaux canards//
+			}
+			for(l=0;l<compteur/2;l++){
+				matrice[i][j].nb_occupant+=compteur; //Ajout des nouveaux canards//
+				matrice[i][j].tab_canard[l].etat=0;
 			}
 		}
 	}
