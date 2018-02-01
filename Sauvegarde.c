@@ -1,32 +1,34 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define N 10
+int N =10;
 
-int mat[N][N];
+case_t* matrice;
 int gen = 12;
 
 void sauvegarde(){
     FILE * fichier;
-    int n = N;
     fichier=fopen("sav.txt", "w");
-    fprintf(fichier, "%i ", gen);
-    fwrite(mat, sizeof(int),N*N,fichier);
+    fwrite(&gen, sizeof(int),1,fichier);
+    fwrite(&N, sizeof(int),1, fichier);
+    fwrite(mat, sizeof(case_t),N*N,fichier);
 
     fclose(fichier);
-}
+ }
 
 void charger(){
     FILE * fichier;
     fichier=fopen("sav.txt", "r");
-    fscanf(fichier, "%i ", &gen);
-
-    fread(mat, sizeof(int),N*N,fichier);
+    fread(&gen, sizeof(int), 1, fichier);
+    fread(&N, sizeof(int), 1, fichier);
+    free(matrice);
+    matrice=malloc(sizeof(case_t)*N*N);
+    fread(matrice, sizeof(case_t),N*N,fichier);
     fclose(fichier);
 }
 
 void main(){
-
+    matrice=malloc(sizeof(case_t)*N*N);
 
     int i,j;
     for(i =0; i<N; i++){
@@ -50,7 +52,7 @@ void main(){
             mat[i][j]= 0;
         }
     }
-
+    
     charger();
 
     for(i =0; i<N; i++){
