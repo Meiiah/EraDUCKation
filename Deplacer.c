@@ -3,7 +3,10 @@
 //debut 22h00 fin 22h40
 //debut 23h30 fin 00:00
 //tps total : 70min
-#define N 10
+
+int N =10;
+case_t * matrice;
+int nourriture_accouplement =15;
 
 int voit_nourriture(int i,int j,int k){
     //une direction, toute la ligne jusqua un mur
@@ -79,9 +82,10 @@ int voit_nourriture(int i,int j,int k){
     return -1;  // au cas où mais pas besoin normalement
 }
 
-int voit_nourriture(int i,int j,int k){
+int voit_accouplement(int i,int j,int k){
     //une direction, toute la ligne jusqua un mur
     int l = 1;
+    int cpt;
     int mur[4] = {0,0,0,0};
     //on renvoit la direction ou il voit le miam miam et -1 si il voit pas (choisi la nouriture la plus proche
 
@@ -96,9 +100,13 @@ int voit_nourriture(int i,int j,int k){
 //////////////////////////////////////////////////////////////////////
                 //pour i croissant direction est
 
-        if(mur[0]==0){
-            if(matrice[i+l][j].pres_nourriture==1){ //si presence de nourriture sur la ligne
-                return 1;
+        if(mur[0]==0){//si on a pas encore croise de mur
+            if(matrice[i+l][j].nb_occupants>0){//si il y a des canards sur la case
+                for(cpt=0; cpt<nb_occupants; cpt++){//on cherche si il y a au moins une cible pour accouplement
+                    if(matrice[i+l][j].tab_canard[cpt].etat==1 && matrice[i+l][j].tab_canard[cpt].nourriture > nourriture_accouplement){ //si presence de nourriture sur la case
+                        return 1;
+                    }
+                }
             }
         }
         if(matrice[i+l][j].mur.murE == 0){
@@ -155,20 +163,50 @@ int voit_nourriture(int i,int j,int k){
 
 /*=======================================================================================================================*/
 
+void deplacer_canard(int i, int j, int k, int direction){
+    switch(direction){ //en fonction de la direction le canard avance
+            case 1:
+                   //on copie le canard a sa destination
+                   matrice[i+1][j].tab_canard[matrice[i+1][j].nb_occupant] = matrice[i][j].tab_canard[k];
+            
+                   //on indique l augmentation de lz population dans la case ciblee
+                   matrice[i+1][j].nb_occupant ++;
+            
+                   //on enleve le canard dans la case originelle, le nombre de canard diminue donc
+                   matrice[i][j].tab_canard[k] = init_canard();
+                   matrice[i][j].nb_occupant --;
+            
+                   break;
+    }
+}
+
+/*=======================================================================================================================*/
+
+canard_t init_canard(void){
+    canard_t coincoin;
+    coincoin.nouriture =0;
+    coincoin.etat =-1;
+    return coincoin;
+}
+
+/*=======================================================================================================================*/
+
 void deplacer(void){
     int i,j,k;
     int direction;
     for(i=0; i<N; i++){
         for(j=0; j<N; j++){//pour chaque case de la matrice
                 for(k=0; k<matrice[i][j].nb_occupants; i++){
-                        if(matrice[i][j].tab_cannard[k]!= 0 && matrice[i][j].tab_cannard[k]!= -1){ //pour chaque canard qui peut se deplacer
+                        if(matrice[i][j].tab_cannard[k]==1){ //pour chaque canard qui peut se deplacer
                             direction = rand()%4;
                                 // /!\ 1/3 des canards se déplacent, donc rand
+                                // si on voit un canard a accoupler
                                 //si il voit de la nourriture aller dessus
                                 //sinon se deplacer d une case vers la direction random
                                 //reverifier
 
-                              //tirage aleatoire d une premiere direction
+                            
+                              //tirage aleatoire d une premiere direction si il sait pas ou aller
                             switch(direction){
                                 case 0:
                                     break;
