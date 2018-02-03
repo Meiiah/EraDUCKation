@@ -82,6 +82,9 @@ int voit_nourriture(int i,int j,int k){
     return -1;  // au cas où mais pas besoin normalement
 }
 
+/*================================================== Accouplement ==================================================================*/
+
+
 int voit_accouplement(int i,int j,int k){
     //une direction, toute la ligne jusqua un mur
     int l = 1;
@@ -119,8 +122,12 @@ int voit_accouplement(int i,int j,int k){
                 //pour i décroissant direction ouest
 
         if(mur[1]==0){
-            if(matrice[i-l][j].pres_nourriture==1){
-                return 2;
+             if(matrice[i-l][j].nb_occupants>0){//si il y a des canards sur la case
+                for(cpt=0; cpt<nb_occupants; cpt++){//on cherche si il y a au moins une cible pour accouplement
+                    if(matrice[i-l][j].tab_canard[cpt].etat==1 && matrice[i-l][j].tab_canard[cpt].nourriture > nourriture_accouplement){ //si presence de nourriture sur la case
+                        return 2;
+                    }
+                }
             }
         }
         if(matrice[i-l][j].mur.murO == 0){
@@ -133,8 +140,12 @@ int voit_accouplement(int i,int j,int k){
                 //pour j croissant direction sud
 
         if(mur[2]==0){
-            if(matrice[i][j+l].pres_nourriture==1){
-                return 3;
+            if(matrice[i][j+l].nb_occupants>0){//si il y a des canards sur la case
+                for(cpt=0; cpt<nb_occupants; cpt++){//on cherche si il y a au moins une cible pour accouplement
+                    if(matrice[i][j+l].tab_canard[cpt].etat==1 && matrice[i][j+l].tab_canard[cpt].nourriture > nourriture_accouplement){
+                       return 3;
+                    }
+                }
             }
         }
         if(matrice[i][j+l].mur.murS == 0){
@@ -147,8 +158,12 @@ int voit_accouplement(int i,int j,int k){
                 //pour j décroissant direction Nord
 
         if(mur[3]==0){
-            if(matrice[i][j-l].pres_nourriture==1){
-                return 4;
+            if(matrice[i][j-l].nb_occupants>0){//si il y a des canards sur la case
+                for(cpt=0; cpt<nb_occupants; cpt++){//on cherche si il y a au moins une cible pour accouplement
+                    if(matrice[i][j-l].tab_canard[cpt].etat==1 && matrice[i][j-l].tab_canard[cpt].nourriture > nourriture_accouplement){
+                       return 4;
+                    }
+                }
             }
         }
         if(matrice[i][j-l].mur.murN == 0){
