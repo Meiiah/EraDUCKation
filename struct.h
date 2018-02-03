@@ -1,3 +1,4 @@
+
 #define nb_max 10
 
 typedef struct mur_s {
@@ -16,5 +17,6 @@ typedef struct case_s{
 	mur_t mur;
 	canard_t tab_canard[nb_max];
 	int nb_occupant; 
+	int pres_nourriture; //indique si il y a de la nouriture sur la case ou non, 0 nin 1 oui 
 }case_t
 
