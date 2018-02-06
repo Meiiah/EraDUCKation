@@ -2,7 +2,9 @@
 #define N 20// N est le taille de la matrice
 #define M 10 // taille tableau de pointeur
 
-void (*p[M])(void); /*tableau de pointeur sur des fonctions*/
+void (*mauvais[M])(void); /*tableau de pointeur sur les fonctions mauvaises*/
+void (*bon[M])(void); /*tableau de pointeur sur les fonctions bonnes*/
+void (*event[M])(void); /*tableau de pointeur sur les deux types d'evenements*/
 
 int rand_map(void){ /*fonction pour choisir un random contenu dans la matrice*/
 	return((rand()%(N-2))+1);
@@ -65,10 +67,12 @@ void tempete(){
 }
 
 void famine(){
-	
+	nourriture_genere=0;
 }
 
-void reproduction_ralentie();
+void reproduction_ralentie(){
+	
+}
 
 void apparition_predateur();
 
@@ -88,25 +92,25 @@ void canard_invincible();
 
 
 void init_tab_event_mauvais(){
-	*p[0] = tsunami;
-	*p[1] = tempete;
-	*p[2] = famine;
-	*p[3] = reproduction_ralentie;
-	*p[4] = apparition_predateur;
+	*mauvais[0] = tsunami;
+	*mauvais[1] = tempete;
+	*mauvais[2] = famine;
+	*mauvais[3] = reproduction_ralentie;
+	*mauvais[4] = apparition_predateur;
 }
 
 void init_tab_event_bon(){
-	*p[0] = reproduction_acceleree;
-	*p[1] = plus_nourriture;
-	*p[2] = joker_nourriture;
-	*p[3] = liberation_canard;
-	*p[4] = canard_invincible;
+	*bon[0] = reproduction_acceleree;
+	*bon[1] = plus_nourriture;
+	*bon[2] = joker_nourriture;
+	*bon[3] = liberation_canard;
+	*bon[4] = canard_invincible;
 }
 
 
 void init_tab_event(){
-	*p[0]=init_tab_event_mauvais();
-	*p[1]=init_tab_event_bon();
+	*event[0]=init_tab_event_mauvais();
+	*event[1]=init_tab_event_bon();
 }
 
 
