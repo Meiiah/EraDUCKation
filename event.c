@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #define N 20// N est le taille de la matrice
 #define M 10 // taille tableau de pointeur
+#define score_liberation_canard 500
 
 void (*mauvais[M])(void); /*tableau de pointeur sur les fonctions mauvaises*/
 void (*bon[M])(void); /*tableau de pointeur sur les fonctions bonnes*/
@@ -71,25 +72,68 @@ void famine(){
 }
 
 void reproduction_ralentie(){
-	
+	nourriture_accouplement=90; //variable de deplacer.c 
 }
 
-void apparition_predateur();
+void apparition_predateur(){
+	int i,k;	
+	int random_x;
+	int random_y;
+	int random_nbre_predateur=rand()%5;//random pour le nombre de prédateur
+	for(i=0;i<random_nbre_predateur;i++){ //boucle pour tuer des canards en fonction du nombre de prédateur
+		random_x=rand_map();
+		random_y=rand_map();
+		//destruction des canards
+		for(k=0;k<matrice[random_x][random_y].nb_occupant;k++){
+			tab_canard[k].nourriture=0;
+			tab_canard[k].etat=-1;	
+		}
+		matrice[random_x][random_y].nb_occupant=0;	
+	}
+}
 
 /* Evenement bon */
 
-void reproduction_acceleree();
+void reproduction_acceleree(){
+	nourriture_accouplement=30;//variable de deplacer.c 
+}
 
-void plus_nourriture();
+void plus_nourriture(){
+	nourriture_genere=60;//generation de nourriture plus élevée
+}
 
-void joker_nourriture();
+void joker_nourriture(){
+	int i,j,k;
+	for(i=0;i<N;i++){//balayage de toute la matrice
+		for(j=0;j<N;j++){
+			for(k=0;k<N;k++){
+				matrice[i][j].tab_canard[k].nourriture=100;
+			}
+		}
+	}
+}
+//ajout au score
+void liberation_canard(){
+	int i,k;	
+	int random_x;
+	int random_y;
+	int random_nbre_de_canard_liberer=rand()%5;//random pour le nombre de canard
+	for(i=0;i<random_nbre_canard;i++){ //boucle pour tuer des canards en fonction du nombre de prédateur
+		random_x=rand_map();
+		random_y=rand_map();
+		//sortie des canards
+		for(k=0;k<matrice[random_x][random_y].nb_occupant;k++){
+			tab_canard[k].nourriture=0;
+			tab_canard[k].etat=-1;	
+			score=score+score_liberation_canard; //ajout de 500 points par libération
+		}
+		matrice[random_x][random_y].nb_occupant=0;	
+	}
+}
 
-void liberation_canard(); //ajout au score
-
-void canard_invincible();
-
-
-
+void canard_invincible(){
+	/*prend un canard qui ne peut pas mourir*/
+}
 
 void init_tab_event_mauvais(){
 	*mauvais[0] = tsunami;
