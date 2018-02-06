@@ -1,4 +1,5 @@
 #include "struct.h"
+#include <stdio.h>
 #define taille_mat 20 //taille de la matrice//
 #define pourc_nourriture 50 //pourcentage de nourriture pour reproduction//
 case_t matrice[taille_mat][taille_mat];
