@@ -6,7 +6,7 @@
 
 int N =10;
 case_t * matrice;
-int nourriture_accouplement =15;
+int nourriture_accouplement =50; //pourcentage déja défini dans fonction.c
 
 int voit_nourriture(int i,int j,int k){
     //une direction, toute la ligne jusqua un mur
