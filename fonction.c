@@ -40,7 +40,7 @@ void reproduction(){
 			//Parcours du nombre de canard//
 			compteur=0;//compteur du nombre de canard favorable a la reproduction//
 			for(k=0;k<nb_max;k++){
-				if(matrice[i][j].tab_canard[k].nourriture>=50){
+				if(matrice[i][j].tab_canard[k].nourriture>=pourc_nourriture){
 					compteur++;
 				}
 			}
