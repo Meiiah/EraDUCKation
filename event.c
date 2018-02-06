@@ -1,9 +1,22 @@
-void (*p[N])(void);
+#include <stdlib.h>
 
+void (*p[N])(void); /*tableau de pointeur sur des fonctions*/
+
+int rand_map(void){
+	return((rand()%(N-2))+1);
+}
 
 /*Evenement mauvais */
 
-void tsunami();
+void tsunami(){
+	int i;
+	int random_x_1=rand_map();
+	int random_y_1=rand_map();
+	int align=rand()%1;// 0 pour horizontal 1 pour vertical
+	
+		for(i=(random_x-);i<(random_x+1)
+	
+}
 
 void tempête();
 
