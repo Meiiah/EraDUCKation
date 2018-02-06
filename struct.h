@@ -14,9 +14,8 @@ typedef struct canard_s {
 }canard_t;
 	
 typedef struct case_s{
-	mur_t mur;
+	mur_t mur; // Contient les 4murs : Nord,Est,Ouest,Sud d'une case//
 	canard_t tab_canard[nb_max];
 	int nb_occupant; 
-	int pres_nourriture; //indique si il y a de la nouriture sur la case ou non, 0 nin 1 oui 
-}case_t
+}case_t;
 
