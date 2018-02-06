@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #define N 20// N est le taille de la matrice
 #define M 10 // taille tableau de pointeur
+#define score_liberation_canard 500
 
 //tour_actuel défini par camille
 
