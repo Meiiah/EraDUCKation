@@ -53,7 +53,8 @@ void reproduction(){
 	}
 }
 
-void pseudo_joueur(char joueur[25]){
+char pseudo_joueur(char joueur[25]){
 	printf("Saisir le pseudo du joueur");
 	scanf("%s",&joueur);
+	return joueur;
 }
