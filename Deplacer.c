@@ -213,14 +213,28 @@ void deplacer(void){
         for(j=0; j<N; j++){//pour chaque case de la matrice
                 for(k=0; k<matrice[i][j].nb_occupants; i++){
                         if(matrice[i][j].tab_cannard[k]==1){ //pour chaque canard qui peut se deplacer
-                            direction = rand()%4;
-                                // /!\ 1/3 des canards se déplacent, donc rand
-                                // si on voit un canard a accoupler
-                                //si il voit de la nourriture aller dessus
-                                //sinon se deplacer d une case vers la direction random
+                           
+                                // /!\ 1/3 des canards se déplacent, donc rand, si c est pas bon on le deplace pas donc break
+                            if(rand()%3!=0)     break;
+                                //si il peut se deplacer on continue
+                            
+                                // si on voit un canard a accoupler on continue, sinon on continue les verifications
+                            direction = voit_accouplement(i, j, k);
+                      
+                            if(direction==-1){
+                                
+                                //si il voit de la nourriture aller dessus sinon on deplace dabs une direction random arpres verif
+                                direction = voit_nourriture(i, j, k);
+                                
+                                if(direction==-1){
+                                //sinon se deplacer d une case vers la direction random apres verif
+                                    direction = rand()%4;
+                                    /* FAIRE VERIF */
+                                
                                 //reverifier
 
-                            
+                                }
+                            }
                               //tirage aleatoire d une premiere direction si il sait pas ou aller
                             switch(direction){
                                 case 0:
@@ -232,7 +246,7 @@ void deplacer(void){
                                 case 3:
 
                             }
-                        }
+                    }
             }
         }
     }
