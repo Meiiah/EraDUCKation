@@ -76,6 +76,7 @@ void case_adja(int coord_x, int coord_y, int compteur){ /*recupere une case des 
 				mat[coord_y][temp_x]=compteur;
 
 		}
+	
 }
 
 void coord_case(int compteur){ /* choix d'une case en random */
@@ -85,6 +86,7 @@ void coord_case(int compteur){ /* choix d'une case en random */
 	coord_x= (rand() % (TAILLE_LABY+1));
 	coord_y= (rand() % (TAILLE_LABY+1));
 	mat[coord_y][coord_x]=compteur;
+	case_adja(coord_x,coord_y,compteur);
 }
 	
 void laby(){ /*generation de l'interieur de la map*/
