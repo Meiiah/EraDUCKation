@@ -35,14 +35,28 @@ void plus_nourriture();
 void joker_nourriture();
 
 
-void init-tab-event(void (*p[N])(void)){
+void init-tab-event-mauvais(){
 	*p[0] = tsunami;
 	*p[1] = tempête;
 	*p[2] = famine;
 	*p[3] = moins_nourriture;
 	*p[4] = reproduction_ralentie;
-	*p[5] = reproduction_acceleree;
-	*p[6] = plus_nourriture;
-	*p[7] = joker_nourriture;
 }
+
+void init-tab-event-bon(){
+	*p[0] = reproduction_acceleree;
+	*p[1] = plus_nourriture;
+	*p[2] = joker_nourriture;
+}
+
+
+void init-tab-event(){
+	*p[0]=void init-tab-event-mauvais();
+	*p[1]=void init-tab-event-bon();
+}
+
+
+
+
+
 
