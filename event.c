@@ -44,9 +44,29 @@ void tsunami(){
 	}	
 }
 
-void tempete();
+void tempete(){
+	int i,j,k;
+	int random_min=rand_map();
+	int random_max=rand_map();
+	while(random_min>random_max){
+		random_min=rand_map();
+		random_max=rand_map();
+	}
 
-void famine();
+	for(i=random_min;i<random_max;i++){
+		for(j=random_min;j<random_max;j++){
+			for(k=0;k<matrice[i][j].nb_occupant;k++){
+				tab_canard[k].nourriture=0;
+				tab_canard[k].etat=-1;	
+			}
+			matrice[i][j].nb_occupant=0;
+		}
+	}
+}
+
+void famine(){
+	
+}
 
 void reproduction_ralentie();
 
