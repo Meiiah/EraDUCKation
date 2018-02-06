@@ -89,6 +89,15 @@ void coord_case(int compteur){ /* choix d'une case en random */
 	case_adja(coord_x,coord_y,compteur);
 }
 	
+
+
+/* A FAIRE
+	- jointure des differentes galeries (passage de la valeur minimum)
+	- verif de toutes case avec compteur
+*/
+
+
+
 void laby(){ /*generation de l'interieur de la map*/
 	
 	mur_t mur;
