@@ -29,7 +29,7 @@ void choix_joueur(int result){
 	int nature_event ( rand % 2); // Choix randome d'un evenement positif ou negatif//
 	if (nature_envent%2==0){ // Si pair : Evenement positif //
 		tab_event_bon();
-		printf("Choisir le numero de l'evenement choisit");
+		printf("Choisir le numero de l'evenement choisi");
 		scanf("%i",result);// Saisit du choix du joueur//
 		switch(result){
 			case 1: mauvais[choix1]();
@@ -45,7 +45,7 @@ void choix_joueur(int result){
 	}
 	else { // Si impaire: Evenement negatif//
 		tab_event_mauv();
-		printf("Choisir le numero de l'evenement choisit");
+		printf("Choisir le numero de l'evenement choisi");
 		scanf("%i",result); // Saisit du choix du joueur//
 		switch(result){
 			case 1: bon[choix1]();
