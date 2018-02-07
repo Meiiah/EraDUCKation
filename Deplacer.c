@@ -209,6 +209,8 @@ canard_t init_canard(void){
 void deplacer(void){
     int i,j,k;
     int direction;
+    int verif =1;
+    
     for(i=0; i<N; i++){
         for(j=0; j<N; j++){//pour chaque case de la matrice
                 for(k=0; k<matrice[i][j].nb_occupants; i++){
@@ -228,23 +230,30 @@ void deplacer(void){
                                 
                                 if(direction==-1){
                                 //sinon se deplacer d une case vers la direction random apres verif
+                                    do{
                                     direction = rand()%4;
                                     /* FAIRE VERIF */
                                 
-                                //reverifier
+                                    switch(direction){// effets de bord
+                                        case 0: if(! (i+1 >= N) ) //i croit et vu qu on est dans le tableau pas besoin de tout verifier
+                                                    verif=1;
+                                             break;
+                                        case 1: if(! (i-1 < 0) ) //i decroit et vu qu on est dans le tableau pas besoin de tout verifier
+                                                    verif=1;
+                                             break;
+                                                                 // idem avec j
+                                        case 2: if(! (j+1 >= N) ) 
+                                                    verif=1;
+                                             break;
+                                        case 3:  ! (i+1 >= N) )
+                                                    verif=1;
 
+                                        }while(verif == 0);
+                                        deplacer_canard(i, j, k, direction);
                                 }
                             }
                               //tirage aleatoire d une premiere direction si il sait pas ou aller
-                            switch(direction){
-                                case 0:
-                                    break;
-                                case 1:
-                                    break;
-                                case 2:
-                                    break;
-                                case 3:
-
+                           
                             }
                     }
             }
