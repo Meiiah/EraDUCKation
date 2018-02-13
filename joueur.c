@@ -3,6 +3,13 @@
 #include "event.h"
 #define nb_event 4
 
+void ajout_score(int point,joueur_t joueur, joueur_t joueur2){
+	joueur.score+=point; // ajout des points en fonction de l'action faite
+	if(joueur2!=NULL){
+		joueur.score-=point;
+	}
+}
+
 void caract_joueur(joueur_t joueur){
 	printf("Saisir le pseudo du joueur");
 	scanf("%s",joueur.nom_joueur);
@@ -77,3 +84,4 @@ void choix_joueur(){
 		}
 	}
 }
+
