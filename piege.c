@@ -6,8 +6,8 @@ case_t matrice[taille_mat][taille_mat];
 void piege(){ //fonction piege
 	int i;
 	int j;
-	int x=(rand() % (taille_mat + 1)); //place en random un piege dans la matrice
-	int y=(rand() % (taille_mat + 1));
+	int x=(rand() % (taille_mat)); //place en random un piege dans la matrice
+	int y=(rand() % (taille_mat));
 	matrice[x][y].pres_piege=1; // 1: presence piege , 0: pas de piege
 }
 
