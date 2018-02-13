@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #define N 20// N est le taille de la matrice
 #define M 10 // taille tableau de pointeur
-#define score_liberation_canard 500
+
 
 void (*mauvais[M])(void); /*tableau de pointeur sur les fonctions mauvaises*/
 void (*bon[M])(void); /*tableau de pointeur sur les fonctions bonnes*/
@@ -28,7 +28,8 @@ void tsunami(){
 			for(j=random_min;j<random_max;j++){
 				for(k=0;k<matrice[i][j].nb_occupant;k++){
 					tab_canard[k].nourriture=0;
-					tab_canard[k].etat=-1;	
+					tab_canard[k].etat=-1;
+					ajout_score(-50,joueur,joueur2);	
 				}
 				matrice[i][j].nb_occupant=0;
 			}
@@ -40,6 +41,7 @@ void tsunami(){
 				for(k=0;k<nb_occupant;k++){
 					tab_canard[k].nourriture=0;
 					tab_canard[k].etat=-1;	
+					ajout_score(-50,joueur,joueur2);
 				}
 				matrice[i][j].nb_occupant=0;
 			}
@@ -61,6 +63,7 @@ void tempete(){
 			for(k=0;k<matrice[i][j].nb_occupant;k++){
 				tab_canard[k].nourriture=0;
 				tab_canard[k].etat=-1;	
+				ajout_score(-50,joueur,joueur2);
 			}
 			matrice[i][j].nb_occupant=0;
 		}
@@ -87,6 +90,7 @@ void apparition_predateur(){
 		for(k=0;k<matrice[random_x][random_y].nb_occupant;k++){
 			tab_canard[k].nourriture=0;
 			tab_canard[k].etat=-1;	
+			ajout_score(-100,joueur,joueur2);
 		}
 		matrice[random_x][random_y].nb_occupant=0;	
 	}
@@ -125,7 +129,7 @@ void liberation_canard(){
 		for(k=0;k<matrice[random_x][random_y].nb_occupant;k++){
 			tab_canard[k].nourriture=0;
 			tab_canard[k].etat=-1;	
-			score=score+score_liberation_canard; //ajout de 500 points par libération
+			ajout_score(500,joueur,joueur2); //ajout de 500 points par libération
 		}
 		matrice[random_x][random_y].nb_occupant=0;	
 	}
