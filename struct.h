@@ -1,5 +1,6 @@
-#define nb_max 10
 
+#define nb_max 10
+int nb_gen;
 typedef struct mur_s {
 	int murN;	//mur :1 , pas mur :0//
 	int murS;
