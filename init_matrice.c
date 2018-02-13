@@ -25,6 +25,7 @@ void init_matrice(){
 			matrice[i][j].nb_occupant=0;
 			//Initialisation de nourriture//
 			matrice[i][j].pres_nourriture=0;
+			matrice	[i][j].pres_piege=0;
 		}
 	}
 }
