@@ -17,5 +17,7 @@ typedef struct case_s{
 	mur_t mur; // Contient les 4murs : Nord,Est,Ouest,Sud d'une case//
 	canard_t tab_canard[nb_max];
 	int nb_occupant; 
+	int pres_nourriture;
+	int pres_piege;
 }case_t;
 
