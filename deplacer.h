@@ -1,3 +1,1 @@
-
-
 void deplacer(void);
