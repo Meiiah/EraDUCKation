@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "joueur.h"
 #include "canard.h"
 #include "struct.h"
 #include "labyrinthe.h"
@@ -10,7 +11,8 @@ int taille_mat;
 case_t * matrice;
 
 joueur_t joueur;
-joueur_t joueur2=NULL;
+joueur_t joueur2;
+
 
 
 int choix_difficultee(int choix){
@@ -98,7 +100,7 @@ int main(){
 	
 	}
 	printf("Le score total du joueur 1 est : %i",joueur.score);
-	if(joueur2!=NULL){
+	if(joueur2.nom_joueur!=NULL){
 		printf("Le score total du joueur 1 est : %i",joueur2.score);
 	}
 }
