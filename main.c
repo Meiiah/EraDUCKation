@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "init_canard.h"
+#include "canard.h"
 #include "struct.h"
 #include "labyrinthe.h"
 
