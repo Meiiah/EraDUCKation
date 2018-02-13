@@ -1,7 +1,8 @@
-#include <stdlib.h>
-#include <sdio.h>
+ 	#include <stdlib.h>
+#include <stdio.h>
 
 #include "struct.h"
+#include "labyrinthe.h"
 
 int taille_mat;
 /*definition de la matrice */
@@ -64,7 +65,7 @@ int main(){
 			nbr_joueur=choix_nbr_joueur(choix);
 			
 			/*Mise en place de la matrice adaptée*/
-			matrice=malloc(sizeof(case_t*N*N));
+			matrice=malloc(sizeof(case_t)*taille_mat*taille_mat);
 
 			/*Creation du Labyrinthe*/
 			creer_labyrinthe();
