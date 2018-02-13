@@ -1,0 +1,1 @@
+void spawn_nourriture();
