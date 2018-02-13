@@ -21,3 +21,7 @@ typedef struct case_s{
 	int pres_piege;
 }case_t;
 
+typedef struct joueur_s{
+	int score;
+	char nom_joueur[25];
+}joueur_t;
