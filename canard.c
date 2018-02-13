@@ -14,3 +14,16 @@ void init_canard(){
 		matrice[x][y].tab_canard[nb_occupant-1].etat=0;
 	}
 }
+
+
+int presence_canard(){ // retourne 1 si il reste des canards
+	int i,j;
+	for(i=0;i<taille_mat;i++){
+		for(j=0;j<taille_mat;j++){
+			if(matrice[i][j].nb_occupant>0){
+				return 1;	
+			}
+		}
+	}
+	return 0;
+}
