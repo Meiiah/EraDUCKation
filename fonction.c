@@ -25,7 +25,7 @@ void init_matrice(){
 			//Initilisation nombre de canard//
 			matrice[i][j].nb_occupant=0;
 			//Initialisation de nourriture//
-			matrice[i][j]pres_nourriture=0;
+			matrice[i][j].pres_nourriture=0;
 		}
 	}
 }
