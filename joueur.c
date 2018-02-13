@@ -16,14 +16,6 @@ void tab_event_mauvais(){
 	int choix2=(rand() % (nb_event + 1));
 	int choix3=(rand() % (nb_event + 1));
 
-char mauv_evts[nb_event+1]={"tsunami", "tempete","famine","reproduction_ralenti","predateur"}
-char bon_evts[nb_event+1]={"plus_nourriture","joker_nourriture","liberation_canard","canard_invassible","reproduction_accelere"}
-
-void tab_event_mausvais(){
-	int choix1=(rand() % (nb_event + 1); // Random du choix des evenement parmis 5 possibilités//
-	int choix2=(rand() % (nb_event + 1);
-	int choix3=(rand() % (nb_event + 1);
-
 	printf("%s",mauv_evts[choix1]);
 	printf("%s",mauv_evts[choix2]);
 	printf("%s",mauv_evts[choix3]);
