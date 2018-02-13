@@ -23,6 +23,7 @@ void reproduction(){
 				matrice[i][j].nb_occupant++; //Ajout des nouveaux canards//
 				matrice[i][j].tab_canard[l].etat=0;
 				matrice[i][j].tab_canard[k].nourriture=100;
+				ajout_score(25,joueur,joueur2);
 			}
 		}
 	}
