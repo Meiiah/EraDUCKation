@@ -9,8 +9,8 @@ int taille_mat;
 /*definition de la matrice */
 case_t * matrice;
 
-t_joueur joueur;
-t_joueur joueur2=NULL;
+joueur_t joueur;
+joueur_t joueur2=NULL;
 
 
 int choix_difficultee(int choix){
