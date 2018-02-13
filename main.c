@@ -1,12 +1,16 @@
- 	#include <stdlib.h>
+#include <stdlib.h>
 #include <stdio.h>
 
+#include "init_canard.h"
 #include "struct.h"
 #include "labyrinthe.h"
 
 int taille_mat;
 /*definition de la matrice */
 case_t * matrice;
+
+t_joueur joueur;
+t_joueur joueur2=NULL;
 
 
 int choix_difficultee(int choix){
@@ -26,9 +30,12 @@ int choix_nbr_joueur(int choix){
 	int nbr_joueur;
 	switch(choix){
 		case 1 :
+			caract_joueur(joueur);
 			return nbr_joueur=1;
 		break;	
 		case 2:
+			caract_joueur(joueur);
+			caract_joueur(joueur2);
 			return nbr_joueur=2;
 		break;	
 	}
@@ -69,6 +76,9 @@ int main(){
 
 			/*Creation du Labyrinthe*/
 			creer_labyrinthe();
+			
+			//Apparition de canard
+			init_canard(); 
 
 			if(nbr_joueur==1){
 				jeu_solo();
@@ -86,5 +96,9 @@ int main(){
 			return 0;
 		break;
 	
+	}
+	printf("Le score total du joueur 1 est : %i",joueur.score);
+	if(joueur2!=NULL){
+		printf("Le score total du joueur 1 est : %i",joueur2.score);
 	}
 }
