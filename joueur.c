@@ -3,9 +3,10 @@
 #include "event.h"
 #define nb_event 4
 
-void pseudo_joueur(char joueur[25]){
+void caract_joueur(joueur_t joueur){
 	printf("Saisir le pseudo du joueur");
-	scanf("%s",joueur);
+	scanf("%s",joueur.nom_joueur);
+	joueur.score=0;
 }
 
 char *mauv_evts[nb_event+1]={"tsunami", "tempete","famine","reproduction_ralenti","predateur"};
