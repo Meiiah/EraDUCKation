@@ -8,8 +8,7 @@ int taille_mat;
 case_t * matrice;
 
 
-int choix_difficultee(){
-	int choix;
+int choix_difficultee(int choix){
 	switch(choix){
 		case 1 :
 			return taille_mat=15;
@@ -22,8 +21,7 @@ int choix_difficultee(){
 		break;		
 	}
 }
-int choix_nbr_joueur(){
-	int choix;
+int choix_nbr_joueur(int choix){
 	int nbr_joueur;
 	switch(choix){
 		case 1 :
@@ -56,12 +54,14 @@ int main(){
 			printf("1 : Facile\n");
 			printf("2 : Intermédiaire\n");
 			printf("3 : Difficile\n");
-			taille_mat=choix_difficultee();
+			scanf("%i",&choix);
+			taille_mat=choix_difficultee(choix);
 			
 			/* Nombre de Joueur */
 			printf("1 : 1 joueur\n");
 			printf("2 : 2 joueurs\n");
-			nbr_joueur=choix_nbr_joueur();
+			scanf("%i",&choix);
+			nbr_joueur=choix_nbr_joueur(choix);
 			
 			/*Mise en place de la matrice adaptée*/
 			matrice=malloc(sizeof(case_t*N*N));
