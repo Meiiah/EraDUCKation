@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "deplacer_multi.h"
 //debut 22h00 fin 22h40
 //debut 23h30 fin 00:00
 //tps total : 70min
@@ -178,20 +179,62 @@ int voit_accouplement(int i,int j,int k){
 
 /*=======================================================================================================================*/
 
+
 void deplacer_canard(int i, int j, int k, int direction){
+
     switch(direction){ //en fonction de la direction le canard avance
             case 1:
                    //on copie le canard a sa destination
                    matrice[i+1][j].tab_canard[matrice[i+1][j].nb_occupant] = matrice[i][j].tab_canard[k];
-            
+
                    //on indique l augmentation de lz population dans la case ciblee
                    matrice[i+1][j].nb_occupant ++;
-            
+
                    //on enleve le canard dans la case originelle, le nombre de canard diminue donc
                    matrice[i][j].tab_canard[k] = init_canard();
                    matrice[i][j].nb_occupant --;
-            
-                   break;
+                                    break;
+
+            /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+            case 2:
+                   //on copie le canard a sa destination
+                   matrice[i-1][j].tab_canard[matrice[i-1][j].nb_occupant] = matrice[i][j].tab_canard[k];
+
+                   //on indique l augmentation de lz population dans la case ciblee
+                   matrice[i-1][j].nb_occupant ++;
+
+                   //on enleve le canard dans la case originelle, le nombre de canard diminue donc
+                   matrice[i][j].tab_canard[k] = init_canard();
+                   matrice[i][j].nb_occupant --;
+                                        break;
+
+            /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+            case 3:
+                   //on copie le canard a sa destination
+                   matrice[i][j+1].tab_canard[matrice[i][j+1].nb_occupant] = matrice[i][j].tab_canard[k];
+
+                   //on indique l augmentation de lz population dans la case ciblee
+                   matrice[i][j+1].nb_occupant ++;
+
+                   //on enleve le canard dans la case originelle, le nombre de canard diminue donc
+                   matrice[i][j].tab_canard[k] = init_canard();
+                   matrice[i][j].nb_occupant --;
+
+                                        break;
+
+            /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+            case 4:
+                   //on copie le canard a sa destination
+                   matrice[i][j+1].tab_canard[matrice[i][j+1].nb_occupant] = matrice[i][j].tab_canard[k];
+
+                   //on indique l augmentation de lz population dans la case ciblee
+                   matrice[i][j+1].nb_occupant ++;
+
+                   //on enleve le canard dans la case originelle, le nombre de canard diminue donc
+                   matrice[i][j].tab_canard[k] = init_canard();
+                   matrice[i][j].nb_occupant --;
+                                        break;
+
     }
 }
 
@@ -210,50 +253,51 @@ void deplacer(void){
     int i,j,k;
     int direction;
     int verif =1;
-    
+
     for(i=0; i<N; i++){
         for(j=0; j<N; j++){//pour chaque case de la matrice
                 for(k=0; k<matrice[i][j].nb_occupants; i++){
                         if(matrice[i][j].tab_cannard[k]==1){ //pour chaque canard qui peut se deplacer
-                           
+
                                 // /!\ 1/3 des canards se déplacent, donc rand, si c est pas bon on le deplace pas donc break
                             if(rand()%3!=0)     break;
                                 //si il peut se deplacer on continue
-                            
+
                                 // si on voit un canard a accoupler on continue, sinon on continue les verifications
                             direction = voit_accouplement(i, j, k);
-                      
+
                             if(direction==-1){
-                                
+
                                 //si il voit de la nourriture aller dessus sinon on deplace dabs une direction random arpres verif
                                 direction = voit_nourriture(i, j, k);
-                                
+
                                 if(direction==-1){
                                 //sinon se deplacer d une case vers la direction random apres verif
                                     do{
                                     direction = rand()%4;
                                     /* FAIRE VERIF */
-                                
-                                    switch(direction){// effets de bord
-                                        case 0: if(! (i+1 >= N) ) //i croit et vu qu on est dans le tableau pas besoin de tout verifier
-                                                    verif=1;
-                                             break;
-                                        case 1: if(! (i-1 < 0) ) //i decroit et vu qu on est dans le tableau pas besoin de tout verifier
-                                                    verif=1;
-                                             break;
-                                                                 // idem avec j
-                                        case 2: if(! (j+1 >= N) ) 
-                                                    verif=1;
-                                             break;
-                                        case 3:  ! (i+1 >= N) )
-                                                    verif=1;
+
+                                   switch(direction){// effets de bord
+                                            case 0: if((! (i+1 >= N)  )&& matrice[ i+1 ][ j ].mur.murN !=1) //i croit et vu qu on est dans le tableau pas besoin de tout verifier
+                                                        verif=1;
+                                                 break;
+                                            case 1: if((! (i-1 < 0) )&& matrice[ i-1 ][ j ].mur.murS !=1) //i decroit et vu qu on est dans le tableau pas besoin de tout verifier
+                                                        verif=1;
+                                                 break;
+                                                                     // idem avec j
+                                            case 2: if((! (j+1 >= N) )&& matrice[ i ][ j+1 ].mur.murE !=1 )
+                                                        verif=1;
+                                                 break;
+                                            case 3:  if((! (j+1 >= N) )&& matrice[ i ][ j -1].mur.murO !=1 )
+                                                        verif=1;
 
                                         }while(verif == 0);
+
                                         deplacer_canard(i, j, k, direction);
                                 }
                             }
                               //tirage aleatoire d une premiere direction si il sait pas ou aller
-                           
+
                             }
                     }
             }
