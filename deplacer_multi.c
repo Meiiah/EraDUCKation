@@ -1,9 +1,19 @@
 #include <strings.h>
 #include "include_connection.h"
 
-/*==============================================================================================================================*/
 
-void deplacer_multi_serveur(int socket_to_client){
+/**
+ * \file deplacer_multi.c
+ * \brief fichier contenant les fonctions principales de deplacement pour le multijoueur en reseau
+ * \author Maxime Touzé
+ * \version 0.2
+ * \date 19 fevrier 2018
+*/
+
+
+/*==============================================================================================================================*/
+/**	\fn void deplacer_multi_serveur(int socket_to_client)	*/
+void deplacer_multi_serveur(int socket_to_client){/** gere le deplacement des canards cote serveur */
     int i,j,k;
     int direction;
     int verif =1;
@@ -76,7 +86,8 @@ void deplacer_multi_serveur(int socket_to_client){
 
 /*==============================================================================================================================*/
 
-void deplacer_multi_client(int socket_to_serv){
+/** void deplacer_multi_client(int socket_to_serv) */
+void deplacer_multi_client(int socket_to_serv){/** gere les deplacement des canards cote client */
 
     int i,j,k;
     int direction;
@@ -99,7 +110,8 @@ void deplacer_multi_client(int socket_to_serv){
             deplacer_canard(i, j, k, direction);
         }
 
-    }
+    }else 
+		printf("ERREUR DE CONNECTION");
 
 }
 
