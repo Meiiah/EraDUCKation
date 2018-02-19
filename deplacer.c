@@ -1,15 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "deplacer_multi.h"
+
 //debut 22h00 fin 22h40
 //debut 23h30 fin 00:00
 //tps total : 70min
+
+/**
+ * \file deplacer.c
+ * \brief fichier contenant les fonctions de deplacement
+ * \author Maxime Touzé
+ * \version 0.8
+ * \date 19 fevrier 2018
+*/
 
 int N =10;
 case_t * matrice;
 int nourriture_accouplement =50; //pourcentage déja défini dans fonction.c
 
-int voit_nourriture(int i,int j,int k){
+
+/**\fn int voit_nourriture(int i,int j,int k) */
+int voit_nourriture(int i,int j,int k){/**	fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit de la nouriture (-1 si pas de vision dessus)	*/
     //une direction, toute la ligne jusqua un mur
     int l = 1;
     int mur[4] = {0,0,0,0};
@@ -85,8 +96,8 @@ int voit_nourriture(int i,int j,int k){
 
 /*================================================== Accouplement ==================================================================*/
 
-
-int voit_accouplement(int i,int j,int k){
+/**	\fn int voit_accouplement(int i,int j,int k)	*/
+int voit_accouplement(int i,int j,int k){ /**	fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit un partenaire de reprod (-1 si pas de vision dessus)	*/
     //une direction, toute la ligne jusqua un mur
     int l = 1;
     int cpt;
@@ -179,8 +190,8 @@ int voit_accouplement(int i,int j,int k){
 
 /*=======================================================================================================================*/
 
-
-void deplacer_canard(int i, int j, int k, int direction){
+/**\fn void deplacer_canard(int i, int j, int k, int direction) */
+void deplacer_canard(int i, int j, int k, int direction){/**	Deplace le kieme canard de la case i;j dans la direction donnée	*/
 
     switch(direction){ //en fonction de la direction le canard avance
             case 1:
@@ -239,8 +250,8 @@ void deplacer_canard(int i, int j, int k, int direction){
 }
 
 /*=======================================================================================================================*/
-
-canard_t init_canard(void){
+/**\fn canard_t init_canard(void) */
+canard_t init_canard(void){/**	renvoit un canard inexistant*/
     canard_t coincoin;
     coincoin.nouriture =0;
     coincoin.etat =-1;
@@ -248,8 +259,8 @@ canard_t init_canard(void){
 }
 
 /*=======================================================================================================================*/
-
-void deplacer(void){
+/**\fn void deplacer(void)*/
+void deplacer(void){/** fonction qui déplace des canards tirés au sort d une case puis d une autre */
     int i,j,k;
     int direction;
     int verif =1;
@@ -298,7 +309,7 @@ void deplacer(void){
                             }
                               //tirage aleatoire d une premiere direction si il sait pas ou aller
 
-                            }
+                          }
                     }
             }
         }
