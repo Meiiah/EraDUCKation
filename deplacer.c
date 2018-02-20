@@ -3,6 +3,7 @@
 #include "deplacer_multi.h"
 #include "struct.h"
 
+
 //debut 22h00 fin 22h40
 //debut 23h30 fin 00:00
 //tps total : 70min
@@ -19,6 +20,15 @@ int N =10;
 
 int nourriture_accouplement =50; //pourcentage déja défini dans fonction.c
 
+/**\fn canard_t canard_vide(void) */
+canard_t canard_vide(void){/**	renvoit un canard inexistant*/
+    canard_t coincoin;
+    coincoin.nourriture =0;
+    coincoin.etat = -1;
+    return coincoin;
+}
+
+/*=======================================================================================================================*/
 
 /**\fn int voit_nourriture(int i,int j,int k) */
 int voit_nourriture(int i,int j,int k){/**	fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit de la nouriture (-1 si pas de vision dessus)	*/
@@ -251,15 +261,7 @@ void deplacer_canard(int i, int j, int k, int direction){/**	Deplace le kieme ca
 }
 
 /*=======================================================================================================================*/
-/**\fn canard_t canard_vide(void) */
-canard_t canard_vide(void){/**	renvoit un canard inexistant*/
-    canard_t coincoin;
-    coincoin.nourriture =0;
-    coincoin.etat =-1;
-    return coincoin;
-}
 
-/*=======================================================================================================================*/
 /**\fn void deplacer(void)*/
 void deplacer(void){/** fonction qui déplace des canards tirés au sort d une case puis d une autre */
     int i,j,k;
