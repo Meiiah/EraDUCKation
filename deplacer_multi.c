@@ -54,17 +54,17 @@ void deplacer_multi_serveur(int socket_to_client){
                                                  break;
                                             case 3:  if((! (j+1 >= taille_mat) )&& matrice[ i ][ j -1].mur.murO !=1 )
                                                         verif=1;
-
+                                          }
                                         }while(verif == 0);
 
-                                        /*! ENVOI  DU MESSAGE AVEC LES PARAM DE LA FONCTION DEPLACEMENT*/
-                                        memset(buffer, 0, sizeof(buffer));
-                                        sprintf(buffer,"%i%i%i%i",i,j,k, direction);
-                                        send(socket_to_client, buffer, 512, 0);
+									/*! ENVOI  DU MESSAGE AVEC LES PARAM DE LA FONCTION DEPLACEMENT*/
+									memset(buffer, 0, sizeof(buffer));
+									sprintf(buffer,"%i%i%i%i",i,j,k, direction);
+									send(socket_to_client, buffer, 512, 0);
 
-                                        deplacer_canard(i, j, k, direction);
+									deplacer_canard(i, j, k, direction);
+                                    
                                 }
-                            }
 
                             }
                     }
@@ -79,14 +79,14 @@ void deplacer_multi_serveur(int socket_to_client){
 }
 
 /*==============================================================================================================================*/
-
+/*
 void deplacer_multi_client(int socket_to_serv){
 
     int i,j,k;
     int direction;
      char buffer[512];
 
-        /*! RECEPTION DU MESSAGE INDIQUANT LE DEBUT DU TRANSFERT DE DEPLACEMENT*/
+        RECEPTION DU MESSAGE INDIQUANT LE DEBUT DU TRANSFERT DE DEPLACEMENT
     memset(buffer, 0, sizeof(buffer));
 	recv(socket_to_serv,buffer,512, 0);
 
@@ -95,7 +95,7 @@ void deplacer_multi_client(int socket_to_serv){
         recv(socket_to_serv,buffer,512, 0);
 
         while(!strncmp("FIN_DEP", buffer, 7)){
-             /*!TANT QU ON A PAS DEPLACE TOUS LES CANARDS A DEPLACER ON PREND LES DONNEES ET ON LES DEPLACE*/
+             !TANT QU ON A PAS DEPLACE TOUS LES CANARDS A DEPLACER ON PREND LES DONNEES ET ON LES DEPLACE
             fread(i, sizeof(int), 1, buffer);
             fread(j, sizeof(int), 1, buffer);
             fread(k, sizeof(int), 1, buffer);
@@ -108,6 +108,6 @@ void deplacer_multi_client(int socket_to_serv){
 
 }
 
-
+*/
 
 
