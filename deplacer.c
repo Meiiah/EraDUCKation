@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "deplacer_multi.h"
+#include "struct.h"
 
 //debut 22h00 fin 22h40
 //debut 23h30 fin 00:00
@@ -15,7 +16,7 @@
 */
 
 int N =10;
-case_t * matrice;
+
 int nourriture_accouplement =50; //pourcentage déja défini dans fonction.c
 
 
@@ -27,7 +28,7 @@ int voit_nourriture(int i,int j,int k){/**	fonction qui renvoit la direction dan
     //on renvoit la direction ou il voit le miam miam et -1 si il voit pas (choisi la nouriture la plus proche
 
     //dir 1
-    while(true){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
+    while(1){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
 
         /*
         SI pas de mur enregistré on regarde si il y a un fruit, si c est le cas on break,
@@ -105,7 +106,7 @@ int voit_accouplement(int i,int j,int k){ /**	fonction qui renvoit la direction 
     //on renvoit la direction ou il voit le miam miam et -1 si il voit pas (choisi la nouriture la plus proche
 
     //dir 1
-    while(true){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
+    while(1){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
 
         /*
         SI pas de mur enregistré on regarde si il y a un fruit, si c est le cas on break,
@@ -116,8 +117,8 @@ int voit_accouplement(int i,int j,int k){ /**	fonction qui renvoit la direction 
                 //pour i croissant direction est
 
         if(mur[0]==0){//si on a pas encore croise de mur
-            if(matrice[i+l][j].nb_occupants>0){//si il y a des canards sur la case
-                for(cpt=0; cpt<nb_occupants; cpt++){//on cherche si il y a au moins une cible pour accouplement
+            if(matrice[i+l][j].nb_occupant>0){//si il y a des canards sur la case
+                for(cpt=0; cpt<matrice[i+l][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
                     if(matrice[i+l][j].tab_canard[cpt].etat==1 && matrice[i+l][j].tab_canard[cpt].nourriture > nourriture_accouplement){ //si presence de nourriture sur la case
                         return 1;
                     }
@@ -134,8 +135,8 @@ int voit_accouplement(int i,int j,int k){ /**	fonction qui renvoit la direction 
                 //pour i décroissant direction ouest
 
         if(mur[1]==0){
-             if(matrice[i-l][j].nb_occupants>0){//si il y a des canards sur la case
-                for(cpt=0; cpt<nb_occupants; cpt++){//on cherche si il y a au moins une cible pour accouplement
+             if(matrice[i-l][j].nb_occupant>0){//si il y a des canards sur la case
+                for(cpt=0; cpt<matrice[i-l][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
                     if(matrice[i-l][j].tab_canard[cpt].etat==1 && matrice[i-l][j].tab_canard[cpt].nourriture > nourriture_accouplement){ //si presence de nourriture sur la case
                         return 2;
                     }
@@ -152,8 +153,8 @@ int voit_accouplement(int i,int j,int k){ /**	fonction qui renvoit la direction 
                 //pour j croissant direction sud
 
         if(mur[2]==0){
-            if(matrice[i][j+l].nb_occupants>0){//si il y a des canards sur la case
-                for(cpt=0; cpt<nb_occupants; cpt++){//on cherche si il y a au moins une cible pour accouplement
+            if(matrice[i][j+l].nb_occupant>0){//si il y a des canards sur la case
+                for(cpt=0; cpt<matrice[i][j+l].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
                     if(matrice[i][j+l].tab_canard[cpt].etat==1 && matrice[i][j+l].tab_canard[cpt].nourriture > nourriture_accouplement){
                        return 3;
                     }
@@ -170,8 +171,8 @@ int voit_accouplement(int i,int j,int k){ /**	fonction qui renvoit la direction 
                 //pour j décroissant direction Nord
 
         if(mur[3]==0){
-            if(matrice[i][j-l].nb_occupants>0){//si il y a des canards sur la case
-                for(cpt=0; cpt<nb_occupants; cpt++){//on cherche si il y a au moins une cible pour accouplement
+            if(matrice[i][j-l].nb_occupant>0){//si il y a des canards sur la case
+                for(cpt=0; cpt<matrice[i][j-l].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
                     if(matrice[i][j-l].tab_canard[cpt].etat==1 && matrice[i][j-l].tab_canard[cpt].nourriture > nourriture_accouplement){
                        return 4;
                     }
@@ -202,7 +203,7 @@ void deplacer_canard(int i, int j, int k, int direction){/**	Deplace le kieme ca
                    matrice[i+1][j].nb_occupant ++;
 
                    //on enleve le canard dans la case originelle, le nombre de canard diminue donc
-                   matrice[i][j].tab_canard[k] = init_canard();
+                   matrice[i][j].tab_canard[k] = canard_vide();
                    matrice[i][j].nb_occupant --;
                                     break;
 
@@ -215,7 +216,7 @@ void deplacer_canard(int i, int j, int k, int direction){/**	Deplace le kieme ca
                    matrice[i-1][j].nb_occupant ++;
 
                    //on enleve le canard dans la case originelle, le nombre de canard diminue donc
-                   matrice[i][j].tab_canard[k] = init_canard();
+                   matrice[i][j].tab_canard[k] = canard_vide();
                    matrice[i][j].nb_occupant --;
                                         break;
 
@@ -228,7 +229,7 @@ void deplacer_canard(int i, int j, int k, int direction){/**	Deplace le kieme ca
                    matrice[i][j+1].nb_occupant ++;
 
                    //on enleve le canard dans la case originelle, le nombre de canard diminue donc
-                   matrice[i][j].tab_canard[k] = init_canard();
+                   matrice[i][j].tab_canard[k] = canard_vide();
                    matrice[i][j].nb_occupant --;
 
                                         break;
@@ -242,7 +243,7 @@ void deplacer_canard(int i, int j, int k, int direction){/**	Deplace le kieme ca
                    matrice[i][j+1].nb_occupant ++;
 
                    //on enleve le canard dans la case originelle, le nombre de canard diminue donc
-                   matrice[i][j].tab_canard[k] = init_canard();
+                   matrice[i][j].tab_canard[k] = canard_vide();
                    matrice[i][j].nb_occupant --;
                                         break;
 
@@ -250,10 +251,10 @@ void deplacer_canard(int i, int j, int k, int direction){/**	Deplace le kieme ca
 }
 
 /*=======================================================================================================================*/
-/**\fn canard_t init_canard(void) */
-canard_t init_canard(void){/**	renvoit un canard inexistant*/
+/**\fn canard_t canard_vide(void) */
+canard_t canard_vide(void){/**	renvoit un canard inexistant*/
     canard_t coincoin;
-    coincoin.nouriture =0;
+    coincoin.nourriture =0;
     coincoin.etat =-1;
     return coincoin;
 }
@@ -267,8 +268,8 @@ void deplacer(void){/** fonction qui déplace des canards tirés au sort d une c
 
     for(i=0; i<N; i++){
         for(j=0; j<N; j++){//pour chaque case de la matrice
-                for(k=0; k<matrice[i][j].nb_occupants; i++){
-                        if(matrice[i][j].tab_cannard[k]==1){ //pour chaque canard qui peut se deplacer
+                for(k=0; k<matrice[i][j].nb_occupant; i++){
+                        if(matrice[i][j].tab_canard[k].etat==1){ //pour chaque canard qui peut se deplacer
 
                                 // /!\ 1/3 des canards se déplacent, donc rand, si c est pas bon on le deplace pas donc break
                             if(rand()%3!=0)     break;
@@ -288,30 +289,31 @@ void deplacer(void){/** fonction qui déplace des canards tirés au sort d une c
                                     direction = rand()%4;
                                     /* FAIRE VERIF */
 
-                                   switch(direction){// effets de bord
-                                            case 0: if((! (i+1 >= N)  )&& matrice[ i+1 ][ j ].mur.murN !=1) //i croit et vu qu on est dans le tableau pas besoin de tout verifier
-                                                        verif=1;
-                                                 break;
-                                            case 1: if((! (i-1 < 0) )&& matrice[ i-1 ][ j ].mur.murS !=1) //i decroit et vu qu on est dans le tableau pas besoin de tout verifier
-                                                        verif=1;
-                                                 break;
-                                                                     // idem avec j
-                                            case 2: if((! (j+1 >= N) )&& matrice[ i ][ j+1 ].mur.murE !=1 )
-                                                        verif=1;
-                                                 break;
-                                            case 3:  if((! (j+1 >= N) )&& matrice[ i ][ j -1].mur.murO !=1 )
-                                                        verif=1;
+									   switch(direction){// effets de bord
+												case 0: if((! (i+1 >= N)  )&& matrice[ i+1 ][ j ].mur.murN !=1) //i croit et vu qu on est dans le tableau pas besoin de tout verifier
+															verif=1;
+													 break;
+												case 1: if((! (i-1 < 0) )&& matrice[ i-1 ][ j ].mur.murS !=1) //i decroit et vu qu on est dans le tableau pas besoin de tout verifier
+															verif=1;
+													 break;
+																		 // idem avec j
+												case 2: if((! (j+1 >= N) )&& matrice[ i ][ j+1 ].mur.murE !=1 )
+															verif=1;
+													 break;
+												case 3:  if((! (j+1 >= N) )&& matrice[ i ][ j -1].mur.murO !=1 )
+															verif=1;
 
-                                        }while(verif == 0);
+                                    	}
+                                    }while(verif == 0);
 
                                         deplacer_canard(i, j, k, direction);
                                 }
                             }
-                              //tirage aleatoire d une premiere direction si il sait pas ou aller
+                            //tirage aleatoire d une premiere direction si il sait pas ou aller
 
-                          }
+                        }
                     }
-            }
         }
     }
+    
 }
