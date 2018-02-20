@@ -91,30 +91,26 @@ void valeur_case(int x1, int y1, int x2, int y2, int *compteur){/** Permet de ch
 		mat[x1][y1].valeur=*compteur;
 		mat[x2][y2].valeur=*compteur;
 		(*compteur)++;
-		fprintf(stderr, "cas 0\n");
+		
 		
 	} else if(mat[x1][y1].valeur==-1) {
 		
 		mat[x1][y1].valeur=mat[x2][y2].valeur;
-		fprintf(stderr, "cas 1\n");
+		
 		
 	} else if( mat[x2][y2].valeur==-1){
 		
 		mat[x2][y2].valeur=mat[x1][y1].valeur;
-		fprintf(stderr, "cas 2\n");
+		
 		
 	} else if ( mat[x1][y1].valeur != mat[x2][y2].valeur ){
 		maxmin(&max,&min,mat[x1][y1].valeur,mat[x2][y2].valeur);
-		fprintf(stderr, "min %i, max %i\n", min, max);
 		for(i=0;i<N;i++){
 			for(j=0;j<N;j++){
 				if(mat[i][j].valeur==max) mat[i][j].valeur=min;
 			}
 		}
-	} else {
-		fprintf(stderr, "on devrait pas etre la...\n");
-	}
-	fprintf(stderr, "V1: %i,V2: %i\n", mat[x1][y1].valeur, mat[x2][y2].valeur );
+	} 
 }
 
 /** \fn void case_adja(int coord_x, int coord_y, int *compteur)*/
