@@ -43,9 +43,13 @@ void aff(){
 	for(i=0; i<N; i++){
 		for(j=0;j<N;j++){
 			m = mat[j][i].mur;
-			if(m.murN==1) printf("%c", 2250);
-			if(m.murN==1) printf("%c", 2250);
-			fprintf(stderr, " [ %i, %i, %i, %i ],%i ", m.murN, m.murE, m.murS, m.murO,mat[j][i].valeur);
+			if(m.murN==1 || m.murS==1) printf("_");
+			else if(m.murN==0 || m.murS==0) printf(" ");
+			
+			if(m.murE==1 || m.murO==1) printf("|");
+			else if(m.murE==0 || m.murO==0) printf(" ");
+
+
 		}
 		fprintf(stderr, "\n");
 	}
