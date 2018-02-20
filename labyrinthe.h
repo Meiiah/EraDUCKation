@@ -3,18 +3,18 @@
 #include <time.h>
 #include "struct.h"
 
-void aff();
+void affichage_laby();//Affichage du labyrinthe avec les murs sour forme ASCII
 
-void init_laby(); //initialisation du labyrinthe
+void init_laby(); //Permet d'initialiser chaques mur du labyrinthe à 1(présence d'un mur) et de la valeur de la case à -1
 
-int maxmin(int *, int *, int, int); //determine le min et max pour la fonction "valeur_case"
+int maxmin(int *, int *, int, int); //Permet de déterminer le minimu et la maximum entre deux cases adjacentes
 
-void valeur_case(int, int, int, int, int *); //attribut puis change la valeur d'une case afin de creer le labyrinthe en cassant des murs
+void valeur_case(int, int, int, int, int *); //Permet de changer la valeur d'une case du labyrinthe afin de creer des galeries. Appel la fonction minmax
 
-void case_adja(int, int, int *); //choisit une case adajacente, afin de savoir quelle mur casser en fonction d'une direction
+void case_adja(int, int, int *); //Choisie une case aléatoirement(Nord, Sud, Est, Ouest) afin de creer la galerie en cassant les murs entre les deux cases. Appel la fonction valeur_case
 
-void coord_case(int*); //choisit une case au hasard dans le labyrinthe, pour la fonction "case_adja"
+void coord_case(int*); //Choisie aléatoirement une case dans le labyrinthe afin de lui attribué une valeur et de creer les galeries a partir des fonctions précédentes. Appel la fonction case_adj
 
-int laby_fini(); //verifie si le labyrinthe est fini ou non
+int laby_fini(); //Vérification permettant de savoir si le labyrinthe est finit ou non
 
-void creer_labyrinthe(); //creation du labyrinthe en appellant les fonction precedente
+void creer_labyrinthe(); //Appel toutes les fonctions pour creer le labyrinthe

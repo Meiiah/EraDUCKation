@@ -36,7 +36,7 @@ ini_t mat[N][N];
 	fprintf(stderr, "#### FIN LABY\n");
 }*/
 
-/** \fn void aff()*/
+/** \fn void affichage_laby()*/
 void affichage_laby(){ /** Affichage du labyrinthe avec les murs sour forme ASCII */
 	int i,j;
 	mur_t m;
