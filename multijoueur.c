@@ -1,3 +1,13 @@
+/**
+ * \file multijoueur.c
+ * \brief Fonctions outils multijoueur
+ * \author Maxime.T
+ * \version 1.0
+ * \date 20 fevrier 2018 
+*/
+
+
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "struct.h"
