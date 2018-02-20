@@ -2,6 +2,7 @@
 #include "nourriture.h"
 #include "joueur.h"
 #include "struct.h"
+#include "deplacer.c"
 
 int jeu_solo(){
 	int jeu=1 // 1 en cours de partie , 0 partie finit
