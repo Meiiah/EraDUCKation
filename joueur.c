@@ -3,15 +3,28 @@
 #include "event.h"
 #include "struct.h"
 
+/**
+*\file joueur.c
+*\brief programme qui gere tout ce qui est en rapport avec le joueur
+*\author VAIDIE Camille
+*\version 1.0
+*\date 20 fevrier 2018
+*/
+
 #define nb_event 4
+/** \fn void ajout_score(int,joueur_t,joueur_t)*/
+/**fonction d'ajour de score des deux joueurs*/
 
 void ajout_score(int point,joueur_t joueur, joueur_t joueur2){
+	
 	joueur.score+=point; // ajout des points en fonction de l'action faite
 	if(joueur2.nom_joueur!=NULL){
 		joueur2.score-=point;
 	}
 }
 
+/**\fn void caract_joueur(joueur_t)*/
+/** saisi du pseudo du joueur */
 void caract_joueur(joueur_t joueur){
 	printf("Saisir le pseudo du joueur");
 	scanf("%s",joueur.nom_joueur);
@@ -21,6 +34,9 @@ void caract_joueur(joueur_t joueur){
 char *mauv_evts[nb_event+1]={"tsunami", "tempete","famine","reproduction_ralenti","predateur"};
 char *bon_evts[nb_event+1]={"plus_nourriture","joker_nourriture","liberation_canard","canard_invassible","reproduction_accelere"};
 
+
+/** \fn void tab_event_mauvais(void) */
+/** choisit 3 mauvais evenements random */
 void tab_event_mauvais(int * choix1,int * choix2, int * choix3){
 	*choix1=(rand() % (nb_event + 1)); // Random du choix des evenement parmis 5 possibilités//
 	*choix2=(rand() % (nb_event + 1));
@@ -31,6 +47,8 @@ void tab_event_mauvais(int * choix1,int * choix2, int * choix3){
 	printf("%s",mauv_evts[*choix3]);
 }
 
+/** \fn void tab_event_bon(void) */
+/** choisit 3 bons evenements random */
 void tab_event_bon(int * choix1,int * choix2, int * choix3){
 
 	*choix1=(rand() % (nb_event + 1)); // Random du choix des evenement parmis 5 possibilités//
@@ -43,7 +61,8 @@ void tab_event_bon(int * choix1,int * choix2, int * choix3){
 }
 
 
-
+/** \fn void choix_mauvais(void)*/
+/** choix random parmis les evenements mauvais */
 void choix_mechant(){
 	int choix1, choix2, choix3;
 	
@@ -63,6 +82,9 @@ void choix_mechant(){
 			break;
 	}
 }
+
+/** \fn void choix_bon(void)*/
+/** choix random parmis les evenements bon */
 
 void choix_bon(){
 	int choix1, choix2, choix3;
@@ -84,6 +106,9 @@ void choix_bon(){
 	}
 }
 
+
+/** \fn void choix_joueur(void)*/
+/** choix du joueur parmis les evenements */
 void choix_joueur(){
 	int nature_event= ( rand() % 2); // Choix randome d'un evenement positif ou negatif//
 	if (nature_event%2==0){ // Si pair : Evenement negatif //
