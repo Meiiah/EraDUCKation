@@ -25,3 +25,7 @@ typedef struct joueur_s{
 	int score;
 	char nom_joueur[25];
 }joueur_t;
+
+int taille_mat;
+
+case_t ** matrice;
