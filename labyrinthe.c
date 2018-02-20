@@ -6,7 +6,16 @@
 #define N 4
 #define MAX 4
 
-typedef struct{
+/**
+* \file labyrinthe.c
+* \brief Programme comprennant la génération d'un labyrinthe
+* \author MARCHAND Killian
+* \version 3.0
+* \date 20 Février 2018
+*/
+
+/** \struct ini_t*/
+typedef struct{ /** Strucure appelant une structure mur_t, et une valeur de case*/
 	mur_t mur;
 	int valeur;
 }ini_t;
@@ -14,7 +23,7 @@ typedef struct{
 ini_t mat[N][N];
 
 
-void aff(){
+/*void aff(){
 	int i,j;
 	mur_t m;
 	for(i=0; i<N; i++){
@@ -25,9 +34,28 @@ void aff(){
 		fprintf(stderr, "\n");
 	}
 	fprintf(stderr, "#### FIN LABY\n");
+}*/
+
+/** \fn void aff()*/
+void affichage_laby(){ /** Affichage du labyrinthe avec les murs sour forme ASCII */
+	int i,j;
+	mur_t m;
+	for(i=0; i<N; i++){
+		for(j=0;j<N;j++){
+			m = mat[j][i].mur;
+			if(m.murN==1) printf("%c", 2250);
+			if(m.murN==1) printf("%c", 2250);
+			fprintf(stderr, " [ %i, %i, %i, %i ],%i ", m.murN, m.murE, m.murS, m.murO,mat[j][i].valeur);
+		}
+		fprintf(stderr, "\n");
+	}
+	fprintf(stderr, "#### FIN LABY\n");
 }
 
-void init_laby(){ /*initialisation de tous les murs de la map a 1*/
+}
+
+/** \fn void init_laby()*/
+void init_laby(){ /** Permet d'initialiser chaques mur du labyrinthe à 1(présence d'un mur) et de la valeur de la case à -1*/
 	int i,j;	
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++){
@@ -42,8 +70,8 @@ void init_laby(){ /*initialisation de tous les murs de la map a 1*/
 	}		
 }
 
-
-void maxmin(int *max, int*min, int val1, int val2){
+/** \fn void maxmin(int *max, int*min, int val1, int val2)*/
+void maxmin(int *max, int*min, int val1, int val2){/** Permet de déterminer le minimu et la maximum entre deux cases adjacentes*/
 	if(val1<val2){
 		 *min=val1;
 		 *max=val2;
@@ -53,32 +81,44 @@ void maxmin(int *max, int*min, int val1, int val2){
 		 *min=val2;
 	}
 }
-
-
-void valeur_case(int x1, int y1, int x2, int y2, int *compteur){
+/** \fn void valeur_case(int x1, int y1, int x2, int y2, int *compteur)*/
+void valeur_case(int x1, int y1, int x2, int y2, int *compteur){/** Permet de changer la valeur d'une case du labyrinthe afin de creer des galeries. Appel la fonction minmax*/
 	int i,j;
 	int max, min;
+	
 	if(mat[x1][y1].valeur==-1 && mat[x2][y2].valeur==-1){
+		
 		mat[x1][y1].valeur=*compteur;
 		mat[x2][y2].valeur=*compteur;
 		(*compteur)++;
-	} else
-	if(mat[x1][y1].valeur==-1) {
+		fprintf(stderr, "cas 0\n");
+		
+	} else if(mat[x1][y1].valeur==-1) {
+		
 		mat[x1][y1].valeur=mat[x2][y2].valeur;
-	} else if ( mat[x2][y2].valeur!=-1){
+		fprintf(stderr, "cas 1\n");
+		
+	} else if( mat[x2][y2].valeur==-1){
+		
 		mat[x2][y2].valeur=mat[x1][y1].valeur;
+		fprintf(stderr, "cas 2\n");
+		
 	} else if ( mat[x1][y1].valeur != mat[x2][y2].valeur ){
 		maxmin(&max,&min,mat[x1][y1].valeur,mat[x2][y2].valeur);
+		fprintf(stderr, "min %i, max %i\n", min, max);
 		for(i=0;i<N;i++){
 			for(j=0;j<N;j++){
 				if(mat[i][j].valeur==max) mat[i][j].valeur=min;
 			}
 		}
+	} else {
+		fprintf(stderr, "on devrait pas etre la...\n");
 	}
+	fprintf(stderr, "V1: %i,V2: %i\n", mat[x1][y1].valeur, mat[x2][y2].valeur );
 }
 
-
-void case_adja(int coord_x, int coord_y, int *compteur){ /*recupere une case des 4 cases adajacente de la case prit en random*/
+/** \fn void case_adja(int coord_x, int coord_y, int *compteur)*/
+void case_adja(int coord_x, int coord_y, int *compteur){ /** Choisie une case aléatoirement(Nord, Sud, Est, Ouest) afin de creer la galerie en cassant les murs entre les deux cases. Appel la fonction valeur_case */
 	int case_adj;
 	int temp_x= coord_x , temp_y= coord_y;
 
@@ -142,20 +182,21 @@ void case_adja(int coord_x, int coord_y, int *compteur){ /*recupere une case des
 	
 }
 
-void coord_case(int* compteur){ /* choix d'une case en random */
+/** \fn void coord_case(int* compteur)*/
+void coord_case(int* compteur){ /** Choisie aléatoirement une case dans le labyrinthe afin de lui attribué une valeur et de creer les galeries a partir des fonctions précédentes. Appel la fonction case_adj*/
 	int coord_x; 
 	int coord_y;
 	
 	coord_x= (rand() % N);
 	coord_y= (rand() % N);
 	
-	fprintf(stderr, "case de depart (%d,%d]\n", coord_x, coord_y);
+	fprintf(stderr, "case de depart [%d,%d]\n", coord_x, coord_y);
 	
 	case_adja(coord_x,coord_y,compteur);
 }
 	
-
-int laby_fini(){
+/** \fn int laby_fini()*/
+int laby_fini(){/** Vérification permettant de savoir si le labyrinthe est finit ou non*/
 	int i,j;
 	for(i=0; i<N; i++){
 		for(j=0;j<N;j++){
@@ -166,8 +207,8 @@ int laby_fini(){
 	return 1;
 }
 
-
-void creer_labyrinthe(){ /*generation de l'interieur de la map*/
+/** \fn void creer_labyrinthe()*/
+void creer_labyrinthe(){ /** Appel toutes les fonctions pour creer le labyrinthe*/
 	
 	mur_t mur;
 	
