@@ -48,3 +48,7 @@ typedef struct joueur_s{
 int taille_mat;
 
 case_t ** matrice;
+
+joueur_t joueur;
+joueur_t joueur2;
+
