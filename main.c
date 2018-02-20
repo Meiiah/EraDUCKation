@@ -7,10 +7,6 @@
 #include "labyrinthe.h"
 
 
-joueur_t joueur;
-joueur_t joueur2;
-
-
 int choix_difficultee(int choix){
 	switch(choix){
 		case 1 :
