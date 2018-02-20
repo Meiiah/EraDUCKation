@@ -1,13 +1,7 @@
-#include <stdlib.h>
-#include <stdio.h>
 
-typede enum clan_t{ bon, mechant };
+#include "include_connection.h"
+#include "multijoueur.c"
 
-typedef struct joueur_s{
-    clan_t clan;
-    char nom [20];
-    void (*choix) (void);
-}joueur_t
 
 void entrer_int(int* val){
     scanf("%i", val);
@@ -29,7 +23,7 @@ int init_socket_serveur(int port){
 	mon_address.sin_family = AF_INET;
 	mon_address.sin_addr.s_addr = htonl(INADDR_ANY);
 
-	ma_socket = socket(AF_INET,SOCK_STREAM,0)
+	ma_socket = socket(AF_INET,SOCK_STREAM,0);
     bind(ma_socket,(struct sockaddr *)&mon_address,sizeof(mon_address));
     return ma_socket;
 }
@@ -38,7 +32,7 @@ int init_socket_serveur(int port){
 
 void main_multijoueur_reseau_serveur(int SocketClient){
     //variables :
-    joueur_t tab [2];
+    joueur_multi_t tab[2];
     int tampon;
 
     tampon = qui_commence();
@@ -50,7 +44,7 @@ void main_multijoueur_reseau_serveur(int SocketClient){
 
 void main_multijoueur_reseau_client(int SocketServeur){
     //variables :
-    joueur_t tab [2];
+    joueur_multi_t tab[2];
     int tampon;
 
     tampon = qui_commence();
@@ -64,8 +58,8 @@ int choix_client_serv(void){
     int choix;
     do{
         system("cls");
-        printf("Bienvenue dans la partie multijoueur d' EraDUCKation, souhaitez vous être hote ou rejoindre un ami prêt à vous recevoir ? \n");
-        printf("        Si vous voulez être l'hôte de la partie tapez 1 ;\n");
+        printf("Bienvenue dans la partie multijoueur d' EraDUCKation, souhaitez vous ï¿½tre hote ou rejoindre un ami prï¿½t ï¿½ vous recevoir ? \n");
+        printf("        Si vous voulez ï¿½tre l'hï¿½te de la partie tapez 1 ;\n");
         printf("        Si vous voulez rejoindre un ami  tapez 2 ;\n");
         entrer_int(&choix);
     }while(choix <1 || choix >2);
@@ -78,6 +72,14 @@ int menu_client(){
 	struct hostent *serverHostEnt;
 	long hostAddr;
 	int to_server_socket;
+	int port;
+	char SERVEURNAME[30];
+	
+	system("cls");
+    printf("Sur quel port voulez-vous jouer? \n");
+    scanf("%i", &port);
+    printf("\nEntrez l'ip de votre adversaire \n");
+    scanf("%s", SERVEURNAME);
 
 	bzero(&serverSockAddr,sizeof(serverSockAddr));
 	hostAddr = inet_addr(SERVEURNAME);
@@ -93,7 +95,7 @@ int menu_client(){
 	  	}
 	  	bcopy(serverHostEnt->h_addr,&serverSockAddr.sin_addr,serverHostEnt->h_length);
 	}
-	serverSockAddr.sin_port = htons(30000);
+	serverSockAddr.sin_port = htons(port);
 	serverSockAddr.sin_family = AF_INET;
 	/* creation de la socket */
 	if ( (to_server_socket = socket(AF_INET,SOCK_STREAM,0)) < 0)
@@ -125,7 +127,7 @@ int menu_serveur(){
     socket_heberge = init_socket_serveur(port);
 
     system("cls");
-    printf("Votre IP est : \n Vous avez choisi le port : %i \n Recherche d'un adversaire en cours");
+    printf("Votre IP est : \n Vous avez choisi le port : %i \n Recherche d'un adversaire en cours", port);
             //creation de la socket client
     listen(socket_heberge,5);
     longueur_adresse = sizeof(adresse_client);
@@ -135,7 +137,7 @@ int menu_serveur(){
             //connection effectuee
 
     system("cls");
-    printf(" Adversaire trouvé ! ");
+    printf(" Adversaire trouvï¿½ ! ");
 
     return Socket_Client;
 
@@ -156,10 +158,11 @@ void menu_multi_reseau(void){ /* Choix de client ou serveur, avec ensuite lancem
                     main_multijoueur_reseau_client(sockett);
             break;
      }
-
 }
 
+int main(){
 
+}
 
 
 
