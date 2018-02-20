@@ -72,6 +72,48 @@ int choix_client_serv(void){
     return choix;
 }
 
+int menu_client(){
+    /* POMPE */
+    struct sockaddr_in serverSockAddr;
+	struct hostent *serverHostEnt;
+	long hostAddr;
+	int to_server_socket;
+
+	bzero(&serverSockAddr,sizeof(serverSockAddr));
+	hostAddr = inet_addr(SERVEURNAME);
+	if ( (long)hostAddr != (long)-1)
+		bcopy(&hostAddr,&serverSockAddr.sin_addr,sizeof(hostAddr));
+	else
+	{
+		serverHostEnt = gethostbyname(SERVEURNAME);
+	  	if (serverHostEnt == NULL)
+	  	{
+			printf("gethost rate\n");
+			exit(0);
+	  	}
+	  	bcopy(serverHostEnt->h_addr,&serverSockAddr.sin_addr,serverHostEnt->h_length);
+	}
+	serverSockAddr.sin_port = htons(30000);
+	serverSockAddr.sin_family = AF_INET;
+	/* creation de la socket */
+	if ( (to_server_socket = socket(AF_INET,SOCK_STREAM,0)) < 0)
+	{
+		printf("creation socket client ratee\n");
+	  	exit(0);
+	}
+	/* requete de connexion */
+	if(connect( to_server_socket,
+				(struct sockaddr *)&serverSockAddr,
+				sizeof(serverSockAddr)) < 0 )
+	{
+		printf("demande de connection ratee\n");
+	  	exit(0);
+	}
+	/* -------------- */
+
+    return to_server_socket;
+}
+
 int menu_serveur(){
     int socket_heberge, Socket_Client;
     struct sockaddr_in adresse_client;
@@ -87,25 +129,31 @@ int menu_serveur(){
             //creation de la socket client
     listen(socket_heberge,5);
     longueur_adresse = sizeof(adresse_client);
-    client_socket = accept(socket_heberge,
+    Socket_Client = accept(socket_heberge,
                     (struct sockaddr *)&adresse_client,
                          &longueur_adresse);
             //connection effectuee
+
+    system("cls");
+    printf(" Adversaire trouvé ! ");
+
+    return Socket_Client;
 
 }
 
 void menu_multi_reseau(void){ /* Choix de client ou serveur, avec ensuite lancement du jeu*/
     int choix;
+    int sockett;
      choix = choix_client_serv();
 
      switch(choix){
                     // Partie serveur
-        case 1: menu_serveur();
-                    main_multijoueur_reseau_serveur();
+        case 1: sockett = menu_serveur();
+                    main_multijoueur_reseau_serveur(sockett);
             break;
                     // Partie client
-        case 2: menu_client();
-                    main_multijoueur_reseau_client();
+        case 2: sockett = menu_client();
+                    main_multijoueur_reseau_client(sockett);
             break;
      }
 

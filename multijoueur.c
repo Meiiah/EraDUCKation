@@ -1,6 +1,6 @@
 
 
-typede enum clan_t{ bon, mechant };
+typedef enum clan_t{ bon, mechant };
 
 typedef struct joueur_s{
     clan_t clan;
@@ -34,11 +34,11 @@ void tour_multijoueur(joueur_t tab[]){
 /*===============================================*/
 
   int qui_commence(void){
-       printf(“Si vous voulez que ce soit le joueur gentil qui commence, tapez 0, pour le mechant,         tapez 1, et si vous voulez que ce soit aleatoire tapez 2\n”);
-       scanf(“%i”,&tampon);
+       printf("Si vous voulez que ce soit le joueur gentil qui commence, tapez 0, pour le mechant,         tapez 1, et si vous voulez que ce soit aleatoire tapez 2\n");
+       scanf("%i”,&tampon);
        while(tampon <0 || tampon >2){
-            printf(“\nentree invalide veuillez de nouveau sesir qui va commencer \n”);
-            scanf(“%i”,&tampon);
+            printf(" \n entree invalide veuillez de nouveau sesir qui va commencer \n");
+            scanf("%i",&tampon);
         }
         if(tampon ==2) tampon = rand()%2;
         return tampon;
@@ -60,10 +60,13 @@ void main_multijoueur(void){
     //variables :
     joueur_t tab [2];
     int tampon;
-    
+    //maintenant on initialise l ordre de jeu
     tampon = qui_commence();
     init_tab_joueurs(tab, tampon);
- 
-    //maintenant on initialise l ordre de jeu
+
+    /** Tant que les canards sont pas tous morts on fait les tours
+
+    a chaque tour on fait deplacement, choix, on verifie les cond d arret,, et on recommence */
+
 
 }
