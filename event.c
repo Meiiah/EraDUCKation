@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include "struct.h"
+#include "joueur.h"
 #define N 20// N est le taille de la matrice
 #define M 10 // taille tableau de pointeur
 
@@ -27,8 +29,8 @@ void tsunami(){
 		for(i=0;i<N;i++){
 			for(j=random_min;j<random_max;j++){
 				for(k=0;k<matrice[i][j].nb_occupant;k++){
-					tab_canard[k].nourriture=0;
-					tab_canard[k].etat=-1;
+					matrice[i][j].tab_canard[k].nourriture=0;
+					matrice[i][j].tab_canard[k].etat=-1;
 					ajout_score(-50,joueur,joueur2);	
 				}
 				matrice[i][j].nb_occupant=0;
@@ -38,9 +40,9 @@ void tsunami(){
 	if(align==1){
 		for(i=random_min;i<random_max;i++){
 			for(j=0;j<N;j++){
-				for(k=0;k<nb_occupant;k++){
-					tab_canard[k].nourriture=0;
-					tab_canard[k].etat=-1;	
+				for(k=0;k<matrice[i][j].nb_occupant;k++){
+					matrice[i][j].tab_canard[k].nourriture=0;
+					matrice[i][j].tab_canard[k].etat=-1;	
 					ajout_score(-50,joueur,joueur2);
 				}
 				matrice[i][j].nb_occupant=0;
@@ -61,8 +63,8 @@ void tempete(){
 	for(i=random_min;i<random_max;i++){
 		for(j=random_min;j<random_max;j++){
 			for(k=0;k<matrice[i][j].nb_occupant;k++){
-				tab_canard[k].nourriture=0;
-				tab_canard[k].etat=-1;	
+				matrice[i][j].tab_canard[k].nourriture=0;
+				matrice[i][j].tab_canard[k].etat=-1;	
 				ajout_score(-50,joueur,joueur2);
 			}
 			matrice[i][j].nb_occupant=0;
@@ -70,8 +72,9 @@ void tempete(){
 	}
 }
 
-void famine(){
-	nourriture_genere=0;
+int famine(int famine){
+	return famine;
+	
 }
 
 void reproduction_ralentie(){
