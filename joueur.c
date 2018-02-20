@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "event.h"
+#include "struct.h"
+
 #define nb_event 4
 
 void ajout_score(int point,joueur_t joueur, joueur_t joueur2){
 	joueur.score+=point; // ajout des points en fonction de l'action faite
-	if(joueur2!=NULL){
-		joueur.score-=point;
+	if(joueur2.nom_joueur!=NULL){
+		joueur2.score-=point;
 	}
 }
 
@@ -19,69 +21,77 @@ void caract_joueur(joueur_t joueur){
 char *mauv_evts[nb_event+1]={"tsunami", "tempete","famine","reproduction_ralenti","predateur"};
 char *bon_evts[nb_event+1]={"plus_nourriture","joker_nourriture","liberation_canard","canard_invassible","reproduction_accelere"};
 
-void tab_event_mauvais(){
-	int choix1=(rand() % (nb_event + 1)); // Random du choix des evenement parmis 5 possibilités//
-	int choix2=(rand() % (nb_event + 1));
-	int choix3=(rand() % (nb_event + 1));
+void tab_event_mauvais(int * choix1,int * choix2, int * choix3){
+	*choix1=(rand() % (nb_event + 1)); // Random du choix des evenement parmis 5 possibilités//
+	*choix2=(rand() % (nb_event + 1));
+	*choix3=(rand() % (nb_event + 1));
 
-	printf("%s",mauv_evts[choix1]);
-	printf("%s",mauv_evts[choix2]);
-	printf("%s",mauv_evts[choix3]);
+	printf("%s",mauv_evts[*choix1]);
+	printf("%s",mauv_evts[*choix2]);
+	printf("%s",mauv_evts[*choix3]);
 }
 
-void tab_event_bon(){
+void tab_event_bon(int * choix1,int * choix2, int * choix3){
 
-	int choix1=(rand() % (nb_event + 1)); // Random du choix des evenement parmis 5 possibilités//
-	int choix2=(rand() % (nb_event + 1));
-	int choix3=(rand() % (nb_event + 1));
+	*choix1=(rand() % (nb_event + 1)); // Random du choix des evenement parmis 5 possibilités//
+	*choix2=(rand() % (nb_event + 1));
+	*choix3=(rand() % (nb_event + 1));
 
-	int choix1=(rand() % (nb_event + 1); // Random du choix des evenement parmis 5 possibilités//
-	int choix2=(rand() % (nb_event + 1);
-	int choix3=(rand() % (nb_event + 1);
-
-	printf("%s",bon_evts[choix1]);
-	printf("%s",bon_evts[choix2]);
-	printf("%s",bon_evts[choix3]);
+	printf("%s",bon_evts[*choix1]);
+	printf("%s",bon_evts[*choix2]);
+	printf("%s",bon_evts[*choix3]);
 }
 
+
+
+void choix_mechant(){
+	int choix1, choix2, choix3;
+	
+	tab_event_mauvais(&choix1, &choix2, &choix3);
+	int result;
+	printf("Choisir le numero de l'evenement choisit");
+	scanf("%i",&result);// Saisit du choix du joueur//
+	
+	switch(result){
+		case 1: mauvais[choix1]();
+			break;
+		case 2: mauvais[choix2]();
+			break;
+		case 3: mauvais[choix3]();
+			break;
+		default: printf("saisir un choix possible");
+			break;
+	}
+}
+
+void choix_bon(){
+	int choix1, choix2, choix3;
+	
+	tab_event_bon(&choix1, &choix2, &choix3);
+	int result;
+	printf("Choisir le numero de l'evenement choisit");
+	scanf("%i",&result); // Saisit du choix du joueur//
+		
+	switch(result){
+		case 1: bon[choix1]();
+			break;
+		case 2: bon[choix2]();
+			break;
+		case 3: bon[choix3]();
+			break;
+		default: printf("saisir un choix possible");
+			break;
+	}
+}
 
 void choix_joueur(){
-	int result;
 	int nature_event= ( rand() % 2); // Choix randome d'un evenement positif ou negatif//
 	if (nature_event%2==0){ // Si pair : Evenement negatif //
-		tab_event_mauv();
-		printf("Choisir le numero de l'evenement choisit");
-		scanf("%i",&result);// Saisit du choix du joueur//
-
-		switch(result){
-			case 1: mauvais[choix1]();
-				break;
-			case 2: mauvais[choix2]();
-				break;
-			case 3: mauvais[choix3]();
-				break;
-			default: printf("saisir un choix possible");
-				break;
-		}
+		choix_mechant();
 		
 	}
 	else { // Si impaire: Evenement positif//
-		tab_event_bon();
-
-		printf("Choisir le numero de l'evenement choisit");
-
-		scanf("%i",result); // Saisit du choix du joueur//
-		
-		switch(result){
-			case 1: bon[choix1]();
-				break;
-			case 2:bon[choix2]();
-				break;
-			case 3: bon[choix3]();
-				break;
-			default: printf("saisir un choix possible");
-				break;
-		}
+		choix_bon();
 	}
 }
 
