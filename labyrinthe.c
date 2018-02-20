@@ -3,7 +3,7 @@
 #include <time.h>
 #include "struct.h"
 
-#define N 4
+#define N 10
 #define MAX 4
 
 /**
@@ -23,7 +23,7 @@ typedef struct{ /** Strucure appelant une structure mur_t, et une valeur de case
 ini_t mat[N][N];
 
 
-/*void aff(){
+void aff(){
 	int i,j;
 	mur_t m;
 	for(i=0; i<N; i++){
@@ -34,11 +34,11 @@ ini_t mat[N][N];
 		fprintf(stderr, "\n");
 	}
 	fprintf(stderr, "#### FIN LABY\n");
-}*/
+}
 
 /** \fn void affichage_laby()*/
-void affichage_laby(){ /** Affichage du labyrinthe avec les murs sour forme ASCII */
-	int i,j;
+/*void affichage_laby(){*/ /** Affichage du labyrinthe avec les murs sour forme ASCII */
+	/*int i,j;
 	mur_t m;
 	for(i=0; i<N; i++){
 		for(j=0;j<N;j++){
@@ -51,8 +51,8 @@ void affichage_laby(){ /** Affichage du labyrinthe avec les murs sour forme ASCI
 	}
 	fprintf(stderr, "#### FIN LABY\n");
 }
+*/
 
-}
 
 /** \fn void init_laby()*/
 void init_laby(){ /** Permet d'initialiser chaques mur du labyrinthe à 1(présence d'un mur) et de la valeur de la case à -1*/
@@ -231,7 +231,7 @@ void creer_labyrinthe(){ /** Appel toutes les fonctions pour creer le labyrinthe
 
 
 int main(int argc, char**argv){
-	
+	srand(time(NULL));
 	for(int i=0; i<argc; i++){
 		printf("argv[%d]=%s\n", i, argv[i]);
 	}
