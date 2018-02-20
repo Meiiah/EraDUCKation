@@ -15,7 +15,7 @@ deplacer.o: deplacer.c
 deplacer_multi.o: deplacer_multi.c 
 	${CC} -c deplacer_multi.c
 
-event.o: $event.c 
+event.o: event.c 
 	${CC} -c event.c
 
 init_matrice.o: init_matrice.c 
