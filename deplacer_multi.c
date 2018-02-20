@@ -1,6 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <strings.h>
 #include "include_connection.h"
-
+#include "struct.h"
+#include "deplacer.h"
 /*==============================================================================================================================*/
 
 void deplacer_multi_serveur(int socket_to_client){
@@ -15,12 +18,12 @@ void deplacer_multi_serveur(int socket_to_client){
     send(socket_to_client, buffer, 512, 0);
 
 
-    for(i=0; i<N; i++){
-        for(j=0; j<N; j++){//pour chaque case de la matrice
-                for(k=0; k<matrice[i][j].nb_occupants; i++){
-                        if(matrice[i][j].tab_cannard[k]==1){ //pour chaque canard qui peut se deplacer
+    for(i=0; i<taille_mat; i++){
+        for(j=0; j<taille_mat; j++){//pour chaque case de la matrice
+                for(k=0; k<matrice[i][j].nb_occupant; i++){
+                        if(matrice[i][j].tab_canard[k].etat==1){ //pour chaque canard qui peut se deplacer
 
-                                // /!\ 1/3 des canards se déplacent, donc rand, si c est pas bon on le deplace pas donc break
+                                // /!\ 1/3 des canards se dï¿½placent, donc rand, si c est pas bon on le deplace pas donc break
                             if(rand()%3!=0)     break;
                                 //si il peut se deplacer on continue
 
@@ -39,17 +42,17 @@ void deplacer_multi_serveur(int socket_to_client){
                                         /* FAIRE VERIF */
 
                                         switch(direction){// effets de bord
-                                            case 0: if((! (i+1 >= N)  )&& matrice[ i+1 ][ j ].mur.murN !=1) //i croit et vu qu on est dans le tableau pas besoin de tout verifier
+                                            case 0: if((! (i+1 >= taille_mat)  )&& matrice[ i+1 ][ j ].mur.murN !=1) //i croit et vu qu on est dans le tableau pas besoin de tout verifier
                                                         verif=1;
                                                  break;
                                             case 1: if((! (i-1 < 0) )&& matrice[ i-1 ][ j ].mur.murS !=1) //i decroit et vu qu on est dans le tableau pas besoin de tout verifier
                                                         verif=1;
                                                  break;
                                                                      // idem avec j
-                                            case 2: if((! (j+1 >= N) )&& matrice[ i ][ j+1 ].mur.murE !=1 )
+                                            case 2: if((! (j+1 >= taille_mat) )&& matrice[ i ][ j+1 ].mur.murE !=1 )
                                                         verif=1;
                                                  break;
-                                            case 3:  if((! (j+1 >= N) )&& matrice[ i ][ j -1].mur.murO !=1 )
+                                            case 3:  if((! (j+1 >= taille_mat) )&& matrice[ i ][ j -1].mur.murO !=1 )
                                                         verif=1;
 
                                         }while(verif == 0);
