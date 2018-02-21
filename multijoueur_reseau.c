@@ -1,9 +1,16 @@
+/**
+ * \file multi_joueur_reseau.c
+ * \brief fonctions principales de jeu multijoueur en réseau
+ * \author Maxime.T
+ * \version 0.5
+ * \date 20 / 02 / 2018
+*/
 
 #include "include_connection.h"
 #include "multijoueur.c"
 
-
-void entrer_int(int* val){
+/** \fn void entrer_int(int* val) */
+void entrer_int(int* val){ /** Permet une entrée d'un int, et seulement un int */  /** \param val fonctionne comme un scanf sans le cham %*/
     scanf("%i", val);
     int c;
     do {
@@ -14,8 +21,8 @@ void entrer_int(int* val){
 
 
 /* Merci au prof*/
-
-int init_socket_serveur(int port){
+/** \fn int init_socket_serveur(int port)*/
+int init_socket_serveur(int port){ /**  initialise la socket du serveur */ /** \param port le port sur lequel on créé la socket */
 	int ma_socket;
 	struct sockaddr_in mon_address;
 	bzero(&mon_address,sizeof(mon_address));
@@ -23,14 +30,14 @@ int init_socket_serveur(int port){
 	mon_address.sin_family = AF_INET;
 	mon_address.sin_addr.s_addr = htonl(INADDR_ANY);
 
-	ma_socket = socket(AF_INET,SOCK_STREAM,0);
+	ma_socket = socket(AF_INET,SOCK_STREAM,0)
     bind(ma_socket,(struct sockaddr *)&mon_address,sizeof(mon_address));
-    return ma_socket;
+    return ma_socket; /** \return la socket créée*/
 }
 
 
-
-void main_multijoueur_reseau_serveur(int SocketClient){
+/** \fn int init_socket_serveur(int port)*/
+int init_socket_serveur(int port){ /**  initialise la socket du serveur */ /** \param port le port sur lequel on créé la socket */
     //variables :
     joueur_multi_t tab[2];
     int tampon;
@@ -74,7 +81,7 @@ int menu_client(){
 	int to_server_socket;
 	int port;
 	char SERVEURNAME[30];
-	
+
 	system("cls");
     printf("Sur quel port voulez-vous jouer? \n");
     scanf("%i", &port);
@@ -137,7 +144,7 @@ int menu_serveur(){
             //connection effectuee
 
     system("cls");
-    printf(" Adversaire trouv� ! ");
+    printf(" Adversaire trouvé ! ");
 
     return Socket_Client;
 
