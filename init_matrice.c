@@ -1,7 +1,6 @@
 #include "struct.h"
 #include <stdio.h>
-#define taille_mat 20 //taille de la matrice//
-case_t matrice[taille_mat][taille_mat];
+
 
 void init_matrice(){
 	int i;
