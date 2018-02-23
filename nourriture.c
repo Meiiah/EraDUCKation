@@ -1,3 +1,4 @@
+#include "struct.h"
 void spawn_nourriture(int nourriture_genere){
 	int i,k;
 		
