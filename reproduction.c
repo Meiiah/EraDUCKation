@@ -1,7 +1,7 @@
 #include "struct.h"
 #include <stdio.h>
 #define taille_mat 20 //taille de la matrice//
-#define pourc_nourriture 50 //pourcentage de nourriture pour reproduction//
+
 case_t matrice[taille_mat][taille_mat];
 
 void reproduction(){
@@ -15,7 +15,7 @@ void reproduction(){
 			//Parcours du nombre de canard//
 			compteur=0;//compteur du nombre de canard favorable a la reproduction//
 			for(k=0;k<nb_max;k++){
-				if(matrice[i][j].tab_canard[k].nourriture>=pourc_nourriture){
+				if(matrice[i][j].tab_canard[k].nourriture>=nourriture_accouplement){
 					compteur++;
 				}
 			}
