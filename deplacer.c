@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "deplacer_multi.h"
 #include "struct.h"
+#include "deplacer_multi.h"
 
 
 //debut 22h00 fin 22h40
@@ -18,8 +18,6 @@
 
 int N =10;
 
-int nourriture_accouplement =50; //pourcentage déja défini dans fonction.c
-
 /**\fn canard_t canard_vide(void) */
 canard_t canard_vide(void){/**	renvoit un canard inexistant*/
     canard_t coincoin;
@@ -31,7 +29,7 @@ canard_t canard_vide(void){/**	renvoit un canard inexistant*/
 /*=======================================================================================================================*/
 
 /**\fn int voit_nourriture(int i,int j,int k) */
-int voit_nourriture(int i,int j,int k){/**	fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit de la nouriture (-1 si pas de vision dessus)	*/
+int voit_nourriture(case_t ** matrice,int i,int j,int k){/**	fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit de la nouriture (-1 si pas de vision dessus)	*/
     //une direction, toute la ligne jusqua un mur
     int l = 1;
     int mur[4] = {0,0,0,0};
@@ -108,7 +106,7 @@ int voit_nourriture(int i,int j,int k){/**	fonction qui renvoit la direction dan
 /*================================================== Accouplement ==================================================================*/
 
 /**	\fn int voit_accouplement(int i,int j,int k)	*/
-int voit_accouplement(int i,int j,int k){ /**	fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit un partenaire de reprod (-1 si pas de vision dessus)	*/
+int voit_accouplement(case_t ** matrice,int nourriture_accouplement,int i,int j,int k){ /**	fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit un partenaire de reprod (-1 si pas de vision dessus)	*/
     //une direction, toute la ligne jusqua un mur
     int l = 1;
     int cpt;
@@ -202,7 +200,7 @@ int voit_accouplement(int i,int j,int k){ /**	fonction qui renvoit la direction 
 /*=======================================================================================================================*/
 
 /**\fn void deplacer_canard(int i, int j, int k, int direction) */
-void deplacer_canard(int i, int j, int k, int direction){/**	Deplace le kieme canard de la case i;j dans la direction donnée	*/
+void deplacer_canard(case_t ** matrice,int i, int j, int k, int direction){/**	Deplace le kieme canard de la case i;j dans la direction donnée	*/
 
     switch(direction){ //en fonction de la direction le canard avance
             case 1:
@@ -263,7 +261,7 @@ void deplacer_canard(int i, int j, int k, int direction){/**	Deplace le kieme ca
 /*=======================================================================================================================*/
 
 /**\fn void deplacer(void)*/
-void deplacer(void){/** fonction qui déplace des canards tirés au sort d une case puis d une autre */
+void deplacer(case_t ** matrice, int nourriture_accouplement){/** fonction qui déplace des canards tirés au sort d une case puis d une autre */
     int i,j,k;
     int direction;
     int verif =1;
@@ -278,12 +276,12 @@ void deplacer(void){/** fonction qui déplace des canards tirés au sort d une c
                                 //si il peut se deplacer on continue
 
                                 // si on voit un canard a accoupler on continue, sinon on continue les verifications
-                            direction = voit_accouplement(i, j, k);
+                            direction = voit_accouplement(matrice,nourriture_accouplement,i, j, k);
 
                             if(direction==-1){
 
                                 //si il voit de la nourriture aller dessus sinon on deplace dabs une direction random arpres verif
-                                direction = voit_nourriture(i, j, k);
+                                direction = voit_nourriture(matrice,i, j, k);
 
                                 if(direction==-1){
                                 //sinon se deplacer d une case vers la direction random apres verif
@@ -308,7 +306,7 @@ void deplacer(void){/** fonction qui déplace des canards tirés au sort d une c
                                     	}
                                     }while(verif == 0);
 
-                                        deplacer_canard(i, j, k, direction);
+                                        deplacer_canard(matrice,i, j, k, direction);
                                 }
                             }
                             //tirage aleatoire d une premiere direction si il sait pas ou aller
