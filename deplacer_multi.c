@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 #include "include_connection.h"
 #include "struct.h"
 #include "deplacer.h"
 /*==============================================================================================================================*/
 
-void deplacer_multi_serveur(int socket_to_client){
+void deplacer_multi_serveur(case_t ** matrice,int taille_mat,int nourriture_accouplement,int socket_to_client){
     int i,j,k;
     int direction;
     int verif =1;
@@ -28,12 +28,12 @@ void deplacer_multi_serveur(int socket_to_client){
                                 //si il peut se deplacer on continue
 
                                 // si on voit un canard a accoupler on continue, sinon on continue les verifications
-                            direction = voit_accouplement(i, j, k);
+                            direction = voit_accouplement(matrice,nourriture_accouplement,i, j, k);
 
                             if(direction==-1){
 
                                 //si il voit de la nourriture aller dessus sinon on deplace dabs une direction random arpres verif
-                                direction = voit_nourriture(i, j, k);
+                                direction = voit_nourriture(matrice,i, j, k);
 
                                 if(direction==-1){
                                 //sinon se deplacer d une case vers la direction random apres verif
@@ -62,7 +62,7 @@ void deplacer_multi_serveur(int socket_to_client){
 									sprintf(buffer,"%i%i%i%i",i,j,k, direction);
 									send(socket_to_client, buffer, 512, 0);
 
-									deplacer_canard(i, j, k, direction);
+									deplacer_canard(matrice,i, j, k, direction);
                                     
                                 }
 
