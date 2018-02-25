@@ -1,42 +1,25 @@
-#include <stdlib.h>
-#define N 20// N est le taille de la matrice
-#define M 10 // taille tableau de pointeur
-#define score_liberation_canard 500
-
-//tour_actuel défini par camille
-
-void (*mauvais[M])(void); /*tableau de pointeur sur les fonctions mauvaises*/
-void (*bon[M])(void); /*tableau de pointeur sur les fonctions bonnes*/
-void (*event[M])(void); /*tableau de pointeur sur les deux types d'evenements*/
-
-int rand_map(void); /*fonction pour choisir un random contenu dans la matrice*/
 
 /* Evenement mauvais */
-void tsunami();
+void tsunami(case_t ** matrice, int taille_mat, joueur_t joueur, joueur_t joueur2);
 
-void tempete();
+void tempete(case_t ** matrice, int taille_mat, joueur_t joueur, joueur_t joueur2);
 
-void famine();
+int famine(int nourriture_genere);
 
-void reproduction_ralentie();
+int reproduction_ralentie(int nourriture_accouplement);
 
-void apparition_predateur();
+void apparition_predateur(case_t ** matrice, int taille_mat, joueur_t joueur, joueur_t joueur2);
 
 /* Evenement bon */
 
-void reproduction_acceleree();
+int reproduction_acceleree(int nourriture_accouplement);
 
-void plus_nourriture();
+int plus_nourriture(int nourriture_genere);
 
-void joker_nourriture();
+void joker_nourriture(case_t ** matrice,int taille_mat);
 
-void liberation_canard(); //ajout au score
+void liberation_canard(case_t ** matrice, int taille_mat, joueur_t joueur, joueur_t joueur2); //ajout au score
 
 void canard_invincible();
 
-void init_tab_event_mauvais();
-
-void init_tab_event_bon();
-
-void init_tab_event();
 
