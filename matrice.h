@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include "struct.h"
 
-void init_matrice(int taille_mat);
+
+void creation_matrice(case_t ** matrice, int taille_mat);
