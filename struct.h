@@ -7,10 +7,7 @@
 *\date 20 fevrier 2018
 */
 
-
-
 #define nb_max 10
-int nb_gen;
 
 /** \struct mur_s struct.h*/
 /** etat du mur*/
@@ -45,14 +42,4 @@ typedef struct joueur_s{
 	char nom_joueur[25];
 }joueur_t;
 
-//definition matrice
-int taille_mat;
-case_t ** matrice;
 
-//definition joueur
-joueur_t joueur;
-joueur_t joueur2;
-
-//definition nourriture
-int nourriture_accouplement;//Nourriture qu'on a besoin pour se reproduire
-int nourriture_genere;//Nourriture qui apparait
