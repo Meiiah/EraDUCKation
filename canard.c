@@ -3,7 +3,7 @@
 #include "struct.h"
 #define N 15
 
-void init_canard(){
+void init_canard(case_t ** matrice, int taille_mat){
 	int x;
 	int y;
 	for(int i=0; i<N;i++){
@@ -16,7 +16,7 @@ void init_canard(){
 }
 
 
-int presence_canard(){ // retourne 1 si il reste des canards
+int presence_canard(case_t ** matrice, int taille_mat){ // retourne 1 si il reste des canards
 	int i,j;
 	for(i=0;i<taille_mat;i++){
 		for(j=0;j<taille_mat;j++){
