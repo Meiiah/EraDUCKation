@@ -1,32 +1,23 @@
 #include <stdlib.h>
 #include "struct.h"
 #include "joueur.h"
-#define N 20// N est le taille de la matrice
-#define M 10 // taille tableau de pointeur
+#include "outils.h"
 
-
-void (*mauvais[M])(void); /*tableau de pointeur sur les fonctions mauvaises*/
-void (*bon[M])(void); /*tableau de pointeur sur les fonctions bonnes*/
-void (*event[M])(void); /*tableau de pointeur sur les deux types d'evenements*/
-
-int rand_map(void){ /*fonction pour choisir un random contenu dans la matrice*/
-	return((rand()%(N-2))+1);
-}
 
 /*Evenement mauvais */
 
-void tsunami(){
+void tsunami(case_t ** matrice,int taille_mat, joueur_t joueur,joueur_t joueur2){
 	int i,j,k;
-	int random_min=rand_map();
-	int random_max=rand_map();
+	int random_min=rand_map(taille_mat);
+	int random_max=rand_map(taille_mat);
 	while(random_min>random_max){
-		random_min=rand_map();
-		random_max=rand_map();
+		random_min=rand_map(taille_mat);
+		random_max=rand_map(taille_mat);
 	}
 	int align=rand()%1;// 0 pour horizontal 1 pour vertical
 
 	if(align==0){
-		for(i=0;i<N;i++){
+		for(i=0;i<taille_mat;i++){
 			for(j=random_min;j<random_max;j++){
 				for(k=0;k<matrice[i][j].nb_occupant;k++){
 					matrice[i][j].tab_canard[k].nourriture=0;
@@ -39,7 +30,7 @@ void tsunami(){
 	}
 	if(align==1){
 		for(i=random_min;i<random_max;i++){
-			for(j=0;j<N;j++){
+			for(j=0;j<taille_mat;j++){
 				for(k=0;k<matrice[i][j].nb_occupant;k++){
 					matrice[i][j].tab_canard[k].nourriture=0;
 					matrice[i][j].tab_canard[k].etat=-1;	
@@ -51,13 +42,13 @@ void tsunami(){
 	}	
 }
 
-void tempete(){
+void tempete(case_t ** matrice, int taille_mat, joueur_t joueur, joueur_t joueur2){
 	int i,j,k;
-	int random_min=rand_map();
-	int random_max=rand_map();
+	int random_min=rand_map(taille_mat);
+	int random_max=rand_map(taille_mat);
 	while(random_min>random_max){
-		random_min=rand_map();
-		random_max=rand_map();
+		random_min=rand_map(taille_mat);
+		random_max=rand_map(taille_mat);
 	}
 
 	for(i=random_min;i<random_max;i++){
@@ -72,23 +63,23 @@ void tempete(){
 	}
 }
 
-void famine(){
-	/*a refaire*/
+int famine(int nourriture_genere){
+	return nourriture_genere/=1.5;
 	
 }
 
-void reproduction_ralentie(){
-	nourriture_accouplement=90; //variable de deplacer.c 
+int reproduction_ralentie(int nourriture_accouplement){
+	return nourriture_accouplement*=1.5; //variable de deplacer.c 
 }
 
-void apparition_predateur(){
+void apparition_predateur(case_t ** matrice,int taille_mat, joueur_t joueur, joueur_t joueur2){
 	int i,k;	
 	int random_x;
 	int random_y;
 	int random_nbre_predateur=rand()%5;//random pour le nombre de prédateur
 	for(i=0;i<random_nbre_predateur;i++){ //boucle pour tuer des canards en fonction du nombre de prédateur
-		random_x=rand_map();
-		random_y=rand_map();
+		random_x=rand_map(taille_mat);
+		random_y=rand_map(taille_mat);
 		//destruction des canards
 		for(k=0;k<matrice[random_x][random_y].nb_occupant;k++){
 			matrice[random_x][random_y].tab_canard[k].nourriture=0;
@@ -101,33 +92,33 @@ void apparition_predateur(){
 
 /* Evenement bon */
 
-void reproduction_acceleree(){
-	nourriture_accouplement=30;//variable de deplacer.c 
+int reproduction_acceleree(int nourriture_accouplement){
+	return nourriture_accouplement/=1.5;//variable de deplacer.c 
 }
 
-void plus_nourriture(){
-	nourriture_genere=60;//generation de nourriture plus élevée
+int plus_nourriture(int nourriture_genere){
+	return nourriture_genere*=1.5;//generation de nourriture plus élevée
 }
 
-void joker_nourriture(){
+void joker_nourriture(case_t ** matrice,int taille_mat){
 	int i,j,k;
-	for(i=0;i<N;i++){//balayage de toute la matrice
-		for(j=0;j<N;j++){
-			for(k=0;k<N;k++){
+	for(i=0;i<taille_mat;i++){//balayage de toute la matrice
+		for(j=0;j<taille_mat;j++){
+			for(k=0;k<taille_mat;k++){
 				matrice[i][j].tab_canard[k].nourriture=100;
 			}
 		}
 	}
 }
 //ajout au score
-void liberation_canard(){
+void liberation_canard(case_t ** matrice,int taille_mat, joueur_t joueur, joueur_t joueur2){
 	int i,k;	
 	int random_x;
 	int random_y;
 	int random_nbre_de_canard_liberer=rand()%5;//random pour le nombre de canard
 	for(i=0;i<random_nbre_de_canard_liberer;i++){ //boucle pour tuer des canards en fonction du nombre de prédateur
-		random_x=rand_map();
-		random_y=rand_map();
+		random_x=rand_map(taille_mat);
+		random_y=rand_map(taille_mat);
 		//sortie des canards
 		for(k=0;k<matrice[random_x][random_y].nb_occupant;k++){
 			matrice[random_x][random_y].tab_canard[k].nourriture=0;
@@ -141,31 +132,5 @@ void liberation_canard(){
 void canard_invincible(){
 	/*prend un canard qui ne peut pas mourir*/
 }
-
-void init_tab_event_mauvais(){
-	mauvais[0] = tsunami;
-	mauvais[1] = tempete;
-	mauvais[2] = famine;
-	mauvais[3] = reproduction_ralentie;
-	mauvais[4] = apparition_predateur;
-}
-
-void init_tab_event_bon(){
-	bon[0] = reproduction_acceleree;
-	bon[1] = plus_nourriture;
-	bon[2] = joker_nourriture;
-	bon[3] = liberation_canard;
-	bon[4] = canard_invincible;
-}
-
-
-void init_tab_event(){
-	event[0]=init_tab_event_mauvais;
-	event[1]=init_tab_event_bon;
-}
-
-
-
-
 
 
