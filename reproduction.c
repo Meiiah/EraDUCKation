@@ -1,10 +1,11 @@
 #include "struct.h"
+#include "joueur.h"
 #include <stdio.h>
 #define taille_mat 20 //taille de la matrice//
 
 case_t matrice[taille_mat][taille_mat];
 
-void reproduction(){
+void reproduction(int nourriture_accouplement,joueur_t joueur,joueur_t joueur2){
 	int i;
 	int j;
 	int k;
