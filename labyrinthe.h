@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "struct.h"
 
 void affichage_laby();//Affichage du labyrinthe avec les murs sour forme ASCII
 
