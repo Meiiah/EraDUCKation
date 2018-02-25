@@ -4,9 +4,7 @@
 
 /*definition de la matrice */
 
-
-
-void init_matrice(int taille_mat){
+void creation_matrice(case_t ** matrice,int taille_mat){
 	case_t * GT = malloc(sizeof(case_t)*taille_mat*taille_mat);
 	matrice =malloc(sizeof(case_t *)*taille_mat);
 	int i;
@@ -14,7 +12,5 @@ void init_matrice(int taille_mat){
 	for(i=0;i<taille_mat;i++){
 		matrice[i]=&GT[taille-1];
 		taille+=taille;
-	}
-	
-	
+	}	
 }
