@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 
-void init_matrice(){
+void init_matrice(case_t ** matrice, int taille_mat){
 	int i;
 	int j;
 	int k;	
@@ -24,7 +24,7 @@ void init_matrice(){
 			matrice[i][j].nb_occupant=0;
 			//Initialisation de nourriture//
 			matrice[i][j].pres_nourriture=0;
-			matrice	[i][j].pres_piege=0;
+			matrice[i][j].pres_piege=0;
 		}
 	}
 }
