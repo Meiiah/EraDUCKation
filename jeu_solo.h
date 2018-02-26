@@ -1,1 +1,1 @@
-int jeu_solo(case_t ** matrice,int taille_mat,int nourriture_genere, int nourriture_accouplement,joueur_t joueur,joueur_t joueur2);
+int jeu_solo(caract_mat_t * cmat,int nourriture_genere, int nourriture_accouplement,joueur_t joueur,joueur_t joueur2);
