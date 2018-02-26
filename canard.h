@@ -1,2 +1,2 @@
-void init_canard(case_t ** matrice, int taille_mat);
-int presence_canard(case_t ** matrice, int taille_mat);
+void init_canard(caract_mat_t * cmat);
+int presence_canard(caract_mat_t * cmat);
