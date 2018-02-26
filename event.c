@@ -159,10 +159,4 @@ int canard_invincible(){
  	bon[3] = liberation_canard;
  	bon[4] = canard_invincible;
  }
- 
- 
- int init_tab_event(){
- 	event[0]=init_tab_event_mauvais();
- 	event[1]=init_tab_event_bon();
- }
 
