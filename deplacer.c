@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "struct.h"
+#include "matrice.h"
 #include "deplacer_multi.h"
 
 
@@ -29,7 +30,7 @@ canard_t canard_vide(void){/**	renvoit un canard inexistant*/
 /*=======================================================================================================================*/
 
 /**\fn int voit_nourriture(int i,int j,int k) */
-int voit_nourriture(case_t ** matrice,int i,int j,int k){/**	fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit de la nouriture (-1 si pas de vision dessus)	*/
+int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit de la nouriture (-1 si pas de vision dessus)	*/
     //une direction, toute la ligne jusqua un mur
     int l = 1;
     int mur[4] = {0,0,0,0};
@@ -47,11 +48,11 @@ int voit_nourriture(case_t ** matrice,int i,int j,int k){/**	fonction qui renvoi
                 //pour i croissant direction est
 
         if(mur[0]==0){
-            if(matrice[i+l][j].pres_nourriture==1){ //si presence de nourriture sur la ligne
+            if(cmat->matrice[i+l][j].pres_nourriture==1){ //si presence de nourriture sur la ligne
                 return 1;
             }
         }
-        if(matrice[i+l][j].mur.murE == 0){
+        if(cmat->matrice[i+l][j].mur.murE == 0){
             if(mur[1]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
                 return -1;
             mur[0] = 1;
@@ -61,11 +62,11 @@ int voit_nourriture(case_t ** matrice,int i,int j,int k){/**	fonction qui renvoi
                 //pour i décroissant direction ouest
 
         if(mur[1]==0){
-            if(matrice[i-l][j].pres_nourriture==1){
+            if(cmat->matrice[i-l][j].pres_nourriture==1){
                 return 2;
             }
         }
-        if(matrice[i-l][j].mur.murO == 0){
+        if(cmat->matrice[i-l][j].mur.murO == 0){
             if(mur[0]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
                 return -1;
             mur[1] = 1;
@@ -75,11 +76,11 @@ int voit_nourriture(case_t ** matrice,int i,int j,int k){/**	fonction qui renvoi
                 //pour j croissant direction sud
 
         if(mur[2]==0){
-            if(matrice[i][j+l].pres_nourriture==1){
+            if(cmat->matrice[i][j+l].pres_nourriture==1){
                 return 3;
             }
         }
-        if(matrice[i][j+l].mur.murS == 0){
+        if(cmat->matrice[i][j+l].mur.murS == 0){
             if(mur[0]==1 && mur[1]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
                 return -1;
             mur[2] = 1;
@@ -89,11 +90,11 @@ int voit_nourriture(case_t ** matrice,int i,int j,int k){/**	fonction qui renvoi
                 //pour j décroissant direction Nord
 
         if(mur[3]==0){
-            if(matrice[i][j-l].pres_nourriture==1){
+            if(cmat->matrice[i][j-l].pres_nourriture==1){
                 return 4;
             }
         }
-        if(matrice[i][j-l].mur.murN == 0){
+        if(cmat->matrice[i][j-l].mur.murN == 0){
             if(mur[0]==1 && mur[1]==1 && mur[2]==1) // sipas de nourriture visible retourner -1
                 return -1;
             mur[3] = 1;
@@ -106,7 +107,7 @@ int voit_nourriture(case_t ** matrice,int i,int j,int k){/**	fonction qui renvoi
 /*================================================== Accouplement ==================================================================*/
 
 /**	\fn int voit_accouplement(int i,int j,int k)	*/
-int voit_accouplement(case_t ** matrice,int nourriture_accouplement,int i,int j,int k){ /**	fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit un partenaire de reprod (-1 si pas de vision dessus)	*/
+int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int j,int k){ /**	fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit un partenaire de reprod (-1 si pas de vision dessus)	*/
     //une direction, toute la ligne jusqua un mur
     int l = 1;
     int cpt;
@@ -125,15 +126,15 @@ int voit_accouplement(case_t ** matrice,int nourriture_accouplement,int i,int j,
                 //pour i croissant direction est
 
         if(mur[0]==0){//si on a pas encore croise de mur
-            if(matrice[i+l][j].nb_occupant>0){//si il y a des canards sur la case
-                for(cpt=0; cpt<matrice[i+l][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
-                    if(matrice[i+l][j].tab_canard[cpt].etat==1 && matrice[i+l][j].tab_canard[cpt].nourriture > nourriture_accouplement){ //si presence de nourriture sur la case
+            if(cmat->matrice[i+l][j].nb_occupant>0){//si il y a des canards sur la case
+                for(cpt=0; cpt<cmat->matrice[i+l][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
+                    if(cmat->matrice[i+l][j].tab_canard[cpt].etat==1 && cmat->matrice[i+l][j].tab_canard[cpt].nourriture > nourriture_accouplement){ //si presence de nourriture sur la case
                         return 1;
                     }
                 }
             }
         }
-        if(matrice[i+l][j].mur.murE == 0){
+        if(cmat->matrice[i+l][j].mur.murE == 0){
             if(mur[1]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
                 return -1;
             mur[0] = 1;
@@ -143,15 +144,15 @@ int voit_accouplement(case_t ** matrice,int nourriture_accouplement,int i,int j,
                 //pour i décroissant direction ouest
 
         if(mur[1]==0){
-             if(matrice[i-l][j].nb_occupant>0){//si il y a des canards sur la case
-                for(cpt=0; cpt<matrice[i-l][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
-                    if(matrice[i-l][j].tab_canard[cpt].etat==1 && matrice[i-l][j].tab_canard[cpt].nourriture > nourriture_accouplement){ //si presence de nourriture sur la case
+             if(cmat->matrice[i-l][j].nb_occupant>0){//si il y a des canards sur la case
+                for(cpt=0; cpt<cmat->matrice[i-l][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
+                    if(cmat->matrice[i-l][j].tab_canard[cpt].etat==1 && cmat->matrice[i-l][j].tab_canard[cpt].nourriture > nourriture_accouplement){ //si presence de nourriture sur la case
                         return 2;
                     }
                 }
             }
         }
-        if(matrice[i-l][j].mur.murO == 0){
+        if(cmat->matrice[i-l][j].mur.murO == 0){
             if(mur[0]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
                 return -1;
             mur[1] = 1;
@@ -161,15 +162,15 @@ int voit_accouplement(case_t ** matrice,int nourriture_accouplement,int i,int j,
                 //pour j croissant direction sud
 
         if(mur[2]==0){
-            if(matrice[i][j+l].nb_occupant>0){//si il y a des canards sur la case
-                for(cpt=0; cpt<matrice[i][j+l].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
-                    if(matrice[i][j+l].tab_canard[cpt].etat==1 && matrice[i][j+l].tab_canard[cpt].nourriture > nourriture_accouplement){
+            if(cmat->matrice[i][j+l].nb_occupant>0){//si il y a des canards sur la case
+                for(cpt=0; cpt<cmat->matrice[i][j+l].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
+                    if(cmat->matrice[i][j+l].tab_canard[cpt].etat==1 && cmat->matrice[i][j+l].tab_canard[cpt].nourriture > nourriture_accouplement){
                        return 3;
                     }
                 }
             }
         }
-        if(matrice[i][j+l].mur.murS == 0){
+        if(cmat->matrice[i][j+l].mur.murS == 0){
             if(mur[0]==1 && mur[1]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
                 return -1;
             mur[2] = 1;
@@ -179,15 +180,15 @@ int voit_accouplement(case_t ** matrice,int nourriture_accouplement,int i,int j,
                 //pour j décroissant direction Nord
 
         if(mur[3]==0){
-            if(matrice[i][j-l].nb_occupant>0){//si il y a des canards sur la case
-                for(cpt=0; cpt<matrice[i][j-l].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
-                    if(matrice[i][j-l].tab_canard[cpt].etat==1 && matrice[i][j-l].tab_canard[cpt].nourriture > nourriture_accouplement){
+            if(cmat->matrice[i][j-l].nb_occupant>0){//si il y a des canards sur la case
+                for(cpt=0; cpt<cmat->matrice[i][j-l].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
+                    if(cmat->matrice[i][j-l].tab_canard[cpt].etat==1 && cmat->matrice[i][j-l].tab_canard[cpt].nourriture > nourriture_accouplement){
                        return 4;
                     }
                 }
             }
         }
-        if(matrice[i][j-l].mur.murN == 0){
+        if(cmat->matrice[i][j-l].mur.murN == 0){
             if(mur[0]==1 && mur[1]==1 && mur[2]==1) // sipas de nourriture visible retourner -1
                 return -1;
             mur[3] = 1;
@@ -200,59 +201,59 @@ int voit_accouplement(case_t ** matrice,int nourriture_accouplement,int i,int j,
 /*=======================================================================================================================*/
 
 /**\fn void deplacer_canard(int i, int j, int k, int direction) */
-void deplacer_canard(case_t ** matrice,int i, int j, int k, int direction){/**	Deplace le kieme canard de la case i;j dans la direction donnée	*/
+void deplacer_canard(caract_mat_t * cmat,int i, int j, int k, int direction){/**	Deplace le kieme canard de la case i;j dans la direction donnée	*/
 
     switch(direction){ //en fonction de la direction le canard avance
             case 1:
                    //on copie le canard a sa destination
-                   matrice[i+1][j].tab_canard[matrice[i+1][j].nb_occupant] = matrice[i][j].tab_canard[k];
+                   cmat->matrice[i+1][j].tab_canard[cmat->matrice[i+1][j].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
 
                    //on indique l augmentation de lz population dans la case ciblee
-                   matrice[i+1][j].nb_occupant ++;
+                   cmat->matrice[i+1][j].nb_occupant ++;
 
                    //on enleve le canard dans la case originelle, le nombre de canard diminue donc
-                   matrice[i][j].tab_canard[k] = canard_vide();
-                   matrice[i][j].nb_occupant --;
+                   cmat->matrice[i][j].tab_canard[k] = canard_vide();
+                   cmat->matrice[i][j].nb_occupant --;
                                     break;
 
             /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
             case 2:
                    //on copie le canard a sa destination
-                   matrice[i-1][j].tab_canard[matrice[i-1][j].nb_occupant] = matrice[i][j].tab_canard[k];
+                   cmat->matrice[i-1][j].tab_canard[cmat->matrice[i-1][j].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
 
                    //on indique l augmentation de lz population dans la case ciblee
-                   matrice[i-1][j].nb_occupant ++;
+                   cmat->matrice[i-1][j].nb_occupant ++;
 
                    //on enleve le canard dans la case originelle, le nombre de canard diminue donc
-                   matrice[i][j].tab_canard[k] = canard_vide();
-                   matrice[i][j].nb_occupant --;
+                   cmat->matrice[i][j].tab_canard[k] = canard_vide();
+                   cmat->matrice[i][j].nb_occupant --;
                                         break;
 
             /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
             case 3:
                    //on copie le canard a sa destination
-                   matrice[i][j+1].tab_canard[matrice[i][j+1].nb_occupant] = matrice[i][j].tab_canard[k];
+                   cmat->matrice[i][j+1].tab_canard[cmat->matrice[i][j+1].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
 
                    //on indique l augmentation de lz population dans la case ciblee
-                   matrice[i][j+1].nb_occupant ++;
+                   cmat->matrice[i][j+1].nb_occupant ++;
 
                    //on enleve le canard dans la case originelle, le nombre de canard diminue donc
-                   matrice[i][j].tab_canard[k] = canard_vide();
-                   matrice[i][j].nb_occupant --;
+                   cmat->matrice[i][j].tab_canard[k] = canard_vide();
+                   cmat->matrice[i][j].nb_occupant --;
 
                                         break;
 
             /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
             case 4:
                    //on copie le canard a sa destination
-                   matrice[i][j+1].tab_canard[matrice[i][j+1].nb_occupant] = matrice[i][j].tab_canard[k];
+                   cmat->matrice[i][j+1].tab_canard[cmat->matrice[i][j+1].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
 
                    //on indique l augmentation de lz population dans la case ciblee
-                   matrice[i][j+1].nb_occupant ++;
+                   cmat->matrice[i][j+1].nb_occupant ++;
 
                    //on enleve le canard dans la case originelle, le nombre de canard diminue donc
-                   matrice[i][j].tab_canard[k] = canard_vide();
-                   matrice[i][j].nb_occupant --;
+                   cmat->matrice[i][j].tab_canard[k] = canard_vide();
+                   cmat->matrice[i][j].nb_occupant --;
                                         break;
 
     }
@@ -261,27 +262,27 @@ void deplacer_canard(case_t ** matrice,int i, int j, int k, int direction){/**	D
 /*=======================================================================================================================*/
 
 /**\fn void deplacer(void)*/
-void deplacer(case_t ** matrice, int nourriture_accouplement){/** fonction qui déplace des canards tirés au sort d une case puis d une autre */
+void deplacer(caract_mat_t * cmat, int nourriture_accouplement){/** fonction qui déplace des canards tirés au sort d une case puis d une autre */
     int i,j,k;
     int direction;
     int verif =1;
 
     for(i=0; i<N; i++){
         for(j=0; j<N; j++){//pour chaque case de la matrice
-                for(k=0; k<matrice[i][j].nb_occupant; i++){
-                        if(matrice[i][j].tab_canard[k].etat==1){ //pour chaque canard qui peut se deplacer
+                for(k=0; k<cmat->matrice[i][j].nb_occupant; i++){
+                        if(cmat->matrice[i][j].tab_canard[k].etat==1){ //pour chaque canard qui peut se deplacer
 
                                 // /!\ 1/3 des canards se déplacent, donc rand, si c est pas bon on le deplace pas donc break
                             if(rand()%3!=0)     break;
                                 //si il peut se deplacer on continue
 
                                 // si on voit un canard a accoupler on continue, sinon on continue les verifications
-                            direction = voit_accouplement(matrice,nourriture_accouplement,i, j, k);
+                            direction = voit_accouplement(cmat,nourriture_accouplement,i, j, k);
 
                             if(direction==-1){
 
                                 //si il voit de la nourriture aller dessus sinon on deplace dabs une direction random arpres verif
-                                direction = voit_nourriture(matrice,i, j, k);
+                                direction = voit_nourriture(cmat,i, j, k);
 
                                 if(direction==-1){
                                 //sinon se deplacer d une case vers la direction random apres verif
@@ -290,23 +291,23 @@ void deplacer(case_t ** matrice, int nourriture_accouplement){/** fonction qui d
                                     /* FAIRE VERIF */
 
 									   switch(direction){// effets de bord
-												case 0: if((! (i+1 >= N)  )&& matrice[ i+1 ][ j ].mur.murN !=1) //i croit et vu qu on est dans le tableau pas besoin de tout verifier
+												case 0: if((! (i+1 >= N)  )&& cmat->matrice[ i+1 ][ j ].mur.murN !=1) //i croit et vu qu on est dans le tableau pas besoin de tout verifier
 															verif=1;
 													 break;
-												case 1: if((! (i-1 < 0) )&& matrice[ i-1 ][ j ].mur.murS !=1) //i decroit et vu qu on est dans le tableau pas besoin de tout verifier
+												case 1: if((! (i-1 < 0) )&& cmat->matrice[ i-1 ][ j ].mur.murS !=1) //i decroit et vu qu on est dans le tableau pas besoin de tout verifier
 															verif=1;
 													 break;
 																		 // idem avec j
-												case 2: if((! (j+1 >= N) )&& matrice[ i ][ j+1 ].mur.murE !=1 )
+												case 2: if((! (j+1 >= N) )&& cmat->matrice[ i ][ j+1 ].mur.murE !=1 )
 															verif=1;
 													 break;
-												case 3:  if((! (j+1 >= N) )&& matrice[ i ][ j -1].mur.murO !=1 )
+												case 3:  if((! (j+1 >= N) )&& cmat->matrice[ i ][ j -1].mur.murO !=1 )
 															verif=1;
 
                                     	}
                                     }while(verif == 0);
 
-                                        deplacer_canard(matrice,i, j, k, direction);
+                                        deplacer_canard(cmat,i, j, k, direction);
                                 }
                             }
                             //tirage aleatoire d une premiere direction si il sait pas ou aller
