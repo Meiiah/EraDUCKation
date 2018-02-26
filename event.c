@@ -3,6 +3,8 @@
 #include "joueur.h"
 #include "outils.h"
 
+#define M 10
+
 int (*mauvais[M])(void); /*tableau de pointeur sur les fonctions mauvaises*/
 int (*bon[M])(void); /*tableau de pointeur sur les fonctions bonnes*/
 int (*event[M])(void); /*tableau de pointeur sur les deux types d'evenements*/
@@ -142,5 +144,25 @@ int canard_invincible(){
 	return 1;
 }
 
-int 
+ int init_tab_event_mauvais(){
+ 	mauvais[0] = tsunami;
+ 	mauvais[1] = tempete;
+ 	mauvais[2] = famine;
+ 	mauvais[3] = reproduction_ralentie;
+ 	mauvais[4] = apparition_predateur;
+ }
+ 
+ int init_tab_event_bon(){
+ 	bon[0] = reproduction_acceleree;
+ 	bon[1] = plus_nourriture;
+ 	bon[2] = joker_nourriture;
+ 	bon[3] = liberation_canard;
+ 	bon[4] = canard_invincible;
+ }
+ 
+ 
+ int init_tab_event(){
+ 	event[0]=init_tab_event_mauvais();
+ 	event[1]=init_tab_event_bon();
+ }
 
