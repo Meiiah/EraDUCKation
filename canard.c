@@ -1,27 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "struct.h"
-#define N 15
+#include "matrice.h"
+#define NBR_CANARD_DEPART 15
 
-void init_canard(case_t ** matrice, int taille_mat){
+void init_canard(caract_mat_t * cmat){
 	int x;
 	int y;
-	for(int i=0; i<N;i++){
-		x=(rand()%(taille_mat + 1));
-		y=(rand()%(taille_mat + 1));
-		matrice[x][y].nb_occupant++;
-		matrice[x][y].tab_canard[(*matrice)->nb_occupant-1].nourriture=50;
-		matrice[x][y].tab_canard[(*matrice)->nb_occupant-1].etat=0;
+	for(int i=0; i<NBR_CANARD_DEPART;i++){
+		x=(rand()%(cmat->taille_mat_x + 1));
+		y=(rand()%(cmat->taille_mat_y + 1));
+		if(est_dans_matrice(cmat,x,y)){
+			cmat->matrice[x][y].nb_occupant++;
+			cmat->matrice[x][y].tab_canard[cmat->matrice[x][y].nb_occupant-1].nourriture=50;
+			cmat->matrice[x][y].tab_canard[cmat->matrice[x][y].nb_occupant-1].etat=0;
+		}
+		
 	}
 }
 
 
-int presence_canard(case_t ** matrice, int taille_mat){ // retourne 1 si il reste des canards
+int presence_canard(caract_mat_t * cmat){ // retourne 1 si il reste des canards
 	int i,j;
-	for(i=0;i<taille_mat;i++){
-		for(j=0;j<taille_mat;j++){
-			if(matrice[i][j].nb_occupant>0){
-				return 1;	
+	for(i=0;i<cmat->taille_mat_x;i++){
+		for(j=0;j<cmat->taille_mat_y;j++){
+			if(cmat->matrice[i][j].nb_occupant>0){
+				if(est_dans_matrice(cmat,i,j)){
+					return 1;	
+				}
 			}
 		}
 	}
