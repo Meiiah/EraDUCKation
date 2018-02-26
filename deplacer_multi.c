@@ -4,18 +4,17 @@
 #include "include_connection.h"
 #include "struct.h"
 #include "deplacer.h"
+#include "envoi_recep.h"
 /*==============================================================================================================================*/
 
 void deplacer_multi_serveur(case_t ** matrice,int taille_mat,int nourriture_accouplement,int socket_to_client){
     int i,j,k;
     int direction;
     int verif =1;
-    char buffer[512];
 
     /*! ENVOI  DU MESSAGE INDIQUANT LE DEBUT DU TRANSFERT DE DEPLACEMENT*/
-    memset(buffer, 0, sizeof(buffer));
-    sprintf(buffer,"DEB_DEP");
-    send(socket_to_client, buffer, 512, 0);
+
+    send(socket_to_client, 42, sizeof(int), 0);
 
 
     for(i=0; i<taille_mat; i++){
@@ -58,12 +57,14 @@ void deplacer_multi_serveur(case_t ** matrice,int taille_mat,int nourriture_acco
                                         }while(verif == 0);
 
 									/*! ENVOI  DU MESSAGE AVEC LES PARAM DE LA FONCTION DEPLACEMENT*/
-									memset(buffer, 0, sizeof(buffer));
-									sprintf(buffer,"%i%i%i%i",i,j,k, direction);
-									send(socket_to_client, buffer, 512, 0);
+
+									envoyer_int(socket_to_client, i);
+									envoyer_int(socket_to_client, j);
+									envoyer_int(socket_to_client, k);
+									envoyer_int(socket_to_client, direction);
 
 									deplacer_canard(matrice,i, j, k, direction);
-                                    
+
                                 }
 
                             }
@@ -73,41 +74,35 @@ void deplacer_multi_serveur(case_t ** matrice,int taille_mat,int nourriture_acco
     }
 
         /*! ENVOI  DU MESSAGE INDIQUANT LA FIN DU TRANSFERT DE DEPLACEMENT*/
-    memset(buffer, 0, sizeof(buffer));
-    sprintf(buffer,"FIN_DEP");
-    send(socket_to_client, buffer, 512, 0);
+    envoyer_int(socket_to_client, -1);
 }
 
 /*==============================================================================================================================*/
-/*
+
 void deplacer_multi_client(int socket_to_serv){
 
     int i,j,k;
     int direction;
-     char buffer[512];
+    int mess;
 
-        RECEPTION DU MESSAGE INDIQUANT LE DEBUT DU TRANSFERT DE DEPLACEMENT
-    memset(buffer, 0, sizeof(buffer));
-	recv(socket_to_serv,buffer,512, 0);
+        //RECEPTION DU MESSAGE INDIQUANT LE DEBUT DU TRANSFERT DE DEPLACEMENT
+    recv(socket_to_serv, mess, sizeof(int), 0);
 
-    if(strncmp("DEB_DEP", buffer, 7)){
-        memset(buffer, 0, sizeof(buffer));
-        recv(socket_to_serv,buffer,512, 0);
+    if(mess == 42){
 
-        while(!strncmp("FIN_DEP", buffer, 7)){
-             !TANT QU ON A PAS DEPLACE TOUS LES CANARDS A DEPLACER ON PREND LES DONNEES ET ON LES DEPLACE
-            fread(i, sizeof(int), 1, buffer);
-            fread(j, sizeof(int), 1, buffer);
-            fread(k, sizeof(int), 1, buffer);
-            fread(direction, sizeof(int), 1, buffer);
-
+        do{
+             //TANT QU ON A PAS DEPLACE TOUS LES CANARDS A DEPLACER ON PREND LES DONNEES ET ON LES DEPLACE
+            recevoir_int(socket_to_serv ,&i);
+            if(i != -1){
+                recevoir_int(socket_to_serv ,&j);
+                recevoir_int(socket_to_serv ,&k);
+                recevoir_int(socket_to_serv, &direction);
+            }
             deplacer_canard(i, j, k, direction);
-        }
-
+        }while(i != -1);
     }
-
 }
 
-*/
+
 
 

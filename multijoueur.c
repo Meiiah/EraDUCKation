@@ -3,7 +3,7 @@
  * \brief Fonctions outils multijoueur
  * \author Maxime.T
  * \version 1.0
- * \date 20 fevrier 2018 
+ * \date 20 fevrier 2018
 */
 
 
@@ -41,8 +41,10 @@ joueur_multi_t joueur_mechant(void){ /**initialise un joueur en tant que mechant
 /*=======================================================*/
 
 
-void tour_multijoueur(joueur_multi_t tab[]){
-
+void tour_multijoueur(joueur_multi_t tab[], int tour){
+    deplacer();
+    //manger et reproduire
+    tab[tour%2].choix();
 }
 
 /*===============================================*/
@@ -64,7 +66,7 @@ int qui_commence(void){/** demande quel joueur commence */
 /** met le premier joueur a jouer en premiere place dans le tableau */
 
 void init_tab_joueurs(joueur_multi_t * tab /** tableau de joueurs */,
-						int tampon /** resultat du placement */){ 
+						int tampon /** resultat du placement */){
 
     tab[tampon]= joueur_gentil();    //c est de la logique
     tab[tampon +1 %2] = joueur_mechant();

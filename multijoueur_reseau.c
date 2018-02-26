@@ -49,7 +49,16 @@ int init_socket_serveur(int port){ /**  initialise la socket du serveur */ /** \
 
 }
 
-void main_multijoueur_reseau_client(int SocketServeur){
+/*
+faire fonction qui demande qui commence, si pas d accord tirage aleatoire
+demande chacun de son coté, systeme sleep, et gestion alea ou non par serv
+*/
+
+/*
+main multi res serv
+*/
+/** \fn main_multijoueur_reseau_client(int SocketServeur)*/
+void main_multijoueur_reseau_client(int SocketServeur){/**  ce sera le "main" du jeu en multi coté client*/
     //variables :
     joueur_multi_t tab[2];
     int tampon;
@@ -61,7 +70,8 @@ void main_multijoueur_reseau_client(int SocketServeur){
 
 }
 
-int choix_client_serv(void){
+/** \fn  int choix_client_serv(void) */
+int choix_client_serv(void){/** permet de savoir si le pc sera l hote ou le client*/
     int choix;
     do{
         system("cls");
@@ -71,9 +81,10 @@ int choix_client_serv(void){
         entrer_int(&choix);
     }while(choix <1 || choix >2);
     return choix;
-}
+} /** \return 1 si le joueur veut etre serveur et 2 si l hote veut etre client*/
 
-int menu_client(){
+/** \fn int menu_client(void) */
+int menu_client(void){ /** demande au client le port et l ip du serveur, et créé la socket*/
     /* POMPE */
     struct sockaddr_in serverSockAddr;
 	struct hostent *serverHostEnt;
@@ -121,9 +132,10 @@ int menu_client(){
 	/* -------------- */
 
     return to_server_socket;
-}
+} /**  \return retourne la socket pour communiquer avec le serveur*/
 
-int menu_serveur(){
+/** \fn int menu_serveur(void) */
+int menu_serveur(void){/** demande au serveur le port sur lequel il veut jouer , et le lie avec le client avec un veuillez patienter*/
     int socket_heberge, Socket_Client;
     struct sockaddr_in adresse_client;
     unsigned int longueur_adresse;
@@ -134,7 +146,7 @@ int menu_serveur(){
     socket_heberge = init_socket_serveur(port);
 
     system("cls");
-    printf("Votre IP est : \n Vous avez choisi le port : %i \n Recherche d'un adversaire en cours", port);
+    printf("Votre IP est : \n Vous avez choisi le port : %i \n Recherche d'un adversaire en cours, veuillez patienter ....", port);
             //creation de la socket client
     listen(socket_heberge,5);
     longueur_adresse = sizeof(adresse_client);
@@ -148,9 +160,10 @@ int menu_serveur(){
 
     return Socket_Client;
 
-}
+} /**  \return retourne la socket pour communiquer avec le client*/
+/** \fn void menu_multi_reseau(void) */
 
-void menu_multi_reseau(void){ /* Choix de client ou serveur, avec ensuite lancement du jeu*/
+void menu_multi_reseau(void){ /** gere qui fait quoi*/
     int choix;
     int sockett;
      choix = choix_client_serv();
