@@ -2,14 +2,14 @@
 #include <stdio.h>
 
 #include "struct.h"
+#include "matrice.h"
 #include "event.h"
 #include "joueur.h"
 #include "canard.h"
 #include "labyrinthe.h"
 #include "deplacer_multi.h"
-#include "init_matrice.h"
 #include "jeu_solo.h"
-#include "matrice.h"
+
 
 
 int choix_difficultee(int choix){
@@ -46,8 +46,7 @@ int choix_nbr_joueur(int choix,joueur_t joueur,joueur_t joueur2){
 int main(){
 
 	//definition matrice
-	int taille_mat;
-	case_t ** matrice;
+	caract_mat_t * cmat;
 
 	//definition joueur
 	joueur_t joueur;
@@ -79,8 +78,9 @@ int main(){
 			printf("2 : Intermédiaire\n");
 			printf("3 : Difficile\n");
 			scanf("%i",&choix);
-			taille_mat=choix_difficultee(choix);
-			
+			cmat->taille_mat_x=choix_difficultee(choix);
+			cmat->taille_mat_y=cmat->taille_mat_x;
+
 			/* Nombre de Joueur */
 			printf("1 : 1 joueur\n");
 			printf("2 : 2 joueurs\n");
@@ -88,17 +88,17 @@ int main(){
 			nbr_joueur=choix_nbr_joueur(choix,joueur,joueur2);
 			
 			/*Mise en place de la matrice adaptée*/
-			creation_matrice(matrice,taille_mat);
-			init_matrice(matrice,taille_mat);
+			creation_matrice(cmat);
+			init_matrice(cmat);
 
 			/*Creation du Labyrinthe*/
 			creer_labyrinthe();
 			
 			//Apparition de canard
-			init_canard(matrice,taille_mat); 
+			init_canard(cmat); 
 
 			if(nbr_joueur==1){
-				jeu_solo(matrice,taille_mat,nourriture_genere,nourriture_accouplement,joueur,joueur2);
+				jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2);
 			}else{
 				//jeu_multi();
 			}
