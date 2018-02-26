@@ -1,9 +1,9 @@
 canard_t canard_vide(void);
 
-int voit_nourriture(case_t ** matrice,int i,int j,int k);
+int voit_nourriture(caract_mat_t * cmat,int i,int j,int k);
 
-int voit_accouplement(case_t ** matrice,int nourriture_accouplement,int i,int j,int k);
+int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int j,int k);
 
-void deplacer_canard(case_t ** matrice,int i, int j, int k, int direction);
+void deplacer_canard(caract_mat_t * cmat,int i, int j, int k, int direction);
 
-void deplacer(case_t ** matrice,int nourriture_accouplement);
+void deplacer(caract_mat_t * cmat,int nourriture_accouplement);
