@@ -1,1 +1,1 @@
-void spawn_nourriture();
+void spawn_nourriture(caract_mat_t * cmat,int nourriture_genere);
