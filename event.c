@@ -3,6 +3,9 @@
 #include "joueur.h"
 #include "outils.h"
 
+int (*mauvais[M])(void); /*tableau de pointeur sur les fonctions mauvaises*/
+int (*bon[M])(void); /*tableau de pointeur sur les fonctions bonnes*/
+int (*event[M])(void); /*tableau de pointeur sur les deux types d'evenements*/
 
 /*Evenement mauvais */
 
