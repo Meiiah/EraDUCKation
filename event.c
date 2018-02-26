@@ -2,69 +2,70 @@
 #include "struct.h"
 #include "joueur.h"
 #include "outils.h"
+#include "matrice.h"
 
 #define M 10
 
-int (*mauvais[M])(void); /*tableau de pointeur sur les fonctions mauvaises*/
-int (*bon[M])(void); /*tableau de pointeur sur les fonctions bonnes*/
-int (*event[M])(void); /*tableau de pointeur sur les deux types d'evenements*/
+int (*mauvais[M])(int); /*tableau de pointeur sur les fonctions mauvaises*/
+int (*bon[M])(int); /*tableau de pointeur sur les fonctions bonnes*/
+int (*event[M])(int); /*tableau de pointeur sur les deux types d'evenements*/
 
 /*Evenement mauvais */
 
-int tsunami(case_t ** matrice,int taille_mat, joueur_t joueur,joueur_t joueur2){
+int tsunami(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2){
 	int i,j,k;
-	int random_min=rand_map(taille_mat);
-	int random_max=rand_map(taille_mat);
+	int random_min=rand_map(cmat->taille_mat_x);
+	int random_max=rand_map(cmat->taille_mat_y);
 	while(random_min>random_max){
-		random_min=rand_map(taille_mat);
-		random_max=rand_map(taille_mat);
+		random_min=rand_map(cmat->taille_mat_x);
+		random_max=rand_map(cmat->taille_mat_y);
 	}
 	int align=rand()%1;// 0 pour horizontal 1 pour vertical
 
 	if(align==0){
-		for(i=0;i<taille_mat;i++){
+		for(i=0;i<cmat->taille_mat_x;i++){
 			for(j=random_min;j<random_max;j++){
-				for(k=0;k<matrice[i][j].nb_occupant;k++){
-					matrice[i][j].tab_canard[k].nourriture=0;
-					matrice[i][j].tab_canard[k].etat=-1;
+				for(k=0;k<cmat->matrice[i][j].nb_occupant;k++){
+					cmat->matrice[i][j].tab_canard[k].nourriture=0;
+					cmat->matrice[i][j].tab_canard[k].etat=-1;
 					ajout_score(-50,joueur,joueur2);	
 				}
-				matrice[i][j].nb_occupant=0;
+				cmat->matrice[i][j].nb_occupant=0;
 			}
 		}
 	}
 	if(align==1){
 		for(i=random_min;i<random_max;i++){
-			for(j=0;j<taille_mat;j++){
-				for(k=0;k<matrice[i][j].nb_occupant;k++){
-					matrice[i][j].tab_canard[k].nourriture=0;
-					matrice[i][j].tab_canard[k].etat=-1;	
+			for(j=0;j<cmat->taille_mat_y;j++){
+				for(k=0;k<cmat->matrice[i][j].nb_occupant;k++){
+					cmat->matrice[i][j].tab_canard[k].nourriture=0;
+					cmat->matrice[i][j].tab_canard[k].etat=-1;	
 					ajout_score(-50,joueur,joueur2);
 				}
-				matrice[i][j].nb_occupant=0;
+				cmat->matrice[i][j].nb_occupant=0;
 			}
 		}
 	}
 	return 1;
 }
 
-int tempete(case_t ** matrice, int taille_mat, joueur_t joueur, joueur_t joueur2){
+int tempete(caract_mat_t * cmat, joueur_t joueur, joueur_t joueur2){
 	int i,j,k;
-	int random_min=rand_map(taille_mat);
-	int random_max=rand_map(taille_mat);
+	int random_min=rand_map(cmat->taille_mat_x);
+	int random_max=rand_map(cmat->taille_mat_y);
 	while(random_min>random_max){
-		random_min=rand_map(taille_mat);
-		random_max=rand_map(taille_mat);
+		random_min=rand_map(cmat->taille_mat_x);
+		random_max=rand_map(cmat->taille_mat_y);
 	}
 
 	for(i=random_min;i<random_max;i++){
 		for(j=random_min;j<random_max;j++){
-			for(k=0;k<matrice[i][j].nb_occupant;k++){
-				matrice[i][j].tab_canard[k].nourriture=0;
-				matrice[i][j].tab_canard[k].etat=-1;	
+			for(k=0;k<cmat->matrice[i][j].nb_occupant;k++){
+				cmat->matrice[i][j].tab_canard[k].nourriture=0;
+				cmat->matrice[i][j].tab_canard[k].etat=-1;	
 				ajout_score(-50,joueur,joueur2);
 			}
-			matrice[i][j].nb_occupant=0;
+			cmat->matrice[i][j].nb_occupant=0;
 		}
 	}
 	return 1;
@@ -79,21 +80,21 @@ int reproduction_ralentie(int nourriture_accouplement){
 	return nourriture_accouplement*=1.5; //variable de deplacer.c 
 }
 
-int apparition_predateur(case_t ** matrice,int taille_mat, joueur_t joueur, joueur_t joueur2){
+int apparition_predateur(caract_mat_t * cmat, joueur_t joueur, joueur_t joueur2){
 	int i,k;	
 	int random_x;
 	int random_y;
 	int random_nbre_predateur=rand()%5;//random pour le nombre de prédateur
 	for(i=0;i<random_nbre_predateur;i++){ //boucle pour tuer des canards en fonction du nombre de prédateur
-		random_x=rand_map(taille_mat);
-		random_y=rand_map(taille_mat);
+		random_x=rand_map(cmat->taille_mat_x);
+		random_y=rand_map(cmat->taille_mat_y);
 		//destruction des canards
-		for(k=0;k<matrice[random_x][random_y].nb_occupant;k++){
-			matrice[random_x][random_y].tab_canard[k].nourriture=0;
-			matrice[random_x][random_y].tab_canard[k].etat=-1;	
+		for(k=0;k<cmat->matrice[random_x][random_y].nb_occupant;k++){
+			cmat->matrice[random_x][random_y].tab_canard[k].nourriture=0;
+			cmat->matrice[random_x][random_y].tab_canard[k].etat=-1;	
 			ajout_score(-100,joueur,joueur2);
 		}
-		matrice[random_x][random_y].nb_occupant=0;	
+		cmat->matrice[random_x][random_y].nb_occupant=0;	
 	}
 	return 1;
 }
@@ -108,33 +109,33 @@ int plus_nourriture(int nourriture_genere){
 	return nourriture_genere*=1.5;//generation de nourriture plus élevée
 }
 
-int joker_nourriture(case_t ** matrice,int taille_mat){
+int joker_nourriture(caract_mat_t * cmat){
 	int i,j,k;
-	for(i=0;i<taille_mat;i++){//balayage de toute la matrice
-		for(j=0;j<taille_mat;j++){
-			for(k=0;k<taille_mat;k++){
-				matrice[i][j].tab_canard[k].nourriture=100;
+	for(i=0;i<cmat->taille_mat_x;i++){//balayage de toute la matrice
+		for(j=0;j<cmat->taille_mat_y;j++){
+			for(k=0;k<cmat->taille_mat_x;k++){
+				cmat->matrice[i][j].tab_canard[k].nourriture=100;
 			}
 		}
 	}
 	return 1;
 }
 //ajout au score
-int liberation_canard(case_t ** matrice,int taille_mat, joueur_t joueur, joueur_t joueur2){
+int liberation_canard(caract_mat_t * cmat, joueur_t joueur, joueur_t joueur2){
 	int i,k;	
 	int random_x;
 	int random_y;
 	int random_nbre_de_canard_liberer=rand()%5;//random pour le nombre de canard
 	for(i=0;i<random_nbre_de_canard_liberer;i++){ //boucle pour tuer des canards en fonction du nombre de prédateur
-		random_x=rand_map(taille_mat);
-		random_y=rand_map(taille_mat);
+		random_x=rand_map(cmat->taille_mat_x);
+		random_y=rand_map(cmat->taille_mat_y);
 		//sortie des canards
-		for(k=0;k<matrice[random_x][random_y].nb_occupant;k++){
-			matrice[random_x][random_y].tab_canard[k].nourriture=0;
-			matrice[random_x][random_y].tab_canard[k].etat=-1;	
+		for(k=0;k<cmat->matrice[random_x][random_y].nb_occupant;k++){
+			cmat->matrice[random_x][random_y].tab_canard[k].nourriture=0;
+			cmat->matrice[random_x][random_y].tab_canard[k].etat=-1;	
 			ajout_score(500,joueur,joueur2); //ajout de 500 points par libération
 		}
-		matrice[random_x][random_y].nb_occupant=0;	
+		cmat->matrice[random_x][random_y].nb_occupant=0;	
 	}
 	return 1;
 }
