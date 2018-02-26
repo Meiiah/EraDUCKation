@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "event.h"
-#include "struct.h"
 
+#include "struct.h"
+#include "matrice.h"
+#include "event.h"
 /**
 *\file joueur.c
 *\brief programme qui gere tout ce qui est en rapport avec le joueur
@@ -106,16 +107,13 @@ void choix_bon(){
 	}
 }
 
-
 /** \fn void choix_joueur(void)*/
 /** choix du joueur parmis les evenements */
 void choix_joueur(){
 	int nature_event= ( rand() % 2); // Choix randome d'un evenement positif ou negatif//
 	if (nature_event%2==0){ // Si pair : Evenement negatif //
 		choix_mechant();
-		
-	}
-	else { // Si impaire: Evenement positif//
+	}else { // Si impaire: Evenement positif//
 		choix_bon();
 	}
 }
