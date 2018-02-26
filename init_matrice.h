@@ -1,1 +1,0 @@
-void init_matrice(case_t ** matrice, int taille_mat);
