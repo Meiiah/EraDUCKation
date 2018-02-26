@@ -1,16 +1,15 @@
 #include <stdlib.h>
 #include "struct.h"
 #include <stdio.h>
-#define taille_mat 20 //taille de la matrice//
-case_t matrice[taille_mat][taille_mat];
 
-void piege(){ //fonction piege
+
+void piege(case_t ** matrice, int taille_mat){ //fonction piege
 	int x=(rand() % (taille_mat)); //place en random un piege dans la matrice
 	int y=(rand() % (taille_mat));
 	matrice[x][y].pres_piege=1; // 1: presence piege , 0: pas de piege
 }
 
-void presence_piege(){ // fonction presence de piege
+void presence_piege(case_t ** matrice, int taille_mat){ // fonction presence de piege
 	int i,j;
 	for(i=0;i<taille_mat;i++){ //parcour de la matrice
 		for(j=0;j<taille_mat;j++){
