@@ -6,7 +6,7 @@
 
 /*Evenement mauvais */
 
-void tsunami(case_t ** matrice,int taille_mat, joueur_t joueur,joueur_t joueur2){
+int tsunami(case_t ** matrice,int taille_mat, joueur_t joueur,joueur_t joueur2){
 	int i,j,k;
 	int random_min=rand_map(taille_mat);
 	int random_max=rand_map(taille_mat);
@@ -39,10 +39,11 @@ void tsunami(case_t ** matrice,int taille_mat, joueur_t joueur,joueur_t joueur2)
 				matrice[i][j].nb_occupant=0;
 			}
 		}
-	}	
+	}
+	return 1;
 }
 
-void tempete(case_t ** matrice, int taille_mat, joueur_t joueur, joueur_t joueur2){
+int tempete(case_t ** matrice, int taille_mat, joueur_t joueur, joueur_t joueur2){
 	int i,j,k;
 	int random_min=rand_map(taille_mat);
 	int random_max=rand_map(taille_mat);
@@ -61,6 +62,7 @@ void tempete(case_t ** matrice, int taille_mat, joueur_t joueur, joueur_t joueur
 			matrice[i][j].nb_occupant=0;
 		}
 	}
+	return 1;
 }
 
 int famine(int nourriture_genere){
@@ -72,7 +74,7 @@ int reproduction_ralentie(int nourriture_accouplement){
 	return nourriture_accouplement*=1.5; //variable de deplacer.c 
 }
 
-void apparition_predateur(case_t ** matrice,int taille_mat, joueur_t joueur, joueur_t joueur2){
+int apparition_predateur(case_t ** matrice,int taille_mat, joueur_t joueur, joueur_t joueur2){
 	int i,k;	
 	int random_x;
 	int random_y;
@@ -88,6 +90,7 @@ void apparition_predateur(case_t ** matrice,int taille_mat, joueur_t joueur, jou
 		}
 		matrice[random_x][random_y].nb_occupant=0;	
 	}
+	return 1;
 }
 
 /* Evenement bon */
@@ -100,7 +103,7 @@ int plus_nourriture(int nourriture_genere){
 	return nourriture_genere*=1.5;//generation de nourriture plus élevée
 }
 
-void joker_nourriture(case_t ** matrice,int taille_mat){
+int joker_nourriture(case_t ** matrice,int taille_mat){
 	int i,j,k;
 	for(i=0;i<taille_mat;i++){//balayage de toute la matrice
 		for(j=0;j<taille_mat;j++){
@@ -109,9 +112,10 @@ void joker_nourriture(case_t ** matrice,int taille_mat){
 			}
 		}
 	}
+	return 1;
 }
 //ajout au score
-void liberation_canard(case_t ** matrice,int taille_mat, joueur_t joueur, joueur_t joueur2){
+int liberation_canard(case_t ** matrice,int taille_mat, joueur_t joueur, joueur_t joueur2){
 	int i,k;	
 	int random_x;
 	int random_y;
@@ -127,10 +131,13 @@ void liberation_canard(case_t ** matrice,int taille_mat, joueur_t joueur, joueur
 		}
 		matrice[random_x][random_y].nb_occupant=0;	
 	}
+	return 1;
 }
 
-void canard_invincible(){
+int canard_invincible(){
 	/*prend un canard qui ne peut pas mourir*/
+	return 1;
 }
 
+int 
 
