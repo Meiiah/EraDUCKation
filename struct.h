@@ -42,4 +42,3 @@ typedef struct joueur_s{
 	char nom_joueur[25];
 }joueur_t;
 
-
