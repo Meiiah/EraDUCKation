@@ -6,50 +6,13 @@
  * \date 20 / 02 / 2018
 */
 
-#include "strings.h"
 #include "include_connection.h"
 #include "multijoueur.c"
-
-/** \fn void entrer_int(int* val) */
-void entrer_int(int* val){ /** Permet une entrée d'un int, et seulement un int */  /** \param val fonctionne comme un scanf sans le cham %*/
-    scanf("%i", val);
-    int c;
-    do {
-        c = getchar();
-    } while (c != EOF && c != '\n');
-    *val = c;
-}
+#include "deplacer_multi.h"
+#include "outils.h
+#include "connection.h"
 
 
-/* Merci au prof*/
-/** \fn int init_socket_serveur(int port)*/
-int init_socket_serveur(int port){ /**  initialise la socket du serveur */ /** \param port le port sur lequel on créé la socket */
-	int ma_socket;
-	struct sockaddr_in mon_address;
-	bzero(&mon_address,sizeof(mon_address));
-	mon_address.sin_port = htons(port);
-	mon_address.sin_family = AF_INET;
-	mon_address.sin_addr.s_addr = htonl(INADDR_ANY);
-
-	ma_socket = socket(AF_INET,SOCK_STREAM,0);
-    bind(ma_socket,(struct sockaddr *)&mon_address,sizeof(mon_address));
-    return ma_socket; /** \return la socket créée*/
-}
-
-
-/** \fn int init_socket_serveur(int port)*/
-/*int init_socket_serveur(int port){*/ /**  initialise la socket du serveur */ /** \param port le port sur lequel on créé la socket */
-    //variables :
- /*   joueur_multi_t tab[2];
-    int tampon;
-
-    tampon = qui_commence();
-    init_tab_joueurs(tab, tampon);
-
-    //maintenant on initialise l ordre de jeu
-
-}
-*/
 
 /*
 faire fonction qui demande qui commence, si pas d accord tirage aleatoire
@@ -59,13 +22,128 @@ demande chacun de son coté, systeme sleep, et gestion alea ou non par serv
 /*
 main multi res serv
 */
+
+
+/**********************************************		INITIALISATION TOUR DE JEU		*******************************************/
+int demander_qui_commence(){
+	int qui;
+	printf("Voulez-vous commencer? si oui tapez 1 si non tapez 0 : ");
+	scanf("%i", &qui);
+	
+	return qui;
+}
+
+void commence_client(int socket, int role, joueur_multi_t tab[]){
+	int qui_s, qui_c;
+	
+	printf("En attente de votre adversaire ...");
+	qui_c = demander_qui_commence();
+	envoyer_int(socket, qui_c);
+	
+	recevoir_int(socket, qui_s);
+	
+	
+	if(role == 0){
+		tab_joueurs[qui_s+1%2]= joueur_mechant();
+		tab_joueurs[qui_s]= joueur_gentil();
+	}
+	else{
+		tab_joueurs[qui_s+1%2]= joueur_gentil();
+		tab_joueurs[qui_s]= joueur_mechant();
+	}
+		
+}
+
+//qui joue en premier sinon aleatoire
+void commence_serveur(int socket, int role, joueur_multi_t tab[]){
+	int qui_s, qui_c;
+	
+	qui_s = demander_qui_commence();
+	printf("En attente de votre adversaire ...");
+	recevoir_int(socket, &qui_c);
+	
+	if(qui_s == qui_c)
+		qui_s = rand%2;
+	
+	envoyer_int(socket, qui_s);
+	
+	if(role == 0){
+		tab_joueurs[qui_s+1%2]= joueur_mechant();
+		tab_joueurs[qui_s]= joueur_gentil();
+	}
+	else{
+		tab_joueurs[qui_s+1%2]= joueur_gentil();
+		tab_joueurs[qui_s]= joueur_mechant();
+	}
+		
+}
+
+
+/**********************************************		ROLE		*****************************************/
+
+//qui joue quel role sinon c est aleatoire
+void saisir_role(int * role){
+	printf("quel role voulez vous endosser ? \n");
+	printf("	Le mechant tapez 0\n");
+	printf("	Le gentil tapez 1\n");
+	scanf("%i",role);
+}
+
+void afficher_role(int role){
+	system("cls");
+	if(role == 0)
+		printf("\n				VOUS ETES LE MECHANT		\n");
+	else
+		printf("\n				VOUS ETES LE GENTIL			\n");
+}
+
+void quel_role_serveur(int socket, joueur_multi_t tab[]){
+	int role, role2;
+	
+	//le serveur envoit son role au client puis recupere celui du client, si ils sont egaux, c est rand, et il envoit son role definitif (du serveur) au client
+	
+	saisir_role(&role);
+	envoyer_int(socket, role);
+	printf("en attente de l autre joueur....");
+	recevoir_int(socket, &role2);
+	
+	if(role == role2)
+		role=rand()%2;
+		
+	envoyer_int(socket, role);
+	role2 = role+1%2 ;
+	
+	afficher_role(role);
+	
+	commence_serveur( socket, role, tab);
+}
+
+void quel_role_client(int socket, joueur_multi_t tab[]){
+	int role, role2;
+	
+	// le client commence par attendre la reponse du serveur pour son role, puis lui transmet le sien, et récupere le role definitif du serveur
+	
+	printf("en attente de l autre joueur....");
+	recevoir_int(socket, &role);
+	saisir_role(&role);
+	envoyer_int(socket, role2);
+	
+	recevoir_int(socket, role);
+	role2 = (role+1)%2 ;
+	
+	afficher_role(role2);
+	
+	commence_client( socket, role, tab);
+	
+}
+
+/**********************************************		JEU			*****************************************/
+
 /** \fn main_multijoueur_reseau_client(int SocketServeur)*/
 void main_multijoueur_reseau_client(int SocketServeur){/**  ce sera le "main" du jeu en multi coté client*/
     //variables :
     joueur_multi_t tab[2];
-    int tampon;
 
-    tampon = qui_commence();
     init_tab_joueurs(tab, tampon);
 
     //maintenant on initialise l ordre de jeu
@@ -73,8 +151,10 @@ void main_multijoueur_reseau_client(int SocketServeur){/**  ce sera le "main" du
 }
 
 void main_multijoueur_reseau_serveur(int SocketServeur){
+	
 }
 
+/*************************************************		Client ou serveur ?		************************************************/
 
 /** \fn  int choix_client_serv(void) */
 int choix_client_serv(void){/** permet de savoir si le pc sera l hote ou le client*/
@@ -89,84 +169,9 @@ int choix_client_serv(void){/** permet de savoir si le pc sera l hote ou le clie
     return choix;
 } /** \return 1 si le joueur veut etre serveur et 2 si l hote veut etre client*/
 
-/** \fn int menu_client(void) */
-int menu_client(void){ /** demande au client le port et l ip du serveur, et créé la socket*/
-    /* POMPE */
-    struct sockaddr_in serverSockAddr;
-	struct hostent *serverHostEnt;
-	long hostAddr;
-	int to_server_socket;
-	int port;
-	char SERVEURNAME[30];
+/*************************************************		menu		************************************************/
 
-	system("cls");
-    printf("Sur quel port voulez-vous jouer? \n");
-    scanf("%i", &port);
-    printf("\nEntrez l'ip de votre adversaire \n");
-    scanf("%s", SERVEURNAME);
 
-	bzero(&serverSockAddr,sizeof(serverSockAddr));
-	hostAddr = inet_addr(SERVEURNAME);
-	if ( (long)hostAddr != (long)-1)
-		bcopy(&hostAddr,&serverSockAddr.sin_addr,sizeof(hostAddr));
-	else
-	{
-		serverHostEnt = gethostbyname(SERVEURNAME);
-	  	if (serverHostEnt == NULL)
-	  	{
-			printf("gethost rate\n");
-			exit(0);
-	  	}
-	  	bcopy(serverHostEnt->h_addr,&serverSockAddr.sin_addr,serverHostEnt->h_length);
-	}
-	serverSockAddr.sin_port = htons(port);
-	serverSockAddr.sin_family = AF_INET;
-	/* creation de la socket */
-	if ( (to_server_socket = socket(AF_INET,SOCK_STREAM,0)) < 0)
-	{
-		printf("creation socket client ratee\n");
-	  	exit(0);
-	}
-	/* requete de connexion */
-	if(connect( to_server_socket,
-				(struct sockaddr *)&serverSockAddr,
-				sizeof(serverSockAddr)) < 0 )
-	{
-		printf("demande de connection ratee\n");
-	  	exit(0);
-	}
-	/* -------------- */
-
-    return to_server_socket;
-} /**  \return retourne la socket pour communiquer avec le serveur*/
-
-/** \fn int menu_serveur(void) */
-int menu_serveur(void){/** demande au serveur le port sur lequel il veut jouer , et le lie avec le client avec un veuillez patienter*/
-    int socket_heberge, Socket_Client;
-    struct sockaddr_in adresse_client;
-    unsigned int longueur_adresse;
-    int port;
-    system("cls");
-    printf("Sur quel port voulez-vous jouer? \n");
-    scanf("%i", &port);
-    socket_heberge = init_socket_serveur(port);
-
-    system("cls");
-    printf("Votre IP est : \n Vous avez choisi le port : %i \n Recherche d'un adversaire en cours, veuillez patienter ....", port);
-            //creation de la socket client
-    listen(socket_heberge,5);
-    longueur_adresse = sizeof(adresse_client);
-    Socket_Client = accept(socket_heberge,
-                    (struct sockaddr *)&adresse_client,
-                         &longueur_adresse);
-            //connection effectuee
-
-    system("cls");
-    printf(" Adversaire trouvé ! ");
-
-    return Socket_Client;
-
-} /**  \return retourne la socket pour communiquer avec le client*/
 /** \fn void menu_multi_reseau(void) */
 
 void menu_multi_reseau(void){ /** gere qui fait quoi*/
@@ -185,7 +190,6 @@ void menu_multi_reseau(void){ /** gere qui fait quoi*/
             break;
      }
 }
-
 
 
 
