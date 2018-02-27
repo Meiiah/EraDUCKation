@@ -21,4 +21,5 @@ int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupleme
 		nb_gen++;
 		printf("Score: %i",joueur.score);
 	}
+	return 1;
 }
