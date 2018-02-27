@@ -6,6 +6,7 @@
  * \date 20 / 02 / 2018
 */
 
+#include "tring.h"
 #include "include_connection.h"
 #include "multijoueur.c"
 
@@ -30,16 +31,16 @@ int init_socket_serveur(int port){ /**  initialise la socket du serveur */ /** \
 	mon_address.sin_family = AF_INET;
 	mon_address.sin_addr.s_addr = htonl(INADDR_ANY);
 
-	ma_socket = socket(AF_INET,SOCK_STREAM,0)
+	ma_socket = socket(AF_INET,SOCK_STREAM,0);
     bind(ma_socket,(struct sockaddr *)&mon_address,sizeof(mon_address));
     return ma_socket; /** \return la socket créée*/
 }
 
 
 /** \fn int init_socket_serveur(int port)*/
-int init_socket_serveur(int port){ /**  initialise la socket du serveur */ /** \param port le port sur lequel on créé la socket */
+/*int init_socket_serveur(int port){*/ /**  initialise la socket du serveur */ /** \param port le port sur lequel on créé la socket */
     //variables :
-    joueur_multi_t tab[2];
+ /*   joueur_multi_t tab[2];
     int tampon;
 
     tampon = qui_commence();
@@ -48,6 +49,7 @@ int init_socket_serveur(int port){ /**  initialise la socket du serveur */ /** \
     //maintenant on initialise l ordre de jeu
 
 }
+*/
 
 /*
 faire fonction qui demande qui commence, si pas d accord tirage aleatoire
@@ -69,6 +71,10 @@ void main_multijoueur_reseau_client(int SocketServeur){/**  ce sera le "main" du
     //maintenant on initialise l ordre de jeu
 
 }
+
+void main_multijoueur_reseau_serveur(int SocketServeur){
+}
+
 
 /** \fn  int choix_client_serv(void) */
 int choix_client_serv(void){/** permet de savoir si le pc sera l hote ou le client*/
