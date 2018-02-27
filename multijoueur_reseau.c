@@ -186,9 +186,7 @@ void menu_multi_reseau(void){ /** gere qui fait quoi*/
      }
 }
 
-int main(){
 
-}
 
 
 

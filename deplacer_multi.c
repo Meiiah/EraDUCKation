@@ -14,8 +14,8 @@ void deplacer_multi_serveur(caract_mat_t * cmat,int nourriture_accouplement,int 
     int verif =1;
 
     /*! ENVOI  DU MESSAGE INDIQUANT LE DEBUT DU TRANSFERT DE DEPLACEMENT*/
-
-    send(socket_to_client, 42, sizeof(int), 0);
+    int qt =42;
+    send(socket_to_client, qt, sizeof(int), 0);
 
 
     for(i=0; i<cmat->taille_mat_x; i++){

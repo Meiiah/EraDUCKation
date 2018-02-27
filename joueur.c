@@ -4,6 +4,7 @@
 #include "struct.h"
 #include "matrice.h"
 #include "event.h"
+#include "string.h"
 /**
 *\file joueur.c
 *\brief programme qui gere tout ce qui est en rapport avec le joueur
@@ -18,7 +19,7 @@
 
 void ajout_score(int point,joueur_t joueur, joueur_t joueur2){
 	joueur.score+=point; // ajout des points en fonction de l'action faite
-	if(joueur2.nom_joueur!=NULL){
+	if(!strcmp(joueur2.nom_joueur,"null")){
 		joueur2.score-=point;
 	}
 }
@@ -68,7 +69,7 @@ void tab_event_bon(int * choix1,int * choix2, int * choix3){
 
 /** \fn void choix_mauvais(void)*/
 /** choix random parmis les evenements mauvais */
-void choix_mechant(){
+void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement){
 	int choix1, choix2, choix3;
 	
 	tab_event_mauvais(&choix1, &choix2, &choix3);
@@ -91,7 +92,7 @@ void choix_mechant(){
 /** \fn void choix_bon(void)*/
 /** choix random parmis les evenements bon */
 
-void choix_bon(){
+void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement){
 	int choix1, choix2, choix3;
 	
 	tab_event_bon(&choix1, &choix2, &choix3);
@@ -113,11 +114,11 @@ void choix_bon(){
 
 /** \fn void choix_joueur(void)*/
 /** choix du joueur parmis les evenements */
-void choix_joueur(){
+void choix_joueur(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement){
 	int nature_event= ( rand() % 2); // Choix randome d'un evenement positif ou negatif//
 	if (nature_event%2==0){ // Si pair : Evenement negatif //
-		choix_mechant();
+		choix_mechant(cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 	}else { // Si impaire: Evenement positif//
-		choix_bon();
+		choix_bon(cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 	}
 }
