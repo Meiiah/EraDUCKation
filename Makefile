@@ -1,18 +1,16 @@
 CC=gcc
-OBJ=canard.o deplacer.o deplacer_multi.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinthe.o main.o multijoueur.o multijoueur_reseau.o nourriture.o piege.o reproduction.o sauvegarde.o
+OBJ=canard.o deplacer.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinthe.o main.o  multijoueur_reseau.o nourriture.o piege.o reproduction.o sauvegarde.o
+
 PROG=era
 
-${PROG}: ${OBJ}.o 
-	${CC} ${OBJ}.o -o ${PROG}
+${PROG}: ${OBJ}
+	${CC} ${OBJ} -o ${PROG}
 
 canard.o: canard.c 
 	${CC} -c canard.c
 
 deplacer.o: deplacer.c 
 	${CC} -c deplacer.c
-
-deplacer_multi.o: deplacer_multi.c 
-	${CC} -c deplacer_multi.c
 
 event.o: event.c 
 	${CC} -c event.c
@@ -28,9 +26,6 @@ labyrinthe.o: labyrinthe.c
 
 main.o: main.c 
 	${CC} -c main.c
-
-multijoueur.o: multijoueur.c 
-	${CC} -c multijoueur.c
 
 multijoueur_reseau.o: multijoueur_reseau.c 
 	${CC} -c multijoueur_reseau.c
