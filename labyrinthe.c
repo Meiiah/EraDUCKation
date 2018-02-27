@@ -23,7 +23,6 @@ typedef struct{ /** Strucure appelant une structure mur_t, et une valeur de case
 ini_t mat[N][N];
 
 
-
 void aff(){
 	int i,j;
 	mur_t m;
@@ -36,11 +35,10 @@ void aff(){
 			if(m.murE==1 || m.murO==1) fprintf(stderr,"|");
 			else if(m.murE==0 || m.murO==0) fprintf(stderr," ");
 		}
-		fprintf(stderr, "\n");
+		fprintf(stderr,"\n");
 	}
 	fprintf(stderr, "#### FIN LABY\n");
 }
-
 
 /** \fn void affichage_laby()*/
 void affichage_laby(){ /** Affichage du labyrinthe avec les murs sour forme ASCII */
@@ -56,33 +54,27 @@ void affichage_laby(){ /** Affichage du labyrinthe avec les murs sour forme ASCI
 						//premier balayage
 						if(case_i==0){
 							if(m.murN==1 && m.murO==1) printf("\u2554");
-							
 							if(m.murN==1) printf("\u2550");
 							else if(m.murN==0) printf(" ");
 							if(m.murN==1 && m.murE==1) printf("\u2557");
-						
-							
+
 						}
 						//second balayage
 						if(case_i==1){
-							
 							if(m.murE==1) printf("\u2551");
-							if(m.murE==0 && m.murO==0) printf(" ");
+							if(m.murE==0 && m.murO==0) printf("  ");
 							if(m.murO==1) printf("\u2551");
-							
-							
+
 						}
 						//troisieme balayage
-						if(case_i==2){ 
-							
+						if(case_i==2){
 							if(m.murS==1 && m.murO==1) printf("\u255A");
-							
 							if(m.murS==1) printf("\u2550");
 							else if(m.murS==0) printf(" ");
 							if(m.murS==1 && m.murE==1) printf("\u255D");
-						
-							
-						}				
+	
+						}
+										
 				}printf("\n");
 		}
 		
@@ -108,7 +100,6 @@ void init_laby(){ /** Permet d'initialiser chaques mur du labyrinthe à 1(prése
 	}		
 }
 
-//Peut etre passé en boite a outils
 /** \fn void maxmin(int *max, int*min, int val1, int val2)*/
 void maxmin(int *max, int*min, int val1, int val2){/** Permet de déterminer le minimu et la maximum entre deux cases adjacentes*/
 	if(val1<val2){
@@ -273,21 +264,7 @@ int main(int argc, char**argv){
 	creer_labyrinthe();
 	aff();
 	affichage_laby();
-	
 
 	return EXIT_SUCCESS;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
