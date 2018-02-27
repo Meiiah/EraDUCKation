@@ -1,5 +1,5 @@
 CC=gcc
-OBJ=canard.o deplacer.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinthe.o main.o  multijoueur_reseau.o nourriture.o piege.o reproduction.o sauvegarde.o
+OBJ=canard.o deplacer.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinthe.o main.o  multijoueur_reseau.o nourriture.o piege.o reproduction.o sauvegarde.o GestionDeLaBareDeVie.o fonction_multi_reseau.o
 
 PROG=era
 
@@ -47,20 +47,29 @@ sauvegarde.o: sauvegarde.c
 
 matrice.o: matrice.c
 	${CC} -c matrice.c
+
+fonction_multi_reseau.o: fonction_multi_reseau.c
+	${CC} -c fonction_multi_reseau.c
+
+GestionDeLaBareDeVie.o: GestionDeLaBareDeVie.c
+	${CC} -c GestionDeLaBareDeVie.c
 clean:
 	rm -f *.o
 	rm -f canard
 	rm -f deplacer
 	rm -f deplacer_multi
 	rm -f event
-	rm -f init_matrice
 	rm -f jeu_solo
 	rm -f joueur
 	rm -f labyrinthe
 	rm -f main
+	rm -f matrice
+	rm -f outils.c
 	rm -f multijoueur
 	rm -f multijoueur_reseau
 	rm -f nourriture
 	rm -f piege
 	rm -f reproduction
 	rm -f sauvegarde
+	rm -f fonction_multi_reseau
+	rm -f GestionDeLaBareDeVie
