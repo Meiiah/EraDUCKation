@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <string.h>
 #include "struct.h"
 #include "matrice.h"
 #include "event.h"
@@ -25,6 +25,7 @@ int choix_difficultee(int choix){
 			return taille_mat=50;
 		break;		
 	}
+	return 1;
 }
 int choix_nbr_joueur(int choix,joueur_t joueur,joueur_t joueur2){
 	int nbr_joueur;
@@ -40,10 +41,11 @@ int choix_nbr_joueur(int choix,joueur_t joueur,joueur_t joueur2){
 			return nbr_joueur=2;
 		break;	
 	}
+	return 1;
 }
 
 
-int main(){
+int main(void){
 
 	//definition matrice
 	caract_mat_t * cmat;
@@ -70,6 +72,8 @@ int main(){
 	printf("2 : Option (non opérationel)\n");
 	printf("3 : Quitter\n");
 	
+	printf("Choix: ");
+	scanf("%i",&choix);
 		
 	switch(choix){
 		case 1 :
@@ -77,6 +81,7 @@ int main(){
 			printf("1 : Facile\n");
 			printf("2 : Intermédiaire\n");
 			printf("3 : Difficile\n");
+			printf("Choix: ");
 			scanf("%i",&choix);
 			cmat->taille_mat_x=choix_difficultee(choix);
 			cmat->taille_mat_y=cmat->taille_mat_x;
@@ -84,13 +89,17 @@ int main(){
 			/* Nombre de Joueur */
 			printf("1 : 1 joueur\n");
 			printf("2 : 2 joueurs\n");
+			printf("Choix: ");
 			scanf("%i",&choix);
+			
+			
 			nbr_joueur=choix_nbr_joueur(choix,joueur,joueur2);
 			
+			fprintf(stderr,"POuet");
 			/*Mise en place de la matrice adaptée*/
 			creation_matrice(cmat);
 			init_matrice(cmat);
-
+			fprintf(stderr,"POuezfe22222rgrthet");
 			/*Creation du Labyrinthe*/
 			creer_labyrinthe();
 			
@@ -114,8 +123,9 @@ int main(){
 		break;
 	
 	}
-	printf("Le score total du joueur 1 est : %i",joueur.score);
-	if(joueur2.nom_joueur!=NULL){
-		printf("Le score total du joueur 1 est : %i",joueur2.score);
+	printf("Le score total du joueur 1 est : %i\n",joueur.score);
+	if(strcmp(joueur2.nom_joueur,"null")){
+		printf("Le score total du joueur 2 est : %i\n",joueur2.score);
 	}
+	return 1;
 }
