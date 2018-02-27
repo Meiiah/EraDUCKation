@@ -11,6 +11,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "struct.h"
+#include "joueur.h"
+#include "matrice.h"
 
 typedef enum { bon, mechant }clan_t;
 
@@ -24,25 +26,25 @@ case_t matrice[5][5];
 
 /*================================================*/
 /** \fn joueur_multi_t joueur_gentil(void)*/
-joueur_multi_t joueur_gentil(void){ /** initialise un joueur en joueur gentil*/
+joueur_multi_t joueur_gentil(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement){ /** initialise un joueur en joueur gentil*/
     joueur_multi_t mem;
     mem.clan = bon;
-    mem.choix = choix_bon;
+    mem.choix = choix_bon(cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
     return mem ;
 }
 /** \fn joueur_multi_t joueur_mechant(void)*/
-joueur_multi_t joueur_mechant(void){ /**initialise un joueur en tant que mechant*/
+joueur_multi_t joueur_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement){ /**initialise un joueur en tant que mechant*/
     joueur_multi_t mem;
     mem.clan = mechant;
-    mem.choix = choix_mechant;
+    mem.choix = choix_mechant(cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
     return mem ;
 }
 
 /*=======================================================*/
 
 
-void tour_multijoueur(joueur_multi_t tab[], int tour){
-    deplacer();
+void tour_multijoueur(caract_mat_t * cmat, int nourriture_accouplement,joueur_multi_t tab[], int tour){
+    deplacer(cmat,nourriture_accouplement);
     //manger et reproduire
     tab[tour%2].choix();
 }
