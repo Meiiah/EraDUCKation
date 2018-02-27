@@ -1,7 +1,7 @@
 #define M 10
 
-int (*mauvais[M])(void);
-int (*bon[M])(void);
+int (*mauvais[M])(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
+int (*bon[M])(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
 
 /* Evenement mauvais */
 int tsunami(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);

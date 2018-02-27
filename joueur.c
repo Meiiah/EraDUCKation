@@ -17,7 +17,6 @@
 /**fonction d'ajour de score des deux joueurs*/
 
 void ajout_score(int point,joueur_t joueur, joueur_t joueur2){
-	
 	joueur.score+=point; // ajout des points en fonction de l'action faite
 	if(joueur2.nom_joueur!=NULL){
 		joueur2.score-=point;
@@ -42,10 +41,13 @@ void tab_event_mauvais(int * choix1,int * choix2, int * choix3){
 	*choix1=(rand() % (nb_event + 1)); // Random du choix des evenement parmis 5 possibilités//
 	*choix2=(rand() % (nb_event + 1));
 	*choix3=(rand() % (nb_event + 1));
-
-	printf("%s",mauv_evts[*choix1]);
-	printf("%s",mauv_evts[*choix2]);
-	printf("%s",mauv_evts[*choix3]);
+	
+	
+	printf("%s",mauv_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
+	if(choix1!=choix2)
+		printf("%s",mauv_evts[*choix2]);
+	if(choix1!=choix3 && choix2!=choix3)
+		printf("%s",mauv_evts[*choix3]);
 }
 
 /** \fn void tab_event_bon(void) */
@@ -56,9 +58,11 @@ void tab_event_bon(int * choix1,int * choix2, int * choix3){
 	*choix2=(rand() % (nb_event + 1));
 	*choix3=(rand() % (nb_event + 1));
 
-	printf("%s",bon_evts[*choix1]);
-	printf("%s",bon_evts[*choix2]);
-	printf("%s",bon_evts[*choix3]);
+	printf("%s",bon_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
+	if(choix1!=choix2)
+		printf("%s",bon_evts[*choix2]);
+	if(choix1!=choix3 && choix2!=choix3)
+		printf("%s",bon_evts[*choix3]);
 }
 
 
@@ -73,11 +77,11 @@ void choix_mechant(){
 	scanf("%i",&result);// Saisit du choix du joueur//
 	
 	switch(result){
-		case 1: mauvais[choix1]();
+		case 1: mauvais[choix1](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 			break;
-		case 2: mauvais[choix2]();
+		case 2: mauvais[choix2](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 			break;
-		case 3: mauvais[choix3]();
+		case 3: mauvais[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 			break;
 		default: printf("saisir un choix possible");
 			break;
@@ -96,11 +100,11 @@ void choix_bon(){
 	scanf("%i",&result); // Saisit du choix du joueur//
 		
 	switch(result){
-		case 1: bon[choix1]();
+		case 1: bon[choix1](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 			break;
-		case 2: bon[choix2]();
+		case 2: bon[choix2](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 			break;
-		case 3: bon[choix3]();
+		case 3: bon[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 			break;
 		default: printf("saisir un choix possible");
 			break;

@@ -5,3 +5,4 @@ void tab_event_bon(int,int,int);
 void choix_mechant();
 void choix_bon();
 void choix_joueur();
+

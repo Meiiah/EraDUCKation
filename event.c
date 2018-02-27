@@ -8,7 +8,6 @@
 
 int (*mauvais[M])(caract_mat_t *, joueur_t,joueur_t,int,int); /*tableau de pointeur sur les fonctions mauvaises*/
 int (*bon[M])(caract_mat_t *, joueur_t,joueur_t,int,int); /*tableau de pointeur sur les fonctions bonnes*/
-int (*event[M])(caract_mat_t *, joueur_t,joueur_t,int ,int); /*tableau de pointeur sur les deux types d'evenements*/
 
 /*Evenement mauvais */
 
