@@ -1,9 +1,9 @@
 CC=gcc
-PROG=canard.o deplacer.o deplacer_multi.o event.o init_matrice.o jeu_solo.c joueur.o labyrinthe.o main.o multijoueur.o multijoueur_reseau.o nourriture.o piege.o reproduction.o sauvegarde.o
+OBJ=canard.o deplacer.o deplacer_multi.o event.o init_matrice.o jeu_solo.c joueur.o labyrinthe.o main.o multijoueur.o multijoueur_reseau.o nourriture.o piege.o reproduction.o sauvegarde.o
+PROG=era
 
-
-era: ${PROG}.o 
-	${CC} ${PROG}.o -o ${PROG}
+${PROG}: ${OBJ}.o 
+	${CC} ${OBJ}.o -o ${PROG}
 
 
 canard.o: canard.c 
