@@ -4,28 +4,28 @@ int (*mauvais[M])(void);
 int (*bon[M])(void);
 
 /* Evenement mauvais */
-int tsunami(caract_mat_t * cmat, joueur_t joueur, joueur_t joueur2);
+int tsunami(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
 
-int tempete(caract_mat_t * cmat, joueur_t joueur, joueur_t joueur2);
+int tempete(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
 
-int famine(int nourriture_genere);
+int famine(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
 
-int reproduction_ralentie(int nourriture_accouplement);
+int reproduction_ralentie(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
 
-int apparition_predateur(caract_mat_t * cmat, joueur_t joueur, joueur_t joueur2);
+int apparition_predateur(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
 
 /* Evenement bon */
 
-int reproduction_acceleree(int nourriture_accouplement);
+int reproduction_acceleree(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
 
-int plus_nourriture(int nourriture_genere);
+int plus_nourriture(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
 
-int joker_nourriture(caract_mat_t * cmat);
+int joker_nourriture(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
 
-int liberation_canard(caract_mat_t * cmat, joueur_t joueur, joueur_t joueur2); //ajout au score
+int liberation_canard(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement); //ajout au score
 
-int canard_invincible();
+int canard_invincible(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
 
-int init_tab_event_mauvais();
+int init_tab_event_mauvais(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
 
-int init_tab_event_bon();
+int init_tab_event_bon(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement);
