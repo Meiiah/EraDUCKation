@@ -6,7 +6,7 @@
  * \date 20 / 02 / 2018
 */
 
-#include "tring.h"
+#include "strings.h"
 #include "include_connection.h"
 #include "multijoueur.c"
 
