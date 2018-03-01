@@ -31,7 +31,7 @@ void aff(){
 			m = mat[j][i].mur;
 			if(m.murN==1 || m.murS==1) fprintf(stderr,"_");
 			else if(m.murN==0 || m.murS==0) fprintf(stderr," ");
-			
+
 			if(m.murE==1 || m.murO==1) fprintf(stderr,"|");
 			else if(m.murE==0 || m.murO==0) fprintf(stderr," ");
 		}
@@ -48,7 +48,7 @@ void affichage_laby(){ /** Affichage du labyrinthe avec les murs sour forme ASCI
 	for(i=0; i<N; i++){
 		for(case_i=0; case_i<3; case_i++){
 			for(j=0;j<N;j++){
-				
+
 						m = mat[j][i].mur;
 
 						//premier balayage
@@ -72,32 +72,150 @@ void affichage_laby(){ /** Affichage du labyrinthe avec les murs sour forme ASCI
 							if(m.murS==1) printf("\u2550");
 							else if(m.murS==0) printf(" ");
 							if(m.murS==1 && m.murE==1) printf("\u255D");
-	
+
 						}
-										
+
 				}printf("\n");
 		}
-		
-		
+
+
 	}
 }
 
 
+int compter_murs(int i, int j){// on compte les murs au niveau de l angle, sur la case suivante et sur la case du dessous
+    int res=0;
+    if(mat[i][j].mur.murE) res++;
+    if(mat[i][j].mur.murS) res++;
+    if(j+1<N) if(mat[i][j+1].mur.murE) res++;
+    if(i+1<N) if(mat[i+1][j].mur.murS) res ++;
+    return res;
+}
+
+void afficher_angle(int j, int i){ // affiche l angle bas-droite de la case [ j ] [ i ]
+    int nb_murs;
+    nb_murs = compter_murs(j, i);
+
+
+               if(nb_murs == 4)        printf("\u256c"); // SI TOUS LES MURS ADJACENTS A L ANGLE EXISTENT ON MEYT UN ANGE EN CROIX
+
+               else
+
+                // Si il y a 3 murs on identifie lesquels et on affiche en concéquence
+               if(nb_murs == 3){
+                   if(mat[j][i].mur.murE){
+                       //si il y a le mur est
+                       if(mat[j][i].mur.murS){ // si il y a le mur sud
+                           if(j+1<N){
+                               if(mat[j][i].mur.murS) // si il y a le mur sud de la case suivante
+                                   printf("\u2569");
+
+                               else    // sinon vu qu on a 3 murs on a forcement le mur est de la case du dessous
+                                   printf("\u2563");
+                           }
+                       }else // si on a pas le mur sud on a forcement les autres
+                               printf("\u2560");
+
+                   }else //comme precedemment
+                      printf("\u2566");
+               }
+
+                else
+                // Si il y a 2 murs on les identifie et on affiche en fonction
+               if(nb_murs == 2){
+                   if(mat[j][i].mur.murE){
+                       //si il y a le mur est
+                       if(mat[j][i].mur.murS){ // si il y a le mur sud
+                           // on a les deux murs donc on affiche
+                           printf("\u255d");
+
+                        }else if(j+1<N){
+                               if(mat[j][i].mur.murS) // si il y a le mur sud de la case suivante
+                                   //on a les deux murs
+                                   printf("\u255a");
+
+                                else    // sinon vu qu on a 2 murs on a forcement le mur est de la case du dessous
+                                   printf("\u2551");
+
+                        }else    // sinon pareil (effet de bord
+                                   printf("\u2551");
+
+                    }else// fin si mur est
+                       if(mat[j][i].mur.murS){ // si il y a le mur sud
+                            if(j+1<N){
+                               if(mat[j][i].mur.murS) // si il y a le mur sud de la case suivante
+                                   //on a les deux murs
+                                   printf("\u2550");
+
+                                else    // sinon vu qu on a 2 murs on a forcement le mur est de la case du dessous
+                                   printf("\u2557");
+
+                            }else    // sinon pareil (effet de bord
+                                   printf("\u2557");
+
+                        }else// si pas le mur sud on a forcement les deus autres
+                       printf("\u2554");
+
+               }else // On a soit 1 mur, il se finit, et donc on affiche juste un espace, ou alors il y en a pas donc on fait un espace
+               printf(" ");
+}
+
+
+void affichage_laby2(){ /** Affichage du labyrinthe avec les murs sour forme ASCII */
+	int i,j;
+	int case_i;
+
+
+	printf("\u2554");// angle haut gauche basique
+	for(i=0; i<N; i++){// on affiche toute la ligne du haut
+        printf("\u2550"); // on affiche l horizontal
+
+        if(mat[0][i].mur.murE==1)   printf("\u2566"); // si la case en dessous a un mur a droite on affiche un coin en triple,, et vu que c est juste la premiere ligne il y a pas de case au dessus
+        else printf("\u2550"); // sinon on met une barre horizontale
+	}
+
+
+	for(i=0; i<N; i++){ // pour toute la matrice
+            printf("\n");
+            printf("\u2551");// a chaque changement de ligne on fait le mur de gauche
+
+			for(j=0;j<N;j++){// pour chaque ligne on fait les murs verticaux
+			    printf(" ");
+                if(mat[j][i].mur.murE==1)   printf("\u2557"); //afficher mur si il faut
+                else printf(" ");
+
+			}printf("\n");
+
+
+			for(j=0;j<N;j++){// pour chaque ligne on fait les murs horizontaux, et les anges
+			    if(mat[j][i].mur.murS) printf("\u2550"); //affichage du mur du bas
+			    else printf(" ");
+
+			    //afficher agle en fonction des cases adjacentes
+
+                afficher_angle(j, i);
+
+
+			}
+
+	}
+
+}
 
 /** \fn void init_laby()*/
 void init_laby(){ /** Permet d'initialiser chaques mur du labyrinthe à 1(présence d'un mur) et de la valeur de la case à -1*/
-	int i,j;	
+	int i,j;
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++){
-		
+
 			mat[i][j].mur.murN = 1;
 			mat[i][j].mur.murO = 1;
 			mat[i][j].mur.murS = 1;
 			mat[i][j].mur.murE = 1;
 			mat[i][j].valeur = -1;
-	
+
 		}
-	}		
+	}
 }
 
 /** \fn void maxmin(int *max, int*min, int val1, int val2)*/
@@ -115,24 +233,24 @@ void maxmin(int *max, int*min, int val1, int val2){/** Permet de déterminer le 
 void valeur_case(int x1, int y1, int x2, int y2, int *compteur){/** Permet de changer la valeur d'une case du labyrinthe afin de creer des galeries. Appel la fonction minmax*/
 	int i,j;
 	int max, min;
-	
+
 	if(mat[x1][y1].valeur==-1 && mat[x2][y2].valeur==-1){
-		
+
 		mat[x1][y1].valeur=*compteur;
 		mat[x2][y2].valeur=*compteur;
 		(*compteur)++;
-		
-		
+
+
 	} else if(mat[x1][y1].valeur==-1) {
-		
+
 		mat[x1][y1].valeur=mat[x2][y2].valeur;
-		
-		
+
+
 	} else if( mat[x2][y2].valeur==-1){
-		
+
 		mat[x2][y2].valeur=mat[x1][y1].valeur;
-		
-		
+
+
 	} else if ( mat[x1][y1].valeur != mat[x2][y2].valeur ){
 		maxmin(&max,&min,mat[x1][y1].valeur,mat[x2][y2].valeur);
 		for(i=0;i<N;i++){
@@ -140,7 +258,7 @@ void valeur_case(int x1, int y1, int x2, int y2, int *compteur){/** Permet de ch
 				if(mat[i][j].valeur==max) mat[i][j].valeur=min;
 			}
 		}
-	} 
+	}
 }
 
 /** \fn void case_adja(int coord_x, int coord_y, int *compteur)*/
@@ -153,47 +271,47 @@ void case_adja(int coord_x, int coord_y, int *compteur){ /** Choisie une case al
 		temp_x= coord_x;
 		temp_y= coord_y;
 		case_adj= (rand() % (MAX));
-	
+
 		switch(case_adj){
 			case 0: //case du dessus
 				temp_y = coord_y-1;
-				fprintf(stderr, "on casse la case du dessus [%d,%d]\n", temp_x, temp_y);				
-				break;
-				
-			case 1: //case du dessous				
-				temp_y = coord_y+1;
-				fprintf(stderr, "on casse la case du dessous[%d,%d]\n", temp_x, temp_y);			
+				fprintf(stderr, "on casse la case du dessus [%d,%d]\n", temp_x, temp_y);
 				break;
 
-			case 2: //case de gauche				
+			case 1: //case du dessous
+				temp_y = coord_y+1;
+				fprintf(stderr, "on casse la case du dessous[%d,%d]\n", temp_x, temp_y);
+				break;
+
+			case 2: //case de gauche
 				temp_x = coord_x-1;
-				fprintf(stderr, "on casse la case de gauche[%d,%d]\n", temp_x, temp_y);				
+				fprintf(stderr, "on casse la case de gauche[%d,%d]\n", temp_x, temp_y);
 				break;
 
 			case 3: //case de droite
 				temp_x = coord_x+1;
-				fprintf(stderr, "on casse la case de droite [%d,%d]\n", temp_x, temp_y);					
+				fprintf(stderr, "on casse la case de droite [%d,%d]\n", temp_x, temp_y);
 				break;
 
 		}
 	}while(temp_x<0 || temp_y<0 || temp_x>=N || temp_y>=N); //fonction coord_valides
-		
+
 /*transformation des murs*/
 		switch(case_adj){
 			case 0: //case du dessus
-				mat[coord_x][coord_y].mur.murN=0;				
+				mat[coord_x][coord_y].mur.murN=0;
 				mat[temp_x][temp_y].mur.murS=0;
 				valeur_case(coord_x,coord_y,temp_x,temp_y, compteur);
 				break;
-				
+
 			case 1: //case du dessous
-				mat[coord_x][coord_y].mur.murS=0;				
+				mat[coord_x][coord_y].mur.murS=0;
 				mat[temp_x][temp_y].mur.murN=0;
 				valeur_case(coord_x,coord_y,temp_x,temp_y, compteur);
 				break;
 
 			case 2: //case de gauche
-				mat[coord_x][coord_y].mur.murO=0;				
+				mat[coord_x][coord_y].mur.murO=0;
 				mat[temp_x][temp_y].mur.murE=0;
 				valeur_case(coord_x,coord_y,temp_x,temp_y, compteur);
 				break;
@@ -201,26 +319,26 @@ void case_adja(int coord_x, int coord_y, int *compteur){ /** Choisie une case al
 			case 3: //case de droite
 				mat[coord_x][coord_y].mur.murE=0;
 				mat[temp_x][temp_y].mur.murO=0;
-				valeur_case(coord_x,coord_y,temp_x,temp_y, compteur); 
+				valeur_case(coord_x,coord_y,temp_x,temp_y, compteur);
 				break;
 
 		}
-	
+
 }
 
 /** \fn void coord_case(int* compteur)*/
 void coord_case(int* compteur){ /** Choisie aléatoirement une case dans le labyrinthe afin de lui attribué une valeur et de creer les galeries a partir des fonctions précédentes. Appel la fonction case_adj*/
-	int coord_x; 
+	int coord_x;
 	int coord_y;
-	
+
 	coord_x= (rand() % N);
 	coord_y= (rand() % N);
-	
+
 	fprintf(stderr, "case de depart [%d,%d]\n", coord_x, coord_y);
-	
+
 	case_adja(coord_x,coord_y,compteur);
 }
-	
+
 /** \fn int laby_fini()*/
 int laby_fini(){/** Vérification permettant de savoir si le labyrinthe est finit ou non*/
 	int i,j;
@@ -235,35 +353,36 @@ int laby_fini(){/** Vérification permettant de savoir si le labyrinthe est fini
 
 /** \fn void creer_labyrinthe()*/
 void creer_labyrinthe(){ /** Appel toutes les fonctions pour creer le labyrinthe*/
-	
+
 	mur_t mur;
-	
+
 	int mur_value;
 	int compteur=0;
 
 	//fprintf(stderr, "initialisation laby lancee\n");
-	init_laby();	
+	init_laby();
 	//fprintf(stderr, "initialisation laby OK\n");
-	
+
 	int i=0;
 	do{
 		coord_case(&compteur);
 	}while(!laby_fini());
 	//	i++;
 	//}while(i<5);
-	
+
 }
 
 
 int main(int argc, char**argv){
 	srand(time(NULL));
-	for(int i=0; i<argc; i++){
+	int i;
+	for(i=0; i<argc; i++){
 		printf("argv[%d]=%s\n", i, argv[i]);
 	}
 
 	creer_labyrinthe();
 	aff();
-	affichage_laby();
+	affichage_laby2();
 
 	return EXIT_SUCCESS;
 
