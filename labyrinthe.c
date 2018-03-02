@@ -95,7 +95,7 @@ int compter_murs(int i, int j){// on compte les murs au niveau de l angle, sur l
 void afficher_angle(int j, int i){ // affiche l angle bas-droite de la case [ j ] [ i ]
     int nb_murs;
     nb_murs = compter_murs(j, i);
-
+				
 
                if(nb_murs == 4)        printf("\u256c"); // SI TOUS LES MURS ADJACENTS A L ANGLE EXISTENT ON MEYT UN ANGE EN CROIX
 
@@ -167,12 +167,13 @@ void affichage_laby2(){ /** Affichage du labyrinthe avec les murs sour forme ASC
 
 
 	printf("\u2554");// angle haut gauche basique
-	for(i=0; i<N; i++){// on affiche toute la ligne du haut
+	for(i=0; i<N-1; i++){// on affiche toute la ligne du haut
         printf("\u2550"); // on affiche l horizontal
 
         if(mat[0][i].mur.murE==1)   printf("\u2566"); // si la case en dessous a un mur a droite on affiche un coin en triple,, et vu que c est juste la premiere ligne il y a pas de case au dessus
         else printf("\u2550"); // sinon on met une barre horizontale
-	}
+	}printf("\u2550");
+	printf("\u2557");
 
 
 	for(i=0; i<N; i++){ // pour toute la matrice
@@ -181,20 +182,29 @@ void affichage_laby2(){ /** Affichage du labyrinthe avec les murs sour forme ASC
 
 			for(j=0;j<N;j++){// pour chaque ligne on fait les murs verticaux
 			    printf(" ");
-                if(mat[j][i].mur.murE==1)   printf("\u2557"); //afficher mur si il faut
+                if(mat[j][i].mur.murE==1)   printf("\u2551"); //afficher mur si il faut
                 else printf(" ");
 
 			}printf("\n");
 
 
+			if(i<N-1){
+				if(mat[0][i].mur.murS)
+					printf("\u2560");//afficher triple hdb
+				else
+					printf("\u2551");
+			}else
+				printf("\u255a");
+
+
 			for(j=0;j<N;j++){// pour chaque ligne on fait les murs horizontaux, et les anges
+				
 			    if(mat[j][i].mur.murS) printf("\u2550"); //affichage du mur du bas
 			    else printf(" ");
 
 			    //afficher agle en fonction des cases adjacentes
 
                 afficher_angle(j, i);
-
 
 			}
 
