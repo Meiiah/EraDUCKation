@@ -3,7 +3,7 @@
 #include <time.h>
 #include "struct.h"
 
-#define N 4
+#define N 10
 #define MAX 4
 
 /**
@@ -26,14 +26,18 @@ ini_t mat[N][N];
 void aff(){
 	int i,j;
 	mur_t m;
+	for(i=0; i<N; i++)
+		fprintf(stderr,"_");
+	fprintf(stderr,"\n");
 	for(i=0; i<N; i++){
+		fprintf(stderr,"|");
 		for(j=0;j<N;j++){
 			m = mat[j][i].mur;
-			if(m.murN==1 || m.murS==1) fprintf(stderr,"_");
-			else if(m.murN==0 || m.murS==0) fprintf(stderr," ");
+			if(m.murS==1) fprintf(stderr,"_");
+			else fprintf(stderr," ");
 
-			if(m.murE==1 || m.murO==1) fprintf(stderr,"|");
-			else if(m.murE==0 || m.murO==0) fprintf(stderr," ");
+			if(m.murE==1) fprintf(stderr,"|");
+			else (stderr,".");
 		}
 		fprintf(stderr,"\n");
 	}
@@ -107,12 +111,13 @@ void afficher_angle(int j, int i){ // affiche l angle bas-droite de la case [ j 
                        //si il y a le mur est
                        if(mat[j][i].mur.murS){ // si il y a le mur sud
                            if(j+1<N){
-                               if(mat[j][i].mur.murS) // si il y a le mur sud de la case suivante
+                               if(mat[j+1][i].mur.murS) // si il y a le mur sud de la case suivante
                                    printf("\u2569");
 
                                else    // sinon vu qu on a 3 murs on a forcement le mur est de la case du dessous
                                    printf("\u2563");
-                           }
+                           } else    // sinon vu qu on a 3 murs on a forcement le mur est de la case du dessous
+                                   printf("\u2563");
                        }else // si on a pas le mur sud on a forcement les autres
                                printf("\u2560");
 
@@ -130,7 +135,7 @@ void afficher_angle(int j, int i){ // affiche l angle bas-droite de la case [ j 
                            printf("\u255d");
 
                         }else if(j+1<N){
-                               if(mat[j][i].mur.murS) // si il y a le mur sud de la case suivante
+                               if(mat[j+1][i].mur.murS) // si il y a le mur sud de la case suivante
                                    //on a les deux murs
                                    printf("\u255a");
 
@@ -143,7 +148,7 @@ void afficher_angle(int j, int i){ // affiche l angle bas-droite de la case [ j 
                     }else// fin si mur est
                        if(mat[j][i].mur.murS){ // si il y a le mur sud
                             if(j+1<N){
-                               if(mat[j][i].mur.murS) // si il y a le mur sud de la case suivante
+                               if(mat[j+1][i].mur.murS) // si il y a le mur sud de la case suivante
                                    //on a les deux murs
                                    printf("\u2550");
 
@@ -170,7 +175,7 @@ void affichage_laby2(){ /** Affichage du labyrinthe avec les murs sour forme ASC
 	for(i=0; i<N-1; i++){// on affiche toute la ligne du haut
         printf("\u2550"); // on affiche l horizontal
 
-        if(mat[0][i].mur.murE==1)   printf("\u2566"); // si la case en dessous a un mur a droite on affiche un coin en triple,, et vu que c est juste la premiere ligne il y a pas de case au dessus
+        if(mat[i][0].mur.murE==1)   printf("\u2566"); // si la case en dessous a un mur a droite on affiche un coin en triple, et vu que c est juste la premiere ligne il y a pas de case au dessus
         else printf("\u2550"); // sinon on met une barre horizontale
 	}printf("\u2550");
 	printf("\u2557");
@@ -285,22 +290,22 @@ void case_adja(int coord_x, int coord_y, int *compteur){ /** Choisie une case al
 		switch(case_adj){
 			case 0: //case du dessus
 				temp_y = coord_y-1;
-				fprintf(stderr, "on casse la case du dessus [%d,%d]\n", temp_x, temp_y);
+				//fprintf(stderr, "on casse la case du dessus [%d,%d]\n", temp_x, temp_y);
 				break;
 
 			case 1: //case du dessous
 				temp_y = coord_y+1;
-				fprintf(stderr, "on casse la case du dessous[%d,%d]\n", temp_x, temp_y);
+				//fprintf(stderr, "on casse la case du dessous[%d,%d]\n", temp_x, temp_y);
 				break;
 
 			case 2: //case de gauche
 				temp_x = coord_x-1;
-				fprintf(stderr, "on casse la case de gauche[%d,%d]\n", temp_x, temp_y);
+				//fprintf(stderr, "on casse la case de gauche[%d,%d]\n", temp_x, temp_y);
 				break;
 
 			case 3: //case de droite
 				temp_x = coord_x+1;
-				fprintf(stderr, "on casse la case de droite [%d,%d]\n", temp_x, temp_y);
+				//fprintf(stderr, "on casse la case de droite [%d,%d]\n", temp_x, temp_y);
 				break;
 
 		}
@@ -344,7 +349,7 @@ void coord_case(int* compteur){ /** Choisie aléatoirement une case dans le laby
 	coord_x= (rand() % N);
 	coord_y= (rand() % N);
 
-	fprintf(stderr, "case de depart [%d,%d]\n", coord_x, coord_y);
+	//fprintf(stderr, "case de depart [%d,%d]\n", coord_x, coord_y);
 
 	case_adja(coord_x,coord_y,compteur);
 }
