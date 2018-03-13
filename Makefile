@@ -3,6 +3,13 @@ OBJ=canard.o deplacer.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinth
 
 PROG=era
 
+SDL_DIR=${HOME}/Documents/cours/l2-projets/tuto_SDL/SDL2-2.0.7/bin
+SDL_LIB_DIR=${SDL_DIR}/lib
+SDL_INC_DIR=${SDL_DIR}/include
+LIBS=-L${SDL_LIB_DIR} -lSDL2
+INCS=-I${SDL_INC_DIR}
+
+
 ${PROG}: ${OBJ}
 	${CC} ${OBJ} -o ${PROG}
 
@@ -53,6 +60,11 @@ fonction_multi_reseau.o: fonction_multi_reseau.c
 
 GestionDeLaBareDeVie.o: GestionDeLaBareDeVie.c
 	${CC} -c GestionDeLaBareDeVie.c
+	
+all: sdl_text
+sdl_text: sdl_test.c
+	${CC} -o ${PROG} sdl_test.c ${LIBS} ${INCS}
+
 clean:
 	rm -f *.o
 	rm -f canard
@@ -73,3 +85,4 @@ clean:
 	rm -f sauvegarde
 	rm -f fonction_multi_reseau
 	rm -f GestionDeLaBareDeVie
+	rm -f ${PROG}
