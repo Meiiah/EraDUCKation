@@ -14,6 +14,7 @@
 #include "joueur.h"
 #include "matrice.h"
 #include "nourriture.h"
+#include "deplacer.h"
 
 typedef enum { bon, mechant }clan_t;
 
@@ -46,7 +47,7 @@ joueur_multi_t joueur_mechant(){ /**initialise un joueur en tant que mechant*/
 
 
 void tour_multijoueur(caract_mat_t * cmat, int nourriture_accouplement,joueur_multi_t tab[], int tour){
-    spawn_nourriture(cmat, rand()%5+1){
+    spawn_nourriture(cmat, rand()%5+1);
     deplacer(cmat,nourriture_accouplement);
     printf("C est le tour de %s", tab[tour%2].joueur.nom_joueur);
     tab[tour%2].choix();
@@ -78,7 +79,8 @@ void init_tab_joueurs(joueur_multi_t * tab /** tableau de joueurs */,
 
    //demander les noms
 
-    demander_nom(tab[tampon].joueur.nom_joueur, tab[tampon+1 %2].joueur.nom_joueur);
+    caract_joueur(tab[0].joueur);
+	caract_joueur(tab[1].joueur);
 }
 /*============================================================*/
 /** \fn void main_multijoueur(void) */
