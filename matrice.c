@@ -23,13 +23,13 @@ void init_matrice(caract_mat_t * cmat){
 	int i;
 	int j;
 	int k;	
-	int nb_max_de_canard=5;
+	
 	for(i=0;i<cmat->taille_mat_x;i++){
 		for(j=0;j<cmat->taille_mat_y;j++){
 			if(est_dans_matrice(cmat,i,j)){
 				                             
-				//Initialisation des Canards a 0 //
-				for(k=0;k<nb_max_de_canard;k++){
+				//Initialisation des Canards a l'état -1 //
+				for(k=0;k<nb_max;k++){
 					cmat->matrice[i][j].tab_canard[k].nourriture=0;
 					cmat->matrice[i][j].tab_canard[k].etat=-1;
 				}
@@ -40,9 +40,10 @@ void init_matrice(caract_mat_t * cmat){
 				cmat->matrice[i][j].pres_nourriture=0;
 				cmat->matrice[i][j].pres_piege=0;
 			}else{
-				printf("ERREUR - sortie de matrice : fonction init_matrice dans matrice.c");
+				fprintf(stderr, "ERREUR - sortie de matrice : fonction init_matrice dans matrice.c");
+				exit(0);
 			}
 		}
 	}
-}
+} 	
 

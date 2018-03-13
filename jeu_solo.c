@@ -17,7 +17,7 @@ int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupleme
 		spawn_nourriture(cmat,nourriture_genere);
 		
 		piege(cmat);
-		
+			fprintf(stderr,"piege");
 		deplacer(cmat,nourriture_accouplement);
 		fprintf(stderr,"pouet");
 		choix_joueur(cmat,nourriture_accouplement,nourriture_genere,joueur,joueur2);
