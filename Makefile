@@ -3,6 +3,13 @@ OBJ=canard.o deplacer.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinth
 
 PROG=era
 
+SDL_DIR=${HOME}/Documents/cours/l2-projets/tuto_SDL/SDL2-2.0.7/bin
+SDL_LIB_DIR=${SDL_DIR}/lib
+SDL_INC_DIR=${SDL_DIR}/include
+LIBS=-L${SDL_LIB_DIR} -lSDL2
+INCS=-I${SDL_INC_DIR}
+
+
 ${PROG}: ${OBJ}
 	${CC} ${OBJ} -o ${PROG}
 
@@ -45,8 +52,21 @@ sauvegarde.o: sauvegarde.c
 matrice.o: matrice.c
 	${CC} -c matrice.c
 
+<<<<<<< HEAD
 GestionDeLaBarreDeVie.o: GestionDeLaBarreDeVie.c
 	${CC} -c GestionDeLaBarreDeVie.c
+=======
+fonction_multi_reseau.o: fonction_multi_reseau.c
+	${CC} -c fonction_multi_reseau.c
+
+GestionDeLaBareDeVie.o: GestionDeLaBareDeVie.c
+	${CC} -c GestionDeLaBareDeVie.c
+	
+all: sdl_text
+sdl_text: sdl_test.c
+	${CC} -o ${PROG} sdl_test.c ${LIBS} ${INCS}
+
+>>>>>>> 0db0b1139bbe985b0fde54ea62cf9508e99e0f96
 clean:
 	rm -f *.o
 	rm -f canard
@@ -63,4 +83,10 @@ clean:
 	rm -f piege
 	rm -f reproduction
 	rm -f sauvegarde
+<<<<<<< HEAD
 	rm -f GestionDeLaBareDeVie
+=======
+	rm -f fonction_multi_reseau
+	rm -f GestionDeLaBareDeVie
+	rm -f ${PROG}
+>>>>>>> 0db0b1139bbe985b0fde54ea62cf9508e99e0f96
