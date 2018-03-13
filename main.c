@@ -100,8 +100,8 @@ int main(void){
 			init_matrice(cmat);
 			
 			/*Creation du Labyrinthe*/
-			//creer_labyrinthe();
-			
+			main_laby(cmat);
+		
 			//Apparition de canard
 			init_canard(cmat); 
 			

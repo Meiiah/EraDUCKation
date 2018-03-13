@@ -44,7 +44,7 @@ void tab_event_mauvais(int * choix1,int * choix2, int * choix3){
 	*choix3=(rand() % (nb_event + 1));
 	
 	
-	printf("%s\n",mauv_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
+	printf("\n%s\n",mauv_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
 	if(choix1!=choix2)
 		printf("%s\n",mauv_evts[*choix2]);
 	if(choix1!=choix3 && choix2!=choix3)
@@ -59,7 +59,7 @@ void tab_event_bon(int * choix1,int * choix2, int * choix3){
 	*choix2=(rand() % (nb_event + 1));
 	*choix3=(rand() % (nb_event + 1));
 
-	printf("%s\n",bon_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
+	printf("\n%s\n",bon_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
 	if(choix1!=choix2)
 		printf("%s\n",bon_evts[*choix2]);
 	if(choix1!=choix3 && choix2!=choix3)
