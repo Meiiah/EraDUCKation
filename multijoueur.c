@@ -26,17 +26,17 @@ case_t matrice[5][5];
 
 /*================================================*/
 /** \fn joueur_multi_t joueur_gentil(void)*/
-joueur_multi_t joueur_gentil(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement){ /** initialise un joueur en joueur gentil*/
+joueur_multi_t joueur_gentil(){ /** initialise un joueur en joueur gentil*/
     joueur_multi_t mem;
     mem.clan = bon;
-    mem.choix = choix_bon(cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+    mem.choix = choix_bon;
     return mem ;
 }
 /** \fn joueur_multi_t joueur_mechant(void)*/
-joueur_multi_t joueur_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement){ /**initialise un joueur en tant que mechant*/
+joueur_multi_t joueur_mechant(){ /**initialise un joueur en tant que mechant*/
     joueur_multi_t mem;
     mem.clan = mechant;
-    mem.choix = choix_mechant(cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+    mem.choix = choix_mechant;
     return mem ;
 }
 
@@ -79,7 +79,7 @@ void init_tab_joueurs(joueur_multi_t * tab /** tableau de joueurs */,
 }
 /*============================================================*/
 /** \fn void main_multijoueur(void) */
-void main_multijoueur(void){ /** fait le jeu en multi sur meme pc */
+void main_multijoueur(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement){ /** fait le jeu en multi sur meme pc */
     //variables :
     joueur_multi_t tab[2];
     int tampon;

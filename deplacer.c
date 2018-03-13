@@ -39,7 +39,7 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
     //dir 1
     while(1){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
 
-        /*
+        /**
         SI pas de mur enregistré on regarde si il y a un fruit, si c est le cas on break,
         puis on regarde si il y a un mur, et si il y a on memorise qu il y en a un et
             on verifie que tous les murs soient pas trouvés
@@ -117,8 +117,8 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
     //dir 1
     while(1){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
 
-        /*
-        SI pas de mur enregistré on regarde si il y a un fruit, si c est le cas on break,
+        /**
+        SI pas de mur enregistré on regarde si il y a un partenaire d accouplement, si c est le cas on break,
         puis on regarde si il y a un mur, et si il y a on memorise qu il y en a un et
             on verifie que tous les murs soient pas trouvés
     */
@@ -310,11 +310,11 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement){/** fonction qui
                                         deplacer_canard(cmat,i, j, k, direction);
                                 }
                             }
-                            //tirage aleatoire d une premiere direction si il sait pas ou aller
 
                         }
                     }
         }
     }
-    
 }
+
+
