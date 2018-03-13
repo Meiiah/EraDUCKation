@@ -13,16 +13,16 @@
 
 
 int choix_difficultee(int choix){
-	int taille_mat;
+
 	switch(choix){
 		case 1 :
-			return taille_mat=15;
+			return 15;
 		break;	
 		case 2:
-			return taille_mat=25;
+			return 25;
 		break;
 		case 3:
-			return taille_mat=50;
+			return 50;
 		break;		
 	}
 	return 1;
@@ -48,7 +48,7 @@ int choix_nbr_joueur(int choix,joueur_t joueur,joueur_t joueur2){
 int main(void){
 
 	//definition matrice
-	caract_mat_t * cmat;
+	caract_mat_t * cmat = malloc(sizeof(caract_mat_t));
 
 	//definition joueur
 	joueur_t joueur;
@@ -83,7 +83,8 @@ int main(void){
 			printf("3 : Difficile\n");
 			printf("Choix: ");
 			scanf("%i",&choix);
-			cmat->taille_mat_x=choix_difficultee(choix);
+			
+			cmat->taille_mat_x=choix_difficultee(choix);	
 			cmat->taille_mat_y=cmat->taille_mat_x;
 
 			/* Nombre de Joueur */
@@ -91,23 +92,22 @@ int main(void){
 			printf("2 : 2 joueurs\n");
 			printf("Choix: ");
 			scanf("%i",&choix);
-			
-			
+		
 			nbr_joueur=choix_nbr_joueur(choix,joueur,joueur2);
 			
-			fprintf(stderr,"POuet");
 			/*Mise en place de la matrice adaptée*/
 			creation_matrice(cmat);
 			init_matrice(cmat);
-			fprintf(stderr,"POuezfe22222rgrthet");
+			
 			/*Creation du Labyrinthe*/
-			creer_labyrinthe();
+			//creer_labyrinthe();
 			
 			//Apparition de canard
 			init_canard(cmat); 
-
+			
 			if(nbr_joueur==1){
 				jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2);
+				
 			}else{
 				//jeu_multi();
 			}
