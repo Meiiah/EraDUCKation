@@ -35,7 +35,7 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
     //une direction, toute la ligne jusqua un mur
     int l = 1;
     int mur[4] = {0,0,0,0};
-    
+
     fprintf(stderr, " NOURRIURE ");
     //on renvoit la direction ou il voit le miam miam et -1 si il voit pas (choisi la nouriture la plus proche
 
@@ -58,12 +58,12 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
             if(cmat->matrice[i+l][j].pres_nourriture==1){ //si presence de nourriture sur la ligne
                 return 1;
             }
-        
-        if(cmat->matrice[i+l][j].mur.murE == 1){
-            if(mur[1]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
-                return -1;
-            mur[0] = 1;
-        }
+
+            if(cmat->matrice[i+l][j].mur.murE == 1){
+                if(mur[1]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
+                    return -1;
+                mur[0] = 1;
+            }
         }
 
 /////////////////////////////////////////////////////////////////////
@@ -73,12 +73,12 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
             if(cmat->matrice[i-l][j].pres_nourriture==1){
                 return 2;
             }
-        
-        if(cmat->matrice[i-l][j].mur.murO == 1){
-            if(mur[0]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
-                return -1;
-            mur[1] = 1;
-        }
+
+            if(cmat->matrice[i-l][j].mur.murO == 1){
+                if(mur[0]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
+                    return -1;
+                mur[1] = 1;
+            }
         }
 
 /////////////////////////////////////////////////////////////////////
@@ -88,12 +88,12 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
             if(cmat->matrice[i][j+l].pres_nourriture==1){
                 return 3;
             }
-        
-        if(cmat->matrice[i][j+l].mur.murS == 1){
-            if(mur[0]==1 && mur[1]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
-                return -1;
-            mur[2] = 1;
-        }
+
+            if(cmat->matrice[i][j+l].mur.murS == 1){
+                if(mur[0]==1 && mur[1]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
+                    return -1;
+                mur[2] = 1;
+            }
         }
 
 /////////////////////////////////////////////////////////////////////
@@ -103,12 +103,12 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
             if(cmat->matrice[i][j-l].pres_nourriture==1){
                 return 4;
             }
-        
-        if(cmat->matrice[i][j-l].mur.murN == 1){
-            if(mur[0]==1 && mur[1]==1 && mur[2]==1) // sipas de nourriture visible retourner -1
-                return -1;
-            mur[3] = 1;
-        }
+
+            if(cmat->matrice[i][j-l].mur.murN == 1){
+                if(mur[0]==1 && mur[1]==1 && mur[2]==1) // sipas de nourriture visible retourner -1
+                    return -1;
+                mur[3] = 1;
+            }
         }
         l++;
     }
@@ -153,12 +153,12 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
                     }
                 }
             }
-        
-        if(cmat->matrice[i+l][j].mur.murE == 1){
-            if(mur[1]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
-                return -1;
-            mur[0] = 1;
-        }
+
+            if(cmat->matrice[i+l][j].mur.murE == 1){
+                if(mur[1]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
+                    return -1;
+                mur[0] = 1;
+            }
         }
 
 /////////////////////////////////////////////////////////////////////
@@ -172,12 +172,12 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
                     }
                 }
             }
-        
-        if(cmat->matrice[i-l][j].mur.murO == 1){
-            if(mur[0]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
-                return -1;
-            mur[1] = 1;
-        }
+
+            if(cmat->matrice[i-l][j].mur.murO == 1){
+                if(mur[0]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
+                    return -1;
+                mur[1] = 1;
+            }
         }
 
 /////////////////////////////////////////////////////////////////////
@@ -191,12 +191,12 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
                     }
                 }
             }
-        
-        if(cmat->matrice[i][j+l].mur.murS == 1){
-            if(mur[0]==1 && mur[1]==1 && mur[3]==1) // sipas de partenaire visible retourner -1
-                return -1;
-            mur[2] = 1;
-        }
+
+            if(cmat->matrice[i][j+l].mur.murS == 1){
+                if(mur[0]==1 && mur[1]==1 && mur[3]==1) // sipas de partenaire visible retourner -1
+                    return -1;
+                mur[2] = 1;
+            }
         }
 
 /////////////////////////////////////////////////////////////////////
@@ -210,12 +210,12 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
                     }
                 }
             }
-        
-        if(cmat->matrice[i][j-l].mur.murN == 1){
-            if(mur[0]==1 && mur[1]==1 && mur[2]==1) // sipas de nourriture visible retourner -1
-                return -1;
-            mur[3] = 1;
-        }
+
+            if(cmat->matrice[i][j-l].mur.murN == 1){
+                if(mur[0]==1 && mur[1]==1 && mur[2]==1) // sipas de nourriture visible retourner -1
+                    return -1;
+                mur[3] = 1;
+            }
         }
         l++;
     }
@@ -293,13 +293,13 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
     int direction=-1;
     int verif =1;
 
-    for(i=0; i< cmat->taille_mat_x ; i++){
-        for(j=0; j<cmat->taille_mat_y; j++){//pour chaque case de la matrice
-         	
+    for(j=0; j< cmat->taille_mat_x ; j++){
+        for(i=0; i<cmat->taille_mat_y; i++){//pour chaque case de la matrice
+
                 for(k=0; k<cmat->matrice[i][j].nb_occupant; i++){
-               
+
                         if(cmat->matrice[i][j].tab_canard[k].etat==1){ //pour chaque canard qui peut se deplacer
-			
+
                                 // /!\ 1/3 des canards se déplacent, donc rand, si c est pas bon on le deplace pas donc break
                             if(rand()%3==0){
                                 //si il peut se deplacer on continue
@@ -311,7 +311,7 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
 
                                 //si il voit de la nourriture aller dessus sinon on deplace dabs une direction random arpres verif
                                 direction = voit_nourriture(cmat,i, j, k);
-	
+
                                 if(direction==-1){
                                 //sinon se deplacer d une case vers la direction random apres verif
                                     do{
@@ -336,7 +336,7 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
                                     }while(verif == 0);
 
                                         deplacer_canard(cmat,i, j, k, direction);
-   
+
                                 }
                             }
                             }affichage_laby(cmat);
