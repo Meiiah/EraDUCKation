@@ -4,7 +4,7 @@
 #include "matrice.h"
 #include "deplacer_multi.h"
 #include "nourriture.h"
-
+#include "reproduction.h"
 
 //debut 22h00 fin 22h40
 //debut 23h30 fin 00:00
