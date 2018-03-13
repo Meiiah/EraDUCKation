@@ -13,11 +13,17 @@ int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupleme
 	int nb_gen=0; // Compteur de génération
 
 	while ( nb_gen<100 && presence_canard(cmat)==1){ // fin du jeu
+		fprintf(stderr,"while");
 		spawn_nourriture(cmat,nourriture_genere);
+		fprintf(stderr,"nourri");
 		piege(cmat);
-		deplacer(cmat,nourriture_accouplement);
+		fprintf(stderr,"piege");
+		//deplacer(cmat,nourriture_accouplement);
+		fprintf(stderr,"deplacer");
 		choix_joueur(cmat,nourriture_accouplement,nourriture_genere,joueur,joueur2);
+		fprintf(stderr,"choix");
 		ajout_score(100,joueur,joueur2);
+		fprintf(stderr,"score");
 		nb_gen++;
 		printf("Score: %i",joueur.score);
 	}
