@@ -10,11 +10,11 @@ typedef struct{ /** Strucure appelant une structure mur_t, et une valeur de case
 	int valeur;
 }ini_t;
 
-int compter_murs(caract_mat_t*,ini_t ** ,int i, int j);// on compte les murs au niveau de l angle, sur la case suivante et sur la case du dessous
+int compter_murs(caract_mat_t* ,int i, int j);// on compte les murs au niveau de l angle, sur la case suivante et sur la case du dessous
 
-void afficher_angle(caract_mat_t *,ini_t ** ,int j, int i); // affiche l angle bas-droite de la case [ j ] [ i ]
+void afficher_angle(caract_mat_t * ,int j, int i); // affiche l angle bas-droite de la case [ j ] [ i ]
 
-void affichage_laby2(caract_mat_t *,ini_t **);//Affichage du labyrinthe avec les murs sour forme ASCII
+void affichage_laby(caract_mat_t *);//Affichage du labyrinthe avec les murs sour forme ASCII
 
 void init_laby(caract_mat_t *,ini_t ** ); //Permet d'initialiser chaques mur du labyrinthe à 1(présence d'un mur) et de la valeur de la case à -1
 

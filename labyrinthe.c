@@ -19,19 +19,19 @@
 
 ///////////////////////////////////Fonctions affichage//////////
 
-int compter_murs(caract_mat_t * cmat,ini_t ** mat,int i, int j){// on compte les murs au niveau de l angle, sur la case suivante et sur la case du dessous
+int compter_murs(caract_mat_t * cmat,int i, int j){// on compte les murs au niveau de l angle, sur la case suivante et sur la case du dessous
     int res=0;
-    if(mat[i][j].mur.murE) res++;
-    if(mat[i][j].mur.murS) res++;
-    if(j+1<cmat->taille_mat_y) if(mat[i][j+1].mur.murE) res++;
-    if(i+1<cmat->taille_mat_x) if(mat[i+1][j].mur.murS) res ++;
+    if(cmat->matrice[i][j].mur.murE) res++;
+    if(cmat->matrice[i][j].mur.murS) res++;
+    if(j+1<cmat->taille_mat_y) if(cmat->matrice[i][j+1].mur.murE) res++;
+    if(i+1<cmat->taille_mat_x) if(cmat->matrice[i+1][j].mur.murS) res ++;
     return res;
 }
 /////
 
-void afficher_angle(caract_mat_t * cmat,ini_t ** mat,int j, int i){ // affiche l angle bas-droite de la case [ j ] [ i ]
+void afficher_angle(caract_mat_t * cmat,int j, int i){ // affiche l angle bas-droite de la case [ j ] [ i ]
     int nb_murs;
-    nb_murs = compter_murs(cmat,mat,j, i);
+    nb_murs = compter_murs(cmat,j, i);
 				
 
                if(nb_murs == 4)        printf("\u256c"); // SI TOUS LES MURS ADJACENTS A L ANGLE EXISTENT ON MEYT UN ANGE EN CROIX
@@ -40,11 +40,11 @@ void afficher_angle(caract_mat_t * cmat,ini_t ** mat,int j, int i){ // affiche l
 
                 // Si il y a 3 murs on identifie lesquels et on affiche en concéquence
                if(nb_murs == 3){
-                   if(mat[j][i].mur.murE){
+                   if(cmat->matrice[j][i].mur.murE){
                        //si il y a le mur est
-                       if(mat[j][i].mur.murS){ // si il y a le mur sud
+                       if(cmat->matrice[j][i].mur.murS){ // si il y a le mur sud
                            if(j+1<cmat->taille_mat_y){
-                               if(mat[j+1][i].mur.murS) // si il y a le mur sud de la case suivante
+                               if(cmat->matrice[j+1][i].mur.murS) // si il y a le mur sud de la case suivante
                                    printf("\u2569");
 
                                else    // sinon vu qu on a 3 murs on a forcement le mur est de la case du dessous
@@ -61,14 +61,14 @@ void afficher_angle(caract_mat_t * cmat,ini_t ** mat,int j, int i){ // affiche l
                 else
                 // Si il y a 2 murs on les identifie et on affiche en fonction
                if(nb_murs == 2){
-                   if(mat[j][i].mur.murE){
+                   if(cmat->matrice[j][i].mur.murE){
                        //si il y a le mur est
-                       if(mat[j][i].mur.murS){ // si il y a le mur sud
+                       if(cmat->matrice[j][i].mur.murS){ // si il y a le mur sud
                            // on a les deux murs donc on affiche
                            printf("\u255d");
 
                         }else if(j+1<cmat->taille_mat_y){
-                               if(mat[j+1][i].mur.murS) // si il y a le mur sud de la case suivante
+                               if(cmat->matrice[j+1][i].mur.murS) // si il y a le mur sud de la case suivante
                                    //on a les deux murs
                                    printf("\u255a");
 
@@ -79,9 +79,9 @@ void afficher_angle(caract_mat_t * cmat,ini_t ** mat,int j, int i){ // affiche l
                                    printf("\u2551");
 
                     }else// fin si mur est
-                       if(mat[j][i].mur.murS){ // si il y a le mur sud
+                       if(cmat->matrice[j][i].mur.murS){ // si il y a le mur sud
                             if(j+1<cmat->taille_mat_y){
-                               if(mat[j+1][i].mur.murS) // si il y a le mur sud de la case suivante
+                               if(cmat->matrice[j+1][i].mur.murS) // si il y a le mur sud de la case suivante
                                    //on a les deux murs
                                    printf("\u2550");
 
@@ -99,7 +99,7 @@ void afficher_angle(caract_mat_t * cmat,ini_t ** mat,int j, int i){ // affiche l
 }
 
 /** \fn void affichage_laby()*/
-void affichage_laby2(caract_mat_t * cmat,ini_t ** mat){ /** Affichage du labyrinthe avec les murs sour forme ASCII */
+void affichage_laby(caract_mat_t * cmat){ /** Affichage du labyrinthe avec les murs sour forme ASCII */
 	int i,j;
 	int case_i;
 
@@ -108,7 +108,7 @@ void affichage_laby2(caract_mat_t * cmat,ini_t ** mat){ /** Affichage du labyrin
 	for(i=0; i<cmat->taille_mat_x-1; i++){// on affiche toute la ligne du haut
         printf("\u2550"); // on affiche l horizontal
 
-        if(mat[i][0].mur.murE==1)   printf("\u2566"); // si la case en dessous a un mur a droite on affiche un coin en triple, et vu que c est juste la premiere ligne il y a pas de case au dessus
+        if(cmat->matrice[i][0].mur.murE==1)   printf("\u2566"); // si la case en dessous a un mur a droite on affiche un coin en triple, et vu que c est juste la premiere ligne il y a pas de case au dessus
         else printf("\u2550"); // sinon on met une barre horizontale
 	}printf("\u2550");
 	printf("\u2557");
@@ -120,14 +120,14 @@ void affichage_laby2(caract_mat_t * cmat,ini_t ** mat){ /** Affichage du labyrin
 
 			for(j=0;j<cmat->taille_mat_x;j++){// pour chaque ligne on fait les murs verticaux
 			    printf(" ");
-                if(mat[j][i].mur.murE==1)   printf("\u2551"); //afficher mur si il faut
+                if(cmat->matrice[j][i].mur.murE==1)   printf("\u2551"); //afficher mur si il faut
                 else printf(" ");
 
 			}printf("\n");
 
 
 			if(i<cmat->taille_mat_y-1){
-				if(mat[0][i].mur.murS)
+				if(cmat->matrice[0][i].mur.murS)
 					printf("\u2560");//afficher triple hdb
 				else
 					printf("\u2551");
@@ -137,12 +137,12 @@ void affichage_laby2(caract_mat_t * cmat,ini_t ** mat){ /** Affichage du labyrin
 
 			for(j=0;j<cmat->taille_mat_y;j++){// pour chaque ligne on fait les murs horizontaux, et les anges
 				
-			    if(mat[j][i].mur.murS) printf("\u2550"); //affichage du mur du bas
+			    if(cmat->matrice[j][i].mur.murS) printf("\u2550"); //affichage du mur du bas
 			    else printf(" ");
 
 			    //afficher agle en fonction des cases adjacentes
 
-                afficher_angle(cmat,mat,j, i);
+                afficher_angle(cmat,j, i);
 
 			}
 
@@ -348,8 +348,8 @@ int main_laby(caract_mat_t * cmat){
 	
 
 	creer_labyrinthe(cmat,mato);
-	affichage_laby2(cmat,mato);
 	copi_laby(mato,cmat);
+	affichage_laby(cmat);
 	
 	free(mato);
 	free(TAMP);
