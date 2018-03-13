@@ -13,9 +13,9 @@ void  creation_matrice(caract_mat_t * cmat){
 	cmat->matrice =malloc(sizeof(case_t *)*cmat->taille_mat_y);
 	int i;
 	int taille=cmat->taille_mat_x;
+	
 	for(i=0;i<cmat->taille_mat_y;i++){
-		cmat->matrice[i]=&GT[taille-1];
-		taille+=taille;
+		cmat->matrice[i]=&GT[taille*i]; 
 	}	
 }
 
@@ -24,15 +24,12 @@ void init_matrice(caract_mat_t * cmat){
 	int j;
 	int k;	
 	int nb_max_de_canard=5;
+	fprintf(stderr,"taille mat %i",cmat->taille_mat_x);
 	for(i=0;i<cmat->taille_mat_x;i++){
 		for(j=0;j<cmat->taille_mat_y;j++){
 			if(est_dans_matrice(cmat,i,j)){
-				//Initialisation des murs a 0 (inexistant)//
-				cmat->matrice[i][j].mur.murN=0;
-				cmat->matrice[i][j].mur.murS=0;
-				cmat->matrice[i][j].mur.murE=0;
-				cmat->matrice[i][j].mur.murO=0;
-			
+				fprintf(stderr,"%i",i);                                
+				
 				//Initialisation des Canards a 0 //
 				for(k=0;k<nb_max_de_canard;k++){
 					cmat->matrice[i][j].tab_canard[k].nourriture=0;
