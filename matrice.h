@@ -1,3 +1,6 @@
+#ifndef __MATRICE_H__
+#define __MATRICE_H__
+
 /*definition de la matrice */
 typedef struct{
 	case_t ** matrice;
@@ -11,3 +14,4 @@ void creation_matrice(caract_mat_t * cmat);
 
 void init_matrice(caract_mat_t * cmat);
 
+#endif // __MATRICE_H__

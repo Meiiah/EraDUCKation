@@ -5,7 +5,7 @@
 
 case_t matrice[taille_mat][taille_mat];
 
-void reproduction(int nourriture_accouplement,joueur_t joueur,joueur_t joueur2){
+void reproduction(caract_mat_t * matrice, int nourriture_accouplement,joueur_t joueur,joueur_t joueur2){
 	int i;
 	int j;
 	int k;
@@ -21,7 +21,7 @@ void reproduction(int nourriture_accouplement,joueur_t joueur,joueur_t joueur2){
 				}
 			}
 			for(l=0;l<compteur/2;l++){
-				matrice[i][j].nb_occupant++; //Ajout des nouveaux canards//
+				matrice[i][j]nb_occupant++; //Ajout des nouveaux canards//
 				matrice[i][j].tab_canard[l].etat=0;
 				matrice[i][j].tab_canard[k].nourriture=100;
 				ajout_score(25,joueur,joueur2);

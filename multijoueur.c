@@ -2,7 +2,7 @@
  * \file multijoueur.c
  * \brief Fonctions outils multijoueur
  * \author Maxime.T
- * \version 1.0
+ * \version 1.1
  * \date 20 fevrier 2018
 */
 
@@ -13,16 +13,18 @@
 #include "struct.h"
 #include "joueur.h"
 #include "matrice.h"
+#include "nourriture.h"
 
 typedef enum { bon, mechant }clan_t;
 
 typedef struct joueurm_s{
+
+    joueur_t joueur;
     clan_t clan;
     char nom [20];
     void (*choix) (void);
 }joueur_multi_t;
 
-case_t matrice[5][5];
 
 /*================================================*/
 /** \fn joueur_multi_t joueur_gentil(void)*/
@@ -44,8 +46,9 @@ joueur_multi_t joueur_mechant(){ /**initialise un joueur en tant que mechant*/
 
 
 void tour_multijoueur(caract_mat_t * cmat, int nourriture_accouplement,joueur_multi_t tab[], int tour){
+    spawn_nourriture(cmat, rand()%5+1){
     deplacer(cmat,nourriture_accouplement);
-    //manger et reproduire
+    printf("C est le tour de %s", tab[tour%2].joueur.nom_joueur);
     tab[tour%2].choix();
 }
 
@@ -75,11 +78,11 @@ void init_tab_joueurs(joueur_multi_t * tab /** tableau de joueurs */,
 
    //demander les noms
 
-    demander_nom(tab[tampon].nom, tab[tampon+1 %2].nom);
+    demander_nom(tab[tampon].joueur.nom_joueur, tab[tampon+1 %2].joueur.nom_joueur);
 }
 /*============================================================*/
 /** \fn void main_multijoueur(void) */
-void main_multijoueur(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement){ /** fait le jeu en multi sur meme pc */
+void main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_accouplement){ /** fait le jeu en multi sur meme pc */
     //variables :
     joueur_multi_t tab[2];
     int tampon;
