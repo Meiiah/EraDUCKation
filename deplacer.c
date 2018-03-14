@@ -53,7 +53,7 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
     */
 //////////////////////////////////////////////////////////////////////
                 //pour i croissant direction est
-
+    if(i+l < cmat->taille_mat_x)
         if(mur[0]==0){
             if(cmat->matrice[i+l][j].pres_nourriture==1){ //si presence de nourriture sur la ligne
                 return 1;
@@ -68,7 +68,7 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
 
 /////////////////////////////////////////////////////////////////////
                 //pour i décroissant direction ouest
-
+     if(i-l > 0)
         if(mur[1]==0){
             if(cmat->matrice[i-l][j].pres_nourriture==1){
                 return 2;
@@ -83,7 +83,7 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
 
 /////////////////////////////////////////////////////////////////////
                 //pour j croissant direction sud
-
+     if(j+l < cmat->taille_mat_y)
         if(mur[2]==0){
             if(cmat->matrice[i][j+l].pres_nourriture==1){
                 return 3;
@@ -98,7 +98,7 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
 
 /////////////////////////////////////////////////////////////////////
                 //pour j décroissant direction Nord
-
+    if(j-l >0)
         if(mur[3]==0){
             if(cmat->matrice[i][j-l].pres_nourriture==1){
                 return 4;
@@ -144,7 +144,7 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
     */
 //////////////////////////////////////////////////////////////////////
                 //pour i croissant direction est
-
+     if(i+l < cmat->taille_mat_x)
         if(mur[0]==0){//si on a pas encore croise de mur
             if(cmat->matrice[i+l][j].nb_occupant>0){//si il y a des canards sur la case
                 for(cpt=0; cpt<cmat->matrice[i+l][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
@@ -163,7 +163,7 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
 
 /////////////////////////////////////////////////////////////////////
                 //pour i décroissant direction ouest
-
+     if(i-l >0)
         if(mur[1]==0){
              if(cmat->matrice[i-l][j].nb_occupant>0){//si il y a des canards sur la case
                 for(cpt=0; cpt<cmat->matrice[i-l][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
@@ -182,7 +182,7 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
 
 /////////////////////////////////////////////////////////////////////
                 //pour j croissant direction sud
-
+    if(j+l < cmat->taille_mat_y)
         if(mur[2]==0){
             if(cmat->matrice[i][j+l].nb_occupant>0){//si il y a des canards sur la case
                 for(cpt=0; cpt<cmat->matrice[i][j+l].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
@@ -201,7 +201,7 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
 
 /////////////////////////////////////////////////////////////////////
                 //pour j décroissant direction Nord
-
+    if(j-l >0)
         if(mur[3]==0){
             if(cmat->matrice[i][j-l].nb_occupant>0){//si il y a des canards sur la case
                 for(cpt=0; cpt<cmat->matrice[i][j-l].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
@@ -294,7 +294,7 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
     int verif =1;
 
     for(j=0; j< cmat->taille_mat_x ; j++){
-        for(i=0; i<cmat->taille_mat_y; i++){//pour chaque case de la matrice
+        for(i=0; i< cmat->taille_mat_y; i++){//pour chaque case de la matrice
 
                 for(k=0; k<cmat->matrice[i][j].nb_occupant; i++){
 
