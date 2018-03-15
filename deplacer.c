@@ -36,7 +36,6 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
     int l = 1;
     int mur[4] = {0,0,0,0};
 
-    fprintf(stderr, " NOURRIURE ");
     //on renvoit la direction ou il voit le miam miam et -1 si il voit pas (choisi la nouriture la plus proche
 
     if(cmat->matrice[i][j].pres_nourriture==1)
@@ -44,7 +43,7 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
 
 
     //dir 1
-    while(1){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
+    while(l<cmat->taille_mat_x || l<cmat->taille_mat_y){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
 
         /**
         SI pas de mur enregistré on regarde si il y a un fruit, si c est le cas on break,
@@ -125,7 +124,6 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
     int mur[4] = {0,0,0,0};
     //on renvoit la direction ou il voit le miam miam et -1 si il voit pas (choisi la nouriture la plus proche
 
-	fprintf(stderr, " <3 ");
 
     for(cpt=0; cpt<cmat->matrice[i+l][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
         if(cpt != k)
@@ -135,7 +133,7 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
     }
 
     //dir 1
-    while(1){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
+    while(l<cmat->taille_mat_x || l<cmat->taille_mat_y){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
 
         /**
         SI pas de mur enregistré on regarde si il y a un partenaire d accouplement, si c est le cas on break,
@@ -227,8 +225,7 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
 /**\fn void deplacer_canard(int i, int j, int k, int direction) */
 void deplacer_canard(caract_mat_t * cmat,int i, int j, int k, int direction){/**	Deplace le kieme canard de la case i;j dans la direction donnée	*/
 
-	fprintf(stderr, " Moove ");
-
+	fprintf(stderr,"\n--------MOOV--------\n");
     switch(direction){ //en fonction de la direction le canard avance
             case 1:
                    //on copie le canard a sa destination
@@ -296,22 +293,21 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
     for(j=0; j< cmat->taille_mat_x ; j++){
         for(i=0; i< cmat->taille_mat_y; i++){//pour chaque case de la matrice
 
-                for(k=0; k<cmat->matrice[i][j].nb_occupant; i++){
+                for(k=0; k<cmat->matrice[i][j].nb_occupant; k++){
 
                         if(cmat->matrice[i][j].tab_canard[k].etat==1){ //pour chaque canard qui peut se deplacer
 
                                 // /!\ 1/3 des canards se déplacent, donc rand, si c est pas bon on le deplace pas donc break
                             if(rand()%3==0){
                                 //si il peut se deplacer on continue
-				fprintf(stderr,"prout");
                                 // si on voit un canard a accoupler on continue, sinon on continue les verifications
                             direction = voit_accouplement(cmat,nourriture_accouplement,i, j, k);
-				fprintf(stderr,"%i", direction);
+				fprintf(stderr,"\n accou %i", direction);
                             if(direction==-1){
 
                                 //si il voit de la nourriture aller dessus sinon on deplace dabs une direction random arpres verif
                                 direction = voit_nourriture(cmat,i, j, k);
-
+				fprintf(stderr,"\n nourr %i\n", direction);
                                 if(direction==-1){
                                 //sinon se deplacer d une case vers la direction random apres verif
                                     do{
@@ -335,19 +331,19 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
                                     		}
                                     }while(verif == 0);
 
-                                        deplacer_canard(cmat,i, j, k, direction);
+                                        
 
                                 }
+                            }deplacer_canard(cmat,i, j, k, direction);
                             }
-                            }affichage_laby(cmat);
 
                         }
                     }
         }//fin balayage matrice
-        fprintf(stderr,"akii");
-        reproduction(cmat, nourriture_accouplement, joueur,joueur2);
+        fprintf(stderr,"\nakii\n");
+        //reproduction(cmat, nourriture_accouplement, joueur,joueur2);
         manger(cmat);
-    }
+    }affichage_laby(cmat);
     fprintf(stderr,"FIN");
 }
 

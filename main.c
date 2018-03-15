@@ -53,14 +53,18 @@ int main(void){
 	//definition joueur
 	joueur_t joueur;
 	joueur_t joueur2;
+
+	joueur.score = 0;
+	joueur2.score = 0;
+
 	joueur2.nom_joueur[0]='n';
 	joueur2.nom_joueur[1]='u';
 	joueur2.nom_joueur[2]='l';
 	joueur2.nom_joueur[3]='l';
 
 	//definition nourriture
-	int nourriture_accouplement;//Nourriture qu'on a besoin pour se reproduire
-	int nourriture_genere;//Nourriture qui apparait
+	int nourriture_accouplement = 25;//Nourriture qu'on a besoin pour se reproduire
+	int nourriture_genere = 10;//Nourriture qui apparait
 	
 	int choix; // Choix du joueur
 	int nbr_joueur;

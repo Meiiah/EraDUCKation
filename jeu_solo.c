@@ -7,6 +7,7 @@
 #include "canard.h"
 #include "deplacer.h"
 #include "deplacer_multi.h"
+#include "labyrinthe.h"
 
 int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accouplement,joueur_t joueur,joueur_t joueur2){
 	int jeu=1; // 1 en cours de partie , 0 partie finit
@@ -18,11 +19,12 @@ int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupleme
 		
 		piege(cmat);
 			fprintf(stderr,"piege");
+		affichage_laby(cmat);
 		deplacer(cmat,nourriture_accouplement);
-		fprintf(stderr,"pouet");
-		choix_joueur(cmat,nourriture_accouplement,nourriture_genere,joueur,joueur2);
+		 fprintf(stderr,"pouet");
+		//choix_joueur(cmat,nourriture_accouplement,nourriture_genere,joueur,joueur2);
 		
-		ajout_score(100,joueur,joueur2);
+		//ajout_score(100,joueur,joueur2);
 	
 		nb_gen++;
 		printf("Score: %i",joueur.score);
