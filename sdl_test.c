@@ -4,6 +4,7 @@
 #include <SDL2/SDL_image.h>
 
 
+<<<<<<< HEAD
 #define LARGEUR_WIN 640
 #define HAUTEUR_WIN 480
 #define N 100
@@ -29,6 +30,19 @@ int main(int argc, char** argv)
 	//tableau regroupant chaque textures
 	//text_t *tab = malloc(sizeof(text_t));
 	
+=======
+#define largeur 640
+#define hauteur 480
+
+/*typedef struct text_s{
+	SDL_Texture text;
+	int imgDestRect.x;
+	int imgDestRect.y;
+}text_t;*/
+
+int main(int argc, char** argv)
+{
+>>>>>>> ec06a76df52bc79a3b0f9414fa1e5f07246f9081
     	//Le pointeur vers la fenetre
 	SDL_Window* pWindow = NULL;
 	//Le pointeur vers la surface incluse dans la fenetre
@@ -57,9 +71,15 @@ int main(int argc, char** argv)
 	/* Création de la fenêtre */
 	pWindow = SDL_CreateWindow("EraDUCKation",SDL_WINDOWPOS_UNDEFINED,
 												  SDL_WINDOWPOS_UNDEFINED,
+<<<<<<< HEAD
 												  LARGEUR_WIN,
 												  HAUTEUR_WIN,
 												  SDL_WINDOW_SHOWN);
+=======
+												  largeur,
+												  hauteur,
+												  SDL_WINDOW_SHOWN|SDL_WINDOW_RESIZABLE);
+>>>>>>> ec06a76df52bc79a3b0f9414fa1e5f07246f9081
 
 	if(!pWindow){
 		fprintf(stderr, "Erreur à la création de la fenetre : %s\n", SDL_GetError());
@@ -219,7 +239,11 @@ int main(int argc, char** argv)
                                 			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
                                 			SDL_RenderPresent(renderer);
                  				}
+<<<<<<< HEAD
                  				if (e.button.y > 72 && e.button.y <= 72+72 && e.button.x > 480 && e.button.x <= 480+166 ){// si clic sur boutton
+=======
+                 				if (e.button.y > 480 && e.button.y <= 480+166 && e.button.x > 72 && e.button.x <= 72+72 ){// si clic sur boutton
+>>>>>>> ec06a76df52bc79a3b0f9414fa1e5f07246f9081
                  					txtDestRect.x = 50;
 							txtDestRect.y = 50;
                  					/* Ajout du texte en noir */

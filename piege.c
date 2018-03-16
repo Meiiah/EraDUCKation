@@ -3,6 +3,17 @@
 #include "struct.h"
 #include "matrice.h"
 
+
+
+/**
+* \file piege.c
+* \brief Programme comprennant les piegfes dans le laby
+* \author VAIDIE Camille
+* \version 1.0
+* \date 20 Février 2018
+*/ 
+
+/** \fn void piege(caract_mat_t)*/
 void piege(caract_mat_t * cmat){ //fonction piege
 	int x=(rand() % (cmat->taille_mat_x)); //place en random un piege dans la matrice
 	int y=(rand() % (cmat->taille_mat_y));
@@ -13,6 +24,7 @@ void piege(caract_mat_t * cmat){ //fonction piege
 	}
 }
 
+/** \fn void presence_piege(caract_mat_t)*/
 void presence_piege(caract_mat_t * cmat){ // fonction presence de piege
 	int i,j;
 	for(i=0;i<cmat->taille_mat_x;i++){ //parcour de la matrice

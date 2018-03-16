@@ -1,5 +1,5 @@
 CC=gcc
-OBJ=canard.o deplacer.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinthe.o main.o  multijoueur_reseau.o nourriture.o piege.o reproduction.o sauvegarde.o GestionDeLaBareDeVie.o fonction_multi_reseau.o
+OBJ=canard.o deplacer.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinthe.o main.o nourriture.o piege.o reproduction.o sauvegarde.o GestionDeLaBarreDeVie.o 
 
 PROG=era
 
@@ -21,6 +21,9 @@ deplacer.o: deplacer.c
 
 event.o: event.c 
 	${CC} -c event.c
+	
+outils.o: outils.c 
+	${CC} -c outils.c
 
 jeu_solo.o: jeu_solo.c 
 	${CC} -c jeu_solo.c
@@ -33,12 +36,6 @@ labyrinthe.o: labyrinthe.c
 
 main.o: main.c 
 	${CC} -c main.c
-
-multijoueur_reseau.o: multijoueur_reseau.c 
-	${CC} -c multijoueur_reseau.c
-
-outils.o: outils.c
-	${CC} -c outils.c
 
 nourriture.o: nourriture.c 
 	${CC} -c nourriture.c
@@ -55,6 +52,10 @@ sauvegarde.o: sauvegarde.c
 matrice.o: matrice.c
 	${CC} -c matrice.c
 
+<<<<<<< HEAD
+GestionDeLaBarreDeVie.o: GestionDeLaBarreDeVie.c
+	${CC} -c GestionDeLaBarreDeVie.c
+=======
 fonction_multi_reseau.o: fonction_multi_reseau.c
 	${CC} -c fonction_multi_reseau.c
 
@@ -65,6 +66,7 @@ all: sdl_text
 sdl_text: sdl_test.c
 	${CC} -o ${PROG} sdl_test.c ${LIBS} ${INCS}
 
+>>>>>>> 0db0b1139bbe985b0fde54ea62cf9508e99e0f96
 clean:
 	rm -f *.o
 	rm -f canard
@@ -76,13 +78,15 @@ clean:
 	rm -f labyrinthe
 	rm -f main
 	rm -f matrice
-	rm -f outils.c
-	rm -f multijoueur
-	rm -f multijoueur_reseau
+	rm -f outils
 	rm -f nourriture
 	rm -f piege
 	rm -f reproduction
 	rm -f sauvegarde
+<<<<<<< HEAD
+	rm -f GestionDeLaBareDeVie
+=======
 	rm -f fonction_multi_reseau
 	rm -f GestionDeLaBareDeVie
 	rm -f ${PROG}
+>>>>>>> 0db0b1139bbe985b0fde54ea62cf9508e99e0f96

@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #include "struct.h"
 #include "matrice.h"
-#define NBR_CANARD_DEPART 15
 
 void init_canard(caract_mat_t * cmat){
 	int x;
 	int y;
-	for(int i=0; i<NBR_CANARD_DEPART;i++){
-		x=(rand()%(cmat->taille_mat_x + 1));
-		y=(rand()%(cmat->taille_mat_y + 1));
+	for(int i=0; i<nb_max;i++){
+		
+		x=(rand()%(cmat->taille_mat_x ));
+		y=(rand()%(cmat->taille_mat_y ));
 		if(est_dans_matrice(cmat,x,y)){
 			cmat->matrice[x][y].nb_occupant++;
 			cmat->matrice[x][y].tab_canard[cmat->matrice[x][y].nb_occupant-1].nourriture=50;
-			cmat->matrice[x][y].tab_canard[cmat->matrice[x][y].nb_occupant-1].etat=0;
+			cmat->matrice[x][y].tab_canard[cmat->matrice[x][y].nb_occupant-1].etat=1;
 		}
 		
 	}
@@ -32,4 +32,15 @@ int presence_canard(caract_mat_t * cmat){ // retourne 1 si il reste des canards
 		}
 	}
 	return 0;
+}
+
+int nombre_canard(caract_mat_t * cmat){
+	int cpt=0;
+	int i,j;
+	for(i=0;i<cmat->taille_mat_x;i++){
+		for(j=0;j<cmat->taille_mat_y;j++){
+			cpt += cmat->matrice[i][j].nb_occupant;
+		}
+	}
+	return cpt;
 }

@@ -16,13 +16,13 @@ int choix_difficultee(int choix){
 
 	switch(choix){
 		case 1 :
-			return 15;
+			return 7;
 		break;	
 		case 2:
-			return 25;
+			return 15;
 		break;
 		case 3:
-			return 50;
+			return 25;
 		break;		
 	}
 	return 1;
@@ -53,18 +53,24 @@ int main(void){
 	//definition joueur
 	joueur_t joueur;
 	joueur_t joueur2;
+
+	joueur.score = 0;
+	joueur2.score = 0;
+
 	joueur2.nom_joueur[0]='n';
 	joueur2.nom_joueur[1]='u';
 	joueur2.nom_joueur[2]='l';
 	joueur2.nom_joueur[3]='l';
 
 	//definition nourriture
-	int nourriture_accouplement;//Nourriture qu'on a besoin pour se reproduire
-	int nourriture_genere;//Nourriture qui apparait
+	int nourriture_accouplement = 25;//Nourriture qu'on a besoin pour se reproduire
+	int nourriture_genere = 10;//Nourriture qui apparait
 	
 	int choix; // Choix du joueur
 	int nbr_joueur;
 	
+	init_tab_event_mauvais();
+	init_tab_event_bon();
 	
 	printf("EraDUCKation\n\n");
 
@@ -73,7 +79,7 @@ int main(void){
 	printf("3 : Quitter\n");
 	
 	printf("Choix: ");
-	scanf("%i",&choix);
+	scanf(" %i",&choix);
 		
 	switch(choix){
 		case 1 :
@@ -82,7 +88,7 @@ int main(void){
 			printf("2 : Intermédiaire\n");
 			printf("3 : Difficile\n");
 			printf("Choix: ");
-			scanf("%i",&choix);
+			scanf(" %i",&choix);
 			
 			cmat->taille_mat_x=choix_difficultee(choix);	
 			cmat->taille_mat_y=cmat->taille_mat_x;
@@ -91,17 +97,17 @@ int main(void){
 			printf("1 : 1 joueur\n");
 			printf("2 : 2 joueurs\n");
 			printf("Choix: ");
-			scanf("%i",&choix);
+			scanf(" %i",&choix);
 		
 			nbr_joueur=choix_nbr_joueur(choix,joueur,joueur2);
 			
 			/*Mise en place de la matrice adaptée*/
 			creation_matrice(cmat);
 			init_matrice(cmat);
-			
+	
 			/*Creation du Labyrinthe*/
-			//creer_labyrinthe();
-			
+			main_laby(cmat);
+		
 			//Apparition de canard
 			init_canard(cmat); 
 			

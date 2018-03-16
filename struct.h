@@ -7,7 +7,7 @@
 *\date 20 fevrier 2018
 */
 
-#define nb_max 10
+#define nb_max 15
 
 /** \struct mur_s struct.h*/
 /** etat du mur*/
