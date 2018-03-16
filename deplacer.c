@@ -43,7 +43,7 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
 
 
     //dir 1
-    while(l<cmat->taille_mat_x || l<cmat->taille_mat_y){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
+    while(l < (cmat->taille_mat_x - i) || l < ( cmat->taille_mat_y - j)){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
 
         /**
         SI pas de mur enregistré on regarde si il y a un fruit, si c est le cas on break,
@@ -52,16 +52,16 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
     */
 //////////////////////////////////////////////////////////////////////
                 //pour i croissant direction est
-    if(i+l < cmat->taille_mat_x)
-        if(mur[0]==0){
-            if(cmat->matrice[i+l][j].pres_nourriture==1){ //si presence de nourriture sur la ligne
+    if(i+l < cmat->taille_mat_x) // si la case est valide
+        if(mur[0]==0){ // et qu on a pas encore rencontré de mur dans cette direction
+            if(cmat->matrice[i+l][j].pres_nourriture==1){ //si presence de nourriture sur la ligne on retourne la direction
                 return 1;
             }
-
-            if(cmat->matrice[i+l][j].mur.murE == 1){
-                if(mur[1]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible retourner -1
+             
+            if(cmat->matrice[i+l][j].mur.murE == 1){// sinon on regarde si il y a le mur
+                if(mur[1]==1 && mur[2]==1 && mur[3]==1) // sipas de nourriture visible du tout retourner -1
                     return -1;
-                mur[0] = 1;
+                mur[0] = 1; // si on a encore des chemins a traiter on continue le traitement
             }
         }
 
@@ -109,7 +109,7 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
                 mur[3] = 1;
             }
         }
-        l++;
+    l++;
     }
     return -1;  // au cas où mais pas besoin normalement
 }
@@ -311,21 +311,21 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
                                 if(direction==-1){
                                 //sinon se deplacer d une case vers la direction random apres verif
                                     do{
-                                    direction = rand()%4;
+                                    direction = rand()%4 +1;
                                     /* FAIRE VERIF */
 
 					   switch(direction){// effets de bord
-								case 0: if((! (i+1 >= cmat->taille_mat_x)  )&& cmat->matrice[ i+1 ][ j ].mur.murN !=1) //i croit et vu qu on est dans le tableau pas besoin de tout verifier
+								case 1: if((! (i+1 >= cmat->taille_mat_x)  )&& cmat->matrice[ i+1 ][ j ].mur.murN !=1) //i croit et vu qu on est dans le tableau pas besoin de tout verifier
 											verif=1;
 									 break;
-								case 1: if((! (i-1 < 0) )&& cmat->matrice[ i-1 ][ j ].mur.murS !=1) //i decroit et vu qu on est dans le tableau pas besoin de tout verifier
+								case 2: if((! (i-1 < 0) )&& cmat->matrice[ i-1 ][ j ].mur.murS !=1) //i decroit et vu qu on est dans le tableau pas besoin de tout verifier
 											verif=1;
 									 break;
 														 // idem avec j
-								case 2: if((! (j+1 >= cmat->taille_mat_y) )&& cmat->matrice[ i ][ j+1 ].mur.murE !=1 )
+								case 3: if((! (j+1 >= cmat->taille_mat_y) )&& cmat->matrice[ i ][ j+1 ].mur.murE !=1 )
 											verif=1;
 									 break;
-								case 3:  if((! (j-1 <0) )&& cmat->matrice[ i ][ j -1].mur.murO !=1 )
+								case 4:  if((! (j-1 <0) )&& cmat->matrice[ i ][ j -1].mur.murO !=1 )
 											verif=1;
 
                                     		}
