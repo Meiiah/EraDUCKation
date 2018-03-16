@@ -263,8 +263,7 @@ void deplacer_canard(caract_mat_t * cmat,int i, int j, int k, int direction){/**
                    //on enleve le canard dans la case originelle, le nombre de canard diminue donc
                    cmat->matrice[i][j].tab_canard[k] = canard_vide();
                    cmat->matrice[i][j].nb_occupant --;
-
-                                        break;
+                                     break;
 
             /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
             case 4:
@@ -290,8 +289,8 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
     int direction=-1;
     int verif =1;
 
-    for(j=0; j< cmat->taille_mat_x ; j++){
-        for(i=0; i< cmat->taille_mat_y; i++){//pour chaque case de la matrice
+    for(i=0; i< cmat->taille_mat_x ; i++){
+        for(j=0; j< cmat->taille_mat_y; j++){//pour chaque case de la matrice
 
                 for(k=0; k<cmat->matrice[i][j].nb_occupant; k++){
 
