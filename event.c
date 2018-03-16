@@ -3,15 +3,16 @@
 #include "joueur.h"
 #include "outils.h"
 #include "matrice.h"
-
+#include <stdio.h>
 #define M 10
 
-int (*mauvais[M])(caract_mat_t *, joueur_t,joueur_t,int,int); /*tableau de pointeur sur les fonctions mauvaises*/
-int (*bon[M])(caract_mat_t *, joueur_t,joueur_t,int,int); /*tableau de pointeur sur les fonctions bonnes*/
+int (*mauvais[M])(caract_mat_t *, joueur_t,joueur_t,int*,int*); /*tableau de pointeur sur les fonctions mauvaises*/
+int (*bon[M])(caract_mat_t *, joueur_t,joueur_t,int*,int*); /*tableau de pointeur sur les fonctions bonnes*/
 
 /*Evenement mauvais */
 
-int tsunami(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement){
+int tsunami(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
+	fprintf(stderr,"OK tsu");
 	int i,j,k;
 	int random_min=rand_map(cmat->taille_mat_x);
 	int random_max=rand_map(cmat->taille_mat_y);
@@ -48,7 +49,8 @@ int tsunami(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture
 	return 1;
 }
 
-int tempete(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement){
+int tempete(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
+	fprintf(stderr,"OK temp");
 	int i,j,k;
 	int random_min=rand_map(cmat->taille_mat_x);
 	int random_max=rand_map(cmat->taille_mat_y);
@@ -70,16 +72,21 @@ int tempete(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture
 	return 1;
 }
 
-int famine(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement){
-	return nourriture_genere/=1.5;
+int famine(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
+	fprintf(stderr,"OK fam");
+	*nourriture_genere/=2;
+	return 1;
 	
 }
 
-int reproduction_ralentie(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement){
-	return nourriture_accouplement*=1.5; //variable de deplacer.c 
+int reproduction_ralentie(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
+	fprintf(stderr,"OK re ral");
+	*nourriture_accouplement*=2; //variable de deplacer.c 
+	return 1;
 }
 
-int apparition_predateur(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement){
+int apparition_predateur(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
+	fprintf(stderr,"OK preda");
 	int i,k;	
 	int random_x;
 	int random_y;
@@ -100,16 +107,21 @@ int apparition_predateur(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,i
 
 /* Evenement bon */
 
-int reproduction_acceleree(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement){
-	return nourriture_accouplement/=1.5;//variable de deplacer.c 
+int reproduction_acceleree(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
+	fprintf(stderr,"OK repro acc");
+	*nourriture_accouplement/=2;//variable de deplacer.c 
+	return 1;
 }
 
-int plus_nourriture(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement){
-	return nourriture_genere*=1.5;//generation de nourriture plus élevée
+int plus_nourriture(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
+	fprintf(stderr,"OK + nourr");
+	*nourriture_genere*=2;//generation de nourriture plus élevée
+	return 1;
 }
 
-int joker_nourriture(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement){
+int joker_nourriture(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	int i,j,k;
+	fprintf(stderr,"OK kjok");
 	for(i=0;i<cmat->taille_mat_x;i++){//balayage de toute la matrice
 		for(j=0;j<cmat->taille_mat_y;j++){
 			for(k=0;k<cmat->taille_mat_x;k++){
@@ -120,7 +132,8 @@ int joker_nourriture(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int n
 	return 1;
 }
 //ajout au score
-int liberation_canard(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement){
+int liberation_canard(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
+	fprintf(stderr,"OK lib");
 	int i,k;	
 	int random_x;
 	int random_y;
@@ -139,12 +152,13 @@ int liberation_canard(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int 
 	return 1;
 }
 
-int canard_invincible(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement){
+int canard_invincible(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
+	fprintf(stderr,"OK invin");
 	/*prend un canard qui ne peut pas mourir*/
 	return 1;
 }
 
- int init_tab_event_mauvais(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement){
+ int init_tab_event_mauvais(){
  	mauvais[0] = tsunami;
  	mauvais[1] = tempete;
  	mauvais[2] = famine;
@@ -152,7 +166,7 @@ int canard_invincible(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int 
  	mauvais[4] = apparition_predateur;
  }
  
- int init_tab_event_bon(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int nourriture_genere,int nourriture_accouplement){
+ int init_tab_event_bon(){
  	bon[0] = reproduction_acceleree;
  	bon[1] = plus_nourriture;
  	bon[2] = joker_nourriture;

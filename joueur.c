@@ -13,7 +13,7 @@
 *\date 20 fevrier 2018
 */
 
-#define nb_event 4
+#define nb_event 5
 /** \fn void ajout_score(int,joueur_t,joueur_t)*/
 /**fonction d'ajour de score des deux joueurs*/
 
@@ -27,54 +27,65 @@ void ajout_score(int point,joueur_t joueur, joueur_t joueur2){
 /**\fn void caract_joueur(joueur_t)*/
 /** saisi du pseudo du joueur */
 void caract_joueur(joueur_t joueur){
-	printf("Saisir le pseudo du joueur");
+	printf("Saisir le pseudo du joueur : ");
 	scanf("%s",joueur.nom_joueur);
 	joueur.score=0;
 }
 
-char *mauv_evts[nb_event+1]={"tsunami", "tempete","famine","reproduction_ralenti","predateur"};
-char *bon_evts[nb_event+1]={"plus_nourriture","joker_nourriture","liberation_canard","canard_invassible","reproduction_accelere"};
+char *mauv_evts[nb_event]={
+	"Lance un tsunami sur le labyrinthe", 
+	"Lance une tempete sur le labyrinthe",
+	"Famine : Réduit la nourriture générée",
+	"Réduit la reproduction des canards",
+	"Appartion de 0 à 5 prédateurs de canards"
+};
+char *bon_evts[nb_event]={
+	"Accelère la reproduction des canards",
+	"Génération de nourriture augmentée",
+	"Remplie toutes les réverses de nourriture des canards",
+	"Libère entre 0 et 5 canards",
+	"Rend un canard invincible"};
 
 
 /** \fn void tab_event_mauvais(void) */
 /** choisit 3 mauvais evenements random */
 void tab_event_mauvais(int * choix1,int * choix2, int * choix3){
-	*choix1=(rand() % (nb_event + 1)); // Random du choix des evenement parmis 5 possibilités//
-	*choix2=(rand() % (nb_event + 1));
-	*choix3=(rand() % (nb_event + 1));
+	*choix1=(rand() % (nb_event )); // Random du choix des evenement parmis 5 possibilités//
+	*choix2=(rand() % (nb_event ));
+	*choix3=(rand() % (nb_event ));
 	
 	
-	printf("\n%s\n",mauv_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
+	printf("\nChoix 1 : %s\n",mauv_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
 	if(choix1!=choix2)
-		printf("%s\n",mauv_evts[*choix2]);
+		printf("Choix 2 : %s\n",mauv_evts[*choix2]);
 	if(choix1!=choix3 && choix2!=choix3)
-		printf("%s\n",mauv_evts[*choix3]);
+		printf("Choix 3 : %s\n",mauv_evts[*choix3]);
 }
 
 /** \fn void tab_event_bon(void) */
 /** choisit 3 bons evenements random */
 void tab_event_bon(int * choix1,int * choix2, int * choix3){
 
-	*choix1=(rand() % (nb_event + 1)); // Random du choix des evenement parmis 5 possibilités//
-	*choix2=(rand() % (nb_event + 1));
-	*choix3=(rand() % (nb_event + 1));
+	*choix1=(rand() % (nb_event )); // Random du choix des evenement parmis 5 possibilités//
+	*choix2=(rand() % (nb_event ));
+	*choix3=(rand() % (nb_event ));
 
-	printf("\n%s\n",bon_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
+	printf("\nChoix 1 : %s\n",bon_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
 	if(choix1!=choix2)
-		printf("%s\n",bon_evts[*choix2]);
+		printf("Choix 2 : %s\n",bon_evts[*choix2]);
 	if(choix1!=choix3 && choix2!=choix3)
-		printf("%s\n",bon_evts[*choix3]);
+		printf("Choix 3 : %s\n",bon_evts[*choix3]);
 }
 
 
 /** \fn void choix_mauvais(void)*/
 /** choix random parmis les evenements mauvais */
-void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement){
+void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int * nourriture_genere, int * nourriture_accouplement){
 	int choix1, choix2, choix3;
 	
 	tab_event_mauvais(&choix1, &choix2, &choix3);
 	int result;
-	printf("Choisir le numero de l'evenement choisit");
+	printf("Choisir le numéro de l'évènement choisit : ");
 	scanf("%i",&result);// Saisit du choix du joueur//
 	
 	switch(result){
@@ -84,7 +95,7 @@ void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int no
 			break;
 		case 3: mauvais[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 			break;
-		default: printf("saisir un choix possible");
+		default: printf("Saisir un choix possible :");
 			break;
 	}
 }
@@ -92,14 +103,14 @@ void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int no
 /** \fn void choix_bon(void)*/
 /** choix random parmis les evenements bon */
 
-void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement){
+void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourriture_genere, int* nourriture_accouplement){
 	int choix1, choix2, choix3;
 	
 	tab_event_bon(&choix1, &choix2, &choix3);
 	int result;
-	printf("Choisir le numero de l'evenement choisit");
+	printf("Choisir le numéro de l'évènement choisit : ");
 	scanf("%i",&result); // Saisit du choix du joueur//
-		
+	
 	switch(result){
 		case 1: bon[choix1](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 			break;
@@ -107,14 +118,14 @@ void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourri
 			break;
 		case 3: bon[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 			break;
-		default: printf("saisir un choix possible");
+		default: printf("Saisir un choix possible :");
 			break;
 	}
 }
 
 /** \fn void choix_joueur(void)*/
 /** choix du joueur parmis les evenements */
-void choix_joueur(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement){
+void choix_joueur(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourriture_genere, int* nourriture_accouplement){
 	int nature_event= ( rand() % 2); // Choix randome d'un evenement positif ou negatif//
 	if (nature_event%2==0){ // Si pair : Evenement negatif //
 		choix_mechant(cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);

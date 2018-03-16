@@ -16,13 +16,13 @@ int choix_difficultee(int choix){
 
 	switch(choix){
 		case 1 :
-			return 15;
+			return 7;
 		break;	
 		case 2:
-			return 25;
+			return 15;
 		break;
 		case 3:
-			return 50;
+			return 25;
 		break;		
 	}
 	return 1;
@@ -69,6 +69,8 @@ int main(void){
 	int choix; // Choix du joueur
 	int nbr_joueur;
 	
+	init_tab_event_mauvais();
+	init_tab_event_bon();
 	
 	printf("EraDUCKation\n\n");
 
@@ -102,23 +104,7 @@ int main(void){
 			/*Mise en place de la matrice adaptée*/
 			creation_matrice(cmat);
 			init_matrice(cmat);
-			int i,j,k;
-			
-			for(i=0;i<cmat->taille_mat_x;i++){
-				for(j=0;j<cmat->taille_mat_y;j++){
-		   				//Initialisation des Canards a 0 //
-						for(k=0;k<15;k++){
-							fprintf(stderr,"%i",cmat->matrice[i][j].tab_canard[k].etat);
-						}fprintf(stderr,"\n");
-				}
-			}		
-			
-			
-			
-			
-			
-			
-			
+	
 			/*Creation du Labyrinthe*/
 			main_laby(cmat);
 		
