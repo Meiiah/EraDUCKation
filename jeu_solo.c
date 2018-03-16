@@ -19,7 +19,7 @@ int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupleme
 		
 		piege(cmat);
 		affichage_laby(cmat);
-		//deplacer(cmat,nourriture_accouplement);
+		deplacer(cmat,nourriture_accouplement);
 		
 		choix_joueur(cmat,joueur,joueur2,&nourriture_genere,&nourriture_accouplement);
 		

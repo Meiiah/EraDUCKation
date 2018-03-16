@@ -19,7 +19,7 @@
  * \date 19 fevrier 2018
 */
 
-long int doo=0; 
+
 
 /**\fn canard_t canard_vide(void) */
 canard_t canard_vide(void){/**	renvoit un canard inexistant*/
@@ -45,7 +45,7 @@ int voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renv
 
     //dir 1
     while(mur[0]==1 && mur[1]==1 && mur[2]==1 && mur[3]==1){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
-		fprintf(stderr,"\n--------Dans le while boucle %i--------\n", l);
+		
         /**
         SI pas de mur enregistré on regarde si il y a un fruit, si c est le cas on break,
         puis on regarde si il y a un mur, et si il y a on memorise qu il y en a un et
@@ -210,11 +210,9 @@ int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int 
 /**\fn void deplacer_canard(int i, int j, int k, int direction) */
 void deplacer_canard(caract_mat_t * cmat,int i, int j, int k, int direction){/**	Deplace le kieme canard de la case i;j dans la direction donnée	*/
 
-	fprintf(stderr,"\n--------MOOV--------\n");
-	fprintf(stderr,"\ni %i j %i k %i direction %i\n", i, j, k, direction);
     switch(direction){ //en fonction de la direction le canard avance
             case 1:
-					fprintf(stderr,"\nCase cible :  [%i;%i]\n", i+1, j);
+					
 					if( (i+1 < cmat->taille_mat_x  )&& cmat->matrice[ i ][ j ].mur.murE !=1){
 		               //on copie le canard a sa destination
 		               cmat->matrice[i+1][j].tab_canard[cmat->matrice[i+1][j].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
@@ -229,7 +227,7 @@ void deplacer_canard(caract_mat_t * cmat,int i, int j, int k, int direction){/**
 
             /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
             case 2:
-					fprintf(stderr,"\nCase cible :  [%i;%i]\n", i-1, j);
+					
 					if( (i-1 > 0) && cmat->matrice[ i ][ j ].mur.murO !=1){
 			          //on copie le canard a sa destination
 			          cmat->matrice[i-1][j].tab_canard[cmat->matrice[i-1][j].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
@@ -244,7 +242,7 @@ void deplacer_canard(caract_mat_t * cmat,int i, int j, int k, int direction){/**
 
             /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
             case 3:
-					fprintf(stderr,"\nCase cible :  [%i;%i]\n", i, j+1);
+					
 					if( (j+1 < cmat->taille_mat_y )&& cmat->matrice[ i ][ j ].mur.murS !=1 ){
 		               //on copie le canard a sa destination
 		               cmat->matrice[i][j+1].tab_canard[cmat->matrice[i][j+1].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
@@ -259,7 +257,7 @@ void deplacer_canard(caract_mat_t * cmat,int i, int j, int k, int direction){/**
 
             /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
             case 4:
-					fprintf(stderr,"\nCase cible :  [%i;%i]\n", i, j-1);
+					
 					if( (j-1 >0) && cmat->matrice[ i ][ j ].mur.murN !=1 ){
 		               //on copie le canard a sa destination
 		               cmat->matrice[i][j-1].tab_canard[cmat->matrice[i][j+1].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
@@ -295,19 +293,17 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
                                 //si il peut se deplacer on continue
                                 // si on voit un canard a accoupler on continue, sinon on continue les verifications
                             direction = voit_accouplement(cmat,nourriture_accouplement,i, j, k);
-				fprintf(stderr,"\n accou %i", direction);
                             if(direction==-1){
 
                                 //si il voit de la nourriture aller dessus sinon on deplace dabs une direction random arpres verif
                                 direction = voit_nourriture(cmat,i, j, k);
-				fprintf(stderr,"\n nourr %i\n", direction);
                                 if(direction==-1){
                                 //sinon se deplacer d une case vers la direction random apres verif
                                     do{
 
 				                            direction = rand()%4 +1;
 				                            /* FAIRE VERIF */
-											fprintf(stderr,"\nCore -%i? \n", direction);
+											
 										   switch(direction){// effets de bord
 							
 													case 1: if( (i+1 < cmat->taille_mat_x  )&& cmat->matrice[ i ][ j ].mur.murE !=1) //i croit et vu qu on est dans le tableau pas besoin de tout verifier
@@ -337,7 +333,7 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
 
                                 }
                             }if(direction !=42){  	
-								fprintf(stderr,"\ni %i, j %i, k, %i, direction %i \n",i, j, k, direction);
+								
 								deplacer_canard(cmat,i, j, k, direction);
 						
 							}
@@ -347,11 +343,10 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
                     }
         }//fin balayage matrice
         
-        //reproduction(cmat, nourriture_accouplement, joueur,joueur2);
+        reproduction(cmat, nourriture_accouplement, joueur,joueur2);
         //manger(cmat);
-    }affichage_laby(cmat);
-	doo++;
-    fprintf(stderr,"FIN %li", doo);
+    }
+
 }
 
 
