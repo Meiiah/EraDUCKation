@@ -2,9 +2,15 @@
 #include "joueur.h"
 #include "matrice.h"
 #include <stdio.h>
-#define taille_mat 20 //taille de la matrice//
 
-case_t matrice[taille_mat][taille_mat];
+/**
+* \file piege.c
+* \brief Programme comprennant les piegfes dans le laby
+* \author VAIDIE Camille
+* \version 1.0
+* \date 20 Février 2018
+*/ 
+
 
 void reproduction(caract_mat_t * mat, int nourriture_accouplement,joueur_t joueur,joueur_t joueur2){
 	int i;
