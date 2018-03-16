@@ -33,3 +33,14 @@ int presence_canard(caract_mat_t * cmat){ // retourne 1 si il reste des canards
 	}
 	return 0;
 }
+
+int nombre_canard(caract_mat_t * cmat){
+	int cpt=0;
+	int i,j;
+	for(i=0;i<cmat->taille_mat_x;i++){
+		for(j=0;j<cmat->taille_mat_y;j++){
+			cpt += cmat->matrice[i][j].nb_occupant;
+		}
+	}
+	return cpt;
+}

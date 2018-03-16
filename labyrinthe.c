@@ -218,6 +218,25 @@ void valeur_case(caract_mat_t * cmat,ini_t ** mat,int x1, int y1, int x2, int y2
 	}
 }
 
+int compter_mur(ini_t ** mat,int i, int j){
+	int cpt=0;
+	
+	if(mat[i][j].mur.murE){
+		cpt++;
+	}
+	if(mat[i][j].mur.murN){
+		cpt++;
+	}
+	if(mat[i][j].mur.murO){
+		cpt++;
+	}
+	if(mat[i][j].mur.murS){
+		cpt++;
+	}
+	return(cpt >1);
+	
+}
+
 /** \fn void case_adja(int coord_x, int coord_y, int *compteur)*/
 void case_adja(caract_mat_t * cmat,ini_t ** mat,int coord_x, int coord_y, int *compteur){ /** Choisie une case aléatoirement(Nord, Sud, Est, Ouest) afin de creer la galerie en cassant les murs entre les deux cases. Appel la fonction valeur_case */
 	int case_adj;
@@ -256,32 +275,42 @@ void case_adja(caract_mat_t * cmat,ini_t ** mat,int coord_x, int coord_y, int *c
 /*transformation des murs*/
 		switch(case_adj){
 			case 0: //case du dessus
-				mat[coord_x][coord_y].mur.murN=0;
-				mat[temp_x][temp_y].mur.murS=0;
-				valeur_case(cmat,mat,coord_x,coord_y,temp_x,temp_y, compteur);
+				if(compter_mur(mat, coord_x, coord_y)){
+					mat[coord_x][coord_y].mur.murN=0;
+					mat[temp_x][temp_y].mur.murS=0;
+					valeur_case(cmat,mat,coord_x,coord_y,temp_x,temp_y, compteur);
+				}
 				break;
 
 			case 1: //case du dessous
-				mat[coord_x][coord_y].mur.murS=0;
-				mat[temp_x][temp_y].mur.murN=0;
-				valeur_case(cmat,mat,coord_x,coord_y,temp_x,temp_y, compteur);
+				if(compter_mur(mat, coord_x, coord_y)){
+					mat[coord_x][coord_y].mur.murS=0;
+					mat[temp_x][temp_y].mur.murN=0;
+					valeur_case(cmat,mat,coord_x,coord_y,temp_x,temp_y, compteur);
+				}
 				break;
 
 			case 2: //case de gauche
-				mat[coord_x][coord_y].mur.murO=0;
-				mat[temp_x][temp_y].mur.murE=0;
-				valeur_case(cmat,mat,coord_x,coord_y,temp_x,temp_y, compteur);
+				if(compter_mur(mat, coord_x, coord_y)){
+					mat[coord_x][coord_y].mur.murO=0;
+					mat[temp_x][temp_y].mur.murE=0;
+					valeur_case(cmat,mat,coord_x,coord_y,temp_x,temp_y, compteur);
+				}
 				break;
 
 			case 3: //case de droite
-				mat[coord_x][coord_y].mur.murE=0;
-				mat[temp_x][temp_y].mur.murO=0;
-				valeur_case(cmat,mat,coord_x,coord_y,temp_x,temp_y, compteur);
+				if(compter_mur(mat, coord_x, coord_y)){
+					mat[coord_x][coord_y].mur.murE=0;
+					mat[temp_x][temp_y].mur.murO=0;
+					valeur_case(cmat,mat,coord_x,coord_y,temp_x,temp_y, compteur);
+				}
 				break;
 
 		}
 
 }
+
+
 
 /** \fn void coord_case(int* compteur)*/
 void coord_case(caract_mat_t * cmat, ini_t ** mat,int* compteur){ /** Choisie aléatoirement une case dans le labyrinthe afin de lui attribué une valeur et de creer les galeries a partir des fonctions précédentes. Appel la fonction case_adj*/
@@ -356,7 +385,6 @@ int main_laby(caract_mat_t * cmat){
 
 	creer_labyrinthe(cmat,mato);
 	copi_laby(mato,cmat);
-	affichage_laby(cmat);
 	
 	free(mato);
 	free(TAMP);
