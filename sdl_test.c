@@ -7,6 +7,29 @@
 #define LARGEUR_WIN 640
 #define HAUTEUR_WIN 480
 #define N 100
+
+/////////FONCTION POUR MENU/////
+int choix_nb_joueur(){
+	//IF POUR CHAQUE COORDONNE DE BOUTON CHOIX JOUEUR//
+	//APPEL DE CHOIX_DIFFICULTE//
+	
+}
+
+int choix_difficulte(){
+	//IF POUR CHAQUE COORDONNE DE BOUTON CHOIX DIFFICULTE//
+	//DEMARRAGE PARTIE//
+}
+
+int credit(){
+	//AFFICHAGE REMERCIEMENT ET NOMS PERSONNES DU GROUPE//
+}
+
+int quit(){
+	//DESTRUCTION DE LA FENETRE POUR FERMETURE//
+}
+
+
+///////////////////////////////
 /*
 typedef struct text_s{
 	SDL_Texture text;
@@ -111,16 +134,16 @@ int main(int argc, char** argv)
 	
 	////////////// Chargement Image Bouton Option/////////////////////
 	rwop=SDL_RWFromFile("option.png", "rb");
-	bouton=IMG_LoadPNG_RW(rwop);
-	if(!bouton) {
+	boutonO=IMG_LoadPNG_RW(rwop);
+	if(!boutonO) {
 	     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
 	}
-	SDL_Texture *bouton_tex = SDL_CreateTextureFromSurface(renderer, bouton); 
-	if(!bouton_tex){
+	SDL_Texture *boutonO_tex = SDL_CreateTextureFromSurface(renderer, boutonO); 
+	if(!boutonO_tex){
 		fprintf(stderr, "Erreur à la création du rendu du bouton : %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
-	SDL_FreeSurface(bouton); /* on a la texture, plus besoin de l'image */
+	SDL_FreeSurface(boutonO); /* on a la texture, plus besoin de l'image */
 	
 	////////////// Chargement Image Bouton Play/////////////////////
 	rwop=SDL_RWFromFile("Play.png", "rb");
@@ -193,8 +216,8 @@ int main(int argc, char** argv)
                                 /* Ajout Bouton Option */
 				imgDestRect.x = 484;
 				imgDestRect.y = 324;
-				SDL_QueryTexture(bouton_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
-				SDL_RenderCopy(renderer, bouton_tex, NULL, &imgDestRect);
+				SDL_QueryTexture(boutonO_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
+				SDL_RenderCopy(renderer, boutonO_tex, NULL, &imgDestRect);
 				
 				/* Ajout Bouton Play */
 				imgDestRect.x = 480;
