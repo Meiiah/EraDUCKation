@@ -212,7 +212,8 @@ int main(int argc, char** argv)
 					////Recuperer largeur hauteur de chaque image/////
 					case SDL_MOUSEBUTTONUP:
 						if (e.button.y > 324 && e.button.y <= 324+156 && e.button.x > 484 && e.button.x <= 484+156 ){// si clic sur boutton
-                 					txtDestRect.x = 10;
+                 					/////ACCES AUX OPTIONS////
+							txtDestRect.x = 10;
 							txtDestRect.y = 50;
                  					/* Ajout du texte en noir */
                                 			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -220,13 +221,32 @@ int main(int argc, char** argv)
                                 			SDL_RenderPresent(renderer);
                  				}
                  				if (e.button.y > 72 && e.button.y <= 72+72 && e.button.x > 480 && e.button.x <= 480+166 ){// si clic sur boutton
-                 					txtDestRect.x = 50;
+                 					///////ACCES A ECRAN CHOIX NB JOUEUR////
+							txtDestRect.x = 50;
 							txtDestRect.y = 50;
                  					/* Ajout du texte en noir */
                                 			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
                                 			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
                                 			SDL_RenderPresent(renderer);
-                 				} 	
+                 				}
+						if (e.button.y > 72 && e.button.y <= 72+72 && e.button.x > 480 && e.button.x <= 480+166 ){// si clic sur boutton
+                 					///////ACCES A ECRAN CREDIT////
+							txtDestRect.x = 50;
+							txtDestRect.y = 50;
+                 					/* Ajout du texte en noir */
+                                			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+                                			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
+                                			SDL_RenderPresent(renderer);
+                 				} 
+						if (e.button.y > 72 && e.button.y <= 72+72 && e.button.x > 480 && e.button.x <= 480+166 ){// si clic sur boutton
+                 					///////DESTRUCTION FENETRE/FERMETURE////
+							txtDestRect.x = 50;
+							txtDestRect.y = 50;
+                 					/* Ajout du texte en noir */
+                                			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+                                			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
+                                			SDL_RenderPresent(renderer);
+                 				} 
                  			break;
 				
 				} 
