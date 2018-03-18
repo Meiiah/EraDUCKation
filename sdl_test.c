@@ -159,30 +159,30 @@ int main(int argc, char** argv)
 	SDL_FreeSurface(bouton); /* on a la texture, plus besoin de l'image */
 	
 	////////////// Chargement Image Bouton Credit/////////////////////
-	/*rwop=SDL_RWFromFile("option.png", "rb");
-	bouton=IMG_LoadPNG_RW(rwop);
-	if(!bouton) {
+	rwop=SDL_RWFromFile("credit.png", "rb");
+	boutonC=IMG_LoadPNG_RW(rwop);
+	if(!boutonC) {
 	     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
 	}
-	SDL_Texture *bouton_tex = SDL_CreateTextureFromSurface(renderer, bouton); 
-	if(!bouton_tex){
-		fprintf(stderr, "Erreur à la création du rendu du bouton : %s\n", SDL_GetError());
+	SDL_Texture *boutonC_tex = SDL_CreateTextureFromSurface(renderer, boutonC); 
+	if(!boutonC_tex){
+		fprintf(stderr, "Erreur à la création du rendu du boutonC : %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
-	SDL_FreeSurface(bouton); /* on a la texture, plus besoin de l'image */
+	SDL_FreeSurface(boutonC); /* on a la texture, plus besoin de l'image */
 	
 	////////////// Chargement Image Bouton Quit/////////////////////
-	/*rwop=SDL_RWFromFile("option.png", "rb");
-	bouton=IMG_LoadPNG_RW(rwop);
-	if(!bouton) {
+	rwop=SDL_RWFromFile("quit.png", "rb");
+	boutonQ=IMG_LoadPNG_RW(rwop);
+	if(!boutonQ) {
 	     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
 	}
-	SDL_Texture *bouton_tex = SDL_CreateTextureFromSurface(renderer, bouton); 
-	if(!bouton_tex){
+	SDL_Texture *boutonQ_tex = SDL_CreateTextureFromSurface(renderer, boutonQ); 
+	if(!boutonQ_tex){
 		fprintf(stderr, "Erreur à la création du rendu du bouton : %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
-	SDL_FreeSurface(bouton); /* on a la texture, plus besoin de l'image */
+	SDL_FreeSurface(boutonQ); /* on a la texture, plus besoin de l'image */
 	
 	////////////////////////////////////////////////////////////
 
@@ -206,24 +206,43 @@ int main(int argc, char** argv)
                                 SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 				SDL_RenderClear(renderer);
                                 
-                                							
-                                /* Ajout de la premiere image à une certaine position */
+                                /* Ajout du texte en noir */
+				txtDestRect.x = LARGEUR/2.2;
+				txtDestRect.y = HAUTEUR/5;
+								
+                                SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+                                SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
+                                SDL_RenderPresent(renderer);
+								
+                                /* Ajout Image de Fond */
                                 imgDestRect.x = 0;
 				imgDestRect.y = 0;
 				SDL_QueryTexture(image_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
 				SDL_RenderCopy(renderer, image_tex, NULL, &imgDestRect);
 								
                                 /* Ajout Bouton Option */
-				imgDestRect.x = 484;
-				imgDestRect.y = 324;
+				imgDestRect.x = LARGEUR/1.3;
+				imgDestRect.y = HAUTEUR/1.5;
 				SDL_QueryTexture(boutonO_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
 				SDL_RenderCopy(renderer, boutonO_tex, NULL, &imgDestRect);
 				
 				/* Ajout Bouton Play */
-				imgDestRect.x = 480;
-				imgDestRect.y = 72;
+				imgDestRect.x = LARGEUR/4;
+				imgDestRect.y = HAUTEUR/2;
 				SDL_QueryTexture(boutonP_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
 				SDL_RenderCopy(renderer, boutonP_tex, NULL, &imgDestRect);
+								
+				/* Ajout Bouton Credit */
+				imgDestRect.x = LARGEUR/1.3;
+				imgDestRect.y = HAUTEUR/2;
+				SDL_QueryTexture(boutonC_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
+				SDL_RenderCopy(renderer, boutonC_tex, NULL, &imgDestRect);
+				
+				/* Ajout Bouton Quit */
+				imgDestRect.x = LARGEUR/2.2;
+				imgDestRect.y = HAUTEUR/5;
+				SDL_QueryTexture(boutonQ_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
+				SDL_RenderCopy(renderer, boutonQ_tex, NULL, &imgDestRect);
 								
                                 /* On fait le rendu ! */
                                 SDL_RenderPresent(renderer);
@@ -234,7 +253,8 @@ int main(int argc, char** argv)
 					///////////Gestion evenement clique souris////////////////////////
 					////Recuperer largeur hauteur de chaque image/////
 					case SDL_MOUSEBUTTONUP:
-						if (e.button.y > 324 && e.button.y <= 324+156 && e.button.x > 484 && e.button.x <= 484+156 ){// si clic sur boutton
+						////OPTION////
+						if (e.button.y > (HAUTEUR/1.5) && e.button.y <= (HAUTEUR/1.5)+156 && e.button.x > (LARGEUR/1.3) && e.button.x <= (LARGEUR/1.3)+156 ){// si clic sur boutton
                  					/////ACCES AUX OPTIONS////
 							txtDestRect.x = 10;
 							txtDestRect.y = 50;
@@ -243,7 +263,8 @@ int main(int argc, char** argv)
                                 			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
                                 			SDL_RenderPresent(renderer);
                  				}
-                 				if (e.button.y > 72 && e.button.y <= 72+72 && e.button.x > 480 && e.button.x <= 480+166 ){// si clic sur boutton
+						////PLAY////
+                 				if (e.button.y > (HAUTEUR/2) && e.button.y <= (HAUTEUR/2)+72 && e.button.x >(LARGEUR/4) && e.button.x <= (LARGEUR/4)+166 ){// si clic sur boutton
                  					///////ACCES A ECRAN CHOIX NB JOUEUR////
 							txtDestRect.x = 50;
 							txtDestRect.y = 50;
@@ -252,7 +273,8 @@ int main(int argc, char** argv)
                                 			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
                                 			SDL_RenderPresent(renderer);
                  				}
-						if (e.button.y > 72 && e.button.y <= 72+72 && e.button.x > 480 && e.button.x <= 480+166 ){// si clic sur boutton
+						////CREDIT////
+						if (e.button.y > (HAUTEUR/2) && e.button.y <= (HAUTEUR/2)+72 && e.button.x > (LARGEUR/1.3) && e.button.x <= (LARGEUR/1.3)+166 ){// si clic sur boutton
                  					///////ACCES A ECRAN CREDIT////
 							txtDestRect.x = 50;
 							txtDestRect.y = 50;
@@ -260,8 +282,9 @@ int main(int argc, char** argv)
                                 			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
                                 			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
                                 			SDL_RenderPresent(renderer);
-                 				} 
-						if (e.button.y > 72 && e.button.y <= 72+72 && e.button.x > 480 && e.button.x <= 480+166 ){// si clic sur boutton
+                 				}
+						////QUIT////
+						if (e.button.y > (HAUTEUR/5) && e.button.y <= (HAUTEUR/5)+72 && e.button.x > (LARGEUR/2.2) && e.button.x <= (LARGEUR/2.2)+166 ){// si clic sur boutton
                  					///////DESTRUCTION FENETRE/FERMETURE////
 							txtDestRect.x = 50;
 							txtDestRect.y = 50;
