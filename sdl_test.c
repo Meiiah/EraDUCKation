@@ -97,7 +97,7 @@ int main(int argc, char** argv)
 	}
 
 
-	if( (police = TTF_OpenFont("ChowFun.ttf", 20)) == NULL){
+	if( (police = TTF_OpenFont("04B_30__.ttf", 20)) == NULL){
 		fprintf(stderr, "erreur chargement font\n");
 		exit(EXIT_FAILURE);
 	}
