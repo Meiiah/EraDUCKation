@@ -9,23 +9,50 @@
 #define N 100
 
 /////////FONCTION POUR MENU/////
+int choix_difficulte(){
+	//IF POUR CHAQUE COORDONNE DE BOUTON CHOIX DIFFICULTE//
+	//DEMARRAGE PARTIE//
+}
+
 int choix_nb_joueur(){
 	//IF POUR CHAQUE COORDONNE DE BOUTON CHOIX JOUEUR//
 	//APPEL DE CHOIX_DIFFICULTE//
 	
 }
 
-int choix_difficulte(){
-	//IF POUR CHAQUE COORDONNE DE BOUTON CHOIX DIFFICULTE//
-	//DEMARRAGE PARTIE//
+int option(){
+	txtDestRect.x = 10;
+	txtDestRect.y = 50;
+       	/* Ajout du texte en noir */
+     	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+     	SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
+     	SDL_RenderPresent(renderer);	
 }
 
 int credit(){
-	//AFFICHAGE REMERCIEMENT ET NOMS PERSONNES DU GROUPE//
-}
+	//////////TEXTE CREDIT////////////
+	texteO = TTF_RenderUTF8_Blended(police, "Jeu réalisé par:\n - TOUZE Maxime\n - PHILIPPE Marion\n - VAIDIE Camille\n - MARCHAND Killian\n\n\n Licence 2 Inforamtique \n\n\n \u24B8 DUCKCorporation", couleurNoire);
+	if(!texteO){
+		fprintf(stderr, "Erreur à la création du texte : %s\n", SDL_GetError());
+		exit(EXIT_FAILURE);
+	}
 
-int quit(){
-	//DESTRUCTION DE LA FENETRE POUR FERMETURE//
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_Texture *texteO_tex = SDL_CreateTextureFromSurface(renderer, titre); 
+	if(!texteO_tex){
+		fprintf(stderr, "Erreur à la création du rendu du texteO : %s\n", SDL_GetError());
+		exit(EXIT_FAILURE);
+	}
+	SDL_FreeSurface(texteO); /* on a la texture, plus besoin du texte */
+	
+	//AFFICHAGE REMERCIEMENT ET NOMS PERSONNES DU GROUPE//
+	
+	txtDestRect.x = LARGEUR/2.2;
+	txtDestRect.y = HAUTEUR/5;
+       	/* Ajout du texte en noir */
+     	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+     	SDL_RenderCopy(renderer, texteO_tex, NULL, &txtDestRect);
+     	SDL_RenderPresent(renderer);
 }
 
 
@@ -101,22 +128,23 @@ int main(int argc, char** argv)
 		fprintf(stderr, "erreur chargement font\n");
 		exit(EXIT_FAILURE);
 	}
-	texte = TTF_RenderUTF8_Blended(police, "EraDUCKation!!", couleurNoire);
-	if(!texte){
+	titre = TTF_RenderUTF8_Blended(police, "EraDUCKation!!", couleurNoire);
+	if(!titre){
 		fprintf(stderr, "Erreur à la création du texte : %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
 
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_Texture *texte_tex = SDL_CreateTextureFromSurface(renderer, texte); 
-	if(!texte_tex){
+	SDL_Texture *titre_tex = SDL_CreateTextureFromSurface(renderer, titre); 
+	if(!titre_tex){
 		fprintf(stderr, "Erreur à la création du rendu du texte : %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
-	SDL_FreeSurface(texte); /* on a la texture, plus besoin du texte */
-	/* Position ou sera mis le texte dans la fenêtre */
+	SDL_FreeSurface(titre); /* on a la texture, plus besoin du texte */
+	
+	/* Position ou sera mis le texte dans la fenêtre 
     	txtDestRect.x = txtDestRect.y = 10;
-	SDL_QueryTexture(texte_tex, NULL, NULL, &(txtDestRect.w), &(txtDestRect.h));
+	SDL_QueryTexture(texte_tex, NULL, NULL, &(txtDestRect.w), &(txtDestRect.h));*/
 
 	//////////Chargement image de fond////////////////////////////
 	
@@ -256,42 +284,22 @@ int main(int argc, char** argv)
 						////OPTION////
 						if (e.button.y > (HAUTEUR/1.5) && e.button.y <= (HAUTEUR/1.5)+156 && e.button.x > (LARGEUR/1.3) && e.button.x <= (LARGEUR/1.3)+156 ){// si clic sur boutton
                  					/////ACCES AUX OPTIONS////
-							txtDestRect.x = 10;
-							txtDestRect.y = 50;
-                 					/* Ajout du texte en noir */
-                                			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-                                			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
-                                			SDL_RenderPresent(renderer);
+							option();
                  				}
 						////PLAY////
                  				if (e.button.y > (HAUTEUR/2) && e.button.y <= (HAUTEUR/2)+72 && e.button.x >(LARGEUR/4) && e.button.x <= (LARGEUR/4)+166 ){// si clic sur boutton
                  					///////ACCES A ECRAN CHOIX NB JOUEUR////
-							txtDestRect.x = 50;
-							txtDestRect.y = 50;
-                 					/* Ajout du texte en noir */
-                                			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-                                			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
-                                			SDL_RenderPresent(renderer);
+							choix_nb_joueur();
                  				}
 						////CREDIT////
 						if (e.button.y > (HAUTEUR/2) && e.button.y <= (HAUTEUR/2)+72 && e.button.x > (LARGEUR/1.3) && e.button.x <= (LARGEUR/1.3)+166 ){// si clic sur boutton
                  					///////ACCES A ECRAN CREDIT////
-							txtDestRect.x = 50;
-							txtDestRect.y = 50;
-                 					/* Ajout du texte en noir */
-                                			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-                                			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
-                                			SDL_RenderPresent(renderer);
+							credit();
                  				}
 						////QUIT////
 						if (e.button.y > (HAUTEUR/5) && e.button.y <= (HAUTEUR/5)+72 && e.button.x > (LARGEUR/2.2) && e.button.x <= (LARGEUR/2.2)+166 ){// si clic sur boutton
-                 					///////DESTRUCTION FENETRE/FERMETURE////
-							txtDestRect.x = 50;
-							txtDestRect.y = 50;
-                 					/* Ajout du texte en noir */
-                                			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-                                			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
-                                			SDL_RenderPresent(renderer);
+                 					//DESTRUCTION DE LA FENETRE POUR FERMETURE//
+							SDL_Quit();
                  				} 
                  			break;
 				
