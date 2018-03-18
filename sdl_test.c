@@ -187,7 +187,7 @@ int main(int argc, char** argv)
 	SDL_FreeSurface(bouton); /* on a la texture, plus besoin de l'image */
 	
 	////////////// Chargement Image Bouton Credit/////////////////////
-	rwop=SDL_RWFromFile("credit.png", "rb");
+	rwop=SDL_RWFromFile("Credit.png", "rb");
 	boutonC=IMG_LoadPNG_RW(rwop);
 	if(!boutonC) {
 	     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
@@ -200,7 +200,7 @@ int main(int argc, char** argv)
 	SDL_FreeSurface(boutonC); /* on a la texture, plus besoin de l'image */
 	
 	////////////// Chargement Image Bouton Quit/////////////////////
-	rwop=SDL_RWFromFile("quit.png", "rb");
+	rwop=SDL_RWFromFile("Quit.png", "rb");
 	boutonQ=IMG_LoadPNG_RW(rwop);
 	if(!boutonQ) {
 	     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
