@@ -19,6 +19,7 @@
 
 ///////////////////////////////////Fonctions affichage//////////
 
+/** \fn void compter_murs(caract_mat_t,int,int*/
 int compter_murs(caract_mat_t * cmat,int i, int j){// on compte les murs au niveau de l angle, sur la case suivante et sur la case du dessous
     int res=0;
     if(cmat->matrice[i][j].mur.murE) res++;
@@ -29,6 +30,7 @@ int compter_murs(caract_mat_t * cmat,int i, int j){// on compte les murs au nive
 }
 /////
 
+/** \fn void affichager_angle(caract_mat_t,int,int*/
 void afficher_angle(caract_mat_t * cmat,int j, int i){ // affiche l angle bas-droite de la case [ j ] [ i ]
     int nb_murs;
     nb_murs = compter_murs(cmat,j, i);
