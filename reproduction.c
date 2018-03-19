@@ -4,13 +4,14 @@
 #include <stdio.h>
 
 /**
-* \file piege.c
-* \brief Programme comprennant les piegfes dans le laby
+* \file reproduction.c
+* \brief Programme comprennant la reproduction des canards
 * \author VAIDIE Camille
 * \version 1.0
 * \date 20 Février 2018
 */ 
 
+<<<<<<< HEAD
 int ou_pondre(caract_mat_t * cmat, int * i, int * j){
 	int cpt =1;
 	while(1){
@@ -52,6 +53,9 @@ int ou_pondre(caract_mat_t * cmat, int * i, int * j){
 	printf("Hors matrice - ou pondre");
 }
 
+=======
+/** \fn void reproduction(caract_mat_t,int,joueur_t,joueur_t)*/
+>>>>>>> 5f315287389234b4c0f06470ec08c9dd45d5dadc
 void reproduction(caract_mat_t * mat, int nourriture_accouplement,joueur_t joueur,joueur_t joueur2){
 	int i;
 	int j;

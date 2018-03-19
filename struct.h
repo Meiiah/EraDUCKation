@@ -1,13 +1,6 @@
+#ifndef __STRUCT_H__
+#define __STRUCT_H__
 
-/**
-*\file struct.h
-*\brief structure
-*\author VAIDIE Camille
-*\version 1.0
-*\date 20 fevrier 2018
-*/
-
-#define nb_max 15
 
 /** \struct mur_s struct.h*/
 /** etat du mur*/
@@ -42,3 +35,4 @@ typedef struct joueur_s{
 	char nom_joueur[25];
 }joueur_t;
 
+#endif //__STRUCT_H__

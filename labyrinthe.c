@@ -19,6 +19,7 @@
 
 ///////////////////////////////////Fonctions affichage//////////
 
+/** \fn void compter_murs(caract_mat_t,int,int*/
 int compter_murs(caract_mat_t * cmat,int i, int j){// on compte les murs au niveau de l angle, sur la case suivante et sur la case du dessous
     int res=0;
     if(cmat->matrice[i][j].mur.murE) res++;
@@ -29,6 +30,7 @@ int compter_murs(caract_mat_t * cmat,int i, int j){// on compte les murs au nive
 }
 /////
 
+/** \fn void affichager_angle(caract_mat_t,int,int*/
 void afficher_angle(caract_mat_t * cmat,int j, int i){ // affiche l angle bas-droite de la case [ j ] [ i ]
     int nb_murs;
     nb_murs = compter_murs(cmat,j, i);
@@ -398,25 +400,25 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat){
 
 
 /** \fn void creer_labyrinthe()*/
-void creer_labyrinthe(caract_mat_t * cmat,ini_t ** mat){ /** Appel toutes les fonctions pour creer le labyrinthe*/
+void creer_labyrinthe(caract_mat_t * cmat ,ini_t ** mat){ /** Appel toutes les fonctions pour creer le labyrinthe*/
 
 	mur_t mur;
 
 	int mur_value;
 	int compteur=0;
-	int securite = 0,
+	int securite = 0;
 
 	//fprintf(stderr, "initialisation laby lancee\n");
-	init_laby(cmat,mat);
+	init_laby(cmat, mat);
 	//fprintf(stderr, "initialisation laby OK\n");
 
 	int i=0;
 	do{ //creation du labyrinthe ici
 		coord_case(cmat,mat,&compteur);
 		securite++;
-        if( ! securite == 1000 ) // si les coin ne font pas parti du labyrinthe(on fait 1000 tirages) on les mets dans le labyrinthe
-                maj_coin(cmat, mat);
-	}while( !laby_fini(cmat,mat) && securite <1000);
+        if( ! securite == cmat->taille_mat_x ) // si les coin ne font pas parti du labyrinthe(on fait 1000 tirages) on les mets dans le labyrinthe
+                maj_coins(cmat, mat);
+	}while( !laby_fini(cmat,mat));
 	//	i++;
 
 

@@ -3,12 +3,21 @@
 #include "struct.h"
 #include "matrice.h"
 
+/**
+ * \file matrice.c
+ * \brief Initialisation matrice
+ * \author PHILLIPE Marion
+ * \version 1.1
+ * \date 19 Mars 2018
+*/
+
+/** \fn int est_dans_matrice(caract_mat_t,int,int)*/
 int est_dans_matrice(caract_mat_t * cmat,int x, int y){
 	return(x>0 || x<cmat->taille_mat_x || y>0 || y<cmat->taille_mat_y);
 }
 
-/*definition de la matrice */
-void  creation_matrice(caract_mat_t * cmat){
+/** \fn void creation_matrice(caract_mat_t)*/
+void  creation_matrice(caract_mat_t * cmat){/*definition de la matrice */
 	case_t * GT = malloc(sizeof(case_t)*cmat->taille_mat_x*cmat->taille_mat_y);
 	cmat->matrice =malloc(sizeof(case_t *)*cmat->taille_mat_y);
 	int i;
@@ -19,6 +28,7 @@ void  creation_matrice(caract_mat_t * cmat){
 	}	
 }
 
+/** \fn void init_matrice(caract_mat_t)*/
 void init_matrice(caract_mat_t * cmat){
 	int i;
 	int j;
