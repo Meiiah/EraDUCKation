@@ -115,7 +115,8 @@ void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourr
 			break;
 		case 3: bon[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 			break;
-		default: printf("Saisir un choix possible :");
+		default: printf("ERREUR, Saisir un choix possible :");
+			scanf("%i",&result);
 			break;
 	}
 }
