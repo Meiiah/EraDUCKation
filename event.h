@@ -1,3 +1,6 @@
+#ifndef __EVENT_H__
+#define __EVENT_H__
+
 #define M 10
 
 int (*mauvais[M])(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement);
@@ -28,3 +31,5 @@ int canard_invincible(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int*
 int init_tab_event_mauvais();
 
 int init_tab_event_bon();
+
+#endif

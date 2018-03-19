@@ -6,11 +6,22 @@
 #include <stdio.h>
 #define M 10
 
+
+/**
+ * \file jeu_solo.c
+ * \brief programme des evenements possible sur le laby
+ * \author PHILLIPE Marion
+ * \version 1.0
+ * \date 19 Mars 2018
+*/
+
+
+
 int (*mauvais[M])(caract_mat_t *, joueur_t,joueur_t,int*,int*); /*tableau de pointeur sur les fonctions mauvaises*/
 int (*bon[M])(caract_mat_t *, joueur_t,joueur_t,int*,int*); /*tableau de pointeur sur les fonctions bonnes*/
 
 /*Evenement mauvais */
-
+/** \fn int tsunami(caract_mat_t,joueur_t,joueur_t,int*,int*)*/
 int tsunami(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	fprintf(stderr,"OK tsu");
 	int i,j,k;
@@ -49,6 +60,7 @@ int tsunami(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourritur
 	return 1;
 }
 
+/** \fn int tempete(caract_mat_t,joueur_t,joueur_t,int*,int*)*/
 int tempete(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	fprintf(stderr,"OK temp");
 	int i,j,k;
@@ -72,19 +84,21 @@ int tempete(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourritur
 	return 1;
 }
 
+/** \fn int famine(caract_mat_t,joueur_t,joueur_t,int*,int*)*/
 int famine(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	fprintf(stderr,"OK fam");
 	*nourriture_genere/=2;
 	return 1;
 	
 }
-
+/** \fn int reproduction(caract_mat_t,joueur_t,joueur_t,int*,int*)*/
 int reproduction_ralentie(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	fprintf(stderr,"OK re ral");
 	*nourriture_accouplement*=2; //variable de deplacer.c 
 	return 1;
 }
 
+/** \fn int apparition_predateur(caract_mat_t,joueur_t,joueur_t,int*,int*)*/
 int apparition_predateur(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	fprintf(stderr,"OK preda");
 	int i,k;	
@@ -106,19 +120,21 @@ int apparition_predateur(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,i
 }
 
 /* Evenement bon */
-
+/** \fn int reproduction_acceleree(caract_mat_t,joueur_t,joueur_t,int*,int*)*/
 int reproduction_acceleree(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	fprintf(stderr,"OK repro acc");
 	*nourriture_accouplement/=2;//variable de deplacer.c 
 	return 1;
 }
 
+/** \fn int plus_nourriture(caract_mat_t,joueur_t,joueur_t,int*,int*)*/
 int plus_nourriture(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	fprintf(stderr,"OK + nourr");
 	*nourriture_genere*=2;//generation de nourriture plus élevée
 	return 1;
 }
 
+/** \fn int joker_nourriture(caract_mat_t,joueur_t,joueur_t,int*,int*)*/
 int joker_nourriture(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	int i,j,k;
 	fprintf(stderr,"OK kjok");
@@ -132,6 +148,7 @@ int joker_nourriture(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* 
 	return 1;
 }
 //ajout au score
+/** \fn int liberation_canard(caract_mat_t,joueur_t,joueur_t,int*,int*)*/
 int liberation_canard(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	fprintf(stderr,"OK lib");
 	int i,k;	
@@ -151,7 +168,7 @@ int liberation_canard(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int*
 	}
 	return 1;
 }
-
+/** \fn int canard_invincible(caract_mat_t,joueur_t,joueur_t,int*,int*)*/
 int canard_invincible(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	fprintf(stderr,"OK invin");
 	/*prend un canard qui ne peut pas mourir*/
