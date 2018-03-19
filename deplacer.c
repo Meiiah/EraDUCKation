@@ -310,7 +310,7 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement,int nourriture_ge
 																verif=1;
 														
 														 break;
-													case 2: if( (i-1 > 0) && cmat->matrice[ i ][ j ].mur.murO !=1) //i decroit et vu qu on est dans le tableau pas besoin de tout verifier
+													case 2: if( (i-1 >= 0) && cmat->matrice[ i ][ j ].mur.murO !=1) //i decroit et vu qu on est dans le tableau pas besoin de tout verifier
 																verif=1;
 												
 														 break;
@@ -319,7 +319,7 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement,int nourriture_ge
 																verif=1;
 											
 														 break;
-													case 4:  if( (j-1 >0) && cmat->matrice[ i ][ j ].mur.murN !=1 )
+													case 4:  if( (j-1 >=0) && cmat->matrice[ i ][ j ].mur.murN !=1 )
 																verif=1;
 													
 														 break;
@@ -343,13 +343,9 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement,int nourriture_ge
                     }
         }//fin balayage matrice
         
-<<<<<<< HEAD
-        //reproduction(cmat, nourriture_accouplement, joueur,joueur2);
-        //manger(cmat);
-=======
         reproduction(cmat, nourriture_accouplement, joueur,joueur2);
     	manger(cmat, nourriture_genere);
->>>>>>> ab9fd08bec855791d6841c675f3a86cdb3f46741
+
     }
 
 }

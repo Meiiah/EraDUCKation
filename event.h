@@ -23,7 +23,7 @@ int reproduction_acceleree(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2
 
 int plus_nourriture(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement);
 
-int joker_nourriture(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement);
+int rien_faire(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement);
 
 int liberation_canard(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement);
 int canard_invincible(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourriture_genere,int* nourriture_accouplement);

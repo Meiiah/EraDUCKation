@@ -39,7 +39,7 @@ char *mauv_evts[nb_event]={
 char *bon_evts[nb_event]={
 	"Accelère la reproduction des canards",
 	"Génération de nourriture augmentée",
-	"Remplie toutes les réverses de nourriture des canards",
+	"Rien changer",
 	"Libère entre 0 et 5 canards",
 	"Rend un canard invincible"};
 
