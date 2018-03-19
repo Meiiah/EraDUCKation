@@ -343,7 +343,7 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
                     }
         }//fin balayage matrice
         
-        reproduction(cmat, nourriture_accouplement, joueur,joueur2);
+        //reproduction(cmat, nourriture_accouplement, joueur,joueur2);
         //manger(cmat);
     }
 
