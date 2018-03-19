@@ -32,7 +32,7 @@ int compter_murs(caract_mat_t * cmat,int i, int j){// on compte les murs au nive
 void afficher_angle(caract_mat_t * cmat,int j, int i){ // affiche l angle bas-droite de la case [ j ] [ i ]
     int nb_murs;
     nb_murs = compter_murs(cmat,j, i);
-				
+
 
                if(nb_murs == 4)        printf("\u256c"); // SI TOUS LES MURS ADJACENTS A L ANGLE EXISTENT ON MEYT UN ANGE EN CROIX
 
@@ -125,7 +125,7 @@ void affichage_laby(caract_mat_t * cmat){ /** Affichage du labyrinthe avec les m
 			   	 	else printf(" ");
 			   	else{
 			   	 printf("%i",cmat->matrice[j][i].nb_occupant);
-				 
+
 				}
                 if(cmat->matrice[j][i].mur.murE==1)   printf("\u2551"); //afficher mur si il faut
                 else printf(" ");
@@ -143,7 +143,7 @@ void affichage_laby(caract_mat_t * cmat){ /** Affichage du labyrinthe avec les m
 
 
 			for(j=0;j<cmat->taille_mat_y;j++){// pour chaque ligne on fait les murs horizontaux, et les anges
-				
+
 			    if(cmat->matrice[j][i].mur.murS) printf("\u2550"); //affichage du mur du bas
 			    else printf(" ");
 
@@ -220,7 +220,7 @@ void valeur_case(caract_mat_t * cmat,ini_t ** mat,int x1, int y1, int x2, int y2
 
 int compter_mur(ini_t ** mat,int i, int j){
 	int cpt=0;
-	
+
 	if(mat[i][j].mur.murE){
 		cpt++;
 	}
@@ -233,8 +233,8 @@ int compter_mur(ini_t ** mat,int i, int j){
 	if(mat[i][j].mur.murS){
 		cpt++;
 	}
-	return(cpt >1);
-	
+	return(cpt >2);
+
 }
 
 /** \fn void case_adja(int coord_x, int coord_y, int *compteur)*/
@@ -313,7 +313,7 @@ void case_adja(caract_mat_t * cmat,ini_t ** mat,int coord_x, int coord_y, int *c
 
 
 /** \fn void coord_case(int* compteur)*/
-void coord_case(caract_mat_t * cmat, ini_t ** mat,int* compteur){ /** Choisie aléatoirement une case dans le labyrinthe afin de lui attribué une valeur et de creer les galeries a partir des fonctions précédentes. Appel la fonction case_adj*/
+void coord_case(caract_mat_t * cmat, ini_t ** mat,int* compteur){ /** Choisi aléatoirement une case dans le labyrinthe afin de lui attribuer une valeur et de creer les galeries a partir des fonctions précédentes. Appel la fonction case_adj*/
 	int coord_x;
 	int coord_y;
 
@@ -337,6 +337,66 @@ int laby_fini(caract_mat_t * cmat, ini_t ** mat){/** Vérification permettant de
 	return 1;
 }
 
+void maj_coins(caract_mat_t * cmat, ini_t ** mat){
+    if(compter_mur( mat, 0 , 0 )){  // coin en haut a gauche
+        switch(rand()%2){
+            case 0 : //soit on libere vers le bas
+                        mat[0][0].mur.murS =0;
+                        mat[0][1].mur.murN =0;
+                        break;
+
+            case 1 : //soit on libere a droite
+                        mat[0][0].mur.murE =0;
+                        mat[1][0].mur.murO =0;
+                        break;
+        }
+    }
+
+    if(compter_mur( mat,  cmat->taille_mat_x-1 , 0 )){  // coin en haut a droite
+           switch(rand()%2){
+               case 0 : //soit on libere vers le bas
+                           mat[cmat->taille_mat_x-1][0].mur.murS =0;
+                           mat[cmat->taille_mat_x-1][1].mur.murN =0;
+                           break;
+
+               case 1 : //soit on libere a gauche
+                           mat[cmat->taille_mat_x-1 ][0].mur.murO =0;
+                           mat[cmat->taille_mat_x-2 ][0].mur.murE =0;
+                           break;
+         }
+     }
+
+    if(compter_mur( mat,  0 , cmat->taille_mat_y-1  )){  // coin en bas a gauche
+           switch(rand()%2){
+               case 0 : //soit on libere vers le haut
+                           mat[0][cmat->taille_mat_y-1 ].mur.murN =0;
+                           mat[0][cmat->taille_mat_y-2 ].mur.murS =0;
+                           break;
+
+               case 1 : //soit on libere a droite
+                           mat[0][cmat->taille_mat_y-1 ].mur.murO =0;
+                           mat[1][cmat->taille_mat_y-1 ].mur.murE =0;
+                           break;
+         }
+     }
+
+        if(compter_mur( mat, cmat->taille_mat_x-1 , cmat->taille_mat_y-1  )){  // coin en bas a droite
+           switch(rand()%2){
+               case 0 : //soit on libere vers le haut
+                           mat[cmat->taille_mat_x-1 ][cmat->taille_mat_y-1 ].mur.murN =0;
+                           mat[cmat->taille_mat_x-1 ][cmat->taille_mat_y-2 ].mur.murS =0;
+                           break;
+
+               case 1 : //soit on libere a gauche
+                           mat[cmat->taille_mat_x-1 ][cmat->taille_mat_y-1 ].mur.murO =0;
+                           mat[cmat->taille_mat_x-2 ][cmat->taille_mat_y-1 ].mur.murE =0;
+                           break;
+         }
+     }
+
+}
+
+
 /** \fn void creer_labyrinthe()*/
 void creer_labyrinthe(caract_mat_t * cmat,ini_t ** mat){ /** Appel toutes les fonctions pour creer le labyrinthe*/
 
@@ -344,16 +404,23 @@ void creer_labyrinthe(caract_mat_t * cmat,ini_t ** mat){ /** Appel toutes les fo
 
 	int mur_value;
 	int compteur=0;
+	int securite = 0,
 
 	//fprintf(stderr, "initialisation laby lancee\n");
 	init_laby(cmat,mat);
 	//fprintf(stderr, "initialisation laby OK\n");
 
 	int i=0;
-	do{
+	do{ //creation du labyrinthe ici
 		coord_case(cmat,mat,&compteur);
-	}while(!laby_fini(cmat,mat));
+		securite++;
+        if( ! securite == 1000 ) // si les coin ne font pas parti du labyrinthe(on fait 1000 tirages) on les mets dans le labyrinthe
+                maj_coin(cmat, mat);
+	}while( !laby_fini(cmat,mat) && securite <1000);
 	//	i++;
+
+
+
 	//}while(i<5);
 
 }
@@ -366,29 +433,30 @@ void copi_laby(ini_t ** mat,caract_mat_t * cmat){
 		}
 	}
 }
-	
+
 
 
 int main_laby(caract_mat_t * cmat){
 	srand(time(NULL));
 	int i;
-	
+
 	ini_t * TAMP= malloc(sizeof(ini_t)*cmat->taille_mat_x*cmat->taille_mat_y);//malloc
 	ini_t ** mato =malloc(sizeof(ini_t *)*cmat->taille_mat_y);
-	
+
 	int taille=cmat->taille_mat_x;
-	
+
 	for(i=0;i<cmat->taille_mat_y;i++){
-		mato[i]=&TAMP[taille*i]; 
+		mato[i]=&TAMP[taille*i];
 	}
-	
+
 
 	creer_labyrinthe(cmat,mato);
 	copi_laby(mato,cmat);
-	
+
 	free(mato);
 	free(TAMP);
 
 	return EXIT_SUCCESS;
 
 }
+

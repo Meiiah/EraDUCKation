@@ -16,13 +16,13 @@ int choix_difficultee(int choix){
 
 	switch(choix){
 		case 1 :
-			return 7;
+			return 6;
 		break;	
 		case 2:
-			return 15;
+			return 10;
 		break;
 		case 3:
-			return 25;
+			return 17;
 		break;		
 	}
 	return 1;

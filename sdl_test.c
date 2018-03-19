@@ -7,6 +7,56 @@
 #define LARGEUR_WIN 640
 #define HAUTEUR_WIN 480
 #define N 100
+
+/////////FONCTION POUR MENU/////
+int choix_difficulte(){
+	//IF POUR CHAQUE COORDONNE DE BOUTON CHOIX DIFFICULTE//
+	//DEMARRAGE PARTIE//
+}
+
+int choix_nb_joueur(){
+	//IF POUR CHAQUE COORDONNE DE BOUTON CHOIX JOUEUR//
+	//APPEL DE CHOIX_DIFFICULTE//
+	
+}
+
+int option(){
+	txtDestRect.x = 10;
+	txtDestRect.y = 50;
+       	/* Ajout du texte en noir */
+     	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+     	SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
+     	SDL_RenderPresent(renderer);	
+}
+
+int credit(){
+	//////////TEXTE CREDIT////////////
+	texteO = TTF_RenderUTF8_Blended(police, "Jeu réalisé par:\n - TOUZE Maxime\n - PHILIPPE Marion\n - VAIDIE Camille\n - MARCHAND Killian\n\n\n Licence 2 Inforamtique \n\n\n \u24B8 DUCKCorporation", couleurNoire);
+	if(!texteO){
+		fprintf(stderr, "Erreur à la création du texte : %s\n", SDL_GetError());
+		exit(EXIT_FAILURE);
+	}
+
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_Texture *texteO_tex = SDL_CreateTextureFromSurface(renderer, titre); 
+	if(!texteO_tex){
+		fprintf(stderr, "Erreur à la création du rendu du texteO : %s\n", SDL_GetError());
+		exit(EXIT_FAILURE);
+	}
+	SDL_FreeSurface(texteO); /* on a la texture, plus besoin du texte */
+	
+	//AFFICHAGE REMERCIEMENT ET NOMS PERSONNES DU GROUPE//
+	
+	txtDestRect.x = LARGEUR/2.2;
+	txtDestRect.y = HAUTEUR/5;
+       	/* Ajout du texte en noir */
+     	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+     	SDL_RenderCopy(renderer, texteO_tex, NULL, &txtDestRect);
+     	SDL_RenderPresent(renderer);
+}
+
+
+///////////////////////////////
 /*
 typedef struct text_s{
 	SDL_Texture text;
@@ -74,26 +124,27 @@ int main(int argc, char** argv)
 	}
 
 
-	if( (police = TTF_OpenFont("ChowFun.ttf", 20)) == NULL){
+	if( (police = TTF_OpenFont("04B_30__.ttf", 20)) == NULL){
 		fprintf(stderr, "erreur chargement font\n");
 		exit(EXIT_FAILURE);
 	}
-	texte = TTF_RenderUTF8_Blended(police, "EraDUCKation!!", couleurNoire);
-	if(!texte){
+	titre = TTF_RenderUTF8_Blended(police, "EraDUCKation!!", couleurNoire);
+	if(!titre){
 		fprintf(stderr, "Erreur à la création du texte : %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
 
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_Texture *texte_tex = SDL_CreateTextureFromSurface(renderer, texte); 
-	if(!texte_tex){
+	SDL_Texture *titre_tex = SDL_CreateTextureFromSurface(renderer, titre); 
+	if(!titre_tex){
 		fprintf(stderr, "Erreur à la création du rendu du texte : %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
-	SDL_FreeSurface(texte); /* on a la texture, plus besoin du texte */
-	/* Position ou sera mis le texte dans la fenêtre */
+	SDL_FreeSurface(titre); /* on a la texture, plus besoin du texte */
+	
+	/* Position ou sera mis le texte dans la fenêtre 
     	txtDestRect.x = txtDestRect.y = 10;
-	SDL_QueryTexture(texte_tex, NULL, NULL, &(txtDestRect.w), &(txtDestRect.h));
+	SDL_QueryTexture(texte_tex, NULL, NULL, &(txtDestRect.w), &(txtDestRect.h));*/
 
 	//////////Chargement image de fond////////////////////////////
 	
@@ -111,16 +162,16 @@ int main(int argc, char** argv)
 	
 	////////////// Chargement Image Bouton Option/////////////////////
 	rwop=SDL_RWFromFile("option.png", "rb");
-	bouton=IMG_LoadPNG_RW(rwop);
-	if(!bouton) {
+	boutonO=IMG_LoadPNG_RW(rwop);
+	if(!boutonO) {
 	     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
 	}
-	SDL_Texture *bouton_tex = SDL_CreateTextureFromSurface(renderer, bouton); 
-	if(!bouton_tex){
+	SDL_Texture *boutonO_tex = SDL_CreateTextureFromSurface(renderer, boutonO); 
+	if(!boutonO_tex){
 		fprintf(stderr, "Erreur à la création du rendu du bouton : %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
-	SDL_FreeSurface(bouton); /* on a la texture, plus besoin de l'image */
+	SDL_FreeSurface(boutonO); /* on a la texture, plus besoin de l'image */
 	
 	////////////// Chargement Image Bouton Play/////////////////////
 	rwop=SDL_RWFromFile("Play.png", "rb");
@@ -136,30 +187,30 @@ int main(int argc, char** argv)
 	SDL_FreeSurface(bouton); /* on a la texture, plus besoin de l'image */
 	
 	////////////// Chargement Image Bouton Credit/////////////////////
-	/*rwop=SDL_RWFromFile("option.png", "rb");
-	bouton=IMG_LoadPNG_RW(rwop);
-	if(!bouton) {
+	rwop=SDL_RWFromFile("Credit.png", "rb");
+	boutonC=IMG_LoadPNG_RW(rwop);
+	if(!boutonC) {
 	     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
 	}
-	SDL_Texture *bouton_tex = SDL_CreateTextureFromSurface(renderer, bouton); 
-	if(!bouton_tex){
-		fprintf(stderr, "Erreur à la création du rendu du bouton : %s\n", SDL_GetError());
+	SDL_Texture *boutonC_tex = SDL_CreateTextureFromSurface(renderer, boutonC); 
+	if(!boutonC_tex){
+		fprintf(stderr, "Erreur à la création du rendu du boutonC : %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
-	SDL_FreeSurface(bouton); /* on a la texture, plus besoin de l'image */
+	SDL_FreeSurface(boutonC); /* on a la texture, plus besoin de l'image */
 	
 	////////////// Chargement Image Bouton Quit/////////////////////
-	/*rwop=SDL_RWFromFile("option.png", "rb");
-	bouton=IMG_LoadPNG_RW(rwop);
-	if(!bouton) {
+	rwop=SDL_RWFromFile("Quit.png", "rb");
+	boutonQ=IMG_LoadPNG_RW(rwop);
+	if(!boutonQ) {
 	     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
 	}
-	SDL_Texture *bouton_tex = SDL_CreateTextureFromSurface(renderer, bouton); 
-	if(!bouton_tex){
+	SDL_Texture *boutonQ_tex = SDL_CreateTextureFromSurface(renderer, boutonQ); 
+	if(!boutonQ_tex){
 		fprintf(stderr, "Erreur à la création du rendu du bouton : %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
-	SDL_FreeSurface(bouton); /* on a la texture, plus besoin de l'image */
+	SDL_FreeSurface(boutonQ); /* on a la texture, plus besoin de l'image */
 	
 	////////////////////////////////////////////////////////////
 
@@ -183,24 +234,43 @@ int main(int argc, char** argv)
                                 SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 				SDL_RenderClear(renderer);
                                 
-                                							
-                                /* Ajout de la premiere image à une certaine position */
+                                /* Ajout du texte en noir */
+				txtDestRect.x = LARGEUR/2.2;
+				txtDestRect.y = HAUTEUR/5;
+								
+                                SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+                                SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
+                                SDL_RenderPresent(renderer);
+								
+                                /* Ajout Image de Fond */
                                 imgDestRect.x = 0;
 				imgDestRect.y = 0;
 				SDL_QueryTexture(image_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
 				SDL_RenderCopy(renderer, image_tex, NULL, &imgDestRect);
 								
                                 /* Ajout Bouton Option */
-				imgDestRect.x = 484;
-				imgDestRect.y = 324;
-				SDL_QueryTexture(bouton_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
-				SDL_RenderCopy(renderer, bouton_tex, NULL, &imgDestRect);
+				imgDestRect.x = LARGEUR/1.3;
+				imgDestRect.y = HAUTEUR/1.5;
+				SDL_QueryTexture(boutonO_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
+				SDL_RenderCopy(renderer, boutonO_tex, NULL, &imgDestRect);
 				
 				/* Ajout Bouton Play */
-				imgDestRect.x = 480;
-				imgDestRect.y = 72;
+				imgDestRect.x = LARGEUR/4;
+				imgDestRect.y = HAUTEUR/2;
 				SDL_QueryTexture(boutonP_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
 				SDL_RenderCopy(renderer, boutonP_tex, NULL, &imgDestRect);
+								
+				/* Ajout Bouton Credit */
+				imgDestRect.x = LARGEUR/1.3;
+				imgDestRect.y = HAUTEUR/2;
+				SDL_QueryTexture(boutonC_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
+				SDL_RenderCopy(renderer, boutonC_tex, NULL, &imgDestRect);
+				
+				/* Ajout Bouton Quit */
+				imgDestRect.x = LARGEUR/2.2;
+				imgDestRect.y = HAUTEUR/5;
+				SDL_QueryTexture(boutonQ_tex, NULL, NULL, &(imgDestRect.w), &(imgDestRect.h));
+				SDL_RenderCopy(renderer, boutonQ_tex, NULL, &imgDestRect);
 								
                                 /* On fait le rendu ! */
                                 SDL_RenderPresent(renderer);
@@ -211,22 +281,26 @@ int main(int argc, char** argv)
 					///////////Gestion evenement clique souris////////////////////////
 					////Recuperer largeur hauteur de chaque image/////
 					case SDL_MOUSEBUTTONUP:
-						if (e.button.y > 324 && e.button.y <= 324+156 && e.button.x > 484 && e.button.x <= 484+156 ){// si clic sur boutton
-                 					txtDestRect.x = 10;
-							txtDestRect.y = 50;
-                 					/* Ajout du texte en noir */
-                                			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-                                			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
-                                			SDL_RenderPresent(renderer);
+						////OPTION////
+						if (e.button.y > (HAUTEUR/1.5) && e.button.y <= (HAUTEUR/1.5)+156 && e.button.x > (LARGEUR/1.3) && e.button.x <= (LARGEUR/1.3)+156 ){// si clic sur boutton
+                 					/////ACCES AUX OPTIONS////
+							option();
                  				}
-                 				if (e.button.y > 72 && e.button.y <= 72+72 && e.button.x > 480 && e.button.x <= 480+166 ){// si clic sur boutton
-                 					txtDestRect.x = 50;
-							txtDestRect.y = 50;
-                 					/* Ajout du texte en noir */
-                                			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-                                			SDL_RenderCopy(renderer, texte_tex, NULL, &txtDestRect);
-                                			SDL_RenderPresent(renderer);
-                 				} 	
+						////PLAY////
+                 				if (e.button.y > (HAUTEUR/2) && e.button.y <= (HAUTEUR/2)+72 && e.button.x >(LARGEUR/4) && e.button.x <= (LARGEUR/4)+166 ){// si clic sur boutton
+                 					///////ACCES A ECRAN CHOIX NB JOUEUR////
+							choix_nb_joueur();
+                 				}
+						////CREDIT////
+						if (e.button.y > (HAUTEUR/2) && e.button.y <= (HAUTEUR/2)+72 && e.button.x > (LARGEUR/1.3) && e.button.x <= (LARGEUR/1.3)+166 ){// si clic sur boutton
+                 					///////ACCES A ECRAN CREDIT////
+							credit();
+                 				}
+						////QUIT////
+						if (e.button.y > (HAUTEUR/5) && e.button.y <= (HAUTEUR/5)+72 && e.button.x > (LARGEUR/2.2) && e.button.x <= (LARGEUR/2.2)+166 ){// si clic sur boutton
+                 					//DESTRUCTION DE LA FENETRE POUR FERMETURE//
+							SDL_Quit();
+                 				} 
                  			break;
 				
 				} 
