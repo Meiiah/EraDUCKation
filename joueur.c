@@ -15,9 +15,7 @@
 
 #define nb_event 5
 /** \fn void ajout_score(int,joueur_t,joueur_t)*/
-/**fonction d'ajour de score des deux joueurs*/
-
-void ajout_score(int point,joueur_t joueur, joueur_t joueur2){
+void ajout_score(int point,joueur_t joueur, joueur_t joueur2){/**fonction d'ajour de score des deux joueurs*/
 	joueur.score+=point; // ajout des points en fonction de l'action faite
 	if(!strcmp(joueur2.nom_joueur,"null")){
 		joueur2.score-=point;
@@ -25,8 +23,7 @@ void ajout_score(int point,joueur_t joueur, joueur_t joueur2){
 }
 
 /**\fn void caract_joueur(joueur_t)*/
-/** saisi du pseudo du joueur */
-void caract_joueur(joueur_t joueur){
+void caract_joueur(joueur_t joueur){/** saisi du pseudo du joueur */
 	printf("Saisir le pseudo du joueur : ");
 	scanf("%s",joueur.nom_joueur);
 	joueur.score=0;
