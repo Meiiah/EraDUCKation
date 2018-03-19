@@ -1,6 +1,7 @@
 #ifndef __STRUCT_H__
 #define __STRUCT_H__
 
+#define nb_max 15
 
 /** \struct mur_s struct.h*/
 /** etat du mur*/
