@@ -327,7 +327,7 @@ void coord_case(caract_mat_t * cmat, ini_t ** mat,int* compteur){ /** Choisi al�
 	case_adja(cmat,mat,coord_x,coord_y,compteur);
 }
 
-/** \fn int laby_fini()*/
+/** \fn int laby_fini(caract_mat_t * cmat, ini_t ** mat)*/
 int laby_fini(caract_mat_t * cmat, ini_t ** mat){/** Vérification permettant de savoir si le labyrinthe est finit ou non*/
 	int i,j;
 	for(i=0; i<cmat->taille_mat_x; i++){
@@ -339,17 +339,19 @@ int laby_fini(caract_mat_t * cmat, ini_t ** mat){/** Vérification permettant de
 	return 1;
 }
 
-void maj_coins(caract_mat_t * cmat, ini_t ** mat){
+void maj_coins(caract_mat_t * cmat, ini_t ** mat, int* compteur){
     if(compter_mur( mat, 0 , 0 )){  // coin en haut a gauche
         switch(rand()%2){
             case 0 : //soit on libere vers le bas
                         mat[0][0].mur.murS =0;
                         mat[0][1].mur.murN =0;
+						valeur_case(cmat,mat,0,0,0,1, compteur);
                         break;
 
             case 1 : //soit on libere a droite
                         mat[0][0].mur.murE =0;
                         mat[1][0].mur.murO =0;
+						valeur_case(cmat,mat,0,0,1,0, compteur);
                         break;
         }
     }
@@ -359,6 +361,7 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat){
                case 0 : //soit on libere vers le bas
                            mat[cmat->taille_mat_x-1][0].mur.murS =0;
                            mat[cmat->taille_mat_x-1][1].mur.murN =0;
+						   valeur_case(cmat,mat,taille_mat_x-1,0,taille_mat_x-1,0, compteur);
                            break;
 
                case 1 : //soit on libere a gauche
@@ -416,8 +419,13 @@ void creer_labyrinthe(caract_mat_t * cmat ,ini_t ** mat){ /** Appel toutes les f
 	do{ //creation du labyrinthe ici
 		coord_case(cmat,mat,&compteur);
 		securite++;
-        if( ! securite == cmat->taille_mat_x ) // si les coin ne font pas parti du labyrinthe(on fait 1000 tirages) on les mets dans le labyrinthe
-                maj_coins(cmat, mat);
+        if( securite >= cmat->taille_mat_x ) // si les coin ne font pas parti du labyrinthe(on fait 1000 tirages) on les mets dans le labyrinthe
+                maj_coins(cmat, mat, &compteur);
+
+		if(securite == 2000){
+			printf("erreur du chargement du labyrinthe");	
+			break;	
+		}
 	}while( !laby_fini(cmat,mat));
 	//	i++;
 
