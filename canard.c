@@ -21,7 +21,7 @@ void init_canard(caract_mat_t * cmat){/** met des canards dans des cases aléato
 		y=(rand()%(cmat->taille_mat_y ));
 		if(est_dans_matrice(cmat,x,y)){
 			cmat->matrice[x][y].nb_occupant++;
-			cmat->matrice[x][y].tab_canard[cmat->matrice[x][y].nb_occupant-1].nourriture=50;
+			cmat->matrice[x][y].tab_canard[cmat->matrice[x][y].nb_occupant-1].nourriture=20;
 			cmat->matrice[x][y].tab_canard[cmat->matrice[x][y].nb_occupant-1].etat=1;
 		}
 		

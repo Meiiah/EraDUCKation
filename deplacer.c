@@ -276,7 +276,7 @@ void deplacer_canard(caract_mat_t * cmat,int i, int j, int k, int direction){/**
 /*=======================================================================================================================*/
 
 /**\fn void deplacer(void)*/
-void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur, joueur_t joueur2){/** fonction qui déplace des canards tirés au sort d une case puis d une autre */
+void deplacer(caract_mat_t * cmat, int nourriture_accouplement,int nourriture_genere, joueur_t joueur, joueur_t joueur2){/** fonction qui déplace des canards tirés au sort d une case puis d une autre */
     int i,j,k;
     int direction=-1;
     int verif =1;
@@ -344,7 +344,7 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement, joueur_t joueur,
         }//fin balayage matrice
         
         reproduction(cmat, nourriture_accouplement, joueur,joueur2);
-        //manger(cmat);
+    	manger(cmat, nourriture_genere);
     }
 
 }
