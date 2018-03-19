@@ -1,70 +1,67 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "struct.h"
+#include "matrice.h"
 
+/**
+ * \file deplacer.c
+ * \brief fichier contenant les fonctions de deplacement
+ * \author Maxime Touzé
+ * \version 1.0
+ * \date 19 mars 2018
+*/
 
-int gen = 12;
-
-void sauvegarde(case_t **matrice,int N){//sauvegarde l avancee (nombre de generations), la taille N de la matrice et la matrice.
+/** \fn void sauvegarde(caract_mat_t * cmat,int nourriture_genere,int nourriture_accouplement,joueur_t joueur,joueur_t joueur2,int generation)*/
+void sauvegarde(caract_mat_t * cmat,int nourriture_genere,int nourriture_accouplement,joueur_t joueur,joueur_t joueur2,int generation)
+{/**sauvegarde l avancee du jeu (nombre de generations),la nourriture nécessaire pour l accouplement,  les tailles de la matrice et la matrice.*/
     FILE * fichier;
     fichier=fopen("sav.txt", "w"); //fichier de sauvegarde
     
-    fwrite(&gen, sizeof(int),1,fichier);//on prend gen
-    fwrite(&N, sizeof(int),1, fichier);//idem pour N
-    fwrite(matrice, sizeof(case_t),N*N,fichier);//on recupere la matrice de la taille n*n
+    fwrite(&generation, sizeof(int),1,fichier);//on sauvegarde le nb generation
+	fwrite(&nourriture_genere, sizeof(int),1,fichier);//on sauvegarde la nourritue générée
+	fwrite(&nourriture_accouplement, sizeof(int),1,fichier);//on sauvegarde la nourriture d accouplement
+
+	fwrite(&joueur , sizeof(joueur_t),1,fichier);//on sauvegarde le joueur 1 (ses points....)
+	fwrite(&joueur2, sizeof(joueur_t),1,fichier);//on sauvegarde le nb generation (
+ 
+    fwrite(cmat, sizeof(caract_mat_t),1, fichier);//on sauvegarde cmat et donc les tailles etc
+    fwrite(cmat->matrice[0], sizeof(case_t), (cmat->taille_mat_x * cmat->taille_mat_y) ,fichier);//on sauvegarde la matrice de taille case t et de taille_mat_x*taille_mat_y elements
 
     fclose(fichier);
  }
 
-void charger(case_t ** matrice, int N){//charge la matrice de jeu, sa taille N et le nombre de generation (gen,n,mat)
+/** \fn void charger(caract_mat_t * cmat,int nourriture_genere,int nourriture_accouplement,joueur_t joueur,joueur_t joueur2,int generation)*/
+void charger(caract_mat_t * cmat,int nourriture_genere,int nourriture_accouplement,joueur_t joueur,joueur_t joueur2,int generation)
+{/**charge l avancee du jeu (nombre de generations),la nourriture nécessaire pour l accouplement, malloc cmat, charge les tailles de la matrice, l init et donc la malloc, et y met les valeurs.*/
     FILE * fichier;
     fichier=fopen("sav.txt", "r");
     //on recupere les int
-    fread(&gen, sizeof(int), 1, fichier);
-    fread(&N, sizeof(int), 1, fichier);
-    //on enleve l allocatiln obsolete de la matrice, on l alloc a la bonne taille, et on y met les donnees
-    free(matrice);
-    matrice=malloc(sizeof(case_t)*N*N);
-    fread(matrice, sizeof(case_t),N*N,fichier);
-    
+
+    fread(&generation, sizeof(int),1,fichier);//on sauvegarde le nb generation
+	fread(&nourriture_genere, sizeof(int),1,fichier);//on sauvegarde la nourritue générée
+	fread(&nourriture_accouplement, sizeof(int),1,fichier);//on sauvegarde la nourriture d accouplement
+
+	fread(&joueur , sizeof(joueur_t),1,fichier);//on sauvegarde le joueur 1 (ses points....)
+	fread(&joueur2, sizeof(joueur_t),1,fichier);//on sauvegarde le nb generation (
+
+
+    //on enleve les allocations obsoletes de la matrice, on l alloc a la bonne taille, et on y met les donnees
+	int i;
+	if(cmat->matrice){
+		for(i=0; i<cmat->taille_mat_y; i++){
+			free(cmat->matrice[i]);
+		}free(cmat->matrice);
+	}
+	if(cmat){
+		free(cmat);
+	}
+	////////
+    cmat=malloc(sizeof(case_t));
+    fwrite(cmat, sizeof(caract_mat_t),1, fichier);
+
+    init_matrice(cmat); 
+
+	fread(cmat->matrice[0], sizeof(case_t), (cmat->taille_mat_x * cmat->taille_mat_y) ,fichier);
+
     fclose(fichier);
 }
-/*
-void main(){ // pour tester les fonctiins, a supprimer quand vérifié
-    matrice=malloc(sizeof(case_t)*N*N);
-
-    int i,j;
-    for(i =0; i<N; i++){
-        for(j=0; j<N; j++){
-            mat[i][j]= i+j;
-        }
-    }
-
-     for(i =0; i<N; i++){
-        printf(" \n");
-        for(j=0; j<N; j++){
-            printf("%i ",mat[i][j]);
-        }
-    }
-
-    sauvegarde();
-
-
-    for(i =0; i<N; i++){
-        for(j=0; j<N; j++){
-            mat[i][j]= 0;
-        }
-    }
-    
-    charger();
-
-    for(i =0; i<N; i++){
-        printf(" \n");
-        for(j=0; j<N; j++){
-            printf("%i ",mat[i][j]);
-        }
-    }
-    printf("gen:%i", gen);
-
-}
-*/
