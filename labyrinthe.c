@@ -398,25 +398,25 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat){
 
 
 /** \fn void creer_labyrinthe()*/
-void creer_labyrinthe(caract_mat_t * cmat,ini_t ** mat){ /** Appel toutes les fonctions pour creer le labyrinthe*/
+void creer_labyrinthe(caract_mat_t * cmat ,ini_t ** mat){ /** Appel toutes les fonctions pour creer le labyrinthe*/
 
 	mur_t mur;
 
 	int mur_value;
 	int compteur=0;
-	int securite = 0,
+	int securite = 0;
 
 	//fprintf(stderr, "initialisation laby lancee\n");
-	init_laby(cmat,mat);
+	init_laby(cmat, mat);
 	//fprintf(stderr, "initialisation laby OK\n");
 
 	int i=0;
 	do{ //creation du labyrinthe ici
 		coord_case(cmat,mat,&compteur);
 		securite++;
-        if( ! securite == 1000 ) // si les coin ne font pas parti du labyrinthe(on fait 1000 tirages) on les mets dans le labyrinthe
-                maj_coin(cmat, mat);
-	}while( !laby_fini(cmat,mat) && securite <1000);
+        if( ! securite == cmat->taille_mat_x ) // si les coin ne font pas parti du labyrinthe(on fait 1000 tirages) on les mets dans le labyrinthe
+                maj_coins(cmat, mat);
+	}while( !laby_fini(cmat,mat));
 	//	i++;
 
 
