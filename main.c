@@ -83,6 +83,15 @@ int main(void){
 		
 	switch(choix){
 		case 1 :
+			
+			/* Nombre de Joueur */
+			printf("1 : 1 joueur\n");
+			printf("2 : 2 joueurs\n");
+			printf("Choix: ");
+			scanf(" %i",&choix);
+		
+			nbr_joueur=choix_nbr_joueur(choix,joueur,joueur2);
+			
 			/* Difficulté*/
 			printf("1 : Facile\n");
 			printf("2 : Intermédiaire\n");
@@ -93,14 +102,6 @@ int main(void){
 			cmat->taille_mat_x=choix_difficultee(choix);	
 			cmat->taille_mat_y=cmat->taille_mat_x;
 
-			/* Nombre de Joueur */
-			printf("1 : 1 joueur\n");
-			printf("2 : 2 joueurs\n");
-			printf("Choix: ");
-			scanf(" %i",&choix);
-		
-			nbr_joueur=choix_nbr_joueur(choix,joueur,joueur2);
-			
 			/*Mise en place de la matrice adaptée*/
 			creation_matrice(cmat);
 			init_matrice(cmat);
