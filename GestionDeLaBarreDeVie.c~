@@ -45,3 +45,19 @@ int Gestion_vie(char tab[], int point_vie_i){/**Gestion de la vie restante/vie p
     return point_vie_i;
 }
 
+//A SUPPRIMER PLUTARD//
+void main(){
+    int pointvie;
+    char barre_vie[N]={'=','=','=','=','=','=','=','=','=','='};
+    int point_vie_i=10;
+
+
+    while(point_vie_i>0)
+    {
+        printf("Vie\n|%s|", barre_vie);
+        point_vie_i=Gestion_vie(barre_vie, point_vie_i);
+        printf("%i",point_vie_i);
+        system("cls");
+    }
+    printf("MORT");
+}
