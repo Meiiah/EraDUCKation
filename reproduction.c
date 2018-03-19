@@ -11,6 +11,46 @@
 * \date 20 Février 2018
 */ 
 
+int ou_pondre(caract_mat_t * cmat, int * i, int * j){
+	int cpt =1;
+	while(1){
+		if(cmat->matrice[*i][*j].nb_occupant>10){
+			if(est_dans_matrice(cmat,*i-cpt,*j) && cmat->matrice[*i-cpt][*j].nb_occupant<10){
+				*i=*i-cpt;
+				return 1;
+			}else if(est_dans_matrice(cmat,*i-cpt,*j-cpt) && cmat->matrice[*i-cpt][*j-cpt].nb_occupant<10){
+				*i=*i-cpt;
+				*j=*j-cpt;
+				return 1;
+			}else if(est_dans_matrice(cmat,*i,*j-cpt) && cmat->matrice[*i][*j-cpt].nb_occupant<10){
+				*j=*j-cpt;
+				return 1;
+			}else if(est_dans_matrice(cmat,*i+cpt,*j-cpt) && cmat->matrice[*i+cpt][*j-cpt].nb_occupant<10){
+				*i=*i+cpt;
+				*j=*j-cpt;
+				return 1;
+			}else if(est_dans_matrice(cmat,*i+cpt,*j) && cmat->matrice[*i+cpt][*j].nb_occupant<10){
+				*i=*i+cpt;
+				return 1;
+			}else if(est_dans_matrice(cmat,*i+cpt,*j+cpt) && cmat->matrice[*i+cpt][*j+cpt].nb_occupant<10){
+				*i=*i+cpt;
+				*j=*j+cpt;
+				return 1;
+			}else if(est_dans_matrice(cmat,*i,*j+cpt) && cmat->matrice[*i][*j+cpt].nb_occupant<10){
+				*j=*j+cpt;
+				return 1;
+			}else if(est_dans_matrice(cmat,*i-cpt,*j+cpt) && cmat->matrice[*i-cpt][*j+cpt].nb_occupant<10){
+				*i=*i-cpt;
+				*j=*j+cpt;
+				return 1;
+			}else{
+				cpt++;
+			}
+		
+		}
+	}
+	printf("Hors matrice - ou pondre");
+}
 
 void reproduction(caract_mat_t * mat, int nourriture_accouplement,joueur_t joueur,joueur_t joueur2){
 	int i;
@@ -29,20 +69,12 @@ void reproduction(caract_mat_t * mat, int nourriture_accouplement,joueur_t joueu
 			}
 			
 			compteur/=2;
-		
-		
-			if(//on est trop
-			//on regarde a coté (marion a loe droit de pomper sur deplacer.c)
-			do{
-				if(!est_dans_matrice(i+1,j+1) || matrice[i+1][j+1].nb_occupant>9)
-				
-			}while(!est_dans_matrice(i,j) || matrice[i][j].nb_occupant>9)
-			
+			int x=i, y=j;
 			for(l=0;l<compteur;l++){
-				
-				mat->matrice[i][j].nb_occupant++; //Ajout des nouveaux canards//
-				mat->matrice[i][j].tab_canard[l].etat=1;
-				mat->matrice[i][j].tab_canard[l].nourriture=100;
+				ou_pondre(mat, &x, &y);
+				mat->matrice[x][y].nb_occupant++; //Ajout des nouveaux canards//
+				mat->matrice[x][y].tab_canard[l].etat=1;
+				mat->matrice[x][y].tab_canard[l].nourriture=100;
 				ajout_score(25,joueur,joueur2);
 			}
 		}
