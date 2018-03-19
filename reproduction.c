@@ -65,8 +65,10 @@ void reproduction(caract_mat_t * mat, int nourriture_accouplement,joueur_t joueu
 			compteur=0;//compteur du nombre de canard favorable a la reproduction//
 			for(k=0;k<nb_max;k++){
 				if(mat->matrice[i][j].tab_canard[k].nourriture>=nourriture_accouplement && mat->matrice[i][j].tab_canard[k].etat==1 ){
-					if
-					compteur++;
+					int rand=rand()%5;
+					if(rand==0){
+						compteur++;
+					}
 				}
 			}
 			
