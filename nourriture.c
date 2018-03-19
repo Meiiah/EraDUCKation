@@ -3,6 +3,15 @@
 #include "matrice.h"
 #include "outils.h"
 
+/**
+* \file nouriture.c
+* \brief Programme concernant la nourriture des canards
+* \author PHILIPPE Marion
+* \version 1.0
+* \date 19 Mars 2018
+*/ 
+
+/** \fn void spawn_nourriture(caract_mat_t,int)*/
 void spawn_nourriture(caract_mat_t * cmat,int nourriture_genere){
 	int i,k;
 
@@ -18,6 +27,7 @@ void spawn_nourriture(caract_mat_t * cmat,int nourriture_genere){
 	}
 }
 
+/** \fn void manger(caract_mat_t)*/
 void manger(caract_mat_t * cmat){
     int i, j, k;
     int val_nutritive;

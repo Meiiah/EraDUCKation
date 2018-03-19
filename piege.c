@@ -7,7 +7,7 @@
 
 /**
 * \file piege.c
-* \brief Programme comprennant les piegfes dans le laby
+* \brief Programme comprennant les pieges dans le laby
 * \author VAIDIE Camille
 * \version 1.0
 * \date 20 Février 2018
