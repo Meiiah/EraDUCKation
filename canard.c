@@ -1,34 +1,35 @@
+/**
+ * \file canard.c
+ * \brief Fonctions outils multijoueur
+ * \author Camille.V
+ * \version 1.1
+ * \date 20 fevrier 2018
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "struct.h"
 #include "matrice.h"
 
-/**
-* \file canard.c
-* \brief Programme sur tout ce qui concerne les canards
-* \author VAIDIE Camille
-* \version 1.0
-* \date 20 Février 2018
-*/ 
-
-/** \fn void init_canard(caract_mat_t)*/
-void init_canard(caract_mat_t * cmat){
+/** \fn void init_canard(caract_mat_t * cmat) */
+void init_canard(caract_mat_t * cmat){/** met des canards dans des cases aléatoire */
 	int x;
 	int y;
 	for(int i=0; i<nb_max;i++){
-		x=(rand()%(cmat->taille_mat_x )); //On choisi une case au hasard dans la matrice
+		
+		x=(rand()%(cmat->taille_mat_x ));
 		y=(rand()%(cmat->taille_mat_y ));
 		if(est_dans_matrice(cmat,x,y)){
-			cmat->matrice[x][y].nb_occupant++; //on ajoute un canard a cette case et on l'initialise
-			cmat->matrice[x][y].tab_canard[cmat->matrice[x][y].nb_occupant-1].nourriture=50;
+			cmat->matrice[x][y].nb_occupant++;
+			cmat->matrice[x][y].tab_canard[cmat->matrice[x][y].nb_occupant-1].nourriture=20;
 			cmat->matrice[x][y].tab_canard[cmat->matrice[x][y].nb_occupant-1].etat=1;
 		}
 		
 	}
 }
 
-/** \fn void presence_canard(caract_mat_t)*/
-int presence_canard(caract_mat_t * cmat){ // retourne 1 si il reste des canards
+/** int presence_canard(caract_mat_t * cmat) */
+int presence_canard(caract_mat_t * cmat){ /** retourne 1 si il reste des canards */
 	int i,j;
 	for(i=0;i<cmat->taille_mat_x;i++){
 		for(j=0;j<cmat->taille_mat_y;j++){
@@ -41,8 +42,9 @@ int presence_canard(caract_mat_t * cmat){ // retourne 1 si il reste des canards
 	}
 	return 0;
 }
-/** \fn void nombre_canard(caract_mat_t)*/
-int nombre_canard(caract_mat_t * cmat){
+
+/** \fn int nombre_canard(caract_mat_t * cmat) */
+int nombre_canard(caract_mat_t * cmat){/** compte les canards présents dans la matrice */
 	int cpt=0;
 	int i,j;
 	for(i=0;i<cmat->taille_mat_x;i++){
@@ -51,4 +53,17 @@ int nombre_canard(caract_mat_t * cmat){
 		}
 	}
 	return cpt;
+}
+
+/** \fn int oeuf_to_adulte(caract_mat_t * cmat) */
+int oeuf_to_adulte(caract_mat_t * cmat){/** change les canards à l'état d'oeuf en canards à l'état adulte */
+	int i,j, k;
+	for(i=0;i<cmat->taille_mat_x;i++){
+		for(j=0;j<cmat->taille_mat_y;j++){
+			for(k=0; k< cmat->matrice[i][j].nb_occupant; k++){
+				if(cmat->matrice[i][j].tab_canard[k].etat == 0) //si c est un oeuf
+					cmat->matrice[i][j].tab_canard[k].etat == 1;// il devient adulte
+			}
+		}
+	}
 }

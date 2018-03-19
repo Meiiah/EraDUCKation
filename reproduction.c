@@ -65,19 +65,21 @@ void reproduction(caract_mat_t * mat, int nourriture_accouplement,joueur_t joueu
 			compteur=0;//compteur du nombre de canard favorable a la reproduction//
 			for(k=0;k<nb_max;k++){
 				if(mat->matrice[i][j].tab_canard[k].nourriture>=nourriture_accouplement && mat->matrice[i][j].tab_canard[k].etat==1 ){
-					if
-					compteur++;
+					int rande=rand()%5;
+					if(rande==0 || rande==1){
+						compteur++;
+					}
 				}
 			}
 			
 			compteur/=2;
 			int x=i, y=j;
 			for(l=0;l<compteur;l++){
-				//ou_pondre(mat, &x, &y);
-				fprintf(stderr,"x %i y %i",x,y);
+				ou_pondre(mat, &x, &y);
+
 				mat->matrice[x][y].nb_occupant++; //Ajout des nouveaux canards//
 				mat->matrice[x][y].tab_canard[l].etat=1;
-				mat->matrice[x][y].tab_canard[l].nourriture=100;
+				mat->matrice[x][y].tab_canard[l].nourriture=50;
 				ajout_score(25,joueur,joueur2);
 			}
 		}

@@ -64,7 +64,7 @@ int main(void){
 
 	//definition nourriture
 	int nourriture_accouplement = 25;//Nourriture qu'on a besoin pour se reproduire
-	int nourriture_genere = 10;//Nourriture qui apparait
+	int nourriture_genere = 50;//Nourriture qui apparait
 	
 	int choix; // Choix du joueur
 	int nbr_joueur;
