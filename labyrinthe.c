@@ -361,12 +361,13 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat, int* compteur){
                case 0 : //soit on libere vers le bas
                            mat[cmat->taille_mat_x-1][0].mur.murS =0;
                            mat[cmat->taille_mat_x-1][1].mur.murN =0;
-						   valeur_case(cmat,mat,taille_mat_x-1,0,taille_mat_x-1,0, compteur);
+						   valeur_case(cmat,mat, cmat->taille_mat_x-1,0,cmat->taille_mat_x-1,0, compteur);
                            break;
 
                case 1 : //soit on libere a gauche
                            mat[cmat->taille_mat_x-1 ][0].mur.murO =0;
                            mat[cmat->taille_mat_x-2 ][0].mur.murE =0;
+                           valeur_case(cmat,mat,cmat->taille_mat_x-1,0,cmat->taille_mat_x-2,0, compteur);
                            break;
          }
      }
@@ -376,11 +377,13 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat, int* compteur){
                case 0 : //soit on libere vers le haut
                            mat[0][cmat->taille_mat_y-1 ].mur.murN =0;
                            mat[0][cmat->taille_mat_y-2 ].mur.murS =0;
+                           valeur_case(cmat,mat, 0, cmat->taille_mat_y-1  ,0, cmat->taille_mat_y-2, compteur);
                            break;
 
                case 1 : //soit on libere a droite
                            mat[0][cmat->taille_mat_y-1 ].mur.murO =0;
                            mat[1][cmat->taille_mat_y-1 ].mur.murE =0;
+                           valeur_case(cmat,mat, 0,  cmat->taille_mat_y-1  , 1, cmat->taille_mat_y-2, compteur);
                            break;
          }
      }
@@ -390,11 +393,13 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat, int* compteur){
                case 0 : //soit on libere vers le haut
                            mat[cmat->taille_mat_x-1 ][cmat->taille_mat_y-1 ].mur.murN =0;
                            mat[cmat->taille_mat_x-1 ][cmat->taille_mat_y-2 ].mur.murS =0;
+                           valeur_case(cmat,mat, cmat->taille_mat_x-1,  cmat->taille_mat_y-1  , cmat->taille_mat_x-1, cmat->taille_mat_y-2, compteur);
                            break;
 
                case 1 : //soit on libere a gauche
                            mat[cmat->taille_mat_x-1 ][cmat->taille_mat_y-1 ].mur.murO =0;
                            mat[cmat->taille_mat_x-2 ][cmat->taille_mat_y-1 ].mur.murE =0;
+                           valeur_case(cmat,mat, cmat->taille_mat_x-1,  cmat->taille_mat_y-1  , cmat->taille_mat_x-2, cmat->taille_mat_y-1, compteur);
                            break;
          }
      }
@@ -423,8 +428,8 @@ void creer_labyrinthe(caract_mat_t * cmat ,ini_t ** mat){ /** Appel toutes les f
                 maj_coins(cmat, mat, &compteur);
 
 		if(securite == 2000){
-			printf("erreur du chargement du labyrinthe");	
-			break;	
+			printf("erreur du chargement du labyrinthe");
+			break;
 		}
 	}while( !laby_fini(cmat,mat));
 	//	i++;
