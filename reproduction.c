@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 /**
-* \file piege.c
+* \file reproduction.c
 * \brief Programme comprennant les piegfes dans le laby
 * \author VAIDIE Camille
 * \version 1.0
