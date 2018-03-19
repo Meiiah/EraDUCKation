@@ -9,6 +9,15 @@
 #include "deplacer_multi.h"
 #include "labyrinthe.h"
 
+/**
+ * \file jeu_solo.c
+ * \brief Algo de jeu solo
+ * \author PHILLIPE Marion
+ * \version 1.1
+ * \date 19 Mars 2018
+*/
+
+/** \fn int jeu_solo(caract_mat_t,int,int,joueur_t,joueur_t)*/
 int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accouplement,joueur_t joueur,joueur_t joueur2){
 	int jeu=1; // 1 en cours de partie , 0 partie finit
 	int nb_gen=0; // Compteur de génération
