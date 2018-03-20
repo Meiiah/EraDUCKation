@@ -27,7 +27,7 @@ typedef struct joueurm_s{
     joueur_t joueur;
     clan_t clan;
     char nom [20];
-    void (*choix) (void);
+    void (*choix) (caract_mat_t *,joueur_t , joueur_t , int* , int* );
 }joueur_multi_t;
 
 
@@ -90,7 +90,7 @@ void init_tab_joueurs(joueur_multi_t * tab /** tableau de joueurs */,
 }
 /*============================================================*/
 /** \fn void main_multijoueur(void) */
-void main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_accouplement){ /** fait le jeu en multi sur meme pc */
+int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_accouplement){ /** fait le jeu en multi sur meme pc */
     //variables :
     joueur_multi_t tab[2];
     int tampon;
@@ -105,12 +105,13 @@ void main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture
 	
 	while ( nb_gen<100 && presence_canard(cmat)==1){ // fin du jeu
 		
-		tour_multijoueur(cmat,&nourriture_genere,&nourriture_accouplement, tab[], tour, tampon);
+		tour_multijoueur(cmat,&nourriture_genere,&nourriture_accouplement, tab, nb_gen, tampon);
 		
 		ajout_score(100,tab[tampon].joueur,tab[(tampon +1)%2].joueur);
 	
 		nb_gen++;
-		printf("Score %s : %i\n",joueur.nom_joueur,joueur.score);
+		printf("Score %s : %i\n",tab[0].joueur.nom_joueur,tab[0].joueur.score);
+		printf("Score %s : %i\n",tab[1].joueur.nom_joueur,tab[0].joueur.score);
 		printf("Nourriture accouplement: %i\n",nourriture_accouplement);
 		printf("Nourriture générée: %i\n",nourriture_genere);
 		printf("Nombre de canard: %i \n",nombre_canard(cmat));

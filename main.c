@@ -9,6 +9,7 @@
 #include "labyrinthe.h"
 #include "deplacer_multi.h"
 #include "jeu_solo.h"
+#include "multijoueur.h"
 
 
 
@@ -107,7 +108,11 @@ int main(void){
 			init_matrice(cmat);
 	
 			/*Creation du Labyrinthe*/
+			
+			
 			main_laby(cmat);
+			
+			
 		
 			//Apparition de canard
 			init_canard(cmat); 
@@ -116,7 +121,7 @@ int main(void){
 				jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2);
 				
 			}else{
-				//jeu_multi();
+				main_multijoueur(cmat, nourriture_genere, nourriture_accouplement);
 			}
 			
 		break;
