@@ -361,7 +361,7 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat, int* compteur){
                case 0 : //soit on libere vers le bas
                            mat[cmat->taille_mat_x-1][0].mur.murS =0;
                            mat[cmat->taille_mat_x-1][1].mur.murN =0;
-						   valeur_case(cmat,mat, cmat->taille_mat_x-1,0,cmat->taille_mat_x-1,0, compteur);
+						   valeur_case(cmat,mat, cmat->taille_mat_x-1,0,cmat->taille_mat_x-1,1, compteur);
                            break;
 
                case 1 : //soit on libere a gauche
@@ -381,8 +381,8 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat, int* compteur){
                            break;
 
                case 1 : //soit on libere a droite
-                           mat[0][cmat->taille_mat_y-1 ].mur.murO =0;
-                           mat[1][cmat->taille_mat_y-1 ].mur.murE =0;
+                           mat[0][cmat->taille_mat_y-1 ].mur.murE =0;
+                           mat[1][cmat->taille_mat_y-1 ].mur.murO =0;
                            valeur_case(cmat,mat, 0,  cmat->taille_mat_y-1  , 1, cmat->taille_mat_y-2, compteur);
                            break;
          }
