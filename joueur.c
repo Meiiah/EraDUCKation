@@ -16,9 +16,9 @@
 #define nb_event 5
 /** \fn void ajout_score(int,joueur_t,joueur_t)*/
 void ajout_score(int point,joueur_t * joueur, joueur_t * joueur2){/**fonction d'ajour de score des deux joueurs*/
-	joueur.score+=point; // ajout des points en fonction de l'action faite
-	if(!strcmp(joueur2.nom_joueur,"null")){
-		joueur2.score-=point;
+	joueur->score+=point; // ajout des points en fonction de l'action faite
+	if(!strcmp(joueur2->nom_joueur,"null")){
+		joueur2->score-=point;
 	}
 }
 
