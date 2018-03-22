@@ -1,0 +1,12 @@
+\section{Introduction}
+
+	Ce rapport de projet traîtera du jeu EraDUCKation. 
+Ce jeu a été inspiré par l'un des énnoncé proposés :
+ \textit{la vie dans un labyrinthe}, qui consistait à générer automatiquement
+ un labyrinthe dans lequel des insectes devront évoluer. Les règles étaient 
+simples: les règles de reproductions étaient similaires au \textit{jeu de la vie}
+ vu en cours, il fallit y intégrer des déplacements semi-aléatoires pour 
+les insectes, ainsi qu'une notion de nourriture, et des statistiques sur 
+la population. Cependant, comme pour le \textit{jeu de la vie} vu en cours, nous
+trouvions que ce projet avait trop peu d'interraction, et avons donc décidé 
+d'en faire un jeu.
