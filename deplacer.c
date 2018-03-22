@@ -44,8 +44,8 @@ t_direction voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction 
 
 
     //dir 1
-    while(mur[0]==1 && mur[1]==1 && mur[2]==1 && mur[3]==1){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
-
+    while(!(mur[0]==1 && mur[1]==1 && mur[2]==1 && mur[3]==1)){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
+	fprintf(stderr,"\n L %i\n", l);
         /**
         SI pas de mur enregistré on regarde si il y a un fruit, si c est le cas on break,
         puis on regarde si il y a un mur, et si il y a on memorise qu il y en a un et
@@ -53,7 +53,7 @@ t_direction voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction 
     */
 //////////////////////////////////////////////////////////////////////
                 //pour i croissant direction est
-    if(i+l < cmat->taille_mat_x) // si la case est valide
+    if(i+l < cmat->taille_mat_x){ // si la case est valide
         if(mur[0]==0){ // et qu on a pas encore rencontré de mur dans cette direction
             if(cmat->matrice[i+l][j].pres_nourriture==1){ //si presence de nourriture sur la ligne on retourne la direction
                 return Est;
@@ -63,10 +63,12 @@ t_direction voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction 
                 mur[0] = 1; // si on a encore des chemins a traiter on continue le traitement
             }
         }
+	}else
+		mur[0] = 1;
 
 /////////////////////////////////////////////////////////////////////
                 //pour i décroissant direction ouest
-     if(i-l > 0)
+     if(i-l > 0){
         if(mur[1]==0){
             if(cmat->matrice[i-l][j].pres_nourriture==1){
                 return Ouest;
@@ -76,10 +78,13 @@ t_direction voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction 
                 mur[1] = 1;
             }
         }
+	}else
+		mur[1] = 1;
+
 
 /////////////////////////////////////////////////////////////////////
                 //pour j croissant direction sud
-     if(j+l < cmat->taille_mat_y)
+     if(j+l < cmat->taille_mat_y){
         if(mur[2]==0){
             if(cmat->matrice[i][j+l].pres_nourriture==1){
                 return Sud;
@@ -89,10 +94,13 @@ t_direction voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction 
                 mur[2] = 1;
             }
         }
+	}else
+		mur[2] = 1;
+
 
 /////////////////////////////////////////////////////////////////////
                 //pour j décroissant direction Nord
-    if(j-l >0)
+    if(j-l >0){
         if(mur[3]==0){
             if(cmat->matrice[i][j-l].pres_nourriture==1){
                 return Nord;
@@ -102,8 +110,12 @@ t_direction voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction 
                 mur[3] = 1;
             }
         }
-     l++;
-    }
+    
+	}else
+		mur[3] = 1;
+	
+	l++;	
+	}
     return( Aucune_direction );
 }
 
@@ -121,7 +133,7 @@ t_direction voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,in
 		
     for(cpt=0; cpt<cmat->matrice[i][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
         if(cpt != kiem_canard){
-						if(cmat->matrice[i+l][j].tab_canard[cpt].etat==1 && cmat->matrice[i][j].tab_canard[cpt].nourriture > nourriture_accouplement){ //si presence de partenaire sur la case
+						if(cmat->matrice[i][j].tab_canard[cpt].etat==1 && cmat->matrice[i][j].tab_canard[cpt].nourriture > nourriture_accouplement){ //si presence de partenaire sur la case
 						    return Pas_besoin_de_bouger ;
 						}
 		    }
@@ -129,8 +141,8 @@ t_direction voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,in
     
 fprintf(stderr,"\n2\n");
     //dir 1
-    while(mur[0]==1 && mur[1]==1 && mur[2]==1 && mur[3]==1){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
-
+    while(! (mur[0]==1 && mur[1]==1 && mur[2]==1 && mur[3]==1)){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
+		fprintf(stderr,"\n L %i\n", l);
         /**
         SI pas de mur enregistré on regarde si il y a un partenaire d accouplement, si c est le cas on break,
         puis on regarde si il y a un mur, et si il y a on memorise qu il y en a un et
@@ -138,7 +150,7 @@ fprintf(stderr,"\n2\n");
     */
 //////////////////////////////////////////////////////////////////////
                 //pour i croissant direction est
-     if(i+l < cmat->taille_mat_x)
+     if(i+l < cmat->taille_mat_x){
         if(mur[0]==0){//si on a pas encore croise de mur
             if(cmat->matrice[i+l][j].nb_occupant>0){//si il y a des canards sur la case
                 for(cpt=0; cpt<cmat->matrice[i+l][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
@@ -152,10 +164,11 @@ fprintf(stderr,"\n3\n");
                 mur[0] = 1;
             }
         }
-
+	}else
+		mur[0] = 1;
 /////////////////////////////////////////////////////////////////////
                 //pour i décroissant direction ouest
-     if(i-l >0)
+     if(i-l >=0){
         if(mur[1]==0){
              if(cmat->matrice[i-l][j].nb_occupant>0){//si il y a des canards sur la case
                 for(cpt=0; cpt<cmat->matrice[i-l][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
@@ -169,10 +182,12 @@ fprintf(stderr,"\n3\n");
                 mur[1] = 1;
             }
         }
+	}else
+		mur[1] = 1;
 fprintf(stderr,"\n4\n");
 /////////////////////////////////////////////////////////////////////
                 //pour j croissant direction sud
-    if(j+l < cmat->taille_mat_y)
+    if(j+l < cmat->taille_mat_y){
         if(mur[2]==0){
             if(cmat->matrice[i][j+l].nb_occupant>0){//si il y a des canards sur la case
                 for(cpt=0; cpt<cmat->matrice[i][j+l].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
@@ -186,10 +201,12 @@ fprintf(stderr,"\n4\n");
                 mur[2] = 1;
             }
         }
-fprintf(stderr,"\n5\n");
+	}else
+		mur[2] = 1;
+	fprintf(stderr,"\n5\n");
 /////////////////////////////////////////////////////////////////////
                 //pour j décroissant direction Nord
-    if(j-l >0)
+    if(j-l >=0){
         if(mur[3]==0){
             if(cmat->matrice[i][j-l].nb_occupant>0){//si il y a des canards sur la case
                 for(cpt=0; cpt<cmat->matrice[i][j-l].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
@@ -203,9 +220,11 @@ fprintf(stderr,"\n5\n");
                 mur[3] = 1;
             }
         }
-        l++;
-    }
-    return Aucune_direction;  // au cas où mais pas besoin normalement
+        
+    }else
+		mur[3] = 1;
+	l++;
+    }return Aucune_direction;  // au cas où mais pas besoin normalement
 }
 
 /*=======================================================================================================================*/
@@ -231,7 +250,7 @@ fprintf(stderr,"\n6\n");
             /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
             case Ouest:
 fprintf(stderr,"\n7\n");
-					if( (i-1 > 0) && cmat->matrice[ i ][ j ].mur.murO !=1){
+					if( (i > 0) && cmat->matrice[ i ][ j ].mur.murO !=1){
 			          //on copie le canard a sa destination
 			          cmat->matrice[i-1][j].tab_canard[cmat->matrice[i-1][j].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
 
@@ -261,9 +280,9 @@ fprintf(stderr,"\n8\n");
             /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
             case Nord:
 fprintf(stderr,"\n9\n");
-					if( (j-1 >0) && cmat->matrice[ i ][ j ].mur.murN !=1 ){
+					if( (j >0) && cmat->matrice[ i ][ j ].mur.murN !=1 ){
 		               //on copie le canard a sa destination
-		               cmat->matrice[i][j-1].tab_canard[cmat->matrice[i][j+1].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
+		               cmat->matrice[i][j-1].tab_canard[cmat->matrice[i][j-1].nb_occupant ] = cmat->matrice[i][j].tab_canard[k];
 
 		               //on indique l augmentation de lz population dans la case ciblee
 		               cmat->matrice[i][j-1].nb_occupant ++;
@@ -285,15 +304,17 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement,int nourriture_ge
     int i,j,k;
     int direction=-1;
     int verif =1;
-
+	fprintf(stderr,"\nDEB DEB\n");
     for(j=0; j< cmat->taille_mat_x ; j++){
     		for(i=0; i< cmat->taille_mat_y; i++){//pour chaque case de la matrice
         		for(k=0; k<cmat->matrice[i][j].nb_occupant; k++){
+					fprintf(stderr,"\nDEBUT POUR UN COINCOIN\n");
             		if(cmat->matrice[i][j].tab_canard[k].etat==1){ //pour chaque canard qui peut se deplacer
                                 // /!\ 1/3 des canards se déplacent, donc rand, si c est pas bon on le deplace pas donc break
                             if(rand()%3==0){
                                 //si il peut se deplacer on continue
                                 // si on voit un canard a accoupler on continue, sinon on continue les verifications
+										fprintf(stderr,"\nDEB voit_accouplement i:%i j:%i \n", i, j);
 				                        direction = voit_accouplement(cmat,nourriture_accouplement,i, j, k);
 				                        fprintf(stderr,"\nFIN voit_accouplement\n");
                             		if(direction==Aucune_direction){
@@ -348,8 +369,9 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement,int nourriture_ge
 																}
                             }
                         }
-                    }
+                    }fprintf(stderr,"\nFIN POUR UN COINCOIN\n");
         		}//fin balayage matrice
+				fprintf(stderr,"\nDEB deplacer_repro\n");
         		reproduction(cmat, nourriture_accouplement, joueur,joueur2);
         		fprintf(stderr,"\nFIN deplacer_repro\n");
     				manger(cmat, nourriture_genere);
