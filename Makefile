@@ -1,8 +1,16 @@
 CC=gcc
+<<<<<<< HEAD
 OBJ=canard.o deplacer.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinthe.o main.o nourriture.o piege.o reproduction.o sauvegarde.o 
 
 PROG=era
 
+=======
+OBJ=canard.o deplacer.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinthe.o main.o nourriture.o piege.o reproduction.o sauvegarde.o multijoueur.o
+
+PROG=era
+
+
+>>>>>>> 6ea772379796f68d37bc5ff156b489532c49e43a
 
 ${PROG}: ${OBJ}
 	${CC} ${OBJ} -o ${PROG}
@@ -46,12 +54,21 @@ sauvegarde.o: sauvegarde.c
 matrice.o: matrice.c
 	${CC} -c matrice.c
 
+<<<<<<< HEAD
 
 fonction_multi_reseau.o: fonction_multi_reseau.c
 	${CC} -c fonction_multi_reseau.c
 
 
 
+=======
+fonction_multi_reseau.o: fonction_multi_reseau.c
+	${CC} -c fonction_multi_reseau.c
+
+labyrinthe.o: multijoueur.c 
+	${CC} -c multijoueur.c
+
+>>>>>>> 6ea772379796f68d37bc5ff156b489532c49e43a
 clean:
 	rm -f *.o
 	rm -f canard
@@ -68,8 +85,14 @@ clean:
 	rm -f piege
 	rm -f reproduction
 	rm -f sauvegarde
+<<<<<<< HEAD
 	rm -f GestionDeLaBareDeVie
 	rm -f fonction_multi_reseau
 	
 	rm -f ${PROG}
 
+=======
+	rm -f fonction_multi_reseau
+	rm -f multijoueur
+	rm -f ${PROG}
+>>>>>>> 6ea772379796f68d37bc5ff156b489532c49e43a
