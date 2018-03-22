@@ -1,12 +1,25 @@
 CC=gcc
 
-OBJ=canard.o deplacer.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinthe.o main.o nourriture.o piege.o reproduction.o sauvegarde.o multijoueur.o
+SDL_DIR=${HOME}/SDL2
+SDLLIB_DIR=${SDL_DIR}/lib
+SDLINC_DIR=${SDL_DIR}/include
+
+LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image
+INCLUDES=-I${SDLINC_DIR} 
+
+OBJ= MenuSDL.o Fonction_SDL.o canard.o deplacer.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinthe.o main.o nourriture.o piege.o reproduction.o sauvegarde.o multijoueur.o
 
 PROG=era
 
 
 ${PROG}: ${OBJ}
 	${CC} ${OBJ} -o ${PROG}
+
+MenuSDL.o: MenuSDL.c
+	${CC} -c MenuSDL.c ${LIBS} ${INCLUDES}
+
+Fonction_SDL.o: Fonction_SDL.c
+	${CC} -c Fonction_SDL.c ${LIBS} ${INCLUDES}
 
 canard.o: canard.c 
 	${CC} -c canard.c
