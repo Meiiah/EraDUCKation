@@ -95,7 +95,7 @@ void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int * 
 					scanf("%i",&result);// Saisit du choix du joueur//
 					break;
 			}
-		}while(result!=1 || result!=2 || result!=3);
+		}while(result!=1 && result!=2 && result!=3);
 }
 
 /** \fn void choix_bon(void)*/
