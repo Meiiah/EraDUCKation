@@ -39,7 +39,7 @@ int tsunami(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourritur
 				for(k=0;k<cmat->matrice[i][j].nb_occupant;k++){
 					cmat->matrice[i][j].tab_canard[k].nourriture=0;
 					cmat->matrice[i][j].tab_canard[k].etat=-1;
-					ajout_score(-50,joueur,joueur2);	
+					ajout_score(-50,&joueur,&joueur2);	
 				}
 				cmat->matrice[i][j].nb_occupant=0;
 			}
@@ -51,7 +51,7 @@ int tsunami(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourritur
 				for(k=0;k<cmat->matrice[i][j].nb_occupant;k++){
 					cmat->matrice[i][j].tab_canard[k].nourriture=0;
 					cmat->matrice[i][j].tab_canard[k].etat=-1;	
-					ajout_score(-50,joueur,joueur2);
+					ajout_score(-50,&joueur,&joueur2);
 				}
 				cmat->matrice[i][j].nb_occupant=0;
 			}
@@ -76,7 +76,7 @@ int tempete(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int* nourritur
 			for(k=0;k<cmat->matrice[i][j].nb_occupant;k++){
 				cmat->matrice[i][j].tab_canard[k].nourriture=0;
 				cmat->matrice[i][j].tab_canard[k].etat=-1;	
-				ajout_score(-50,joueur,joueur2);
+				ajout_score(-50,&joueur,&joueur2);
 			}
 			cmat->matrice[i][j].nb_occupant=0;
 		}
@@ -120,7 +120,7 @@ int apparition_predateur(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,i
 		for(k=0;k<cmat->matrice[random_x][random_y].nb_occupant;k++){
 			cmat->matrice[random_x][random_y].tab_canard[k].nourriture=0;
 			cmat->matrice[random_x][random_y].tab_canard[k].etat=-1;	
-			ajout_score(-100,joueur,joueur2);
+			ajout_score(-100,&joueur,&joueur2);
 		}
 		cmat->matrice[random_x][random_y].nb_occupant=0;	
 	}
@@ -169,7 +169,7 @@ int liberation_canard(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int*
 		for(k=0;k<cmat->matrice[random_x][random_y].nb_occupant;k++){
 			cmat->matrice[random_x][random_y].tab_canard[k].nourriture=0;
 			cmat->matrice[random_x][random_y].tab_canard[k].etat=-1;	
-			ajout_score(500,joueur,joueur2); //ajout de 500 points par libération
+			ajout_score(500,&joueur,&joueur2); //ajout de 500 points par libération
 		}
 		cmat->matrice[random_x][random_y].nb_occupant=0;	
 	}
