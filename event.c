@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include "struct.h"
+#include "matrice.h"
 #include "joueur.h"
 #include "outils.h"
-#include "matrice.h"
 #include <stdio.h>
 #define M 10
 

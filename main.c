@@ -28,17 +28,20 @@ int choix_difficultee(int choix){
 	}
 	return 1;
 }
-int choix_nbr_joueur(int choix,joueur_t joueur,joueur_t joueur2){
+int choix_nbr_joueur(int choix,joueur_t * joueur,joueur_t * joueur2){
 	int nbr_joueur;
 	switch(choix){
 		case 1 :
 			caract_joueur(joueur);
-			joueur2.score=0;
+			joueur->score=0;
+			joueur2->score=0;
 			return nbr_joueur=1;
 		break;	
 		case 2:
 			caract_joueur(joueur);
 			caract_joueur(joueur2);
+			joueur->score=0;
+			joueur2->score=0;
 			return nbr_joueur=2;
 		break;	
 	}
@@ -69,6 +72,8 @@ int main(void){
 	
 	int choix; // Choix du joueur
 	int nbr_joueur;
+
+	int choix_nb_joueurs;
 	
 	init_tab_event_mauvais();
 	init_tab_event_bon();
@@ -90,8 +95,8 @@ int main(void){
 			printf("2 : 2 joueurs\n");
 			printf("Choix: ");
 			scanf(" %i",&choix);
-		
-			nbr_joueur=choix_nbr_joueur(choix,joueur,joueur2);
+			if(choix == 1)
+				nbr_joueur=choix_nbr_joueur(choix,&joueur,&joueur2);
 			
 			/* Difficulté*/
 			printf("1 : Facile\n");

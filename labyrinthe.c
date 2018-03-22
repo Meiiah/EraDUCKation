@@ -155,7 +155,7 @@ void affichage_laby(caract_mat_t * cmat){ /** Affichage du labyrinthe avec les m
 
 			}
 
-	}
+	}printf("\n");
 
 }
 
@@ -453,8 +453,6 @@ void creer_labyrinthe(caract_mat_t * cmat ,ini_t ** mat){ /** Appel toutes les f
         balayage(cmat, mat, &compteur);
 	}
 
-    if( !laby_fini(cmat,mat))
-        printf("erreur du chargement du labyrinthe");
 
 }
 

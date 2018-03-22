@@ -15,7 +15,7 @@
 
 #define nb_event 5
 /** \fn void ajout_score(int,joueur_t,joueur_t)*/
-void ajout_score(int point,joueur_t joueur, joueur_t joueur2){/**fonction d'ajour de score des deux joueurs*/
+void ajout_score(int point,joueur_t * joueur, joueur_t * joueur2){/**fonction d'ajour de score des deux joueurs*/
 	joueur.score+=point; // ajout des points en fonction de l'action faite
 	if(!strcmp(joueur2.nom_joueur,"null")){
 		joueur2.score-=point;
@@ -23,10 +23,10 @@ void ajout_score(int point,joueur_t joueur, joueur_t joueur2){/**fonction d'ajou
 }
 
 /**\fn void caract_joueur(joueur_t)*/
-void caract_joueur(joueur_t joueur){/** saisi du pseudo du joueur */
+void caract_joueur(joueur_t * joueur){/** saisi du pseudo du joueur */
 	printf("Saisir le pseudo du joueur : ");
-	scanf("%s",joueur.nom_joueur);
-	joueur.score=0;
+	scanf("%s",joueur->nom_joueur);
+	joueur->score=0;
 }
 
 char *mauv_evts[nb_event]={
@@ -53,9 +53,9 @@ void tab_event_mauvais(int * choix1,int * choix2, int * choix3){
 	
 	
 	printf("\nChoix 1 : %s\n",mauv_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
-	if(choix1!=choix2)
+	if(*choix1!=*choix2)
 		printf("Choix 2 : %s\n",mauv_evts[*choix2]);
-	if(choix1!=choix3 && choix2!=choix3)
+	if(*choix1!=*choix3 && *choix2!=*choix3)
 		printf("Choix 3 : %s\n",mauv_evts[*choix3]);
 }
 
@@ -68,9 +68,9 @@ void tab_event_bon(int * choix1,int * choix2, int * choix3){
 	*choix3=(rand() % (nb_event ));
 
 	printf("\nChoix 1 : %s\n",bon_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
-	if(choix1!=choix2)
+	if(*choix1!=*choix2)
 		printf("Choix 2 : %s\n",bon_evts[*choix2]);
-	if(choix1!=choix3 && choix2!=choix3)
+	if(*choix1!=*choix3 && *choix2!=*choix3)
 		printf("Choix 3 : %s\n",bon_evts[*choix3]);
 }
 
@@ -79,22 +79,22 @@ void tab_event_bon(int * choix1,int * choix2, int * choix3){
 /** choix random parmis les evenements mauvais */
 void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int * nourriture_genere, int * nourriture_accouplement){
 	int choix1, choix2, choix3;
-	
 	tab_event_mauvais(&choix1, &choix2, &choix3);
 	int result;
-	printf("Choisir le numéro de l'évènement choisit : ");
-	scanf("%i",&result);// Saisit du choix du joueur//
-	
-	switch(result){
-		case 1: mauvais[choix1](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
-			break;
-		case 2: mauvais[choix2](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
-			break;
-		case 3: mauvais[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
-			break;
-		default: printf("Saisir un choix possible :");
-			break;
-	}
+		do{
+			printf("Choisir le numéro de l'évènement choisit : ");
+			scanf("%i",&result);// Saisit du choix du joueur//
+			switch(result){
+				case 1: mauvais[choix1](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+					break;
+				case 2: mauvais[choix2](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+					break;
+				case 3: mauvais[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+					break;
+				default:
+					break;
+			}
+		}while(result!=1 && result!=2 && result!=3);
 }
 
 /** \fn void choix_bon(void)*/
