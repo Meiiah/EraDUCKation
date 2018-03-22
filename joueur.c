@@ -81,9 +81,9 @@ void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int * 
 	int choix1, choix2, choix3;
 	tab_event_mauvais(&choix1, &choix2, &choix3);
 	int result;
-	printf("Choisir le numéro de l'évènement choisit : ");
-	scanf("%i",&result);// Saisit du choix du joueur//
 		do{
+			printf("Choisir le numéro de l'évènement choisit : ");
+			scanf("%i",&result);// Saisit du choix du joueur//
 			switch(result){
 				case 1: mauvais[choix1](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 					break;
@@ -91,8 +91,7 @@ void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int * 
 					break;
 				case 3: mauvais[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 					break;
-				default:printf("Saisir un choix possible :");
-					scanf("%i",&result);// Saisit du choix du joueur//
+				default:
 					break;
 			}
 		}while(result!=1 && result!=2 && result!=3);
