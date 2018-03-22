@@ -1,0 +1,168 @@
+\hypertarget{labyrinthe_8c}{}\section{Référence du fichier labyrinthe.\+c}
+\label{labyrinthe_8c}\index{labyrinthe.\+c@{labyrinthe.\+c}}
+
+
+Programme comprennant la génération d\textquotesingle{}un labyrinthe.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}struct.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}matrice.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}labyrinthe.\+h\char`\"{}}\\*
+Graphe des dépendances par inclusion de labyrinthe.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{labyrinthe_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+AX}~4\hypertarget{labyrinthe_8c_a392fb874e547e582e9c66a08a1f23326}{}\label{labyrinthe_8c_a392fb874e547e582e9c66a08a1f23326}
+
+\end{DoxyCompactItemize}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries compter\+\_\+murs} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int i, int j)\hypertarget{labyrinthe_8c_aaa99616442fe50bed154bc9a599217eb}{}\label{labyrinthe_8c_aaa99616442fe50bed154bc9a599217eb}
+
+\item 
+void {\bfseries afficher\+\_\+angle} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int j, int i)\hypertarget{labyrinthe_8c_a629d2a355cb4d64f221c3c4ed31de155}{}\label{labyrinthe_8c_a629d2a355cb4d64f221c3c4ed31de155}
+
+\item 
+void \hyperlink{labyrinthe_8c_aad84aaf14c03fe3e6c3b4378500d9530}{affichage\+\_\+laby} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat)
+\item 
+void \hyperlink{labyrinthe_8c_a9fe6a8b9d6a89085ba3f519da212c069}{init\+\_\+laby} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structini__t}{ini\+\_\+t} $\ast$$\ast$mat)
+\item 
+void \hyperlink{labyrinthe_8c_ac0c9636ef89db9e46a0cf9c5fe5f3d53}{maxmin} (\hyperlink{structini__t}{ini\+\_\+t} $\ast$$\ast$mat, int $\ast$max, int $\ast$min, int val1, int val2)
+\item 
+void \hyperlink{labyrinthe_8c_afa2b95a96ad18258e75b6e8018a841d1}{valeur\+\_\+case} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structini__t}{ini\+\_\+t} $\ast$$\ast$mat, int x1, int y1, int x2, int y2, int $\ast$compteur)
+\item 
+int {\bfseries compter\+\_\+mur} (\hyperlink{structini__t}{ini\+\_\+t} $\ast$$\ast$mat, int i, int j)\hypertarget{labyrinthe_8c_a57ff2e46587e5aa49c066d614c305d25}{}\label{labyrinthe_8c_a57ff2e46587e5aa49c066d614c305d25}
+
+\item 
+void \hyperlink{labyrinthe_8c_abacc944c4e85f29e9da1dfbc2dbc0565}{case\+\_\+adja} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structini__t}{ini\+\_\+t} $\ast$$\ast$mat, int coord\+\_\+x, int coord\+\_\+y, int $\ast$compteur)
+\item 
+void \hyperlink{labyrinthe_8c_a97c8cd519ab9fe6f41571f8d77cfebce}{coord\+\_\+case} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structini__t}{ini\+\_\+t} $\ast$$\ast$mat, int $\ast$compteur)
+\item 
+int \hyperlink{labyrinthe_8c_a9ffd1e3cafcf0e3e95937442ca25b0cf}{laby\+\_\+fini} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structini__t}{ini\+\_\+t} $\ast$$\ast$mat)
+\item 
+void {\bfseries maj\+\_\+coins} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structini__t}{ini\+\_\+t} $\ast$$\ast$mat, int $\ast$compteur)\hypertarget{labyrinthe_8c_a30bd835edc9fd3791e437a845aae9e10}{}\label{labyrinthe_8c_a30bd835edc9fd3791e437a845aae9e10}
+
+\item 
+void \hyperlink{labyrinthe_8c_a2de2986c76d981e88d26e402eb491010}{balayage} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structini__t}{ini\+\_\+t} $\ast$$\ast$mat, int $\ast$compteur)
+\item 
+void \hyperlink{labyrinthe_8c_a9c756383ac514e4057850665d5b510a2}{creer\+\_\+labyrinthe} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structini__t}{ini\+\_\+t} $\ast$$\ast$mat)
+\item 
+void {\bfseries copi\+\_\+laby} (\hyperlink{structini__t}{ini\+\_\+t} $\ast$$\ast$mat, \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat)\hypertarget{labyrinthe_8c_aef2db2cfc24bd4bd6bc91ccb74a0f987}{}\label{labyrinthe_8c_aef2db2cfc24bd4bd6bc91ccb74a0f987}
+
+\item 
+int {\bfseries main\+\_\+laby} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat)\hypertarget{labyrinthe_8c_a1234917404dc6a2d930a06e7cff58d19}{}\label{labyrinthe_8c_a1234917404dc6a2d930a06e7cff58d19}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Programme comprennant la génération d\textquotesingle{}un labyrinthe. 
+
+\begin{DoxyAuthor}{Auteur}
+Marchand Killian Touzé Maxime 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+3.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+20 Février 2018 
+\end{DoxyDate}
+
+
+\subsection{Documentation des fonctions}
+\index{labyrinthe.\+c@{labyrinthe.\+c}!affichage\+\_\+laby@{affichage\+\_\+laby}}
+\index{affichage\+\_\+laby@{affichage\+\_\+laby}!labyrinthe.\+c@{labyrinthe.\+c}}
+\subsubsection[{\texorpdfstring{affichage\+\_\+laby(caract\+\_\+mat\+\_\+t $\ast$cmat)}{affichage_laby(caract_mat_t *cmat)}}]{\setlength{\rightskip}{0pt plus 5cm}void affichage\+\_\+laby (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat}
+\end{DoxyParamCaption}
+)}\hypertarget{labyrinthe_8c_aad84aaf14c03fe3e6c3b4378500d9530}{}\label{labyrinthe_8c_aad84aaf14c03fe3e6c3b4378500d9530}
+Affichage du labyrinthe avec les murs sour forme A\+S\+C\+II \index{labyrinthe.\+c@{labyrinthe.\+c}!balayage@{balayage}}
+\index{balayage@{balayage}!labyrinthe.\+c@{labyrinthe.\+c}}
+\subsubsection[{\texorpdfstring{balayage(caract\+\_\+mat\+\_\+t $\ast$cmat, ini\+\_\+t $\ast$$\ast$mat, int $\ast$compteur)}{balayage(caract_mat_t *cmat, ini_t **mat, int *compteur)}}]{\setlength{\rightskip}{0pt plus 5cm}void balayage (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf ini\+\_\+t} $\ast$$\ast$}]{mat, }
+\item[{int $\ast$}]{compteur}
+\end{DoxyParamCaption}
+)}\hypertarget{labyrinthe_8c_a2de2986c76d981e88d26e402eb491010}{}\label{labyrinthe_8c_a2de2986c76d981e88d26e402eb491010}
+foncion qui parcoure la matrice et si il y a deux cases adjacentes qui ont une valeur différente elle casse le mur entre les deux \index{labyrinthe.\+c@{labyrinthe.\+c}!case\+\_\+adja@{case\+\_\+adja}}
+\index{case\+\_\+adja@{case\+\_\+adja}!labyrinthe.\+c@{labyrinthe.\+c}}
+\subsubsection[{\texorpdfstring{case\+\_\+adja(caract\+\_\+mat\+\_\+t $\ast$cmat, ini\+\_\+t $\ast$$\ast$mat, int coord\+\_\+x, int coord\+\_\+y, int $\ast$compteur)}{case_adja(caract_mat_t *cmat, ini_t **mat, int coord_x, int coord_y, int *compteur)}}]{\setlength{\rightskip}{0pt plus 5cm}void case\+\_\+adja (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf ini\+\_\+t} $\ast$$\ast$}]{mat, }
+\item[{int}]{coord\+\_\+x, }
+\item[{int}]{coord\+\_\+y, }
+\item[{int $\ast$}]{compteur}
+\end{DoxyParamCaption}
+)}\hypertarget{labyrinthe_8c_abacc944c4e85f29e9da1dfbc2dbc0565}{}\label{labyrinthe_8c_abacc944c4e85f29e9da1dfbc2dbc0565}
+Choisie une case aléatoirement(\+Nord, Sud, Est, Ouest) afin de creer la galerie en cassant les murs entre les deux cases. Appel la fonction valeur\+\_\+case \index{labyrinthe.\+c@{labyrinthe.\+c}!coord\+\_\+case@{coord\+\_\+case}}
+\index{coord\+\_\+case@{coord\+\_\+case}!labyrinthe.\+c@{labyrinthe.\+c}}
+\subsubsection[{\texorpdfstring{coord\+\_\+case(caract\+\_\+mat\+\_\+t $\ast$cmat, ini\+\_\+t $\ast$$\ast$mat, int $\ast$compteur)}{coord_case(caract_mat_t *cmat, ini_t **mat, int *compteur)}}]{\setlength{\rightskip}{0pt plus 5cm}void coord\+\_\+case (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf ini\+\_\+t} $\ast$$\ast$}]{mat, }
+\item[{int $\ast$}]{compteur}
+\end{DoxyParamCaption}
+)}\hypertarget{labyrinthe_8c_a97c8cd519ab9fe6f41571f8d77cfebce}{}\label{labyrinthe_8c_a97c8cd519ab9fe6f41571f8d77cfebce}
+Choisi aléatoirement une case dans le labyrinthe afin de lui attribuer une valeur et de creer les galeries a partir des fonctions précédentes. Appel la fonction case\+\_\+adj \index{labyrinthe.\+c@{labyrinthe.\+c}!creer\+\_\+labyrinthe@{creer\+\_\+labyrinthe}}
+\index{creer\+\_\+labyrinthe@{creer\+\_\+labyrinthe}!labyrinthe.\+c@{labyrinthe.\+c}}
+\subsubsection[{\texorpdfstring{creer\+\_\+labyrinthe(caract\+\_\+mat\+\_\+t $\ast$cmat, ini\+\_\+t $\ast$$\ast$mat)}{creer_labyrinthe(caract_mat_t *cmat, ini_t **mat)}}]{\setlength{\rightskip}{0pt plus 5cm}void creer\+\_\+labyrinthe (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf ini\+\_\+t} $\ast$$\ast$}]{mat}
+\end{DoxyParamCaption}
+)}\hypertarget{labyrinthe_8c_a9c756383ac514e4057850665d5b510a2}{}\label{labyrinthe_8c_a9c756383ac514e4057850665d5b510a2}
+Appel toutes les fonctions pour creer le labyrinthe \index{labyrinthe.\+c@{labyrinthe.\+c}!init\+\_\+laby@{init\+\_\+laby}}
+\index{init\+\_\+laby@{init\+\_\+laby}!labyrinthe.\+c@{labyrinthe.\+c}}
+\subsubsection[{\texorpdfstring{init\+\_\+laby(caract\+\_\+mat\+\_\+t $\ast$cmat, ini\+\_\+t $\ast$$\ast$mat)}{init_laby(caract_mat_t *cmat, ini_t **mat)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+laby (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf ini\+\_\+t} $\ast$$\ast$}]{mat}
+\end{DoxyParamCaption}
+)}\hypertarget{labyrinthe_8c_a9fe6a8b9d6a89085ba3f519da212c069}{}\label{labyrinthe_8c_a9fe6a8b9d6a89085ba3f519da212c069}
+Permet d\textquotesingle{}initialiser chaques mur du labyrinthe à 1(présence d\textquotesingle{}un mur) et de la valeur de la case à -\/1 \index{labyrinthe.\+c@{labyrinthe.\+c}!laby\+\_\+fini@{laby\+\_\+fini}}
+\index{laby\+\_\+fini@{laby\+\_\+fini}!labyrinthe.\+c@{labyrinthe.\+c}}
+\subsubsection[{\texorpdfstring{laby\+\_\+fini(caract\+\_\+mat\+\_\+t $\ast$cmat, ini\+\_\+t $\ast$$\ast$mat)}{laby_fini(caract_mat_t *cmat, ini_t **mat)}}]{\setlength{\rightskip}{0pt plus 5cm}int laby\+\_\+fini (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf ini\+\_\+t} $\ast$$\ast$}]{mat}
+\end{DoxyParamCaption}
+)}\hypertarget{labyrinthe_8c_a9ffd1e3cafcf0e3e95937442ca25b0cf}{}\label{labyrinthe_8c_a9ffd1e3cafcf0e3e95937442ca25b0cf}
+Vérification permettant de savoir si le labyrinthe est finit ou non \index{labyrinthe.\+c@{labyrinthe.\+c}!maxmin@{maxmin}}
+\index{maxmin@{maxmin}!labyrinthe.\+c@{labyrinthe.\+c}}
+\subsubsection[{\texorpdfstring{maxmin(ini\+\_\+t $\ast$$\ast$mat, int $\ast$max, int $\ast$min, int val1, int val2)}{maxmin(ini_t **mat, int *max, int *min, int val1, int val2)}}]{\setlength{\rightskip}{0pt plus 5cm}void maxmin (
+\begin{DoxyParamCaption}
+\item[{{\bf ini\+\_\+t} $\ast$$\ast$}]{mat, }
+\item[{int $\ast$}]{max, }
+\item[{int $\ast$}]{min, }
+\item[{int}]{val1, }
+\item[{int}]{val2}
+\end{DoxyParamCaption}
+)}\hypertarget{labyrinthe_8c_ac0c9636ef89db9e46a0cf9c5fe5f3d53}{}\label{labyrinthe_8c_ac0c9636ef89db9e46a0cf9c5fe5f3d53}
+Permet de déterminer le minimu et la maximum entre deux cases adjacentes \index{labyrinthe.\+c@{labyrinthe.\+c}!valeur\+\_\+case@{valeur\+\_\+case}}
+\index{valeur\+\_\+case@{valeur\+\_\+case}!labyrinthe.\+c@{labyrinthe.\+c}}
+\subsubsection[{\texorpdfstring{valeur\+\_\+case(caract\+\_\+mat\+\_\+t $\ast$cmat, ini\+\_\+t $\ast$$\ast$mat, int x1, int y1, int x2, int y2, int $\ast$compteur)}{valeur_case(caract_mat_t *cmat, ini_t **mat, int x1, int y1, int x2, int y2, int *compteur)}}]{\setlength{\rightskip}{0pt plus 5cm}void valeur\+\_\+case (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf ini\+\_\+t} $\ast$$\ast$}]{mat, }
+\item[{int}]{x1, }
+\item[{int}]{y1, }
+\item[{int}]{x2, }
+\item[{int}]{y2, }
+\item[{int $\ast$}]{compteur}
+\end{DoxyParamCaption}
+)}\hypertarget{labyrinthe_8c_afa2b95a96ad18258e75b6e8018a841d1}{}\label{labyrinthe_8c_afa2b95a96ad18258e75b6e8018a841d1}
+Permet de changer la valeur d\textquotesingle{}une case du labyrinthe afin de creer des galeries. Appel la fonction minmax 

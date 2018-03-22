@@ -1,0 +1,11 @@
+<map id="jeu_solo.c" name="jeu_solo.c">
+<area shape="rect" id="node3" href="$struct_8h_source.html" title="struct.h" alt="" coords="91,80,157,107"/>
+<area shape="rect" id="node4" href="$matrice_8h_source.html" title="matrice.h" alt="" coords="182,80,258,107"/>
+<area shape="rect" id="node5" href="$piege_8h_source.html" title="piege.h" alt="" coords="283,80,347,107"/>
+<area shape="rect" id="node6" href="$nourriture_8h_source.html" title="nourriture.h" alt="" coords="371,80,458,107"/>
+<area shape="rect" id="node7" href="$joueur_8h_source.html" title="joueur.h" alt="" coords="482,80,550,107"/>
+<area shape="rect" id="node8" href="$canard_8h_source.html" title="canard.h" alt="" coords="575,80,647,107"/>
+<area shape="rect" id="node9" href="$deplacer_8h_source.html" title="deplacer.h" alt="" coords="671,80,753,107"/>
+<area shape="rect" id="node10" href="$deplacer__multi_8h_source.html" title="deplacer_multi.h" alt="" coords="777,80,895,107"/>
+<area shape="rect" id="node11" href="$labyrinthe_8h_source.html" title="labyrinthe.h" alt="" coords="919,80,1009,107"/>
+</map>

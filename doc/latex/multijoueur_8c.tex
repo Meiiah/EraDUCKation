@@ -1,0 +1,132 @@
+\hypertarget{multijoueur_8c}{}\section{Référence du fichier multijoueur.\+c}
+\label{multijoueur_8c}\index{multijoueur.\+c@{multijoueur.\+c}}
+
+
+Fonctions outils multijoueur.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}struct.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}matrice.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}piege.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nourriture.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}joueur.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}canard.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}deplacer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}deplacer\+\_\+multi.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}labyrinthe.\+h\char`\"{}}\\*
+Graphe des dépendances par inclusion de multijoueur.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{multijoueur_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structjoueurm__s}{joueurm\+\_\+s}
+\end{DoxyCompactItemize}
+\subsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structjoueurm__s}{joueurm\+\_\+s} {\bfseries joueur\+\_\+multi\+\_\+t}\hypertarget{multijoueur_8c_a9bcbc24bf919d5b65615b47468540f2c}{}\label{multijoueur_8c_a9bcbc24bf919d5b65615b47468540f2c}
+
+\end{DoxyCompactItemize}
+\subsection*{Énumérations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries clan\+\_\+t} \{ {\bfseries bon}, 
+{\bfseries mechant}
+ \}\hypertarget{multijoueur_8c_a9cd6b5b7fe4ffceb64fcbf577e93d286}{}\label{multijoueur_8c_a9cd6b5b7fe4ffceb64fcbf577e93d286}
+
+\end{DoxyCompactItemize}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structjoueurm__s}{joueur\+\_\+multi\+\_\+t} \hyperlink{multijoueur_8c_a97b27c132aea39f525681767631a03a8}{joueur\+\_\+gentil} ()
+\item 
+\hyperlink{structjoueurm__s}{joueur\+\_\+multi\+\_\+t} \hyperlink{multijoueur_8c_a5934823e38db1e7f75825bbf0ab7b141}{joueur\+\_\+mechant} ()
+\item 
+void {\bfseries tour\+\_\+multijoueur} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, \hyperlink{structjoueurm__s}{joueur\+\_\+multi\+\_\+t} tab\mbox{[}$\,$\mbox{]}, int tour, int tampon)\hypertarget{multijoueur_8c_a4208d6e0692cb5efaca7d4a1c8cbabfe}{}\label{multijoueur_8c_a4208d6e0692cb5efaca7d4a1c8cbabfe}
+
+\item 
+int \hyperlink{multijoueur_8c_a514eac63a82d5da1b2afffa9cd49a085}{qui\+\_\+commence} (void)
+\item 
+void \hyperlink{multijoueur_8c_a63eb3a0f31964563c84357d1c6a76ce1}{init\+\_\+tab\+\_\+joueurs} (\hyperlink{structjoueurm__s}{joueur\+\_\+multi\+\_\+t} $\ast$tab, int tampon)
+\begin{DoxyCompactList}\small\item\em met le premier joueur a jouer en premiere place dans le tableau \end{DoxyCompactList}\item 
+int \hyperlink{multijoueur_8c_aa63b77a0b502529327c465a68b5bde50}{main\+\_\+multijoueur} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int nourriture\+\_\+genere, int nourriture\+\_\+accouplement)
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Fonctions outils multijoueur. 
+
+\begin{DoxyAuthor}{Auteur}
+Maxime.\+T 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+20 fevrier 2018 
+\end{DoxyDate}
+
+
+\subsection{Documentation des fonctions}
+\index{multijoueur.\+c@{multijoueur.\+c}!init\+\_\+tab\+\_\+joueurs@{init\+\_\+tab\+\_\+joueurs}}
+\index{init\+\_\+tab\+\_\+joueurs@{init\+\_\+tab\+\_\+joueurs}!multijoueur.\+c@{multijoueur.\+c}}
+\subsubsection[{\texorpdfstring{init\+\_\+tab\+\_\+joueurs(joueur\+\_\+multi\+\_\+t $\ast$tab, int tampon)}{init_tab_joueurs(joueur_multi_t *tab, int tampon)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+tab\+\_\+joueurs (
+\begin{DoxyParamCaption}
+\item[{{\bf joueur\+\_\+multi\+\_\+t} $\ast$}]{tab, }
+\item[{int}]{tampon}
+\end{DoxyParamCaption}
+)}\hypertarget{multijoueur_8c_a63eb3a0f31964563c84357d1c6a76ce1}{}\label{multijoueur_8c_a63eb3a0f31964563c84357d1c6a76ce1}
+
+
+met le premier joueur a jouer en premiere place dans le tableau 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tab} & tableau de joueurs \\
+\hline
+{\em tampon} & resultat du placement \\
+\hline
+\end{DoxyParams}
+\index{multijoueur.\+c@{multijoueur.\+c}!joueur\+\_\+gentil@{joueur\+\_\+gentil}}
+\index{joueur\+\_\+gentil@{joueur\+\_\+gentil}!multijoueur.\+c@{multijoueur.\+c}}
+\subsubsection[{\texorpdfstring{joueur\+\_\+gentil()}{joueur_gentil()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf joueur\+\_\+multi\+\_\+t} joueur\+\_\+gentil (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{multijoueur_8c_a97b27c132aea39f525681767631a03a8}{}\label{multijoueur_8c_a97b27c132aea39f525681767631a03a8}
+initialise un joueur en joueur gentil \index{multijoueur.\+c@{multijoueur.\+c}!joueur\+\_\+mechant@{joueur\+\_\+mechant}}
+\index{joueur\+\_\+mechant@{joueur\+\_\+mechant}!multijoueur.\+c@{multijoueur.\+c}}
+\subsubsection[{\texorpdfstring{joueur\+\_\+mechant()}{joueur_mechant()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf joueur\+\_\+multi\+\_\+t} joueur\+\_\+mechant (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{multijoueur_8c_a5934823e38db1e7f75825bbf0ab7b141}{}\label{multijoueur_8c_a5934823e38db1e7f75825bbf0ab7b141}
+initialise un joueur en tant que mechant \index{multijoueur.\+c@{multijoueur.\+c}!main\+\_\+multijoueur@{main\+\_\+multijoueur}}
+\index{main\+\_\+multijoueur@{main\+\_\+multijoueur}!multijoueur.\+c@{multijoueur.\+c}}
+\subsubsection[{\texorpdfstring{main\+\_\+multijoueur(caract\+\_\+mat\+\_\+t $\ast$cmat, int nourriture\+\_\+genere, int nourriture\+\_\+accouplement)}{main_multijoueur(caract_mat_t *cmat, int nourriture_genere, int nourriture_accouplement)}}]{\setlength{\rightskip}{0pt plus 5cm}int main\+\_\+multijoueur (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{int}]{nourriture\+\_\+genere, }
+\item[{int}]{nourriture\+\_\+accouplement}
+\end{DoxyParamCaption}
+)}\hypertarget{multijoueur_8c_aa63b77a0b502529327c465a68b5bde50}{}\label{multijoueur_8c_aa63b77a0b502529327c465a68b5bde50}
+fait le jeu en multi sur meme pc \index{multijoueur.\+c@{multijoueur.\+c}!qui\+\_\+commence@{qui\+\_\+commence}}
+\index{qui\+\_\+commence@{qui\+\_\+commence}!multijoueur.\+c@{multijoueur.\+c}}
+\subsubsection[{\texorpdfstring{qui\+\_\+commence(void)}{qui_commence(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int qui\+\_\+commence (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{multijoueur_8c_a514eac63a82d5da1b2afffa9cd49a085}{}\label{multijoueur_8c_a514eac63a82d5da1b2afffa9cd49a085}
+demande quel joueur commence
+
+\begin{DoxyReturn}{Renvoie}
+renvoit 0 si c est le gentil et 1 si c est le mechant 
+\end{DoxyReturn}

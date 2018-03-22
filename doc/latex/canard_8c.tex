@@ -1,0 +1,80 @@
+\hypertarget{canard_8c}{}\section{Référence du fichier canard.\+c}
+\label{canard_8c}\index{canard.\+c@{canard.\+c}}
+
+
+Fonctions outils multijoueur.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}struct.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}matrice.\+h\char`\"{}}\\*
+Graphe des dépendances par inclusion de canard.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{canard_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{canard_8c_a90ecbbfe8dc92a0c4a3038a6abb20124}{init\+\_\+canard} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat)
+\item 
+int \hyperlink{canard_8c_aa035ff52c520519ec35815a8d064f3ca}{presence\+\_\+canard} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat)
+\begin{DoxyCompactList}\small\item\em int \hyperlink{canard_8c_aa035ff52c520519ec35815a8d064f3ca}{presence\+\_\+canard(caract\+\_\+mat\+\_\+t $\ast$ cmat)} \end{DoxyCompactList}\item 
+int \hyperlink{canard_8c_a33741fa352b02503340171e0de192c3e}{nombre\+\_\+canard} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat)
+\item 
+int \hyperlink{canard_8c_a4716b2bc2c62ac9e65d49e81113bd511}{oeuf\+\_\+to\+\_\+adulte} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat)
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Fonctions outils multijoueur. 
+
+\begin{DoxyAuthor}{Auteur}
+Camille.\+V 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+20 fevrier 2018 
+\end{DoxyDate}
+
+
+\subsection{Documentation des fonctions}
+\index{canard.\+c@{canard.\+c}!init\+\_\+canard@{init\+\_\+canard}}
+\index{init\+\_\+canard@{init\+\_\+canard}!canard.\+c@{canard.\+c}}
+\subsubsection[{\texorpdfstring{init\+\_\+canard(caract\+\_\+mat\+\_\+t $\ast$cmat)}{init_canard(caract_mat_t *cmat)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+canard (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat}
+\end{DoxyParamCaption}
+)}\hypertarget{canard_8c_a90ecbbfe8dc92a0c4a3038a6abb20124}{}\label{canard_8c_a90ecbbfe8dc92a0c4a3038a6abb20124}
+met des canards dans des cases aléatoire \index{canard.\+c@{canard.\+c}!nombre\+\_\+canard@{nombre\+\_\+canard}}
+\index{nombre\+\_\+canard@{nombre\+\_\+canard}!canard.\+c@{canard.\+c}}
+\subsubsection[{\texorpdfstring{nombre\+\_\+canard(caract\+\_\+mat\+\_\+t $\ast$cmat)}{nombre_canard(caract_mat_t *cmat)}}]{\setlength{\rightskip}{0pt plus 5cm}int nombre\+\_\+canard (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat}
+\end{DoxyParamCaption}
+)}\hypertarget{canard_8c_a33741fa352b02503340171e0de192c3e}{}\label{canard_8c_a33741fa352b02503340171e0de192c3e}
+compte les canards présents dans la matrice \index{canard.\+c@{canard.\+c}!oeuf\+\_\+to\+\_\+adulte@{oeuf\+\_\+to\+\_\+adulte}}
+\index{oeuf\+\_\+to\+\_\+adulte@{oeuf\+\_\+to\+\_\+adulte}!canard.\+c@{canard.\+c}}
+\subsubsection[{\texorpdfstring{oeuf\+\_\+to\+\_\+adulte(caract\+\_\+mat\+\_\+t $\ast$cmat)}{oeuf_to_adulte(caract_mat_t *cmat)}}]{\setlength{\rightskip}{0pt plus 5cm}int oeuf\+\_\+to\+\_\+adulte (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat}
+\end{DoxyParamCaption}
+)}\hypertarget{canard_8c_a4716b2bc2c62ac9e65d49e81113bd511}{}\label{canard_8c_a4716b2bc2c62ac9e65d49e81113bd511}
+change les canards à l\textquotesingle{}état d\textquotesingle{}oeuf en canards à l\textquotesingle{}état adulte \index{canard.\+c@{canard.\+c}!presence\+\_\+canard@{presence\+\_\+canard}}
+\index{presence\+\_\+canard@{presence\+\_\+canard}!canard.\+c@{canard.\+c}}
+\subsubsection[{\texorpdfstring{presence\+\_\+canard(caract\+\_\+mat\+\_\+t $\ast$cmat)}{presence_canard(caract_mat_t *cmat)}}]{\setlength{\rightskip}{0pt plus 5cm}int presence\+\_\+canard (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat}
+\end{DoxyParamCaption}
+)}\hypertarget{canard_8c_aa035ff52c520519ec35815a8d064f3ca}{}\label{canard_8c_aa035ff52c520519ec35815a8d064f3ca}
+
+
+int \hyperlink{canard_8c_aa035ff52c520519ec35815a8d064f3ca}{presence\+\_\+canard(caract\+\_\+mat\+\_\+t $\ast$ cmat)} 
+
+retourne 1 si il reste des canards 

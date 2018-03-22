@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>« EraDUCKtion »:  Fichier source de labyrinthe.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">« EraDUCKtion »
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Membres&#160;de&#160;fichier</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">labyrinthe.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#ifndef __LABYRINTHE_H__</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#define __LABYRINTHE_H__</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="structini__t.html">    8</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span>{ </div><div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structini__t.html#a05761ad37f05a88ecaa33a8c380aacda">    9</a></span>&#160;    <a class="code" href="structmur__s.html">mur_t</a> <a class="code" href="structini__t.html#a05761ad37f05a88ecaa33a8c380aacda">mur</a>;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">int</span> valeur;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}<a class="code" href="structini__t.html">ini_t</a>;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">int</span> compter_murs(<a class="code" href="structcaract__mat__t.html">caract_mat_t</a>* ,<span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j);<span class="comment">// on compte les murs au niveau de l angle, sur la case suivante et sur la case du dessous</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> afficher_angle(<a class="code" href="structcaract__mat__t.html">caract_mat_t</a> * ,<span class="keywordtype">int</span> j, <span class="keywordtype">int</span> i); <span class="comment">// affiche l angle bas-droite de la case [ j ] [ i ]</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="labyrinthe_8c.html#aad84aaf14c03fe3e6c3b4378500d9530">affichage_laby</a>(<a class="code" href="structcaract__mat__t.html">caract_mat_t</a> *);<span class="comment">//Affichage du labyrinthe avec les murs sour forme ASCII</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> <a class="code" href="labyrinthe_8c.html#a9fe6a8b9d6a89085ba3f519da212c069">init_laby</a>(<a class="code" href="structcaract__mat__t.html">caract_mat_t</a> *,<a class="code" href="structini__t.html">ini_t</a> ** ); <span class="comment">//Permet d&#39;initialiser chaques mur du labyrinthe à 1(présence d&#39;un mur) et de la valeur de la case à -1</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="labyrinthe_8c.html#ac0c9636ef89db9e46a0cf9c5fe5f3d53">maxmin</a>(<a class="code" href="structini__t.html">ini_t</a> **,<span class="keywordtype">int</span> *, <span class="keywordtype">int</span> *, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>); <span class="comment">//Permet de déterminer le minimu et la maximum entre deux cases adjacentes</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">void</span> <a class="code" href="labyrinthe_8c.html#afa2b95a96ad18258e75b6e8018a841d1">valeur_case</a>(<a class="code" href="structcaract__mat__t.html">caract_mat_t</a> *,<a class="code" href="structini__t.html">ini_t</a> **,<span class="keywordtype">int</span>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span> *); <span class="comment">//Permet de changer la valeur d&#39;une case du labyrinthe afin de creer des galeries. Appel la fonction minmax</span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">void</span> <a class="code" href="labyrinthe_8c.html#abacc944c4e85f29e9da1dfbc2dbc0565">case_adja</a>(<a class="code" href="structcaract__mat__t.html">caract_mat_t</a> *,<a class="code" href="structini__t.html">ini_t</a> **,<span class="keywordtype">int</span>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span> *); <span class="comment">//Choisie une case aléatoirement(Nord, Sud, Est, Ouest) afin de creer la galerie en cassant les murs entre les deux cases. Appel la fonction valeur_case</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> <a class="code" href="labyrinthe_8c.html#a97c8cd519ab9fe6f41571f8d77cfebce">coord_case</a>(<a class="code" href="structcaract__mat__t.html">caract_mat_t</a> *,<a class="code" href="structini__t.html">ini_t</a> **,<span class="keywordtype">int</span>*); <span class="comment">//Choisie aléatoirement une case dans le labyrinthe afin de lui attribué une valeur et de creer les galeries a partir des fonctions précédentes. Appel la fonction case_adj</span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">int</span> <a class="code" href="labyrinthe_8c.html#a9ffd1e3cafcf0e3e95937442ca25b0cf">laby_fini</a>(<a class="code" href="structcaract__mat__t.html">caract_mat_t</a> *,<a class="code" href="structini__t.html">ini_t</a> **); <span class="comment">//Vérification permettant de savoir si le labyrinthe est finit ou non</span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">void</span> <a class="code" href="labyrinthe_8c.html#a9c756383ac514e4057850665d5b510a2">creer_labyrinthe</a>(<a class="code" href="structcaract__mat__t.html">caract_mat_t</a> *,<a class="code" href="structini__t.html">ini_t</a> **); <span class="comment">//Appel toutes les fonctions pour creer le labyrinthe</span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> copi_laby(<a class="code" href="structini__t.html">ini_t</a> **,<a class="code" href="structcaract__mat__t.html">caract_mat_t</a> *);</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">int</span> main_laby(<a class="code" href="structcaract__mat__t.html">caract_mat_t</a> *);</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="labyrinthe_8c_html_abacc944c4e85f29e9da1dfbc2dbc0565"><div class="ttname"><a href="labyrinthe_8c.html#abacc944c4e85f29e9da1dfbc2dbc0565">case_adja</a></div><div class="ttdeci">void case_adja(caract_mat_t *cmat, ini_t **mat, int coord_x, int coord_y, int *compteur)</div><div class="ttdef"><b>Definition:</b> labyrinthe.c:243</div></div>
+<div class="ttc" id="labyrinthe_8c_html_a97c8cd519ab9fe6f41571f8d77cfebce"><div class="ttname"><a href="labyrinthe_8c.html#a97c8cd519ab9fe6f41571f8d77cfebce">coord_case</a></div><div class="ttdeci">void coord_case(caract_mat_t *cmat, ini_t **mat, int *compteur)</div><div class="ttdef"><b>Definition:</b> labyrinthe.c:318</div></div>
+<div class="ttc" id="labyrinthe_8c_html_a9fe6a8b9d6a89085ba3f519da212c069"><div class="ttname"><a href="labyrinthe_8c.html#a9fe6a8b9d6a89085ba3f519da212c069">init_laby</a></div><div class="ttdeci">void init_laby(caract_mat_t *cmat, ini_t **mat)</div><div class="ttdef"><b>Definition:</b> labyrinthe.c:165</div></div>
+<div class="ttc" id="structini__t_html_a05761ad37f05a88ecaa33a8c380aacda"><div class="ttname"><a href="structini__t.html#a05761ad37f05a88ecaa33a8c380aacda">ini_t::mur</a></div><div class="ttdeci">mur_t mur</div><div class="ttdoc">Strucure appelant une structure mur_t, et une valeur de case. </div><div class="ttdef"><b>Definition:</b> labyrinthe.h:9</div></div>
+<div class="ttc" id="labyrinthe_8c_html_ac0c9636ef89db9e46a0cf9c5fe5f3d53"><div class="ttname"><a href="labyrinthe_8c.html#ac0c9636ef89db9e46a0cf9c5fe5f3d53">maxmin</a></div><div class="ttdeci">void maxmin(ini_t **mat, int *max, int *min, int val1, int val2)</div><div class="ttdef"><b>Definition:</b> labyrinthe.c:181</div></div>
+<div class="ttc" id="structini__t_html"><div class="ttname"><a href="structini__t.html">ini_t</a></div><div class="ttdef"><b>Definition:</b> labyrinthe.h:8</div></div>
+<div class="ttc" id="structmur__s_html"><div class="ttname"><a href="structmur__s.html">mur_s</a></div><div class="ttdoc">etat du mur </div><div class="ttdef"><b>Definition:</b> struct.h:8</div></div>
+<div class="ttc" id="labyrinthe_8c_html_afa2b95a96ad18258e75b6e8018a841d1"><div class="ttname"><a href="labyrinthe_8c.html#afa2b95a96ad18258e75b6e8018a841d1">valeur_case</a></div><div class="ttdeci">void valeur_case(caract_mat_t *cmat, ini_t **mat, int x1, int y1, int x2, int y2, int *compteur)</div><div class="ttdef"><b>Definition:</b> labyrinthe.c:192</div></div>
+<div class="ttc" id="labyrinthe_8c_html_aad84aaf14c03fe3e6c3b4378500d9530"><div class="ttname"><a href="labyrinthe_8c.html#aad84aaf14c03fe3e6c3b4378500d9530">affichage_laby</a></div><div class="ttdeci">void affichage_laby(caract_mat_t *cmat)</div><div class="ttdef"><b>Definition:</b> labyrinthe.c:104</div></div>
+<div class="ttc" id="labyrinthe_8c_html_a9ffd1e3cafcf0e3e95937442ca25b0cf"><div class="ttname"><a href="labyrinthe_8c.html#a9ffd1e3cafcf0e3e95937442ca25b0cf">laby_fini</a></div><div class="ttdeci">int laby_fini(caract_mat_t *cmat, ini_t **mat)</div><div class="ttdef"><b>Definition:</b> labyrinthe.c:331</div></div>
+<div class="ttc" id="structcaract__mat__t_html"><div class="ttname"><a href="structcaract__mat__t.html">caract_mat_t</a></div><div class="ttdef"><b>Definition:</b> matrice.h:5</div></div>
+<div class="ttc" id="labyrinthe_8c_html_a9c756383ac514e4057850665d5b510a2"><div class="ttname"><a href="labyrinthe_8c.html#a9c756383ac514e4057850665d5b510a2">creer_labyrinthe</a></div><div class="ttdeci">void creer_labyrinthe(caract_mat_t *cmat, ini_t **mat)</div><div class="ttdef"><b>Definition:</b> labyrinthe.c:431</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

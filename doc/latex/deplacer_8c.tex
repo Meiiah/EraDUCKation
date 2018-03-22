@@ -1,0 +1,131 @@
+\hypertarget{deplacer_8c}{}\section{Référence du fichier deplacer.\+c}
+\label{deplacer_8c}\index{deplacer.\+c@{deplacer.\+c}}
+
+
+fichier contenant les fonctions de deplacement  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}struct.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}matrice.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}deplacer\+\_\+multi.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nourriture.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}reproduction.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}labyrinthe.\+h\char`\"{}}\\*
+Graphe des dépendances par inclusion de deplacer.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{deplacer_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Énumérations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries t\+\_\+direction} \{ \\*
+{\bfseries Aucune\+\_\+direction} = -\/1, 
+{\bfseries Est} = 1, 
+{\bfseries Ouest} =2, 
+{\bfseries Sud} =3, 
+\\*
+{\bfseries Nord} = 4, 
+{\bfseries Pas\+\_\+besoin\+\_\+de\+\_\+bouger} =42
+ \}\hypertarget{deplacer_8c_aec4e3894aa763e81148b2241ff730790}{}\label{deplacer_8c_aec4e3894aa763e81148b2241ff730790}
+
+\end{DoxyCompactItemize}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structcanard__s}{canard\+\_\+t} \hyperlink{deplacer_8c_aac3daab5047434d650d678ec8422a9eb}{canard\+\_\+vide} (void)
+\item 
+t\+\_\+direction \hyperlink{deplacer_8c_a2e22fe142b851f5f06136b6092396121}{voit\+\_\+nourriture} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int i, int j, int k)
+\item 
+t\+\_\+direction \hyperlink{deplacer_8c_aa3fbfab570f87f6a6c9ce3865f3de477}{voit\+\_\+accouplement} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int nourriture\+\_\+accouplement, int i, int j, int kiem\+\_\+canard)
+\item 
+void \hyperlink{deplacer_8c_adbd99be705318964b6f5c30d9f1557c8}{deplacer\+\_\+canard} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int i, int j, int k, int direction)
+\item 
+void \hyperlink{deplacer_8c_a82b2efb2b6ecb9d0e5dacddae31eb7d1}{deplacer} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int nourriture\+\_\+accouplement, int nourriture\+\_\+genere, \hyperlink{structjoueur__s}{joueur\+\_\+t} joueur, \hyperlink{structjoueur__s}{joueur\+\_\+t} joueur2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+fichier contenant les fonctions de deplacement 
+
+\begin{DoxyAuthor}{Auteur}
+Maxime Touzé 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+8 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+19 fevrier 2018
+\end{DoxyDate}
+\begin{DoxyAuthor}{Auteur}
+Maxime Touzé 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+19 mars 2018 
+\end{DoxyDate}
+
+
+\subsection{Documentation des fonctions}
+\index{deplacer.\+c@{deplacer.\+c}!canard\+\_\+vide@{canard\+\_\+vide}}
+\index{canard\+\_\+vide@{canard\+\_\+vide}!deplacer.\+c@{deplacer.\+c}}
+\subsubsection[{\texorpdfstring{canard\+\_\+vide(void)}{canard_vide(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf canard\+\_\+t} canard\+\_\+vide (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{deplacer_8c_aac3daab5047434d650d678ec8422a9eb}{}\label{deplacer_8c_aac3daab5047434d650d678ec8422a9eb}
+renvoit un canard inexistant \index{deplacer.\+c@{deplacer.\+c}!deplacer@{deplacer}}
+\index{deplacer@{deplacer}!deplacer.\+c@{deplacer.\+c}}
+\subsubsection[{\texorpdfstring{deplacer(caract\+\_\+mat\+\_\+t $\ast$cmat, int nourriture\+\_\+accouplement, int nourriture\+\_\+genere, joueur\+\_\+t joueur, joueur\+\_\+t joueur2)}{deplacer(caract_mat_t *cmat, int nourriture_accouplement, int nourriture_genere, joueur_t joueur, joueur_t joueur2)}}]{\setlength{\rightskip}{0pt plus 5cm}void deplacer (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{int}]{nourriture\+\_\+accouplement, }
+\item[{int}]{nourriture\+\_\+genere, }
+\item[{{\bf joueur\+\_\+t}}]{joueur, }
+\item[{{\bf joueur\+\_\+t}}]{joueur2}
+\end{DoxyParamCaption}
+)}\hypertarget{deplacer_8c_a82b2efb2b6ecb9d0e5dacddae31eb7d1}{}\label{deplacer_8c_a82b2efb2b6ecb9d0e5dacddae31eb7d1}
+fonction qui déplace des canards tirés au sort d une case puis d une autre \index{deplacer.\+c@{deplacer.\+c}!deplacer\+\_\+canard@{deplacer\+\_\+canard}}
+\index{deplacer\+\_\+canard@{deplacer\+\_\+canard}!deplacer.\+c@{deplacer.\+c}}
+\subsubsection[{\texorpdfstring{deplacer\+\_\+canard(caract\+\_\+mat\+\_\+t $\ast$cmat, int i, int j, int k, int direction)}{deplacer_canard(caract_mat_t *cmat, int i, int j, int k, int direction)}}]{\setlength{\rightskip}{0pt plus 5cm}void deplacer\+\_\+canard (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{k, }
+\item[{int}]{direction}
+\end{DoxyParamCaption}
+)}\hypertarget{deplacer_8c_adbd99be705318964b6f5c30d9f1557c8}{}\label{deplacer_8c_adbd99be705318964b6f5c30d9f1557c8}
+Deplace le kieme canard de la case i;j dans la direction donnée \index{deplacer.\+c@{deplacer.\+c}!voit\+\_\+accouplement@{voit\+\_\+accouplement}}
+\index{voit\+\_\+accouplement@{voit\+\_\+accouplement}!deplacer.\+c@{deplacer.\+c}}
+\subsubsection[{\texorpdfstring{voit\+\_\+accouplement(caract\+\_\+mat\+\_\+t $\ast$cmat, int nourriture\+\_\+accouplement, int i, int j, int kiem\+\_\+canard)}{voit_accouplement(caract_mat_t *cmat, int nourriture_accouplement, int i, int j, int kiem_canard)}}]{\setlength{\rightskip}{0pt plus 5cm}t\+\_\+direction voit\+\_\+accouplement (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{int}]{nourriture\+\_\+accouplement, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{kiem\+\_\+canard}
+\end{DoxyParamCaption}
+)}\hypertarget{deplacer_8c_aa3fbfab570f87f6a6c9ce3865f3de477}{}\label{deplacer_8c_aa3fbfab570f87f6a6c9ce3865f3de477}
+fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit un partenaire de reprod (-\/1 si pas de vision dessus)
+
+SI pas de mur enregistré on regarde si il y a un partenaire d accouplement, si c est le cas on break, puis on regarde si il y a un mur, et si il y a on memorise qu il y en a un et on verifie que tous les murs soient pas trouvés\index{deplacer.\+c@{deplacer.\+c}!voit\+\_\+nourriture@{voit\+\_\+nourriture}}
+\index{voit\+\_\+nourriture@{voit\+\_\+nourriture}!deplacer.\+c@{deplacer.\+c}}
+\subsubsection[{\texorpdfstring{voit\+\_\+nourriture(caract\+\_\+mat\+\_\+t $\ast$cmat, int i, int j, int k)}{voit_nourriture(caract_mat_t *cmat, int i, int j, int k)}}]{\setlength{\rightskip}{0pt plus 5cm}t\+\_\+direction voit\+\_\+nourriture (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{k}
+\end{DoxyParamCaption}
+)}\hypertarget{deplacer_8c_a2e22fe142b851f5f06136b6092396121}{}\label{deplacer_8c_a2e22fe142b851f5f06136b6092396121}
+fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit de la nouriture (-\/1 si pas de vision dessus)
+
+SI pas de mur enregistré on regarde si il y a un fruit, si c est le cas on break, puis on regarde si il y a un mur, et si il y a on memorise qu il y en a un et on verifie que tous les murs soient pas trouvés

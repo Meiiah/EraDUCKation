@@ -1,0 +1,480 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>« EraDUCKtion »: Référence du fichier labyrinthe.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">« EraDUCKtion »
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Membres&#160;de&#160;fichier</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier labyrinthe.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Programme comprennant la génération d'un labyrinthe.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &quot;struct.h&quot;</code><br />
+<code>#include &quot;matrice.h&quot;</code><br />
+<code>#include &quot;labyrinthe.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de labyrinthe.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="labyrinthe_8c__incl.png" border="0" usemap="#labyrinthe_8c" alt=""/></div>
+<map name="labyrinthe_8c" id="labyrinthe_8c">
+<area shape="rect" id="node5" href="struct_8h_source.html" title="struct.h" alt="" coords="261,80,328,107"/>
+<area shape="rect" id="node6" href="matrice_8h_source.html" title="matrice.h" alt="" coords="353,80,429,107"/>
+<area shape="rect" id="node7" href="labyrinthe_8h_source.html" title="labyrinthe.h" alt="" coords="453,80,542,107"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a392fb874e547e582e9c66a08a1f23326"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a392fb874e547e582e9c66a08a1f23326"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX</b>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a392fb874e547e582e9c66a08a1f23326"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:aaa99616442fe50bed154bc9a599217eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa99616442fe50bed154bc9a599217eb"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>compter_murs</b> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, int i, int j)</td></tr>
+<tr class="separator:aaa99616442fe50bed154bc9a599217eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a629d2a355cb4d64f221c3c4ed31de155"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a629d2a355cb4d64f221c3c4ed31de155"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>afficher_angle</b> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, int j, int i)</td></tr>
+<tr class="separator:a629d2a355cb4d64f221c3c4ed31de155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad84aaf14c03fe3e6c3b4378500d9530"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#aad84aaf14c03fe3e6c3b4378500d9530">affichage_laby</a> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat)</td></tr>
+<tr class="separator:aad84aaf14c03fe3e6c3b4378500d9530"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fe6a8b9d6a89085ba3f519da212c069"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#a9fe6a8b9d6a89085ba3f519da212c069">init_laby</a> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, <a class="el" href="structini__t.html">ini_t</a> **mat)</td></tr>
+<tr class="separator:a9fe6a8b9d6a89085ba3f519da212c069"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0c9636ef89db9e46a0cf9c5fe5f3d53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#ac0c9636ef89db9e46a0cf9c5fe5f3d53">maxmin</a> (<a class="el" href="structini__t.html">ini_t</a> **mat, int *max, int *min, int val1, int val2)</td></tr>
+<tr class="separator:ac0c9636ef89db9e46a0cf9c5fe5f3d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa2b95a96ad18258e75b6e8018a841d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#afa2b95a96ad18258e75b6e8018a841d1">valeur_case</a> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, <a class="el" href="structini__t.html">ini_t</a> **mat, int x1, int y1, int x2, int y2, int *compteur)</td></tr>
+<tr class="separator:afa2b95a96ad18258e75b6e8018a841d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57ff2e46587e5aa49c066d614c305d25"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57ff2e46587e5aa49c066d614c305d25"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>compter_mur</b> (<a class="el" href="structini__t.html">ini_t</a> **mat, int i, int j)</td></tr>
+<tr class="separator:a57ff2e46587e5aa49c066d614c305d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abacc944c4e85f29e9da1dfbc2dbc0565"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#abacc944c4e85f29e9da1dfbc2dbc0565">case_adja</a> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, <a class="el" href="structini__t.html">ini_t</a> **mat, int coord_x, int coord_y, int *compteur)</td></tr>
+<tr class="separator:abacc944c4e85f29e9da1dfbc2dbc0565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97c8cd519ab9fe6f41571f8d77cfebce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#a97c8cd519ab9fe6f41571f8d77cfebce">coord_case</a> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, <a class="el" href="structini__t.html">ini_t</a> **mat, int *compteur)</td></tr>
+<tr class="separator:a97c8cd519ab9fe6f41571f8d77cfebce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ffd1e3cafcf0e3e95937442ca25b0cf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#a9ffd1e3cafcf0e3e95937442ca25b0cf">laby_fini</a> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, <a class="el" href="structini__t.html">ini_t</a> **mat)</td></tr>
+<tr class="separator:a9ffd1e3cafcf0e3e95937442ca25b0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30bd835edc9fd3791e437a845aae9e10"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30bd835edc9fd3791e437a845aae9e10"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>maj_coins</b> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, <a class="el" href="structini__t.html">ini_t</a> **mat, int *compteur)</td></tr>
+<tr class="separator:a30bd835edc9fd3791e437a845aae9e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2de2986c76d981e88d26e402eb491010"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#a2de2986c76d981e88d26e402eb491010">balayage</a> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, <a class="el" href="structini__t.html">ini_t</a> **mat, int *compteur)</td></tr>
+<tr class="separator:a2de2986c76d981e88d26e402eb491010"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c756383ac514e4057850665d5b510a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#a9c756383ac514e4057850665d5b510a2">creer_labyrinthe</a> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, <a class="el" href="structini__t.html">ini_t</a> **mat)</td></tr>
+<tr class="separator:a9c756383ac514e4057850665d5b510a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef2db2cfc24bd4bd6bc91ccb74a0f987"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef2db2cfc24bd4bd6bc91ccb74a0f987"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>copi_laby</b> (<a class="el" href="structini__t.html">ini_t</a> **mat, <a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat)</td></tr>
+<tr class="separator:aef2db2cfc24bd4bd6bc91ccb74a0f987"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1234917404dc6a2d930a06e7cff58d19"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1234917404dc6a2d930a06e7cff58d19"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>main_laby</b> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat)</td></tr>
+<tr class="separator:a1234917404dc6a2d930a06e7cff58d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Programme comprennant la génération d'un labyrinthe. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Marchand Killian Touzé Maxime </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>3.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>20 Février 2018 </dd></dl>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="aad84aaf14c03fe3e6c3b4378500d9530"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void affichage_laby </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Affichage du labyrinthe avec les murs sour forme ASCII </p>
+
+</div>
+</div>
+<a class="anchor" id="a2de2986c76d981e88d26e402eb491010"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void balayage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structini__t.html">ini_t</a> **&#160;</td>
+          <td class="paramname"><em>mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>compteur</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>foncion qui parcoure la matrice et si il y a deux cases adjacentes qui ont une valeur différente elle casse le mur entre les deux </p>
+
+</div>
+</div>
+<a class="anchor" id="abacc944c4e85f29e9da1dfbc2dbc0565"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void case_adja </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structini__t.html">ini_t</a> **&#160;</td>
+          <td class="paramname"><em>mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>coord_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>coord_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>compteur</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Choisie une case aléatoirement(Nord, Sud, Est, Ouest) afin de creer la galerie en cassant les murs entre les deux cases. Appel la fonction valeur_case </p>
+
+</div>
+</div>
+<a class="anchor" id="a97c8cd519ab9fe6f41571f8d77cfebce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void coord_case </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structini__t.html">ini_t</a> **&#160;</td>
+          <td class="paramname"><em>mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>compteur</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Choisi aléatoirement une case dans le labyrinthe afin de lui attribuer une valeur et de creer les galeries a partir des fonctions précédentes. Appel la fonction case_adj </p>
+
+</div>
+</div>
+<a class="anchor" id="a9c756383ac514e4057850665d5b510a2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void creer_labyrinthe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structini__t.html">ini_t</a> **&#160;</td>
+          <td class="paramname"><em>mat</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Appel toutes les fonctions pour creer le labyrinthe </p>
+
+</div>
+</div>
+<a class="anchor" id="a9fe6a8b9d6a89085ba3f519da212c069"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_laby </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structini__t.html">ini_t</a> **&#160;</td>
+          <td class="paramname"><em>mat</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permet d'initialiser chaques mur du labyrinthe à 1(présence d'un mur) et de la valeur de la case à -1 </p>
+
+</div>
+</div>
+<a class="anchor" id="a9ffd1e3cafcf0e3e95937442ca25b0cf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int laby_fini </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structini__t.html">ini_t</a> **&#160;</td>
+          <td class="paramname"><em>mat</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vérification permettant de savoir si le labyrinthe est finit ou non </p>
+
+</div>
+</div>
+<a class="anchor" id="ac0c9636ef89db9e46a0cf9c5fe5f3d53"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void maxmin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structini__t.html">ini_t</a> **&#160;</td>
+          <td class="paramname"><em>mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>max</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>val1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>val2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permet de déterminer le minimu et la maximum entre deux cases adjacentes </p>
+
+</div>
+</div>
+<a class="anchor" id="afa2b95a96ad18258e75b6e8018a841d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void valeur_case </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structini__t.html">ini_t</a> **&#160;</td>
+          <td class="paramname"><em>mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>compteur</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permet de changer la valeur d'une case du labyrinthe afin de creer des galeries. Appel la fonction minmax </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>
