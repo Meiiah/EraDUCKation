@@ -119,7 +119,7 @@ void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourr
 				break;
 		}while(result!=1 && result!=2 && result!=3);
 	}
-
+}
 /** \fn void choix_joueur(void)*/
 /** choix du joueur parmis les evenements */
 void choix_joueur(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourriture_genere, int* nourriture_accouplement){
