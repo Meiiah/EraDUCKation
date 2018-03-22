@@ -23,10 +23,10 @@ void ajout_score(int point,joueur_t joueur, joueur_t joueur2){/**fonction d'ajou
 }
 
 /**\fn void caract_joueur(joueur_t)*/
-void caract_joueur(joueur_t joueur){/** saisi du pseudo du joueur */
+void caract_joueur(joueur_t * joueur){/** saisi du pseudo du joueur */
 	printf("Saisir le pseudo du joueur : ");
-	scanf("%s",joueur.nom_joueur);
-	joueur.score=0;
+	scanf("%s",joueur->nom_joueur);
+	joueur->score=0;
 }
 
 char *mauv_evts[nb_event]={
@@ -53,9 +53,9 @@ void tab_event_mauvais(int * choix1,int * choix2, int * choix3){
 	
 	
 	printf("\nChoix 1 : %s\n",mauv_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
-	if(choix1!=choix2)
+	if(*choix1!=*choix2)
 		printf("Choix 2 : %s\n",mauv_evts[*choix2]);
-	if(choix1!=choix3 && choix2!=choix3)
+	if(*choix1!=*choix3 && *choix2!=*choix3)
 		printf("Choix 3 : %s\n",mauv_evts[*choix3]);
 }
 
@@ -68,9 +68,9 @@ void tab_event_bon(int * choix1,int * choix2, int * choix3){
 	*choix3=(rand() % (nb_event ));
 
 	printf("\nChoix 1 : %s\n",bon_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
-	if(choix1!=choix2)
+	if(*choix1!=*choix2)
 		printf("Choix 2 : %s\n",bon_evts[*choix2]);
-	if(choix1!=choix3 && choix2!=choix3)
+	if(*choix1!=*choix3 && *choix2!=*choix3)
 		printf("Choix 3 : %s\n",bon_evts[*choix3]);
 }
 
