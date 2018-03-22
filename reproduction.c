@@ -1,6 +1,6 @@
 #include "struct.h"
-#include "joueur.h"
 #include "matrice.h"
+#include "joueur.h"
 #include <stdio.h>
 #include <stdlib.h>
 /**
