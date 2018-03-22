@@ -155,7 +155,7 @@ void affichage_laby(caract_mat_t * cmat){ /** Affichage du labyrinthe avec les m
 
 			}
 
-	}
+	}printf("\n");
 
 }
 
