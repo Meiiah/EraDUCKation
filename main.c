@@ -33,14 +33,14 @@ int choix_nbr_joueur(int choix,joueur_t * joueur,joueur_t * joueur2){
 	switch(choix){
 		case 1 :
 			caract_joueur(joueur);
-			joueur1->score=0;
+			joueur->score=0;
 			joueur2->score=0;
 			return nbr_joueur=1;
 		break;	
 		case 2:
 			caract_joueur(joueur);
 			caract_joueur(joueur2);
-			joueur1->score=0;
+			joueur->score=0;
 			joueur2->score=0;
 			return nbr_joueur=2;
 		break;	
