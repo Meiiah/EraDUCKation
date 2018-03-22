@@ -105,21 +105,20 @@ void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourr
 	
 	tab_event_bon(&choix1, &choix2, &choix3);
 	int result;
-	printf("Choisir le numéro de l'évènement choisit : ");
-	scanf("%i",&result); // Saisit du choix du joueur//
-	
-	switch(result){
-		case 1: bon[choix1](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
-			break;
-		case 2: bon[choix2](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
-			break;
-		case 3: bon[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
-			break;
-		default: printf("ERREUR, Saisir un choix possible :");
-			scanf("%i",&result);
-			break;
+	do{
+		printf("Choisir le numéro de l'évènement choisit : ");
+		scanf("%i",&result);// Saisit du choix du joueur//
+		switch(result){
+			case 1: bon[choix1](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+				break;
+			case 2: bon[choix2](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+				break;
+			case 3: bon[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+				break;
+			default:
+				break;
+		}while(result!=1 && result!=2 && result!=3);
 	}
-}
 
 /** \fn void choix_joueur(void)*/
 /** choix du joueur parmis les evenements */
