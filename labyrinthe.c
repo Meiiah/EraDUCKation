@@ -10,7 +10,7 @@
 /**
 * \file labyrinthe.c
 * \brief Programme comprennant la génération d'un labyrinthe
-* \author MARCHAND Killian
+* \author Marchand Killian  Touzé Maxime
 * \version 3.0
 * \date 20 Février 2018
 */
@@ -406,6 +406,26 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat, int* compteur){
 
 }
 
+/** \fn void balayage(caract_mat_t * cmat ,ini_t ** mat) */
+void balayage(caract_mat_t * cmat ,ini_t ** mat, int* compteur){  /**  foncion qui parcoure la matrice et si il y a deux cases adjacentes qui ont une valeur différente elle casse le mur entre les deux*/
+    int i,j;
+    for(j=0; j< cmat->taille_mat_y-2 ; j++){// on s arrete à -2 pour verifier les cases a coté sans avoir de vérification supplémentaire. Le bémol c est qu on ne regarde pas si un chemin isolé est sur une même ligne (si elle est au bord) ou non, idem pour les angles, mais avec l'lgorithme ce n'est pas possible, donc on néglige
+        for(i=0; i< cmat->taille_mat_x -2; i++){
+
+            if(mat[i][j].valeur != mat[i+1][j].valeur){// si la case de droite et la case sur laquelle on est ne sont pas reliées on les relie
+                mat[i][j].mur.murE = 1;
+                mat[i+1][j].mur.murO =1;
+                valeur_case(cmat, mat, i, j, i+1, j, compteur);
+            }
+
+                if(mat[i][j].valeur != mat[i][j+1].valeur){// si la case du dessous et la case sur laquelle on est ne sont pas reliées on les relie
+                mat[i][j].mur.murS = 1;
+                mat[i][j+1].mur.murN =1;
+                valeur_case(cmat, mat, i, j, i, j+1, compteur);
+            }
+        }
+    }
+}
 
 /** \fn void creer_labyrinthe()*/
 void creer_labyrinthe(caract_mat_t * cmat ,ini_t ** mat){ /** Appel toutes les fonctions pour creer le labyrinthe*/
@@ -427,16 +447,14 @@ void creer_labyrinthe(caract_mat_t * cmat ,ini_t ** mat){ /** Appel toutes les f
         if( securite >= cmat->taille_mat_x ) // si les coin ne font pas parti du labyrinthe(on fait 1000 tirages) on les mets dans le labyrinthe
                 maj_coins(cmat, mat, &compteur);
 
-		if(securite == 2000){
-			printf("erreur du chargement du labyrinthe");
-			break;
-		}
-	}while( !laby_fini(cmat,mat));
-	//	i++;
+	}while( !laby_fini(cmat,mat) && securite <= 2000); //si au bout de 2000 tour le labirynthe n est ps fini, on considère qu on est dans un cas où il n'est pas possible
 
+	if(securite == 2000){
+        balayage(cmat, mat, &compteur);
+	}
 
-
-	//}while(i<5);
+    if( !laby_fini(cmat,mat))
+        printf("erreur du chargement du labyrinthe");
 
 }
 
