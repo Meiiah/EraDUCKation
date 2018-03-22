@@ -84,9 +84,10 @@ void init_tab_joueurs(joueur_multi_t * tab /** tableau de joueurs */,
     tab[tampon +1 %2] = joueur_mechant();
 
    //demander les noms
-
-    caract_joueur(tab[0].joueur);
-	caract_joueur(tab[1].joueur);
+	printf("Pour le joueur  gentil ------->");
+	caract_joueur(&(tab[tampon].joueur));
+	printf("Pour le joueur mechant ------->");
+	caract_joueur(&(tab[tampon+1 %2].joueur));
 }
 /*============================================================*/
 /** \fn void main_multijoueur(void) */
@@ -94,7 +95,10 @@ int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_
     //variables :
     joueur_multi_t tab[2];
     int tampon;
+	joueur_t joueur1, joueur2;
+	
     //maintenant on initialise l ordre de jeu
+
     tampon = qui_commence();
     init_tab_joueurs(tab, tampon);
 
