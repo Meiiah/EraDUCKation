@@ -71,6 +71,8 @@ int main(void){
 	int nourriture_genere = 50;//Nourriture qui apparait
 	
 	int choix; // Choix du joueur
+	int choix_niv; // Choix du niveau
+	int choix_j; // Choix du nb joueur
 	int nbr_joueur;
 
 	int choix_nb_joueurs;
@@ -84,62 +86,68 @@ int main(void){
 	printf("2 : Option (non opérationel)\n");
 	printf("3 : Quitter\n");
 	
-	printf("Choix: ");
-	scanf(" %i",&choix);
-		
-	switch(choix){
-		case 1 :
+	do{
+		printf("Saisir un choix: ");
+		scanf(" %i",&choix);
+		switch(choix){
+			case 1 :
 			
-			/* Nombre de Joueur */
-			printf("1 : 1 joueur\n");
-			printf("2 : 2 joueurs\n");
-			printf("Choix: ");
-			scanf(" %i",&choix);
-			if(choix == 1)
-				nbr_joueur=choix_nbr_joueur(choix,&joueur,&joueur2);
+				/* Nombre de Joueur */
+				printf("1 : 1 joueur\n");
+				printf("2 : 2 joueurs\n");
+				do{
+					printf("Saisir un choix: ");
+					scanf(" %i",&choix_j);
+					
+				}while(choix_j!=1 && choix_j!=2);
+				if(choix_j == 1)
+						nbr_joueur=choix_nbr_joueur(choix_j,&joueur,&joueur2);
 			
-			/* Difficulté*/
-			printf("1 : Facile\n");
-			printf("2 : Intermédiaire\n");
-			printf("3 : Difficile\n");
-			printf("Choix: ");
-			scanf(" %i",&choix);
-			
-			cmat->taille_mat_x=choix_difficultee(choix);	
-			cmat->taille_mat_y=cmat->taille_mat_x;
-
-			/*Mise en place de la matrice adaptée*/
-			creation_matrice(cmat);
-			init_matrice(cmat);
-	
-			/*Creation du Labyrinthe*/
-			
-			
-			main_laby(cmat);
-			
-			
-		
-			//Apparition de canard
-			init_canard(cmat); 
-			
-			if(nbr_joueur==1){
-				jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2);
+				/* Difficulté*/
+				printf("1 : Facile\n");
+				printf("2 : Intermédiaire\n");
+				printf("3 : Difficile\n");
+				do{
+					printf("Saisir un choix: ");
+					scanf(" %i",&choix_niv);
+				}while(choix_niv!=1 && choix_niv!=2 && choix_niv!=3);
 				
-			}else{
-				main_multijoueur(cmat, nourriture_genere, nourriture_accouplement);
-			}
-			
-		break;
+				cmat->taille_mat_x=choix_difficultee(choix_niv);	
+				cmat->taille_mat_y=cmat->taille_mat_x;
 
-		case 2 : 
-			printf("2 : Option (non opérationel)");
-		break;
-
-		case 3 :
-			return 0;
-		break;
+				/*Mise en place de la matrice adaptée*/
+				creation_matrice(cmat);
+				init_matrice(cmat);
 	
-	}
+				/*Creation du Labyrinthe*/
+			
+			
+				main_laby(cmat);
+			
+			
+		
+				//Apparition de canard
+				init_canard(cmat); 
+			
+				if(nbr_joueur==1){
+					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2);
+				
+				}else{
+					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement);
+				}
+			
+			break;
+
+			case 2 : 
+				printf("2 : Option (non opérationel)\n");
+			break;
+
+			case 3 :
+				return 0;
+			break;
+		
+		}
+	}while(choix!=1 && choix!=2 && choix!=3);
 	printf("Le score total du joueur 1 est : %i\n",joueur.score);
 	if(strcmp(joueur2.nom_joueur,"null")){
 		printf("Le score total du joueur 2 est : %i\n",joueur2.score);
