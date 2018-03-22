@@ -45,7 +45,7 @@ t_direction voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction 
 
     //dir 1
     while(!(mur[0]==1 && mur[1]==1 && mur[2]==1 && mur[3]==1)){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
-	fprintf(stderr,"\n L %i\n", l);
+	
         /**
         SI pas de mur enregistré on regarde si il y a un fruit, si c est le cas on break,
         puis on regarde si il y a un mur, et si il y a on memorise qu il y en a un et
@@ -129,7 +129,7 @@ t_direction voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,in
     int mur[4] = {0,0,0,0};
     //on renvoit la direction ou il voit le miam miam et -1 si il voit pas (choisi la nouriture la plus proche
 
-		fprintf(stderr,"\n1\n");
+		
 		
     for(cpt=0; cpt<cmat->matrice[i][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
         if(cpt != kiem_canard){
@@ -139,10 +139,10 @@ t_direction voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,in
 		    }
     }
     
-fprintf(stderr,"\n2\n");
+
     //dir 1
     while(! (mur[0]==1 && mur[1]==1 && mur[2]==1 && mur[3]==1)){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
-		fprintf(stderr,"\n L %i\n", l);
+		
         /**
         SI pas de mur enregistré on regarde si il y a un partenaire d accouplement, si c est le cas on break,
         puis on regarde si il y a un mur, et si il y a on memorise qu il y en a un et
@@ -159,7 +159,7 @@ fprintf(stderr,"\n2\n");
                     }
                 }
             }
-fprintf(stderr,"\n3\n");
+
             if(cmat->matrice[i+l][j].mur.murE == 1){
                 mur[0] = 1;
             }
@@ -184,7 +184,7 @@ fprintf(stderr,"\n3\n");
         }
 	}else
 		mur[1] = 1;
-fprintf(stderr,"\n4\n");
+
 /////////////////////////////////////////////////////////////////////
                 //pour j croissant direction sud
     if(j+l < cmat->taille_mat_y){
@@ -203,7 +203,7 @@ fprintf(stderr,"\n4\n");
         }
 	}else
 		mur[2] = 1;
-	fprintf(stderr,"\n5\n");
+
 /////////////////////////////////////////////////////////////////////
                 //pour j décroissant direction Nord
     if(j-l >=0){
@@ -234,7 +234,6 @@ void deplacer_canard(caract_mat_t * cmat,int i, int j, int k, int direction){/**
 
     switch(direction){ //en fonction de la direction le canard avance
             case Est:
-fprintf(stderr,"\n6\n");
 					if( (i+1 < cmat->taille_mat_x  )&& cmat->matrice[ i ][ j ].mur.murE !=1){
 		               //on copie le canard a sa destination
 		               cmat->matrice[i+1][j].tab_canard[cmat->matrice[i+1][j].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
@@ -249,7 +248,6 @@ fprintf(stderr,"\n6\n");
 
             /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
             case Ouest:
-fprintf(stderr,"\n7\n");
 					if( (i > 0) && cmat->matrice[ i ][ j ].mur.murO !=1){
 			          //on copie le canard a sa destination
 			          cmat->matrice[i-1][j].tab_canard[cmat->matrice[i-1][j].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
@@ -264,7 +262,6 @@ fprintf(stderr,"\n7\n");
 
             /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
             case Sud:
-fprintf(stderr,"\n8\n");
 					if( (j+1 < cmat->taille_mat_y )&& cmat->matrice[ i ][ j ].mur.murS !=1 ){
 		               //on copie le canard a sa destination
 		               cmat->matrice[i][j+1].tab_canard[cmat->matrice[i][j+1].nb_occupant] = cmat->matrice[i][j].tab_canard[k];
@@ -279,7 +276,6 @@ fprintf(stderr,"\n8\n");
 
             /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
             case Nord:
-fprintf(stderr,"\n9\n");
 					if( (j >0) && cmat->matrice[ i ][ j ].mur.murN !=1 ){
 		               //on copie le canard a sa destination
 		               cmat->matrice[i][j-1].tab_canard[cmat->matrice[i][j-1].nb_occupant ] = cmat->matrice[i][j].tab_canard[k];
@@ -290,8 +286,7 @@ fprintf(stderr,"\n9\n");
 		               //on enleve le canard dans la case originelle, le nombre de canard diminue donc
 		               cmat->matrice[i][j].tab_canard[k] = canard_vide();
 		               cmat->matrice[i][j].nb_occupant --;
-		                fprintf(stderr,"\n10\n");
-		               }                break;
+		            }                break;
 
     }
   
@@ -316,16 +311,20 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement,int nourriture_ge
                                 // si on voit un canard a accoupler on continue, sinon on continue les verifications
 										fprintf(stderr,"\nDEB voit_accouplement i:%i j:%i \n", i, j);
 				                        direction = voit_accouplement(cmat,nourriture_accouplement,i, j, k);
-				                        fprintf(stderr,"\nFIN voit_accouplement\n");
+				                        //fprintf(stderr,"\nFIN voit_accouplement\n");
+
                             		if(direction==Aucune_direction){
                                 		//si il voit de la nourriture aller dessus sinon on deplace dabs une direction random arpres verif
+										//fprintf(stderr,"\nDEB voit_nourriture i:%i j:%i \n", i, j);
                                 		direction = voit_nourriture(cmat,i, j, k);
+										fprintf(stderr,"\nFIN voit_nourriture\n");
+
                                 		if(direction==Aucune_direction){
                                 		//sinon se deplacer d une case vers la direction random apres verif
                                     		do{
 								                        		direction = rand()%4 +1;
 								                        		/* FAIRE VERIF */
-																						fprintf(stderr,"\nFIN 555555\n");
+																						
 													 									switch(direction){// effets de bord
 																								case Est: 
 																										if( i+1 < cmat->taille_mat_x){
@@ -359,7 +358,7 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement,int nourriture_ge
 																										}
 				                                				break;
 								                        		}
-																						fprintf(stderr,"\nFIN 888888\n");
+																					
                                     		}while(verif == 0);
                                 		}
                             		}
