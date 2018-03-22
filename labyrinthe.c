@@ -409,8 +409,8 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat, int* compteur){
 /** \fn void balayage(caract_mat_t * cmat ,ini_t ** mat) */
 void balayage(caract_mat_t * cmat ,ini_t ** mat, int* compteur){  /**  foncion qui parcoure la matrice et si il y a deux cases adjacentes qui ont une valeur différente elle casse le mur entre les deux*/
     int i,j;
-    for(j=0; j< cmat->taille_mat_y-2 ; j++){// on s arrete à -2 pour verifier les cases a coté sans avoir de vérification supplémentaire. Le bémol c est qu on ne regarde pas si un chemin isolé est sur une même ligne (si elle est au bord) ou non, idem pour les angles, mais avec l'lgorithme ce n'est pas possible, donc on néglige
-        for(i=0; i< cmat->taille_mat_x -2; i++){
+    for(j=0; j< cmat->taille_mat_y-1 ; j++){// on s arrete à -2 pour verifier les cases a coté sans avoir de vérification supplémentaire. Le bémol c est qu on ne regarde pas si un chemin isolé est sur une même ligne (si elle est au bord) ou non, idem pour les angles, mais avec l'lgorithme ce n'est pas possible, donc on néglige
+        for(i=0; i< cmat->taille_mat_x -1; i++){
 
             if(mat[i][j].valeur != mat[i+1][j].valeur){// si la case de droite et la case sur laquelle on est ne sont pas reliées on les relie
                 mat[i][j].mur.murE = 1;
