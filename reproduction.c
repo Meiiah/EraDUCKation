@@ -80,7 +80,7 @@ void reproduction(caract_mat_t * mat, int nourriture_accouplement,joueur_t joueu
 				mat->matrice[x][y].nb_occupant++; //Ajout des nouveaux canards//
 				mat->matrice[x][y].tab_canard[l].etat=1;
 				mat->matrice[x][y].tab_canard[l].nourriture=50;
-				ajout_score(25,joueur,joueur2);
+				ajout_score(25,&joueur,&joueur2);
 			}
 		}
 	}

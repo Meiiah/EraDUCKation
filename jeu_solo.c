@@ -32,7 +32,7 @@ int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupleme
 		
 		choix_joueur(cmat,joueur,joueur2,&nourriture_genere,&nourriture_accouplement);
 		
-		ajout_score(100,joueur,joueur2);
+		ajout_score(100,&joueur,&joueur2);
 	
 		nb_gen++;
 		printf("Score %s : %i\n",joueur.nom_joueur,joueur.score);
