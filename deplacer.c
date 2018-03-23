@@ -6,7 +6,7 @@
 #include "nourriture.h"
 #include "reproduction.h"
 #include "labyrinthe.h"
-
+#include "canard.h"
 
 
 /**
@@ -21,18 +21,10 @@
 typedef enum{Aucune_direction = -1, Est = 1, Ouest=2, Sud =3, Nord = 4, Pas_besoin_de_bouger =42} t_direction;
 
 
-/**\fn canard_t canard_vide(void) */
-canard_t canard_vide(void){/**	renvoit un canard inexistant*/
-    canard_t coincoin;
-    coincoin.nourriture =0;
-    coincoin.etat = -1;
-    return coincoin;
-}
-
 /*=======================================================================================================================*/
 
 /**\fn int voit_nourriture(int i,int j,int k) */
-t_direction voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit de la nouriture (-1 si pas de vision dessus)	*/
+t_direction voit_nourriture(caract_mat_t * cmat,int i,int j){/**	fonction qui renvoit la direction dans laquelle le canard de la case i;j voit de la nouriture (-1 si pas de vision dessus)	*/
     //une direction, toute la ligne jusqua un mur
     int l = 1;
     int mur[4] = {0,0,0,0};
@@ -45,7 +37,7 @@ t_direction voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction 
 
     //dir 1
     while(!(mur[0]==1 && mur[1]==1 && mur[2]==1 && mur[3]==1)){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
-	
+
         /**
         SI pas de mur enregistré on regarde si il y a un fruit, si c est le cas on break,
         puis on regarde si il y a un mur, et si il y a on memorise qu il y en a un et
@@ -110,11 +102,11 @@ t_direction voit_nourriture(caract_mat_t * cmat,int i,int j,int k){/**	fonction 
                 mur[3] = 1;
             }
         }
-    
+
 	}else
 		mur[3] = 1;
-	
-	l++;	
+
+	l++;
 	}
     return( Aucune_direction );
 }
@@ -129,8 +121,8 @@ t_direction voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,in
     int mur[4] = {0,0,0,0};
     //on renvoit la direction ou il voit le miam miam et -1 si il voit pas (choisi la nouriture la plus proche
 
-		
-		
+
+
     for(cpt=0; cpt<cmat->matrice[i][j].nb_occupant; cpt++){//on cherche si il y a au moins une cible pour accouplement
         if(cpt != kiem_canard){
 						if(cmat->matrice[i][j].tab_canard[cpt].etat==1 && cmat->matrice[i][j].tab_canard[cpt].nourriture > nourriture_accouplement){ //si presence de partenaire sur la case
@@ -138,11 +130,11 @@ t_direction voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,in
 						}
 		    }
     }
-    
+
 
     //dir 1
     while(! (mur[0]==1 && mur[1]==1 && mur[2]==1 && mur[3]==1)){//tant qu on a pas de mur partout(break) et qu on n'a pas de fruit (break)
-		
+
         /**
         SI pas de mur enregistré on regarde si il y a un partenaire d accouplement, si c est le cas on break,
         puis on regarde si il y a un mur, et si il y a on memorise qu il y en a un et
@@ -220,7 +212,7 @@ t_direction voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,in
                 mur[3] = 1;
             }
         }
-        
+
     }else
 		mur[3] = 1;
 	l++;
@@ -289,7 +281,7 @@ void deplacer_canard(caract_mat_t * cmat,int i, int j, int k, int direction){/**
 		            }                break;
 
     }
-  
+
 }
 
 /*=======================================================================================================================*/
@@ -316,7 +308,7 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement,int nourriture_ge
                             		if(direction==Aucune_direction){
                                 		//si il voit de la nourriture aller dessus sinon on deplace dabs une direction random arpres verif
 										//fprintf(stderr,"\nDEB voit_nourriture i:%i j:%i \n", i, j);
-                                		direction = voit_nourriture(cmat,i, j, k);
+                                		direction = voit_nourriture(cmat,i, j);
 										fprintf(stderr,"\nFIN voit_nourriture\n");
 
                                 		if(direction==Aucune_direction){
@@ -324,41 +316,41 @@ void deplacer(caract_mat_t * cmat, int nourriture_accouplement,int nourriture_ge
                                     		do{
 								                        		direction = rand()%4 +1;
 								                        		/* FAIRE VERIF */
-																						
+
 													 									switch(direction){// effets de bord
-																								case Est: 
+																								case Est:
 																										if( i+1 < cmat->taille_mat_x){
 																												//i croit et vu qu on est dans le tableau pas besoin de tout verifier
 								                                        if(cmat->matrice[ i ][ j ].mur.murE !=1){
 								                                        		verif=1;
-								                                        }		
-																										}	
+								                                        }
+																										}
 																								break;
-																						
-																								case Ouest: 
+
+																								case Ouest:
 																										if( i-1 >= 0){
 																												//i decroit et vu qu on est dans le tableau pas besoin de tout verifier
-																												if(cmat->matrice[ i ][ j ].mur.murO !=1) 
+																												if(cmat->matrice[ i ][ j ].mur.murO !=1)
 								                                      			verif=1;
 																										}
 				                                        break;
-				                                        
+
 																					 			// idem avec j
-																								case Sud: 
+																								case Sud:
 																										if( j+1 < cmat->taille_mat_y ){
 																												if(cmat->matrice[ i ][ j ].mur.murS !=1 )
 								                                            verif=1;
 																										}
 				                                        break;
-				                                        
-																								case Nord:  
+
+																								case Nord:
 																										if( j-1 >=0){
 																												if(cmat->matrice[ i ][ j ].mur.murN !=1 )
 								                                            verif=1;
 																										}
 				                                				break;
 								                        		}
-																					
+
                                     		}while(verif == 0);
                                 		}
                             		}

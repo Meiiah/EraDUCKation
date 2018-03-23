@@ -11,6 +11,15 @@
 #include "struct.h"
 #include "matrice.h"
 
+/**\fn canard_t canard_vide(void) */
+canard_t canard_vide(void){/**	renvoit un canard inexistant*/
+    canard_t coincoin;
+    coincoin.nourriture =0;
+    coincoin.etat = -1;
+    return coincoin;
+}
+
+
 /** \fn void init_canard(caract_mat_t * cmat) */
 void init_canard(caract_mat_t * cmat){/** met des canards dans des cases aléatoire */
 	int x;
