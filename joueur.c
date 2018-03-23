@@ -58,6 +58,8 @@ void tab_event_mauvais(int * choix1,int * choix2, int * choix3){
 		printf("Choix 2 : %s\n",mauv_evts[*choix2]);
 	if(*choix1!=*choix3 && *choix2!=*choix3)
 		printf("Choix 3 : %s\n",mauv_evts[*choix3]);
+	printf("Choix 4 : Sauvegarder \n"); 
+	printf("Choix 5 : Quitter \n");
 }
 
 /** \fn void tab_event_bon(void) */

@@ -48,14 +48,18 @@ void charger(caract_mat_t * cmat,int* nourriture_genere,int* nourriture_accouple
 
     //on enleve les allocations obsoletes de la matrice, on l alloc a la bonne taille, et on y met les donnees
 	int i;
-	if(cmat->matrice){
-		
-		free(cmat->matrice[0]);fprintf(stderr, "Avant le free");
+	fprintf(stderr, "On va supprimer cmat si besoin\n");
+	if(cmat && cmat->matrice!=NULL){
+		fprintf(stderr, "Avant le free\n");
+		free(cmat->matrice[0]);
+		fprintf(stderr, "Avant le free\n");
 		free(cmat->matrice);
 	}
 	if(cmat){
+	fprintf(stderr, "Avant le free cmat\n");
 		free(cmat);
 	}
+	fprintf(stderr, "On a supprime cmat (peut etre)\n");
 	////////
     cmat=malloc(sizeof(case_t));
     fwrite(cmat, sizeof(caract_mat_t),1, fichier);
