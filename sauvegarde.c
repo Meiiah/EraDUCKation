@@ -31,9 +31,10 @@ void sauvegarde(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupl
  }
 
 /** \fn void charger(caract_mat_t * cmat,int nourriture_genere,int nourriture_accouplement,joueur_t joueur,joueur_t joueur2,int generation)*/
-void charger(caract_mat_t * cmat,int nourriture_genere,int nourriture_accouplement,joueur_t joueur,joueur_t joueur2,int generation)
+void charger(caract_mat_t * cmat,int* nourriture_genere,int* nourriture_accouplement,joueur_t* joueur,joueur_t* joueur2,int* generation)
 {/**charge l avancee du jeu (nombre de generations),la nourriture nécessaire pour l accouplement, malloc cmat, charge les tailles de la matrice, l init et donc la malloc, et y met les valeurs.*/
     FILE * fichier;
+    
     fichier=fopen("sav.txt", "r");
     //on recupere les int
 
@@ -48,9 +49,9 @@ void charger(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupleme
     //on enleve les allocations obsoletes de la matrice, on l alloc a la bonne taille, et on y met les donnees
 	int i;
 	if(cmat->matrice){
-		for(i=0; i<cmat->taille_mat_y; i++){
-			free(cmat->matrice[i]);
-		}free(cmat->matrice);
+		
+		free(cmat->matrice[0]);fprintf(stderr, "Avant le free");
+		free(cmat->matrice);
 	}
 	if(cmat){
 		free(cmat);

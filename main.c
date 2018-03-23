@@ -10,6 +10,7 @@
 #include "deplacer_multi.h"
 #include "jeu_solo.h"
 #include "multijoueur.h"
+#include "sauvegarde.h"
 
 
 
@@ -77,13 +78,15 @@ int main(void){
 
 	int choix_nb_joueurs;
 	
+	int nb_gen=0;
+	
 	init_tab_event_mauvais();
 	init_tab_event_bon();
 	
 	printf("EraDUCKation\n\n");
 
 	printf("1 : Jouer à EraDUCKation\n");
-	printf("2 : Option (non opérationel)\n");
+	printf("2 : Jouer une partie chargée\n");
 	printf("3 : Quitter\n");
 	
 	do{
@@ -130,21 +133,25 @@ int main(void){
 				init_canard(cmat); 
 			
 				if(nbr_joueur==1){
-					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2);
+					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2,nb_gen);
 				
 				}else{
 					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement);
 				}
 			
-			break;
+				break;
 
 			case 2 : 
-				printf("2 : Option (non opérationel)\n");
-			break;
+				charger(cmat,&nourriture_genere, &nourriture_accouplement, &joueur, &joueur2, &nb_gen);
+				if(strcmp(joueur2.nom_joueur, "null")){
+					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2,nb_gen);
+				}else{
+					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement);			
+				}break;
 
 			case 3 :
 				return 0;
-			break;
+				break;
 		
 		}
 	}while(choix!=1 && choix!=2 && choix!=3);
