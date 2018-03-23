@@ -13,7 +13,7 @@
 
 /** \fn int est_dans_matrice(caract_mat_t,int,int)*/
 int est_dans_matrice(caract_mat_t * cmat,int x, int y){
-	return(x>0 || x<cmat->taille_mat_x || y>0 || y<cmat->taille_mat_y);
+	return(x>=0 && x<cmat->taille_mat_x && y>=0 && y<cmat->taille_mat_y);
 }
 
 /** \fn void creation_matrice(caract_mat_t)*/
