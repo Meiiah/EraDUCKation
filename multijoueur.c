@@ -27,7 +27,7 @@ typedef struct joueurm_s{
     joueur_t joueur;
     clan_t clan;
     char nom [20];
-    void (*choix) (caract_mat_t *,joueur_t , joueur_t , int* , int* );
+    void (*choix) (caract_mat_t *,joueur_t , joueur_t , int* , int*,int );
 }joueur_multi_t;
 
 
@@ -50,13 +50,13 @@ joueur_multi_t joueur_mechant(){ /**initialise un joueur en tant que mechant*/
 /*=======================================================*/
 
 
-void tour_multijoueur(caract_mat_t * cmat, int * nourriture_genere,int * nourriture_accouplement, joueur_multi_t tab[], int tour, int tampon){
+void tour_multijoueur(caract_mat_t * cmat, int * nourriture_genere,int * nourriture_accouplement, joueur_multi_t tab[], int tour, int tampon, int nb_gen){
     spawn_nourriture(cmat, rand()%5+1);
 	piege(cmat);
 	affichage_laby(cmat);
     deplacer(cmat,*nourriture_accouplement, *nourriture_genere, tab[tampon].joueur,tab[(tampon +1)%2].joueur);
     printf("C est le tour de %s", tab[tour%2].joueur.nom_joueur);
-    tab[tour%2].choix(cmat,tab[tampon].joueur,tab[(tampon +1)%2].joueur, nourriture_genere, nourriture_accouplement);
+    tab[tour%2].choix(cmat,tab[tampon].joueur,tab[(tampon +1)%2].joueur, nourriture_genere, nourriture_accouplement, nb_gen);
 }
 
 /*===============================================*/
@@ -91,7 +91,7 @@ void init_tab_joueurs(joueur_multi_t * tab /** tableau de joueurs */,
 }
 /*============================================================*/
 /** \fn void main_multijoueur(void) */
-int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_accouplement){ /** fait le jeu en multi sur meme pc */
+int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_accouplement, int nb_gen){ /** fait le jeu en multi sur meme pc */
     //variables :
     joueur_multi_t tab[2];
     int tampon;
@@ -104,12 +104,12 @@ int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_
 
     /* Tant que les canards sont pas tous morts on fait les tours
 	 a chaque tour on fait deplacement, choix, on verifie les cond d arret, et on recommence */
+	nb_gen=0;
 	
-	int nb_gen=0; // Compteur de génération
 	
 	while ( nb_gen<100 && presence_canard(cmat)==1){ // fin du jeu
 		
-		tour_multijoueur(cmat,&nourriture_genere,&nourriture_accouplement, tab, nb_gen, tampon);
+		tour_multijoueur(cmat,&nourriture_genere,&nourriture_accouplement, tab, nb_gen, tampon, nb_gen);
 		
 		ajout_score(100,&(tab[tampon].joueur),&(tab[(tampon +1)%2].joueur));
 	

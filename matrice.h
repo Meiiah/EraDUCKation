@@ -10,7 +10,7 @@ typedef struct{
 
 int est_dans_matrice(caract_mat_t *cmat,int x, int y);
 
-void creation_matrice(caract_mat_t * cmat);
+caract_mat_t * creation_matrice(int x, int y);
 
 void init_matrice(caract_mat_t * cmat);
 

@@ -17,7 +17,11 @@ int est_dans_matrice(caract_mat_t * cmat,int x, int y){
 }
 
 /** \fn void creation_matrice(caract_mat_t)*/
-void  creation_matrice(caract_mat_t * cmat){/*definition de la matrice */
+caract_mat_t *  creation_matrice(int x, int y){/*definition de la matrice */
+	caract_mat_t *cmat = malloc(sizeof(caract_mat_t));
+	cmat->taille_mat_x=x;
+	cmat->taille_mat_y=y;
+	
 	case_t * GT = malloc(sizeof(case_t)*cmat->taille_mat_x*cmat->taille_mat_y);
 	cmat->matrice =malloc(sizeof(case_t *)*cmat->taille_mat_y);
 	int i;
@@ -25,7 +29,8 @@ void  creation_matrice(caract_mat_t * cmat){/*definition de la matrice */
 	
 	for(i=0;i<cmat->taille_mat_y;i++){
 		cmat->matrice[i]=&GT[taille*i]; 
-	}	
+	}
+	return cmat;	
 }
 
 /** \fn void init_matrice(caract_mat_t)*/

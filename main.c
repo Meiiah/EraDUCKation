@@ -53,7 +53,10 @@ int choix_nbr_joueur(int choix,joueur_t * joueur,joueur_t * joueur2){
 int main(void){
 
 	//definition matrice
-	caract_mat_t * cmat = malloc(sizeof(caract_mat_t));
+	caract_mat_t * cmat = creation_matrice(0,0);
+	//malloc(sizeof(caract_mat_t));
+	
+	
 
 	//definition joueur
 	joueur_t joueur;
@@ -115,11 +118,11 @@ int main(void){
 					scanf(" %i",&choix_niv);
 				}while(choix_niv!=1 && choix_niv!=2 && choix_niv!=3);
 				
-				cmat->taille_mat_x=choix_difficultee(choix_niv);	
-				cmat->taille_mat_y=cmat->taille_mat_x;
+				int taille=choix_difficultee(choix_niv);	
+				//cmat->taille_mat_y=cmat->taille_mat_x;
 
 				/*Mise en place de la matrice adaptée*/
-				creation_matrice(cmat);
+				cmat = creation_matrice(taille, taille);
 				init_matrice(cmat);
 	
 				/*Creation du Labyrinthe*/
@@ -136,7 +139,7 @@ int main(void){
 					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2,nb_gen);
 				
 				}else{
-					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement);
+					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement, nb_gen);
 				}
 			
 				break;
@@ -146,7 +149,7 @@ int main(void){
 				if(strcmp(joueur2.nom_joueur, "null")){
 					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2,nb_gen);
 				}else{
-					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement);			
+					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement, nb_gen);			
 				}break;
 
 			case 3 :
