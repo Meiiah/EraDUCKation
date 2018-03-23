@@ -51,12 +51,12 @@ joueur_multi_t joueur_mechant(){ /**initialise un joueur en tant que mechant*/
 
 
 void tour_multijoueur(caract_mat_t * cmat, int * nourriture_genere,int * nourriture_accouplement, joueur_multi_t tab[], int tour, int tampon, int nb_gen){
-    spawn_nourriture(cmat, rand()%5+1);
+    spawn_nourriture(cmat, *nourriture_genere);
 	piege(cmat);
 	affichage_laby(cmat);
     deplacer(cmat,*nourriture_accouplement, *nourriture_genere, tab[tampon].joueur,tab[(tampon +1)%2].joueur);
     printf("C est le tour de %s", tab[tour%2].joueur.nom_joueur);
-    tab[tour%2].choix(cmat,tab[tampon].joueur,tab[(tampon +1)%2].joueur, nourriture_genere, nourriture_accouplement, nb_gen);
+    tab[tour%2].choix(cmat,tab[tampon].joueur, tab[(tampon +1)%2].joueur, nourriture_genere, nourriture_accouplement, nb_gen);
 }
 
 /*===============================================*/
@@ -117,7 +117,7 @@ int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_
 	
 		nb_gen++;
 		printf("Score %s : %i\n",tab[0].joueur.nom_joueur,tab[0].joueur.score);
-		printf("Score %s : -%i\n",tab[1].joueur.nom_joueur,tab[1].joueur.score);
+		printf("Score %s : -%i\n",tab[1].joueur.nom_joueur,tab[0].joueur.score);
 		printf("Nourriture accouplement: %i\n",nourriture_accouplement);
 		printf("Nourriture générée: %i\n",nourriture_genere);
 		printf("Nombre de canard: %i \n",nombre_canard(cmat));
