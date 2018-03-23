@@ -53,7 +53,7 @@ int choix_nbr_joueur(int choix,joueur_t * joueur,joueur_t * joueur2){
 int main(void){
 
 	//definition matrice
-	caract_mat_t * cmat = creation_matrice(0,0);
+	caract_mat_t * cmat = NULL;
 	//malloc(sizeof(caract_mat_t));
 	
 	

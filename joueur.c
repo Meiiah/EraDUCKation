@@ -127,7 +127,7 @@ void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourr
 				break;
 			case 4: sauvegarde(cmat,*nourriture_genere, *nourriture_accouplement, joueur,joueur2,generation);
 				printf("Sauvegarde effectée\n");
-				break
+				break;
 			case 5: exit(EXIT_SUCCESS);
 				break;
 			default:
