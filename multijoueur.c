@@ -82,6 +82,8 @@ void init_tab_joueurs(joueur_multi_t * tab /** tableau de joueurs */,
 
     tab[tampon]= joueur_gentil();    //c est de la logique
     tab[tampon +1 %2] = joueur_mechant();
+    tab[0].joueur.score = 0;
+    tab[1].joueur.score = 0;
 
    //demander les noms
 	printf("Pour le joueur  gentil ------->");
@@ -115,7 +117,7 @@ int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_
 	
 		nb_gen++;
 		printf("Score %s : %i\n",tab[0].joueur.nom_joueur,tab[0].joueur.score);
-		printf("Score %s : %i\n",tab[1].joueur.nom_joueur,tab[0].joueur.score);
+		printf("Score %s : -%i\n",tab[1].joueur.nom_joueur,tab[1].joueur.score);
 		printf("Nourriture accouplement: %i\n",nourriture_accouplement);
 		printf("Nourriture générée: %i\n",nourriture_genere);
 		printf("Nombre de canard: %i \n",nombre_canard(cmat));

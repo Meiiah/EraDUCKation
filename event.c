@@ -152,7 +152,7 @@ int liberation_canard(caract_mat_t * cmat, joueur_t joueur,joueur_t joueur2,int*
 	int random_x;
 	int random_y;
 	int random_nbre_de_canard_liberer=rand()%5;//random pour le nombre de canard
-	for(i=0;i<random_nbre_de_canard_liberer;i++){ //boucle pour tuer des cana	rds en fonction du nombre de prédateur
+	for(i=0;i<random_nbre_de_canard_liberer;i++){ //boucle pour tuer des canards en fonction du nombre de prédateur
 		random_x=rand_map(cmat->taille_mat_x);
 		random_y=rand_map(cmat->taille_mat_y);
 		//sortie des canards
