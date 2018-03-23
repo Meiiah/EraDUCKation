@@ -97,13 +97,14 @@ void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int * 
 				case 3: mauvais[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 					break;
 				case 4: sauvegarde(cmat,*nourriture_genere, *nourriture_accouplement, joueur,joueur2,generation);
+					printf("Sauvegarde effectée\n");
 					break;
 				case 5: exit(EXIT_SUCCESS);
 					break;
 				default:
 					break;
 			}
-		}while(result!=1 && result!=2 && result!=3 && result!=4 && result!=5);
+		}while(result!=1 && result!=2 && result!=3 && result!=5);
 }
 
 /** \fn void choix_bon(void)*/
@@ -125,13 +126,14 @@ void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourr
 			case 3: bon[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 				break;
 			case 4: sauvegarde(cmat,*nourriture_genere, *nourriture_accouplement, joueur,joueur2,generation);
-				break;
+				printf("Sauvegarde effectée\n");
+				break
 			case 5: exit(EXIT_SUCCESS);
 				break;
 			default:
 				break;
 		}
-	}while(result!=1 && result!=2 && result!=3 && result!=4 && result!=5);
+	}while(result!=1 && result!=2 && result!=3 && result!=5);
 }
 /** \fn void choix_joueur(void)*/
 /** choix du joueur parmis les evenements */
