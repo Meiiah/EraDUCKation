@@ -37,6 +37,7 @@ joueur_multi_t joueur_gentil(){ /** initialise un joueur en joueur gentil*/
     joueur_multi_t mem;
     mem.clan = bon;
     mem.choix = choix_bon;
+    mem.joueur.score =0;
     return mem ;
 }
 /** \fn joueur_multi_t joueur_mechant(void)*/
@@ -44,19 +45,20 @@ joueur_multi_t joueur_mechant(){ /**initialise un joueur en tant que mechant*/
     joueur_multi_t mem;
     mem.clan = mechant;
     mem.choix = choix_mechant;
+    mem.joueur.score =0;
     return mem ;
 }
 
 /*=======================================================*/
 
-
-void tour_multijoueur(caract_mat_t * cmat, int * nourriture_genere,int * nourriture_accouplement, joueur_multi_t tab[], int tour, int tampon, int nb_gen){
+/** \fn void tour_multijoueur(caract_mat_t * cmat, int * nourriture_genere,int * nourriture_accouplement, joueur_multi_t tab[], int tour, int tampon, int nb_gen) */
+void tour_multijoueur(caract_mat_t * cmat, int * nourriture_genere,int * nourriture_accouplement, joueur_multi_t tab[], int tour, int tampon, int nb_gen){/** Fonction qui defini le contenu d'un tour de jeu en multi joueur */
     spawn_nourriture(cmat, *nourriture_genere);
 	piege(cmat);
 	affichage_laby(cmat);
     deplacer(cmat,*nourriture_accouplement, *nourriture_genere, tab[tampon].joueur,tab[(tampon +1)%2].joueur);
     printf("C est le tour de %s", tab[tour%2].joueur.nom_joueur);
-    tab[tour%2].choix(cmat,tab[tampon].joueur, tab[(tampon +1)%2].joueur, nourriture_genere, nourriture_accouplement, nb_gen);
+    tab[tour%2].choix(cmat,tab[tampon%2].joueur, tab[(tampon +1)%2].joueur, nourriture_genere, nourriture_accouplement, nb_gen);
 }
 
 /*===============================================*/
@@ -98,7 +100,7 @@ int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_
     joueur_multi_t tab[2];
     int tampon;
 	joueur_t joueur1, joueur2;
-	
+
     //maintenant on initialise l ordre de jeu
 
     tampon = qui_commence();
@@ -107,21 +109,21 @@ int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_
     /* Tant que les canards sont pas tous morts on fait les tours
 	 a chaque tour on fait deplacement, choix, on verifie les cond d arret, et on recommence */
 	nb_gen=0;
-	
-	
+
+
 	while ( nb_gen<100 && presence_canard(cmat)==1){ // fin du jeu
-		
+
 		tour_multijoueur(cmat,&nourriture_genere,&nourriture_accouplement, tab, nb_gen, tampon, nb_gen);
-		
+
 		ajout_score(100,&(tab[tampon].joueur),&(tab[(tampon +1)%2].joueur));
-	
+
 		nb_gen++;
 		printf("Score %s : %i\n",tab[0].joueur.nom_joueur,tab[0].joueur.score);
 		printf("Score %s : -%i\n",tab[1].joueur.nom_joueur,tab[0].joueur.score);
 		printf("Nourriture accouplement: %i\n",nourriture_accouplement);
 		printf("Nourriture générée: %i\n",nourriture_genere);
 		printf("Nombre de canard: %i \n",nombre_canard(cmat));
-		
+
 	}
 	return 1;
 
