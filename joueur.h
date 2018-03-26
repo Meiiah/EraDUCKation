@@ -1,6 +1,20 @@
 #ifndef __JOUEUR_H__
 #define __JOUEUR_H__
 
+char *mauv_evts[nb_event]={
+	"Lance un tsunami sur le labyrinthe",
+	"Lance une tempete sur le labyrinthe",
+	"Famine : Réduit la nourriture générée",
+	"Réduit la reproduction des canards",
+	"Appartion de 0 à 5 prédateurs de canards"
+};
+char *bon_evts[nb_event]={
+	"Accelère la reproduction des canards",
+	"Génération de nourriture augmentée",
+	"Rien changer",
+	"Libère entre 0 et 5 canards",
+	"Rend un canard invincible"
+	};
 
 void ajout_score(int,joueur_t*, joueur_t*);
 void caract_joueur(joueur_t*);

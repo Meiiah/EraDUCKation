@@ -6,8 +6,6 @@
  * \date 20 fevrier 2018
 */
 
-
-
 #include <stdlib.h>
 #include <stdio.h>
 #include "struct.h"
@@ -19,16 +17,7 @@
 #include "deplacer.h"
 #include "deplacer_multi.h"
 #include "labyrinthe.h"
-
-typedef enum { bon, mechant }clan_t;
-
-typedef struct joueurm_s{
-
-    joueur_t joueur;
-    clan_t clan;
-    char nom [20];
-    void (*choix) (caract_mat_t *,joueur_t , joueur_t , int* , int*,int );
-}joueur_multi_t;
+#include "multijoueur.h"
 
 
 /*================================================*/

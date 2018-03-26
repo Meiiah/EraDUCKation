@@ -6,6 +6,8 @@
 #include "event.h"
 #include "string.h"
 #include "sauvegarde.h"
+#include "joueur.h"
+
 /**
 *\file joueur.c
 *\brief programme qui gere tout ce qui est en rapport avec le joueur
@@ -30,19 +32,7 @@ void caract_joueur(joueur_t * joueur){/** saisi du pseudo du joueur */
 	joueur->score=0;
 }
 
-char *mauv_evts[nb_event]={
-	"Lance un tsunami sur le labyrinthe", 
-	"Lance une tempete sur le labyrinthe",
-	"Famine : Réduit la nourriture générée",
-	"Réduit la reproduction des canards",
-	"Appartion de 0 à 5 prédateurs de canards"
-};
-char *bon_evts[nb_event]={
-	"Accelère la reproduction des canards",
-	"Génération de nourriture augmentée",
-	"Rien changer",
-	"Libère entre 0 et 5 canards",
-	"Rend un canard invincible"};
+
 
 
 /** \fn void tab_event_mauvais(void) */
@@ -51,14 +41,14 @@ void tab_event_mauvais(int * choix1,int * choix2, int * choix3){
 	*choix1=(rand() % (nb_event )); // Random du choix des evenement parmis 5 possibilités//
 	*choix2=(rand() % (nb_event ));
 	*choix3=(rand() % (nb_event ));
-	
-	
+
+
 	printf("\nChoix 1 : %s\n",mauv_evts[*choix1]);  // Affichage des choix si ils sont differents du premier
 	if(*choix1!=*choix2)
 		printf("Choix 2 : %s\n",mauv_evts[*choix2]);
 	if(*choix1!=*choix3 && *choix2!=*choix3)
 		printf("Choix 3 : %s\n",mauv_evts[*choix3]);
-	printf("Choix 4 : Sauvegarder \n"); 
+	printf("Choix 4 : Sauvegarder \n");
 	printf("Choix 5 : Quitter \n");
 }
 
@@ -75,7 +65,7 @@ void tab_event_bon(int * choix1,int * choix2, int * choix3){
 		printf("Choix 2 : %s\n",bon_evts[*choix2]);
 	if(*choix1!=*choix3 && *choix2!=*choix3)
 		printf("Choix 3 : %s\n",bon_evts[*choix3]);
-	printf("Choix 4 : Sauvegarder \n"); 
+	printf("Choix 4 : Sauvegarder \n");
 	printf("Choix 5 : Quitter \n");
 }
 
@@ -112,7 +102,7 @@ void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int * 
 
 void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourriture_genere, int* nourriture_accouplement,int generation){
 	int choix1, choix2, choix3;
-	
+
 	tab_event_bon(&choix1, &choix2, &choix3);
 	int result;
 	do{
