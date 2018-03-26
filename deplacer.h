@@ -2,7 +2,8 @@
 #define __DEPLACER_H__
 
 
-int voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int j,int k);
+t_direction voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int j,int k);
+t_direction voit_nourriture(caract_mat_t * cmat,int i,int j){
 
 void deplacer_canard(caract_mat_t * cmat,int i, int j, int k, int direction);
 

@@ -5,7 +5,7 @@
 #include "struct.h"
 #include "matrice.h"
 #include "deplacer.h"
-//#include "envoi_recep.h"
+#include "outils_reseau.h"
 /*==============================================================================================================================*/
 
 void deplacer_multi_serveur(caract_mat_t * cmat,int nourriture_accouplement,int socket_to_client){
@@ -14,8 +14,8 @@ void deplacer_multi_serveur(caract_mat_t * cmat,int nourriture_accouplement,int 
     int verif =1;
 
     /*! ENVOI  DU MESSAGE INDIQUANT LE DEBUT DU TRANSFERT DE DEPLACEMENT*/
-    int qt =42;
-    send(socket_to_client, qt, sizeof(int), 0);
+
+    send(socket_to_client, debut_message, sizeof(int), 0);
 
 
     for(j=0; j< cmat->taille_mat_x ; j++){
@@ -96,7 +96,7 @@ void deplacer_multi_serveur(caract_mat_t * cmat,int nourriture_accouplement,int 
         	}//fin balayage matrice
 
         	 /*! ENVOI  DU MESSAGE INDIQUANT LA FIN DU TRANSFERT DE DEPLACEMENT*/
-            envoyer_int(socket_to_client, -1);
+            envoyer_int(socket_to_client,fin_message);
 
         	reproduction(cmat, nourriture_accouplement, joueur,joueur2);
     		manger(cmat, nourriture_genere);
@@ -107,12 +107,6 @@ void deplacer_multi_serveur(caract_mat_t * cmat,int nourriture_accouplement,int 
 
 
 
-
-
-
-
-
-}
 
 /*==============================================================================================================================*/
 
@@ -125,18 +119,18 @@ void deplacer_multi_client(caract_mat_t * cmat,int socket_to_serv){
         //RECEPTION DU MESSAGE INDIQUANT LE DEBUT DU TRANSFERT DE DEPLACEMENT
     recv(socket_to_serv, mess, sizeof(int), 0);
 
-    if(mess == 42){
+    if(mess == debut_message){
 
         do{
              //TANT QU ON A PAS DEPLACE TOUS LES CANARDS A DEPLACER ON PREND LES DONNEES ET ON LES DEPLACE
             recevoir_int(socket_to_serv ,&i);
-            if(i != -1){
+            if(i != fin_message){
                 recevoir_int(socket_to_serv ,&j);
                 recevoir_int(socket_to_serv ,&k);
                 recevoir_int(socket_to_serv, &direction);
             }
             deplacer_canard(cmat,i, j, k, direction);
-        }while(i != -1);
+        }while(i !=  fin_message);
     }
 }
 
