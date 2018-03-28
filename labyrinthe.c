@@ -16,7 +16,8 @@
 */
 
 
-
+typedef enum{dessus = 0, dessous = 1 , gauche = 2, droite = 3};
+typedef enum{lib_haut = 0, lib_bas = 0 , lib_gauche = 1, lib_droite = 1};
 ///////////////////////////////////Fonctions affichage//////////
 
 /** \fn void compter_murs(caract_mat_t,int,int*/
@@ -251,22 +252,22 @@ void case_adja(caract_mat_t * cmat,ini_t ** mat,int coord_x, int coord_y, int *c
 		case_adj= (rand() % (MAX));
 
 		switch(case_adj){
-			case 0: //case du dessus
+			case dessus: //case du dessus
 				temp_y = coord_y-1;
 				//fprintf(stderr, "on casse la case du dessus [%d,%d]\n", temp_x, temp_y);
 				break;
 
-			case 1: //case du dessous
+			case dessous: //case du dessous
 				temp_y = coord_y+1;
 				//fprintf(stderr, "on casse la case du dessous[%d,%d]\n", temp_x, temp_y);
 				break;
 
-			case 2: //case de gauche
+			case gauche: //case de gauche
 				temp_x = coord_x-1;
 				//fprintf(stderr, "on casse la case de gauche[%d,%d]\n", temp_x, temp_y);
 				break;
 
-			case 3: //case de droite
+			case droite: //case de droite
 				temp_x = coord_x+1;
 				//fprintf(stderr, "on casse la case de droite [%d,%d]\n", temp_x, temp_y);
 				break;
@@ -276,7 +277,7 @@ void case_adja(caract_mat_t * cmat,ini_t ** mat,int coord_x, int coord_y, int *c
 
 /*transformation des murs*/
 		switch(case_adj){
-			case 0: //case du dessus
+			case dessus: //case du dessus
 				if(compter_mur(mat, coord_x, coord_y)){
 					mat[coord_x][coord_y].mur.murN=0;
 					mat[temp_x][temp_y].mur.murS=0;
@@ -284,7 +285,7 @@ void case_adja(caract_mat_t * cmat,ini_t ** mat,int coord_x, int coord_y, int *c
 				}
 				break;
 
-			case 1: //case du dessous
+			case dessous: //case du dessous
 				if(compter_mur(mat, coord_x, coord_y)){
 					mat[coord_x][coord_y].mur.murS=0;
 					mat[temp_x][temp_y].mur.murN=0;
@@ -292,7 +293,7 @@ void case_adja(caract_mat_t * cmat,ini_t ** mat,int coord_x, int coord_y, int *c
 				}
 				break;
 
-			case 2: //case de gauche
+			case gauche: //case de gauche
 				if(compter_mur(mat, coord_x, coord_y)){
 					mat[coord_x][coord_y].mur.murO=0;
 					mat[temp_x][temp_y].mur.murE=0;
@@ -300,7 +301,7 @@ void case_adja(caract_mat_t * cmat,ini_t ** mat,int coord_x, int coord_y, int *c
 				}
 				break;
 
-			case 3: //case de droite
+			case droite: //case de droite
 				if(compter_mur(mat, coord_x, coord_y)){
 					mat[coord_x][coord_y].mur.murE=0;
 					mat[temp_x][temp_y].mur.murO=0;
@@ -342,13 +343,13 @@ int laby_fini(caract_mat_t * cmat, ini_t ** mat){/** Vérification permettant de
 void maj_coins(caract_mat_t * cmat, ini_t ** mat, int* compteur){
     if(compter_mur( mat, 0 , 0 )){  // coin en haut a gauche
         switch(rand()%2){
-            case 0 : //soit on libere vers le bas
+            case lib_bas : //soit on libere vers le bas
                         mat[0][0].mur.murS =0;
                         mat[0][1].mur.murN =0;
 						valeur_case(cmat,mat,0,0,0,1, compteur);
                         break;
 
-            case 1 : //soit on libere a droite
+            case lib_droite : //soit on libere a droite
                         mat[0][0].mur.murE =0;
                         mat[1][0].mur.murO =0;
 						valeur_case(cmat,mat,0,0,1,0, compteur);
@@ -358,13 +359,13 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat, int* compteur){
 
     if(compter_mur( mat,  cmat->taille_mat_x-1 , 0 )){  // coin en haut a droite
            switch(rand()%2){
-               case 0 : //soit on libere vers le bas
+               case lib_bas : //soit on libere vers le bas
                            mat[cmat->taille_mat_x-1][0].mur.murS =0;
                            mat[cmat->taille_mat_x-1][1].mur.murN =0;
 						   valeur_case(cmat,mat, cmat->taille_mat_x-1,0,cmat->taille_mat_x-1,1, compteur);
                            break;
 
-               case 1 : //soit on libere a gauche
+               case lib_gauche : //soit on libere a gauche
                            mat[cmat->taille_mat_x-1 ][0].mur.murO =0;
                            mat[cmat->taille_mat_x-2 ][0].mur.murE =0;
                            valeur_case(cmat,mat,cmat->taille_mat_x-1,0,cmat->taille_mat_x-2,0, compteur);
@@ -374,13 +375,13 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat, int* compteur){
 
     if(compter_mur( mat,  0 , cmat->taille_mat_y-1  )){  // coin en bas a gauche
            switch(rand()%2){
-               case 0 : //soit on libere vers le haut
+               case lib_haut : //soit on libere vers le haut
                            mat[0][cmat->taille_mat_y-1 ].mur.murN =0;
                            mat[0][cmat->taille_mat_y-2 ].mur.murS =0;
                            valeur_case(cmat,mat, 0, cmat->taille_mat_y-1  ,0, cmat->taille_mat_y-2, compteur);
                            break;
 
-               case 1 : //soit on libere a droite
+               case lib_droite : //soit on libere a droite
                            mat[0][cmat->taille_mat_y-1 ].mur.murE =0;
                            mat[1][cmat->taille_mat_y-1 ].mur.murO =0;
                            valeur_case(cmat,mat, 0,  cmat->taille_mat_y-1  , 1, cmat->taille_mat_y-2, compteur);
@@ -390,13 +391,13 @@ void maj_coins(caract_mat_t * cmat, ini_t ** mat, int* compteur){
 
         if(compter_mur( mat, cmat->taille_mat_x-1 , cmat->taille_mat_y-1  )){  // coin en bas a droite
            switch(rand()%2){
-               case 0 : //soit on libere vers le haut
+               case lib_haut : //soit on libere vers le haut
                            mat[cmat->taille_mat_x-1 ][cmat->taille_mat_y-1 ].mur.murN =0;
                            mat[cmat->taille_mat_x-1 ][cmat->taille_mat_y-2 ].mur.murS =0;
                            valeur_case(cmat,mat, cmat->taille_mat_x-1,  cmat->taille_mat_y-1  , cmat->taille_mat_x-1, cmat->taille_mat_y-2, compteur);
                            break;
 
-               case 1 : //soit on libere a gauche
+               case lib_gauche : //soit on libere a gauche
                            mat[cmat->taille_mat_x-1 ][cmat->taille_mat_y-1 ].mur.murO =0;
                            mat[cmat->taille_mat_x-2 ][cmat->taille_mat_y-1 ].mur.murE =0;
                            valeur_case(cmat,mat, cmat->taille_mat_x-1,  cmat->taille_mat_y-1  , cmat->taille_mat_x-2, cmat->taille_mat_y-1, compteur);
