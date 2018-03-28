@@ -81,8 +81,6 @@ int main(void){
 	int choix_niv; // Choix du niveau
 	int choix_j; // Choix du nb joueur
 	int nbr_joueur;
-
-	int choix_nb_joueurs;
 	
 	int nb_gen=0;
 	
