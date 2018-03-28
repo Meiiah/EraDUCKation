@@ -28,11 +28,7 @@ int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupleme
 		printf("Nourriture accouplement: %i\n",nourriture_accouplement);
 		printf("Nourriture générée: %i\n",nourriture_genere);
 		printf("Nombre de canard: %i \n",nombre_canard(cmat));
-=======
-int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accouplement,joueur_t joueur,joueur_t joueur2,int nb_gen){
-	
-	while ( nb_gen<100 && presence_canard(cmat)==1){ // fin du jeu
->>>>>>> f391686e352b5d9963b53538561d186194776a87
+
 		
 		spawn_nourriture(cmat,nourriture_genere);
 		
@@ -40,18 +36,7 @@ int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupleme
 		affichage_laby(cmat);
 		deplacer(cmat,nourriture_accouplement,nourriture_genere,*joueur,*joueur2);
 		
-<<<<<<< HEAD
 		choix_joueur(cmat,joueur,joueur2,&nourriture_genere,&nourriture_accouplement,nb_gen);
-		
-=======
-		choix_joueur(cmat,&joueur,&joueur2,&nourriture_genere,&nourriture_accouplement,nb_gen);
-		ajout_score(101,&joueur,&joueur2);
->>>>>>> f391686e352b5d9963b53538561d186194776a87
-		nb_gen++;
-		printf("Score %s : %i\n",joueur.nom_joueur,joueur.score);
-		printf("Nourriture accouplement: %i\n",nourriture_accouplement);
-		printf("Nourriture générée: %i\n",nourriture_genere);
-		printf("Nombre de canard: %i \n",nombre_canard(cmat));
 		
 	}
 	return 1;
