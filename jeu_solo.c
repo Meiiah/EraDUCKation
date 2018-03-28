@@ -30,10 +30,8 @@ int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupleme
 		affichage_laby(cmat);
 		deplacer(cmat,nourriture_accouplement,nourriture_genere,joueur,joueur2);
 		
-		choix_joueur(cmat,joueur,joueur2,&nourriture_genere,&nourriture_accouplement,nb_gen);
-		
-		ajout_score(100,&joueur,&joueur2);
-	
+		choix_joueur(cmat,&joueur,&joueur2,&nourriture_genere,&nourriture_accouplement,nb_gen);
+		ajout_score(101,&joueur,&joueur2);
 		nb_gen++;
 		printf("Score %s : %i\n",joueur.nom_joueur,joueur.score);
 		printf("Nourriture accouplement: %i\n",nourriture_accouplement);

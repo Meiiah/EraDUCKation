@@ -17,7 +17,7 @@
 */
 
 
-typedef enum{premier_choix=1,deuxieme_choix=2,troisieme_choix=3,sauvegarder=4,quitter=5}choix_t;
+
 #define nb_event 5
 char *mauv_evts[nb_event]={
 	"Lance un tsunami sur le labyrinthe",
@@ -89,7 +89,7 @@ void tab_event_bon(int * choix1,int * choix2, int * choix3){
 
 /** \fn void choix_mauvais(void)*/
 /** choix random parmis les evenements mauvais */
-void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int * nourriture_genere, int * nourriture_accouplement,int generation){
+void choix_mechant(caract_mat_t * cmat,joueur_t * joueur, joueur_t * joueur2, int * nourriture_genere, int * nourriture_accouplement,int generation){
 	int choix1, choix2, choix3;
 	tab_event_mauvais(&choix1, &choix2, &choix3);
 	int result;
@@ -103,10 +103,10 @@ void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int * 
 					break;
 				case troisieme_choix: mauvais[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 					break;
-				case sauvegarder: sauvegarde(cmat,*nourriture_genere, *nourriture_accouplement, joueur,joueur2,generation);
+				case sauvegarder: sauvegarde(cmat,*nourriture_genere, *nourriture_accouplement, *joueur,*joueur2,generation);
 					printf("Sauvegarde effectée\n");
 					break;
-				case quitter: exit(EXIT_SUCCESS);
+				case quitter_jeu: exit(EXIT_SUCCESS);
 					break;
 				default:
 					break;
@@ -117,7 +117,7 @@ void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int * 
 /** \fn void choix_bon(void)*/
 /** choix random parmis les evenements bon */
 
-void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourriture_genere, int* nourriture_accouplement,int generation){
+void choix_bon(caract_mat_t * cmat,joueur_t * joueur, joueur_t * joueur2, int* nourriture_genere, int* nourriture_accouplement,int generation){
 	int choix1, choix2, choix3;
 
 	tab_event_bon(&choix1, &choix2, &choix3);
@@ -132,7 +132,7 @@ void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourr
 				break;
 			case 3: bon[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 				break;
-			case 4: sauvegarde(cmat,*nourriture_genere, *nourriture_accouplement, joueur,joueur2,generation);
+			case 4: sauvegarde(cmat,*nourriture_genere, *nourriture_accouplement, *joueur,*joueur2,generation);
 				printf("Sauvegarde effectée\n");
 				break;
 			case 5: exit(EXIT_SUCCESS);
@@ -144,7 +144,7 @@ void choix_bon(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourr
 }
 /** \fn void choix_joueur(void)*/
 /** choix du joueur parmis les evenements */
-void choix_joueur(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int* nourriture_genere, int* nourriture_accouplement,int generation){
+void choix_joueur(caract_mat_t * cmat,joueur_t * joueur, joueur_t * joueur2, int* nourriture_genere, int* nourriture_accouplement,int generation){
 	int nature_event= ( rand() % 2); // Choix randome d'un evenement positif ou negatif//
 	if (nature_event%2==0){ // Si pair : Evenement negatif //
 		choix_mechant(cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement,generation);
