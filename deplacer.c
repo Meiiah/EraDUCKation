@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include "struct.h"
 #include "matrice.h"
+#include "deplacer.h"
 #include "deplacer_multi.h"
 #include "nourriture.h"
 #include "reproduction.h"
 #include "labyrinthe.h"
 #include "canard.h"
+
 
 
 /**
@@ -18,7 +20,7 @@
 */
 
 
-typedef enum{Aucune_direction = -1, Est = 1, Ouest=2, Sud =3, Nord = 4, Pas_besoin_de_bouger =42} t_direction;
+
 
 
 /*=======================================================================================================================*/

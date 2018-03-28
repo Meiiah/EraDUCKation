@@ -1,7 +1,7 @@
 #ifndef __MULTIJOUEUR_H__
 #define __MULTIJOUEUR_H__
 
-typedef enum { bon, mechant }clan_t;
+typedef enum { gentil, mechant }clan_t;
 
 typedef struct joueurm_s{
 
@@ -13,6 +13,6 @@ typedef struct joueurm_s{
 
 
 
-void main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_accouplement, int nb_gen);
+int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_accouplement, int nb_gen);
 
 #endif // __MULTIJOUEUR_H__

@@ -24,7 +24,7 @@
 /** \fn joueur_multi_t joueur_gentil(void)*/
 joueur_multi_t joueur_gentil(){ /** initialise un joueur en joueur gentil*/
     joueur_multi_t mem;
-    mem.clan = bon;
+    mem.clan = gentil;
     mem.choix = choix_bon;
     mem.joueur.score =0;
     return mem ;

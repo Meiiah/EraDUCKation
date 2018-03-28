@@ -17,6 +17,21 @@
 */
 
 #define nb_event 5
+char *mauv_evts[nb_event]={
+	"Lance un tsunami sur le labyrinthe",
+	"Lance une tempete sur le labyrinthe",
+	"Famine : Réduit la nourriture générée",
+	"Réduit la reproduction des canards",
+	"Appartion de 0 à 5 prédateurs de canards"
+};
+char *bon_evts[nb_event]={
+	"Accelère la reproduction des canards",
+	"Génération de nourriture augmentée",
+	"Rien changer",
+	"Libère entre 0 et 5 canards",
+	"Rend un canard invincible"
+};
+
 /** \fn void ajout_score(int,joueur_t,joueur_t)*/
 void ajout_score(int point,joueur_t * joueur, joueur_t * joueur2){/**fonction d'ajour de score des deux joueurs*/
 	joueur->score+=point; // ajout des points en fonction de l'action faite
