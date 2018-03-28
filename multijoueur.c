@@ -107,8 +107,6 @@ int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_
 		fprintf(stderr, "zdzdzd");
 		tour_multijoueur(cmat,&nourriture_genere,&nourriture_accouplement, tab, nb_gen, tampon);
 
-		ajout_score(100,&(tab[tampon%2].joueur),&(tab[(tampon +1)%2].joueur));
-
 		nb_gen++;
 		printf("Score %s : %i\n",tab[0].joueur.nom_joueur,tab[0].joueur.score);
 		printf("Score %s : -%i\n",tab[1].joueur.nom_joueur,tab[0].joueur.score);
