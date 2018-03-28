@@ -6,7 +6,7 @@
 /**
 * \file reproduction.c
 * \brief Programme comprennant la reproduction des canards
-* \author VAIDIE Camille
+* \author VAIDIE Camille, PHILIPPE Marion
 * \version 1.0
 * \date 20 Février 2018
 */ 

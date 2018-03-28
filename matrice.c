@@ -11,6 +11,21 @@
  * \date 19 Mars 2018
 */
 
+
+void detruire_Cmatrice(caract_mat_t * cmat){
+	if(cmat){
+		if( cmat->matrice!=NULL){
+			fprintf(stderr, "Avant le free\n");
+			free(cmat->matrice[0]);
+			fprintf(stderr, "Avant le free\n");
+			free(cmat->matrice);
+		}
+	
+		fprintf(stderr, "Avant le free cmat\n");
+		free(cmat);
+	}
+}
+
 /** \fn int est_dans_matrice(caract_mat_t,int,int)*/
 int est_dans_matrice(caract_mat_t * cmat,int x, int y){
 	return(x>=0 && x<cmat->taille_mat_x && y>=0 && y<cmat->taille_mat_y);
