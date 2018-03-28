@@ -38,27 +38,18 @@ void charger(caract_mat_t * cmat,int* nourriture_genere,int* nourriture_accouple
     fichier=fopen("sav.txt", "r");
     //on recupere les int
 
-    fread(&generation, sizeof(int),1,fichier);//on sauvegarde le nb generation
-	fread(&nourriture_genere, sizeof(int),1,fichier);//on sauvegarde la nourritue générée
-	fread(&nourriture_accouplement, sizeof(int),1,fichier);//on sauvegarde la nourriture d accouplement
+    fread(&generation, sizeof(int),1,fichier);//on charge le nb generation
+	fread(&nourriture_genere, sizeof(int),1,fichier);//on charge la nourritue générée
+	fread(&nourriture_accouplement, sizeof(int),1,fichier);//on charge la nourriture d accouplement
 
-	fread(&joueur , sizeof(joueur_t),1,fichier);//on sauvegarde le joueur 1 (ses points....)
-	fread(&joueur2, sizeof(joueur_t),1,fichier);//on sauvegarde le nb generation (
+	fread(&joueur , sizeof(joueur_t),1,fichier);//on charge le joueur 1 (ses points....)
+	fread(&joueur2, sizeof(joueur_t),1,fichier);//on charge le nb generation (
 
 
     //on enleve les allocations obsoletes de la matrice, on l alloc a la bonne taille, et on y met les donnees
 	int i;
 	fprintf(stderr, "On va supprimer cmat si besoin\n");
-	if(cmat && cmat->matrice!=NULL){
-		fprintf(stderr, "Avant le free\n");
-		free(cmat->matrice[0]);
-		fprintf(stderr, "Avant le free\n");
-		free(cmat->matrice);
-	}
-	if(cmat){
-	fprintf(stderr, "Avant le free cmat\n");
-		free(cmat);
-	}
+	detruire_Cmatrice(cmat);
 	fprintf(stderr, "On a supprime cmat (peut etre)\n");
 	////////
     cmat=malloc(sizeof(case_t));

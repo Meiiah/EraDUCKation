@@ -12,6 +12,8 @@ int est_dans_matrice(caract_mat_t *cmat,int x, int y);
 
 caract_mat_t * creation_matrice(int x, int y);
 
+void detruire_Cmatrice(caract_mat_t * cmat);
+
 void init_matrice(caract_mat_t * cmat);
 
 #endif // __MATRICE_H__
