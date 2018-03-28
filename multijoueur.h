@@ -8,7 +8,7 @@ typedef struct joueurm_s{
     joueur_t joueur;
     clan_t clan;
     char nom [20];
-    void (*choix) (caract_mat_t *,joueur_t , joueur_t , int* , int*,int );
+    void (*choix) (caract_mat_t *,joueur_t *, joueur_t * , int* , int*,int );
 }joueur_multi_t;
 
 
