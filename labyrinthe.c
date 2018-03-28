@@ -16,8 +16,8 @@
 */
 
 
-typedef enum{dessus = 0, dessous = 1 , gauche = 2, droite = 3};
-typedef enum{lib_haut = 0, lib_bas = 0 , lib_gauche = 1, lib_droite = 1};
+typedef enum{dessus = 0, dessous = 1 , gauche = 2, droite = 3}position_t;
+typedef enum{lib_haut = 0, lib_bas = 0 ,lib_gauche = 1, lib_droite = 1}liberation_t;
 ///////////////////////////////////Fonctions affichage//////////
 
 /** \fn void compter_murs(caract_mat_t,int,int*/
