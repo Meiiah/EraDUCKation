@@ -13,7 +13,7 @@
 
 /** \fn void spawn_nourriture(caract_mat_t,int)*/
 void spawn_nourriture(caract_mat_t * cmat,int nourriture_genere){
-	int i,k;
+	int i;
 	int random_x;
 	int random_y;
 	//random pour le nombre d'appartion de nourriture
