@@ -48,9 +48,8 @@ void tour_multijoueur(caract_mat_t * cmat, int * nourriture_genere,int * nourrit
 	
     deplacer(cmat,*nourriture_accouplement, *nourriture_genere, tab[tampon%2].joueur,tab[(tampon +1)%2].joueur);
     printf("C est le tour de %s", tab[tour%2].joueur.nom_joueur);
-	fprintf(stderr, "byuve\n");
+
     tab[tour%2].choix(cmat,&(tab[tampon%2].joueur), &(tab[(tampon +1)%2].joueur), nourriture_genere, nourriture_accouplement, tour);
-	fprintf(stderr, "byuve2");
 }
 
 /*===============================================*/
@@ -104,8 +103,10 @@ int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_
 
 
 	while ( nb_gen<100 && presence_canard(cmat)==1){ // fin du jeu
-		fprintf(stderr, "zdzdzd");
+		
 		tour_multijoueur(cmat,&nourriture_genere,&nourriture_accouplement, tab, nb_gen, tampon);
+
+		ajout_score(100,&(tab[tampon%2].joueur),&(tab[(tampon +1)%2].joueur));
 
 		nb_gen++;
 		printf("Score %s : %i\n",tab[0].joueur.nom_joueur,tab[0].joueur.score);
