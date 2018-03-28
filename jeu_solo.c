@@ -35,6 +35,7 @@ int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupleme
 		deplacer(cmat,nourriture_accouplement,nourriture_genere,*joueur,*joueur2);
 		
 		choix_joueur(cmat,joueur,joueur2,&nourriture_genere,&nourriture_accouplement,nb_gen);
+		detruire_nourriture(cmat);
 		
 	}
 	return 1;

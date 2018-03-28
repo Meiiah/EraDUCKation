@@ -129,7 +129,7 @@ void affichage_laby(caract_mat_t * cmat){ /** Affichage du labyrinthe avec les m
 
 			for(j=0;j<cmat->taille_mat_x;j++){// pour chaque ligne on fait les murs verticaux
 				if(cmat->matrice[j][i].nb_occupant == 0)
-					if(cmat->matrice[j][i].pres_nourriture)
+					if(cmat->matrice[j][i].pres_nourriture!=0)
 						printf(" N ");
 			   	 	else printf("   ");
 			   	else{
