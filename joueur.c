@@ -126,16 +126,16 @@ void choix_bon(caract_mat_t * cmat,joueur_t * joueur, joueur_t * joueur2, int* n
 		printf("Choisir le numéro de l'évènement choisit : ");
 		scanf("%i",&result);// Saisit du choix du joueur//
 		switch(result){
-			case 1: bon[choix1](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+			case premier_choix: bon[choix1](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 				break;
-			case 2: bon[choix2](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+			case deuxieme_choix: bon[choix2](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 				break;
-			case 3: bon[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+			case troisieme_choix: bon[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 				break;
-			case 4: sauvegarde(cmat,*nourriture_genere, *nourriture_accouplement, *joueur,*joueur2,generation);
+			case sauvegarder: sauvegarde(cmat,*nourriture_genere, *nourriture_accouplement, *joueur,*joueur2,generation);
 				printf("Sauvegarde effectée\n");
 				break;
-			case 5: exit(EXIT_SUCCESS);
+			case quitter_jeu: exit(EXIT_SUCCESS);
 				break;
 			default:
 				break;
