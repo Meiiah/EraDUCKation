@@ -49,7 +49,7 @@ void tour_multijoueur(caract_mat_t * cmat, int * nourriture_genere,int * nourrit
     deplacer(cmat,*nourriture_accouplement, *nourriture_genere, tab[tampon%2].joueur,tab[(tampon +1)%2].joueur);
     printf("C est le tour de %s", tab[tour%2].joueur.nom_joueur);
 	fprintf(stderr, "byuve\n");
-    tab[tour%2].choix(cmat,tab[tampon%2].joueur, tab[(tampon +1)%2].joueur, nourriture_genere, nourriture_accouplement, tour);
+    tab[tour%2].choix(cmat,&(tab[tampon%2].joueur), &(tab[(tampon +1)%2].joueur), nourriture_genere, nourriture_accouplement, tour);
 	fprintf(stderr, "byuve2");
 }
 
@@ -91,7 +91,6 @@ int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_
     //variables :
     joueur_multi_t tab[2];
     int tampon=0;
-	joueur_t joueur1, joueur2;
 
     //maintenant on initialise l ordre de jeu
 

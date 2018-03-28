@@ -104,7 +104,7 @@ void afficher_angle(caract_mat_t * cmat,int j, int i){ // affiche l angle bas-dr
 /** \fn void affichage_laby()*/
 void affichage_laby(caract_mat_t * cmat){ /** Affichage du labyrinthe avec les murs sour forme ASCII */
 	int i,j;
-	int case_i;
+	
 
 
 	printf("\u2554");// angle haut gauche basique
@@ -431,9 +431,6 @@ void balayage(caract_mat_t * cmat ,ini_t ** mat, int* compteur){  /**  foncion q
 /** \fn void creer_labyrinthe()*/
 void creer_labyrinthe(caract_mat_t * cmat ,ini_t ** mat){ /** Appel toutes les fonctions pour creer le labyrinthe*/
 
-	mur_t mur;
-
-	int mur_value;
 	int compteur=0;
 	int securite = 0;
 
@@ -441,7 +438,7 @@ void creer_labyrinthe(caract_mat_t * cmat ,ini_t ** mat){ /** Appel toutes les f
 	init_laby(cmat, mat);
 	//fprintf(stderr, "initialisation laby OK\n");
 
-	int i=0;
+	
 	do{ //creation du labyrinthe ici
 		coord_case(cmat,mat,&compteur);
 		securite++;

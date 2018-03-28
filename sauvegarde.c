@@ -47,7 +47,6 @@ void charger(caract_mat_t * cmat,int* nourriture_genere,int* nourriture_accouple
 
 
     //on enleve les allocations obsoletes de la matrice, on l alloc a la bonne taille, et on y met les donnees
-	int i;
 	fprintf(stderr, "On va supprimer cmat si besoin\n");
 	detruire_Cmatrice(cmat);
 	fprintf(stderr, "On a supprime cmat (peut etre)\n");
