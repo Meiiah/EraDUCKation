@@ -14,34 +14,32 @@
 int ou_pondre(caract_mat_t * cmat, int * i, int * j){
 	
 	int cpt =1;
+	//boucle pour parcourir en rond la matrice
 	while(1){ 
-		if(cmat->matrice[*i][*j].nb_occupant>8){ // Vu qu on ajoute un canard et qu on a 9 places il faut qu il y ait maximum 8 occupants
-			
-			
+		// Vu qu on ajoute un canard et qu on a 9 places il faut qu il y ait maximum 8 occupants
+		if(cmat->matrice[*i][*j].nb_occupant>8){ 
+			//si la case à coté est dans la matrice
 			if(est_dans_matrice(cmat,*i-cpt,*j)){
-				
+				//et qu'elle contient moins de 9 canards
 				if( cmat->matrice[*i-cpt][*j].nb_occupant<9){
+					//on renvoit : pondre dans cette case là
 					*i=*i-cpt;
 					return 1;
 				}else if(est_dans_matrice(cmat,*i-cpt,*j-cpt)){
-					
 					if(cmat->matrice[*i-cpt][*j-cpt].nb_occupant<9){
 						*i=*i-cpt;
 						*j=*j-cpt;
 						return 1;
 					}else if(est_dans_matrice(cmat,*i,*j-cpt)){
-					
 						if( cmat->matrice[*i][*j-cpt].nb_occupant<9){
 							*j=*j-cpt;
 							return 1;
 						}else if(est_dans_matrice(cmat,*i+cpt,*j-cpt) ){
-						
 							if( cmat->matrice[*i+cpt][*j-cpt].nb_occupant<9){
 								*i=*i+cpt;
 								*j=*j-cpt;
 								return 1;
 							}else if(est_dans_matrice(cmat,*i+cpt,*j) ){
-								
 								if( cmat->matrice[*i+cpt][*j].nb_occupant<9){
 									*i=*i+cpt;
 									return 1;
@@ -55,8 +53,7 @@ int ou_pondre(caract_mat_t * cmat, int * i, int * j){
 										if( cmat->matrice[*i][*j+cpt].nb_occupant<9){
 											*j=*j+cpt;
 											return 1;
-										}else if(est_dans_matrice(cmat,*i-cpt,*j+cpt) ){
-											
+										}else if(est_dans_matrice(cmat,*i-cpt,*j+cpt) ){	
 											if( cmat->matrice[*i-cpt][*j+cpt].nb_occupant<9){
 												*i=*i-cpt;
 												*j=*j+cpt;
@@ -72,8 +69,10 @@ int ou_pondre(caract_mat_t * cmat, int * i, int * j){
 			}
 		}
 		else{
+			//Si la case de base n'est pas pleine, on pond où sont les parents
 			return 1;
 		}
+		//Si la premiere boucle est pleine, on regarde sur la boucle suivante
 		cpt++;
 	}
 }
