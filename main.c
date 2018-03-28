@@ -13,17 +13,20 @@
 #include "sauvegarde.h"
 
 
+typedef enum{facile=1,moyen=2,difficile=3}diff_t;
+typedef enum{solo=1,multi=2}nb_joueur_t;
+typedef enum{jouer=1,charger=2,quitter=3}menu_t;
 
 int choix_difficultee(int choix){
 
 	switch(choix){
-		case 1 :
+		case facile :
 			return 6;
 		break;	
-		case 2:
+		case moyen:
 			return 10;
 		break;
-		case 3:
+		case difficile:
 			return 17;
 		break;		
 	}
@@ -32,13 +35,13 @@ int choix_difficultee(int choix){
 int choix_nbr_joueur(int choix,joueur_t * joueur,joueur_t * joueur2){
 	int nbr_joueur;
 	switch(choix){
-		case 1 :
+		case solo :
 			caract_joueur(joueur);
 			joueur->score=0;
 			joueur2->score=0;
 			return nbr_joueur=1;
 		break;	
-		case 2:
+		case multi:
 			caract_joueur(joueur);
 			caract_joueur(joueur2);
 			joueur->score=0;
@@ -96,7 +99,7 @@ int main(void){
 		printf("Saisir un choix: ");
 		scanf(" %i",&choix);
 		switch(choix){
-			case 1 :
+			case jouer :
 			
 				/* Nombre de Joueur */
 				printf("1 : 1 joueur\n");
@@ -144,15 +147,15 @@ int main(void){
 			
 				break;
 
-			case 2 : 
+			case charger : 
 				charger(cmat,&nourriture_genere, &nourriture_accouplement, &joueur, &joueur2, &nb_gen);
 				if(strcmp(joueur2.nom_joueur, "null")){
 					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2,nb_gen);
 				}else{
 					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement, nb_gen);			
 				}break;
-
-			case 3 :
+ 
+			case quitter :
 				return 0;
 				break;
 		
