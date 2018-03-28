@@ -23,6 +23,7 @@ void detruire_Cmatrice(caract_mat_t * cmat){
 	
 		fprintf(stderr, "Avant le free cmat\n");
 		free(cmat);
+		cmat = NULL;
 	}
 }
 

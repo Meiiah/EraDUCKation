@@ -137,21 +137,22 @@ int main(void){
 				init_canard(cmat); 
 			
 				if(nbr_joueur==1){
-					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,&joueur,&joueur2,nb_gen);
+					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2,nb_gen);
 				
 				}else{
 					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement, nb_gen);
 				}
-			
+				detruire_Cmatrice(cmat);
 				break;
 
 			case charger_partie : 
 				charger(cmat,&nourriture_genere, &nourriture_accouplement, &joueur, &joueur2, &nb_gen);
 				if(strcmp(joueur2.nom_joueur, "null")){
-					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,&joueur,&joueur2,nb_gen);
+					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2,nb_gen);
 				}else{
 					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement, nb_gen);			
-				}break;
+				}detruire_Cmatrice(cmat);
+				break;
  
 			case quitter :
 				return 0;
@@ -159,9 +160,9 @@ int main(void){
 		
 		}
 	}while(choix!=1 && choix!=2 && choix!=3);
-	printf("Le score total du %s est : %i\n",joueur.nom_joueur,joueur.score);
+	printf("Le score total du joueur 1 est : %i\n",joueur.score);
 	if(strcmp(joueur2.nom_joueur,"null")){
-		printf("Le score total du %s est : %i\n",joueur.nom_joueur,joueur2.score);
+		printf("Le score total du joueur 2 est : %i\n",joueur2.score);
 	}
 	return 1;
 }
