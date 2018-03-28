@@ -109,13 +109,17 @@ void affichage_laby(caract_mat_t * cmat){ /** Affichage du labyrinthe avec les m
 
 	printf("\u2554");// angle haut gauche basique
 	for(i=0; i<cmat->taille_mat_x-1; i++){// on affiche toute la ligne du haut
-        printf("\u2550"); // on affiche l horizontal
-
-        if(cmat->matrice[i][0].mur.murE==1)   printf("\u2566"); // si la case en dessous a un mur a droite on affiche un coin en triple, et vu que c est juste la premiere ligne il y a pas de case au dessus
-        else printf("\u2550"); // sinon on met une barre horizontale
-	}printf("\u2550");
-	printf("\u2557");
-
+		printf("\u2550"); // on affiche l horizontal
+		printf("\u2550");
+		if(cmat->matrice[i][0].mur.murE==1)   printf("\u2566"); // si la case en dessous a un mur a droite on affiche un coin en triple, et vu que c est juste la premiere ligne il y a pas de case au dessus
+		else{
+			printf("\u2550"); // sinon on met une barre horizontale
+			
+		}
+	}
+	printf("\u2550");
+	printf("\u2550");
+	printf("\u2557");// angle haut droit
 
 	for(i=0; i<cmat->taille_mat_x; i++){ // pour toute la matrice
             printf("\n");
@@ -124,22 +128,22 @@ void affichage_laby(caract_mat_t * cmat){ /** Affichage du labyrinthe avec les m
 			for(j=0;j<cmat->taille_mat_x;j++){// pour chaque ligne on fait les murs verticaux
 				if(cmat->matrice[j][i].nb_occupant == 0)
 					if(cmat->matrice[j][i].pres_nourriture)
-						printf("N");
-			   	 	else printf(" ");
+						printf("NN");
+			   	 	else printf("  ");
 			   	else{
-			   	 printf("%i",cmat->matrice[j][i].nb_occupant);
-
+			   		printf(" %i",cmat->matrice[j][i].nb_occupant);
 				}
-                if(cmat->matrice[j][i].mur.murE==1)   printf("\u2551"); //afficher mur si il faut
-                else printf(" ");
+				if(cmat->matrice[j][i].mur.murE==1)   printf("\u2551"); //afficher mur si il faut
+				else printf(" ");
 
 			}printf("\n");
 
 
 			if(i<cmat->taille_mat_y-1){
-				if(cmat->matrice[0][i].mur.murS)
+				if(cmat->matrice[0][i].mur.murS){
 					printf("\u2560");//afficher triple hdb
-				else
+					
+				}else
 					printf("\u2551");
 			}else
 				printf("\u255a");
@@ -147,8 +151,11 @@ void affichage_laby(caract_mat_t * cmat){ /** Affichage du labyrinthe avec les m
 
 			for(j=0;j<cmat->taille_mat_y;j++){// pour chaque ligne on fait les murs horizontaux, et les anges
 
-			    if(cmat->matrice[j][i].mur.murS) printf("\u2550"); //affichage du mur du bas
-			    else printf(" ");
+			    if(cmat->matrice[j][i].mur.murS){
+			    	printf("\u2550"); //affichage du mur du bas
+			    	printf("\u2550"); 
+			    } 
+			    else printf("  ");
 
 			    //afficher agle en fonction des cases adjacentes
 
