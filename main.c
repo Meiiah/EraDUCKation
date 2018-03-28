@@ -15,7 +15,7 @@
 
 typedef enum{facile=1,moyen=2,difficile=3}diff_t;
 typedef enum{solo=1,multi=2}nb_joueur_t;
-typedef enum{jouer=1,charger=2,quitter=3}menu_t;
+typedef enum{jouer=1,charger_partie=2,quitter=3}menu_t;
 
 int choix_difficultee(int choix){
 
@@ -147,7 +147,7 @@ int main(void){
 			
 				break;
 
-			case charger : 
+			case charger_partie : 
 				charger(cmat,&nourriture_genere, &nourriture_accouplement, &joueur, &joueur2, &nb_gen);
 				if(strcmp(joueur2.nom_joueur, "null")){
 					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2,nb_gen);

@@ -16,6 +16,8 @@
 *\date 20 fevrier 2018
 */
 
+
+typedef enum{premier_choix=1,deuxieme_choix=2,troisieme_choix=3,sauvegarder=4,quitter=5}choix_t;
 #define nb_event 5
 char *mauv_evts[nb_event]={
 	"Lance un tsunami sur le labyrinthe",
@@ -95,16 +97,16 @@ void choix_mechant(caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int * 
 			printf("Choisir le numéro de l'évènement choisit : ");
 			scanf("%i",&result);// Saisit du choix du joueur//
 			switch(result){
-				case 1: mauvais[choix1](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+				case premier_choix: mauvais[choix1](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 					break;
-				case 2: mauvais[choix2](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+				case deuxieme_choix: mauvais[choix2](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 					break;
-				case 3: mauvais[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
+				case troisieme_choix: mauvais[choix3](cmat,joueur, joueur2, nourriture_genere, nourriture_accouplement);
 					break;
-				case 4: sauvegarde(cmat,*nourriture_genere, *nourriture_accouplement, joueur,joueur2,generation);
+				case sauvegarder: sauvegarde(cmat,*nourriture_genere, *nourriture_accouplement, joueur,joueur2,generation);
 					printf("Sauvegarde effectée\n");
 					break;
-				case 5: exit(EXIT_SUCCESS);
+				case quitter: exit(EXIT_SUCCESS);
 					break;
 				default:
 					break;

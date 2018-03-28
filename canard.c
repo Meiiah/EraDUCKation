@@ -1,7 +1,7 @@
 /**
  * \file canard.c
- * \brief Fonctions outils multijoueur
- * \author Camille.V
+ * \brief Fonctions a propos du canard
+ * \author Camille VAIDIE
  * \version 1.1
  * \date 20 fevrier 2018
 */
@@ -13,10 +13,10 @@
 
 /**\fn canard_t canard_vide(void) */
 canard_t canard_vide(void){/**	renvoit un canard inexistant*/
-    canard_t coincoin;
-    coincoin.nourriture =0;
-    coincoin.etat = -1;
-    return coincoin;
+    canard_t canard;
+    canard.nourriture =0;
+    canard.etat = -1;
+    return canard;
 }
 
 
