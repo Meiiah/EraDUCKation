@@ -62,8 +62,8 @@ int main(void){
 	
 
 	//definition joueur
-	joueur_t * joueur=NULL;
-	joueur_t * joueur2=NULL;
+	joueur_t * joueur=malloc(sizeof(joueur_t));
+	joueur_t * joueur2=malloc(sizeof(joueur_t));
 
 	joueur->score = 0;
 	joueur2->score = 0;
@@ -164,5 +164,7 @@ int main(void){
 	if(strcmp(joueur2->nom_joueur,"null")){
 		printf("Le score total du joueur 2 est : %i\n",joueur2->score);
 	}
+	free(joueur);
+	free(joueur2);
 	return 1;
 }
