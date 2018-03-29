@@ -62,16 +62,16 @@ int main(void){
 	
 
 	//definition joueur
-	joueur_t joueur;
-	joueur_t joueur2;
+	joueur_t * joueur=NULL;
+	joueur_t * joueur2=NULL;
 
-	joueur.score = 0;
-	joueur2.score = 0;
+	joueur->score = 0;
+	joueur2->score = 0;
 
-	joueur2.nom_joueur[0]='n';
-	joueur2.nom_joueur[1]='u';
-	joueur2.nom_joueur[2]='l';
-	joueur2.nom_joueur[3]='l';
+	joueur2->nom_joueur[0]='n';
+	joueur2->nom_joueur[1]='u';
+	joueur2->nom_joueur[2]='l';
+	joueur2->nom_joueur[3]='l';
 
 	//definition nourriture
 	int nourriture_accouplement = 25;//Nourriture qu'on a besoin pour se reproduire
@@ -108,7 +108,7 @@ int main(void){
 					
 				}while(choix_j!=1 && choix_j!=2);
 				if(choix_j == 1)
-						nbr_joueur=choix_nbr_joueur(choix_j,&joueur,&joueur2);
+						nbr_joueur=choix_nbr_joueur(choix_j,joueur,joueur2);
 			
 				/* Difficulté*/
 				printf("1 : Facile\n");
@@ -146,8 +146,8 @@ int main(void){
 				break;
 
 			case charger_partie : 
-				charger(cmat,&nourriture_genere, &nourriture_accouplement, &joueur, &joueur2, &nb_gen);
-				if(strcmp(joueur2.nom_joueur, "null")){
+				charger(cmat,&nourriture_genere, &nourriture_accouplement, joueur, joueur2, &nb_gen);
+				if(strcmp(joueur2->nom_joueur, "null")){
 					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2,nb_gen);
 				}else{
 					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement, nb_gen);			
@@ -160,9 +160,9 @@ int main(void){
 		
 		}
 	}while(choix!=1 && choix!=2 && choix!=3);
-	printf("Le score total du joueur 1 est : %i\n",joueur.score);
-	if(strcmp(joueur2.nom_joueur,"null")){
-		printf("Le score total du joueur 2 est : %i\n",joueur2.score);
+	printf("Le score total du joueur 1 est : %i\n",joueur->score);
+	if(strcmp(joueur2->nom_joueur,"null")){
+		printf("Le score total du joueur 2 est : %i\n",joueur2->score);
 	}
 	return 1;
 }
