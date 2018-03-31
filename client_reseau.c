@@ -14,6 +14,19 @@
 #include "connection.h"
 #include "joueur.h"
 
+/** \fn caract_mat_t * recevoir_laby(int socket) */
+caract_mat_t * recevoir_laby(int socket){ /** fonction qui recoit le laby en faisant l allocation et return la cmat */
+    caract_mat_t * cmat;
+    int tx, ty;
+    recevoir_int(socket , tx);
+    recevoir_int(socket , ty);
+    cmat = creation_matrice(tx, ty);
+    recv(socket, cmat->matrice[0] ,sizeof(t_case) * cmat->taille_mat_x * cmat->taille_mat_y ,0);
+    return cmat;
+}
+
+
+
 /** \fn void commence_client(int socket, int role, joueur_multi_t tab[]) */
 void commence_client(int socket, int role, joueur_multi_t tab[]){ /** Demande au client si il veut commencer et initialise le tableau avec l ordre de jeu */
 	int qui_s, qui_c;

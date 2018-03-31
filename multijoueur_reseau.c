@@ -26,10 +26,18 @@
 */
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+/**  \fn void envoyer_laby(int socket, caract_mat_t * cmat)*/
+void envoyer_laby(int socket, caract_mat_t * cmat){/** Fonction qui envoit le laby */
+    envoyer_int(socket , cmat->taille_mat_x);
+    envoyer_int(socket , cmat->taille_mat_y);
+
+    send(socket, *(cmat->matrice[0]) ,sizeof(t_case) * cmat->taille_mat_x * cmat->taille_mat_y ,0);
+}
+
+
+
 /* *********************************************		INITIALISATION TOUR DE JEU		*******************************************/
-
-
-
 
 /** \fn void commence_serveur(int socket, int role, joueur_multi_t tab[])*/
 void commence_serveur(int socket, int role, joueur_multi_t tab[]){ /** Demande au serveur si il veut commencer, et renvoit qui commencera */
@@ -102,7 +110,14 @@ int choix_client_serv(void){/** permet de savoir si le pc sera l hote ou le clie
         printf("        Si vous voulez rejoindre un ami  tapez 2 ;\n");
         entrer_int(&choix);
     }while(choix <1 || choix >2);
-    return choix;
+
+    switch(choix){
+
+        case 1 : //traitement hote
+            break;
+        case 2 : //traitement client
+            break;
+    }
 } /** \return 1 si le joueur veut etre serveur et 2 si l hote veut etre client*/
 
 
