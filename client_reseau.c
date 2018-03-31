@@ -14,21 +14,30 @@
 #include "connection.h"
 #include "joueur.h"
 
-/** \fn caract_mat_t * recevoir_laby(int socket) */
-caract_mat_t * recevoir_laby(int socket){ /** fonction qui recoit le laby en faisant l allocation et return la cmat */
+
+
+/** \fn void recevoir_laby(int socket, caract_mat_t * cmat) */
+void recevoir_laby(int socket, caract_mat_t * cmat){ /** Fonction qui met a jour le labyrinthe en fonction de celui de l adversaire */
+
+    recv(socket, cmat->matrice[0] ,sizeof(t_case) * cmat->taille_mat_x * cmat->taille_mat_y ,0);
+
+}
+
+/** caract_mat_t * recev_init_laby(int socket) */
+caract_mat_t * recev_init_laby(int socket){/** fonction qui recoit le laby en faisant l allocation et return la cmat */
     caract_mat_t * cmat;
     int tx, ty;
     recevoir_int(socket , tx);
     recevoir_int(socket , ty);
     cmat = creation_matrice(tx, ty);
-    recv(socket, cmat->matrice[0] ,sizeof(t_case) * cmat->taille_mat_x * cmat->taille_mat_y ,0);
+    recevoir_laby(socket,   cmat);
     return cmat;
+
 }
 
 
-
-/** \fn void commence_client(int socket, int role, joueur_multi_t tab[]) */
-void commence_client(int socket, int role, joueur_multi_t tab[]){ /** Demande au client si il veut commencer et initialise le tableau avec l ordre de jeu */
+/** \fn void commence_client(int socket, int role, joueur_reseau_t tab[]) */
+void commence_client(int socket, int role, joueur_reseau_t tab[]){ /** Demande au client si il veut commencer et initialise le tableau avec l ordre de jeu */
 	int qui_s, qui_c;
 
 	printf("En attente de votre adversaire ...");
@@ -50,8 +59,8 @@ void commence_client(int socket, int role, joueur_multi_t tab[]){ /** Demande au
 }
 
 
-/** \fn void quel_role_client(int socket, joueur_multi_t tab[]) */
-void quel_role_client(int socket, joueur_multi_t tab[]){/** demande au client quel role il veut jouer */
+/** \fn void quel_role_client(int socket, joueur_reseau_t tab[]) */
+void quel_role_client(int socket, joueur_reseau_t tab[]){/** demande au client quel role il veut jouer */
 	int role, role2;
 
 	// le client commence par attendre la reponse du serveur pour son role, puis lui transmet le sien, et récupere le role definitif du serveur
@@ -74,7 +83,7 @@ void quel_role_client(int socket, joueur_multi_t tab[]){/** demande au client qu
 /** \fn main_multijoueur_reseau_client(int SocketServeur)*/
 void main_multijoueur_reseau_client(int SocketServeur){/**  ce sera le "main" du jeu en multi coté client*/
     //variables :
-    joueur_multi_t tab[2];
+    joueur_reseau_t tab[2];
 
     init_tab_joueurs(tab, tampon);
 

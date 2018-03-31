@@ -29,18 +29,24 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /**  \fn void envoyer_laby(int socket, caract_mat_t * cmat)*/
 void envoyer_laby(int socket, caract_mat_t * cmat){/** Fonction qui envoit le laby */
-    envoyer_int(socket , cmat->taille_mat_x);
-    envoyer_int(socket , cmat->taille_mat_y);
 
     send(socket, *(cmat->matrice[0]) ,sizeof(t_case) * cmat->taille_mat_x * cmat->taille_mat_y ,0);
+}
+
+/**  \fn void envoyer_cmat(int socket, caract_mat_t * cmat)*/
+void envoyer_clat(int socket, caract_mat_t * cmat){/** Fonction qui envoit la cmat pour l initialisation */
+    envoyer_int(socket, cmat->taille_mat_x);
+    envoyer_int(socket, cmat->taille_mat_y);
+
+    envoyer_laby(socket, cmat);
 }
 
 
 
 /* *********************************************		INITIALISATION TOUR DE JEU		*******************************************/
 
-/** \fn void commence_serveur(int socket, int role, joueur_multi_t tab[])*/
-void commence_serveur(int socket, int role, joueur_multi_t tab[]){ /** Demande au serveur si il veut commencer, et renvoit qui commencera */
+/** \fn void commence_serveur(int socket, int role, joueur_reseau_t tab[])*/
+void commence_serveur(int socket, int role, joueur_reseau_t tab[]){ /** Demande au serveur si il veut commencer, et renvoit qui commencera */
 	int qui_s, qui_c;
 
 	qui_s = demander_qui_commence();
@@ -65,8 +71,8 @@ void commence_serveur(int socket, int role, joueur_multi_t tab[]){ /** Demande a
 
 
 /**********************************************		ROLE		*****************************************/
-/** \fn void quel_role_serveur(int socket, joueur_multi_t tab[]) */
-void quel_role_serveur(int socket, joueur_multi_t tab[]){ /** demande au serveur quel role il veut jouer */
+/** \fn void quel_role_serveur(int socket, joueur_reseau_t tab[]) */
+void quel_role_serveur(int socket, joueur_reseau_t tab[]){ /** demande au serveur quel role il veut jouer */
 	int role, role2;
 
 	//le serveur envoit son role au client puis recupere celui du client, si ils sont egaux, c est rand, et il envoit son role definitif (du serveur) au client
@@ -93,7 +99,7 @@ void quel_role_serveur(int socket, joueur_multi_t tab[]){ /** demande au serveur
 
 
 void main_multijoueur_reseau_serveur(int SocketServeur){
-    joueur_multi_t tab[2];
+    joueur_reseau_t tab[2];
 
     init_tab_joueurs(tab, tampon);
 }
