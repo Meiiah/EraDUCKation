@@ -8,7 +8,7 @@
 #include "outils_reseau.h"
 /*==============================================================================================================================*/
 
-void deplacer_multi_serveur(caract_mat_t * cmat,int nourriture_accouplement,int socket_to_client){
+void deplacer_multi_serveur(caract_mat_t * cmat,int nourriture_accouplement,int nourrture_generee, int socket_to_client){
     int i,j,k;
     int direction;
     int verif =1;
@@ -99,7 +99,7 @@ void deplacer_multi_serveur(caract_mat_t * cmat,int nourriture_accouplement,int 
             envoyer_int(socket_to_client,fin_message);
 
         	reproduction(cmat, nourriture_accouplement, joueur,joueur2);
-    		manger(cmat, nourriture_genere);
+    		manger(cmat, nourriture_generee);
 
     	}
 }
@@ -110,7 +110,7 @@ void deplacer_multi_serveur(caract_mat_t * cmat,int nourriture_accouplement,int 
 
 /*==============================================================================================================================*/
 
-void deplacer_multi_client(caract_mat_t * cmat,int socket_to_serv){
+void deplacer_multi_client(caract_mat_t * cmat,int nourriture_accouplement, int nourriture_generee, int socket_to_serv){
 
     int i,j,k;
     int direction;
@@ -131,7 +131,10 @@ void deplacer_multi_client(caract_mat_t * cmat,int socket_to_serv){
             }
             deplacer_canard(cmat,i, j, k, direction);
         }while(i !=  fin_message);
+
     }
+    reproduction(cmat, nourriture_accouplement, joueur,joueur2);
+    manger(cmat, nourriture_generee);
 }
 
 

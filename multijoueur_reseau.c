@@ -14,18 +14,6 @@
 #include "connection.h"
 #include "joueur.h"
 
-
-
-/*
-    TO DO LIST
-
-    - reprendre la struct multi joueur, l initialisé avec en plus la fonction choix_reception
-    - reprendre déplacer et adapter client serveur  // adapter les fonctions qui vont avec + piege
-    - mettre en place les main()
-    - PENSER A ENVOYER LE LABY
-*/
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /**  \fn void envoyer_laby(int socket, caract_mat_t * cmat)*/
 void envoyer_laby(int socket, caract_mat_t * cmat){/** Fonction qui envoit le laby */
@@ -34,7 +22,7 @@ void envoyer_laby(int socket, caract_mat_t * cmat){/** Fonction qui envoit le la
 }
 
 /**  \fn void envoyer_cmat(int socket, caract_mat_t * cmat)*/
-void envoyer_clat(int socket, caract_mat_t * cmat){/** Fonction qui envoit la cmat pour l initialisation */
+void envoyer_cmat(int socket, caract_mat_t * cmat){/** Fonction qui envoit la cmat pour l initialisation */
     envoyer_int(socket, cmat->taille_mat_x);
     envoyer_int(socket, cmat->taille_mat_y);
 
@@ -70,7 +58,7 @@ void commence_serveur(int socket, int role, joueur_reseau_t tab[]){ /** Demande 
 }
 
 
-/**********************************************		ROLE		*****************************************/
+/* *********************************************		ROLE		*****************************************/
 /** \fn void quel_role_serveur(int socket, joueur_reseau_t tab[]) */
 void quel_role_serveur(int socket, joueur_reseau_t tab[]){ /** demande au serveur quel role il veut jouer */
 	int role, role2;
@@ -93,38 +81,14 @@ void quel_role_serveur(int socket, joueur_reseau_t tab[]){ /** demande au serveu
 	commence_serveur( socket, role, tab);
 }
 
-
-/**********************************************		JEU			*****************************************/
-
-
-
-void main_multijoueur_reseau_serveur(int SocketServeur){
-    joueur_reseau_t tab[2];
-
-    init_tab_joueurs(tab, tampon);
+/** void demander_nom_serv(joueur_reseau_t tab[]) */
+void demander_nom_serv(joueur_reseau_t tab[]){ /** Demande le nom du serveur et recupere celui du client puis met les deux dans le tableau joueur */
+    printf("\nQuel sera votre nom ?\n");
+    scanf("%s", tab_joueurs[0].joueur.nom_joueur);
+    printf("En attente de la réponse de votre adversaire ... \n");
+    send(socket, tab_joueurs[0].joueur.nom_joueur, 25, 0 );
+    recv(socket, tab_joueurs[1].joueur.nom_joueur, 25, 0);
 }
-
-/*************************************************		Client ou serveur ?		************************************************/
-
-/** \fn  int choix_client_serv(void) */
-int choix_client_serv(void){/** permet de savoir si le pc sera l hote ou le client*/
-    int choix;
-    do{
-        system("cls");
-        printf("Bienvenue dans la partie multijoueur d' EraDUCKation, souhaitez vous �tre hote ou rejoindre un ami pr�t � vous recevoir ? \n");
-        printf("        Si vous voulez �tre l'h�te de la partie tapez 1 ;\n");
-        printf("        Si vous voulez rejoindre un ami  tapez 2 ;\n");
-        entrer_int(&choix);
-    }while(choix <1 || choix >2);
-
-    switch(choix){
-
-        case 1 : //traitement hote
-            break;
-        case 2 : //traitement client
-            break;
-    }
-} /** \return 1 si le joueur veut etre serveur et 2 si l hote veut etre client*/
 
 
 

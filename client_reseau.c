@@ -1,5 +1,5 @@
 /**
- * \file multi_joueur_reseau.c
+ * \file client_reseau.c
  * \brief Fonctions propres au client
  * \author Maxime.T
  * \version 0.5
@@ -60,7 +60,7 @@ void commence_client(int socket, int role, joueur_reseau_t tab[]){ /** Demande a
 
 
 /** \fn void quel_role_client(int socket, joueur_reseau_t tab[]) */
-void quel_role_client(int socket, joueur_reseau_t tab[]){/** demande au client quel role il veut jouer */
+void quel_role_client(int socket, joueur_reseau_t tab[]){/** demande au client quel role il veut jouer  et initialise les roles dans le tableau*/
 	int role, role2;
 
 	// le client commence par attendre la reponse du serveur pour son role, puis lui transmet le sien, et récupere le role definitif du serveur
@@ -75,20 +75,19 @@ void quel_role_client(int socket, joueur_reseau_t tab[]){/** demande au client q
 
 	afficher_role(role2);
 
-	commence_client( socket, role, tab);
+    tab[0].clan = role;
+	tab[1].clan = role2;
 
 }
 
 
-/** \fn main_multijoueur_reseau_client(int SocketServeur)*/
-void main_multijoueur_reseau_client(int SocketServeur){/**  ce sera le "main" du jeu en multi coté client*/
-    //variables :
-    joueur_reseau_t tab[2];
-
-    init_tab_joueurs(tab, tampon);
-
-    //maintenant on initialise l ordre de jeu
-
+/** void demander_nom_client(joueur_reseau_t tab[]) */
+void demander_nom_client(joueur_reseau_t tab[]){ /** Demande le nom du client et recupere celui du serveur puis met les deux dans le tableau joueur */
+    printf("\nQuel sera votre nom ?\n");
+    scanf("%s", tab_joueurs[1].joueur.nom_joueur);
+    printf("En attente de la réponse de votre adversaire ... \n");
+    recv(socket, tab_joueurs[0].joueur.nom_joueur, 25, 0 );
+    send(socket, tab_joueurs[1].joueur.nom_joueur, 25, 0);
 }
 
 
