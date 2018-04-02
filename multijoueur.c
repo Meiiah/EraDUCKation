@@ -45,7 +45,7 @@ void tour_multijoueur(caract_mat_t * cmat, int * nourriture_genere,int * nourrit
     spawn_nourriture(cmat, *nourriture_genere);
 	piege(cmat);
 	affichage_laby(cmat);
-	
+
     deplacer(cmat,*nourriture_accouplement, *nourriture_genere, tab[tampon%2].joueur,tab[(tampon +1)%2].joueur);
     printf("C est le tour de %s", tab[tour%2].joueur.nom_joueur);
 
@@ -68,42 +68,32 @@ int qui_commence(void){/** demande quel joueur commence */
 
 /*============================================================*/
 /** \fn void init_tab_joueurs(joueur_multi_t * tab, int tampon) */
-/** met le premier joueur a jouer en premiere place dans le tableau */
+/** met le nom  du premier joueur a jouer en premiere place dans le tableau */
 
-void init_tab_joueurs(joueur_multi_t * tab /** tableau de joueurs */,
+void init_tab_joueurs(joueur_t * tab /** tableau de joueurs */,
 						int tampon /** resultat du placement */){
+
+   //demander les noms
+	printf("Pour le joueur  gentil ------->");
+	caract_joueur(&(tab[tampon%2]));
+	printf("Pour le joueur mechant ------->");
+	caract_joueur(&(tab[tampon+1 %2]));
+}
+/*============================================================*/
+
+/**\fn nt boucle_multi(caract_mat_t * cmat,joueur_t joueur1, joueur_t joueur2, int nourriture_genere , int nourriture_accouplement, int nb_gen, int tampon) */
+int boucle_multi(caract_mat_t * cmat,joueur_t joueur1, joueur_t joueur2, int nourriture_genere , int nourriture_accouplement, int nb_gen, int tampon){/** fonction qui initialise les fonctions des joueurs en mettant leur jooueur_t passé en param, et qui fait le déroulement du jeu */
+    joueur_multi_t tab[2];
+    tab[tampon%2].joueur = joueur1;
+    tab[tampon%2 +1].joueur = joueur2;
 
     tab[tampon%2]= joueur_gentil();    //c est de la logique
     tab[tampon +1 %2] = joueur_mechant();
     tab[0].joueur.score = 0;
     tab[1].joueur.score = 0;
 
-   //demander les noms
-	printf("Pour le joueur  gentil ------->");
-	caract_joueur(&(tab[tampon%2].joueur));
-	printf("Pour le joueur mechant ------->");
-	caract_joueur(&(tab[tampon+1 %2].joueur));
-}
-/*============================================================*/
-/** \fn void main_multijoueur(void) */
-int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_accouplement, int nb_gen){ /** fait le jeu en multi sur meme pc */
-    //variables :
-    joueur_multi_t tab[2];
-    int tampon=0;
-
-    //maintenant on initialise l ordre de jeu
-
-    //tampon = qui_commence();
-	
-    init_tab_joueurs(tab, tampon);
-
-    /* Tant que les canards sont pas tous morts on fait les tours
-	 a chaque tour on fait deplacement, choix, on verifie les cond d arret, et on recommence */
-	nb_gen=0;
-
-
 	while ( nb_gen<100 && presence_canard(cmat)==1){ // fin du jeu
-		
+
 		tour_multijoueur(cmat,&nourriture_genere,&nourriture_accouplement, tab, nb_gen, tampon);
 
 		ajout_score(100,&(tab[tampon%2].joueur),&(tab[(tampon +1)%2].joueur));
@@ -116,6 +106,27 @@ int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_
 		printf("Nombre de canard: %i \n",nombre_canard(cmat));
 
 	}
+}
+
+/*--------------------------------------------------------------------------------*/
+/** \fn void main_multijoueur(void) */
+int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_accouplement, int nb_gen){ /** fait le jeu en multi sur meme pc */
+    //variables :
+    joueur_t tab[2];
+    int tampon=0;
+
+    //maintenant on initialise l ordre de jeu
+    init_tab_joueurs(tab, tampon);
+    //tampon = qui_commence();
+
+
+
+    /* Tant que les canards sont pas tous morts on fait les tours
+	 a chaque tour on fait deplacement, choix, on verifie les cond d arret, et on recommence */
+	nb_gen=0;
+
+    boucle_multi(cmat, tab[0], tab[1],nourriture_genere, nourriture_accouplement ,nb_gen, tampon);
+
 	return 1;
 
 }

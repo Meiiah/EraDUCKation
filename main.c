@@ -11,24 +11,25 @@
 #include "jeu_solo.h"
 #include "multijoueur.h"
 #include "sauvegarde.h"
+#include "main_reseau.h"
 
 
 typedef enum{facile=1,moyen=2,difficile=3}diff_t;
 typedef enum{solo=1,multi=2}nb_joueur_t;
-typedef enum{jouer=1,charger_partie=2,quitter=3}menu_t;
+typedef enum{jouer=1,charger_partie=2,reseau=3, quitter=4}menu_t;
 
 int choix_difficultee(int choix){
 
 	switch(choix){
 		case facile :
 			return 6;
-		break;	
+		break;
 		case moyen:
 			return 10;
 		break;
 		case difficile:
 			return 17;
-		break;		
+		break;
 	}
 	return 1;
 }
@@ -40,14 +41,14 @@ int choix_nbr_joueur(int choix,joueur_t * joueur,joueur_t * joueur2){
 			joueur->score=0;
 			joueur2->score=0;
 			return nbr_joueur=1;
-		break;	
+		break;
 		case multi:
 			caract_joueur(joueur);
 			caract_joueur(joueur2);
 			joueur->score=0;
 			joueur2->score=0;
 			return nbr_joueur=2;
-		break;	
+		break;
 	}
 	return 1;
 }
@@ -58,8 +59,8 @@ int main(void){
 	//definition matrice
 	caract_mat_t * cmat = NULL;
 	//malloc(sizeof(caract_mat_t));
-	
-	
+
+
 
 	//definition joueur
 	joueur_t * joueur=malloc(sizeof(joueur_t));
@@ -76,40 +77,40 @@ int main(void){
 	//definition nourriture
 	int nourriture_accouplement = 25;//Nourriture qu'on a besoin pour se reproduire
 	int nourriture_genere = 50;//Nourriture qui apparait
-	
+
 	int choix; // Choix du joueur
 	int choix_niv; // Choix du niveau
 	int choix_j; // Choix du nb joueur
 	int nbr_joueur;
-	
+
 	int nb_gen=0;
-	
+
 	init_tab_event_mauvais();
 	init_tab_event_bon();
-	
+
 	printf("EraDUCKation\n\n");
 
-	printf("1 : Jouer à EraDUCKation\n");
+	printf("1 : Jouer à EraDUCKation sur ce PC\n");
 	printf("2 : Jouer une partie chargée\n");
-	printf("3 : Quitter\n");
-	
+	printf("4 : Quitter\n");
+
 	do{
 		printf("Saisir un choix: ");
 		scanf(" %i",&choix);
 		switch(choix){
 			case jouer :
-			
+
 				/* Nombre de Joueur */
 				printf("1 : 1 joueur\n");
 				printf("2 : 2 joueurs\n");
 				do{
 					printf("Saisir un choix: ");
 					scanf(" %i",&choix_j);
-					
+
 				}while(choix_j!=1 && choix_j!=2);
 				if(choix_j == 1)
 						nbr_joueur=choix_nbr_joueur(choix_j,joueur,joueur2);
-			
+
 				/* Difficulté*/
 				printf("1 : Facile\n");
 				printf("2 : Intermédiaire\n");
@@ -118,46 +119,44 @@ int main(void){
 					printf("Saisir un choix: ");
 					scanf(" %i",&choix_niv);
 				}while(choix_niv!=1 && choix_niv!=2 && choix_niv!=3);
-				
-				int taille=choix_difficultee(choix_niv);	
+
+				int taille=choix_difficultee(choix_niv);
 				//cmat->taille_mat_y=cmat->taille_mat_x;
 
 				/*Mise en place de la matrice adaptée*/
 				cmat = creation_matrice(taille, taille);
 				init_matrice(cmat);
-	
+
 				/*Creation du Labyrinthe*/
-			
-			
+
+
 				main_laby(cmat);
-			
-			
-		
+
+
+
 				//Apparition de canard
-				init_canard(cmat); 
-			
+				init_canard(cmat);
+
 				if(nbr_joueur==1){
 					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2,nb_gen);
-				
+
 				}else{
 					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement, nb_gen);
 				}
 				detruire_Cmatrice(cmat);
 				break;
 
-			case charger_partie : 
+			case charger_partie :
 				charger(cmat,&nourriture_genere, &nourriture_accouplement, joueur, joueur2, &nb_gen);
-				if(strcmp(joueur2->nom_joueur, "null")){
-					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2,nb_gen);
-				}else{
-					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement, nb_gen);			
-				}detruire_Cmatrice(cmat);
+                detruire_Cmatrice(cmat);
 				break;
- 
+
+            case reseau : main_reseau();
+                break;
 			case quitter :
 				return 0;
 				break;
-		
+
 		}
 	}while(choix!=1 && choix!=2 && choix!=3);
 	printf("Le score total du joueur 1 est : %i\n",joueur->score);

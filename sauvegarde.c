@@ -1,7 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "struct.h"
 #include "matrice.h"
+#include "jeu_solo.h"
+#include "multijoueur.h"
 
 /**
  * \file deplacer.c
@@ -16,14 +19,14 @@ void sauvegarde(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupl
 {/**sauvegarde l avancee du jeu (nombre de generations),la nourriture nécessaire pour l accouplement,  les tailles de la matrice et la matrice.*/
     FILE * fichier;
     fichier=fopen("sav.txt", "w"); //fichier de sauvegarde
-    
+
     fwrite(&generation, sizeof(int),1,fichier);//on sauvegarde le nb generation
 	fwrite(&nourriture_genere, sizeof(int),1,fichier);//on sauvegarde la nourritue générée
 	fwrite(&nourriture_accouplement, sizeof(int),1,fichier);//on sauvegarde la nourriture d accouplement
 	fprintf(stderr, "sauvegarde %d,  %d, %d\n", generation, nourriture_genere, nourriture_accouplement);
 	fwrite(&joueur , sizeof(joueur_t),1,fichier);//on sauvegarde le joueur 1 (ses points....)
 	fwrite(&joueur2, sizeof(joueur_t),1,fichier);//on sauvegarde le nb generation (
- 
+
 
 	fprintf(stderr, "sauvegarde de la matrice %d, %d\n", cmat->taille_mat_x, cmat->taille_mat_y);
     fwrite(&(cmat->taille_mat_x), sizeof(int),1, fichier);//on sauvegarde cmat et donc les tailles etc
@@ -39,10 +42,10 @@ void charger(caract_mat_t * cmat,int* nourriture_genere,int* nourriture_accouple
     FILE * fichier;
 	int t_y;
 	int t_x;
-    
+
     fichier=fopen("sav.txt", "r");
     //on recupere les int
-	
+
     fread(&generation, sizeof(int),1,fichier);//on charge le nb generation
 
 	fread(&nourriture_genere, sizeof(int),1,fichier);//on charge la nourritue générée
@@ -68,4 +71,10 @@ void charger(caract_mat_t * cmat,int* nourriture_genere,int* nourriture_accouple
 
     fclose(fichier);
 	fprintf(stderr, "Fichier chargé\n");
+
+    if(strcmp(joueur2->nom_joueur, "null")){
+        jeu_solo(cmat,*nourriture_genere,*nourriture_accouplement, joueur, joueur2,*generation);
+	}else{
+		boucle_multi(cmat , * joueur , * joueur2, *nourriture_genere , *nourriture_accouplement, * generation, 0);
+	}
 }

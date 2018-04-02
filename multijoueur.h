@@ -11,7 +11,7 @@ typedef struct joueurm_s{
     void (*choix) (caract_mat_t *,joueur_t *, joueur_t * , int* , int*,int );
 }joueur_multi_t;
 
-
+int boucle_multi(caract_mat_t * cmat,joueur_t joueur1, joueur_t joueur2, int nourriture_genere , int nourriture_accouplement, int nb_gen, int tampon);
 
 int main_multijoueur(caract_mat_t * cmat, int nourriture_genere, int nourriture_accouplement, int nb_gen);
 
