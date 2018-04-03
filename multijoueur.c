@@ -84,11 +84,13 @@ void init_tab_joueurs(joueur_t * tab /** tableau de joueurs */,
 /**\fn nt boucle_multi(caract_mat_t * cmat,joueur_t joueur1, joueur_t joueur2, int nourriture_genere , int nourriture_accouplement, int nb_gen, int tampon) */
 int boucle_multi(caract_mat_t * cmat,joueur_t joueur1, joueur_t joueur2, int nourriture_genere , int nourriture_accouplement, int nb_gen, int tampon){/** fonction qui initialise les fonctions des joueurs en mettant leur jooueur_t passé en param, et qui fait le déroulement du jeu */
     joueur_multi_t tab[2];
-    tab[tampon%2].joueur = joueur1;
-    tab[tampon%2 +1].joueur = joueur2;
+
 
     tab[tampon%2]= joueur_gentil();    //c est de la logique
     tab[tampon +1 %2] = joueur_mechant();
+    
+    tab[tampon%2].joueur = joueur1;
+    tab[tampon%2 +1].joueur = joueur2;
     tab[0].joueur.score = 0;
     tab[1].joueur.score = 0;
 
@@ -105,7 +107,7 @@ int boucle_multi(caract_mat_t * cmat,joueur_t joueur1, joueur_t joueur2, int nou
 		printf("Nourriture générée: %i\n",nourriture_genere);
 		printf("Nombre de canard: %i \n",nombre_canard(cmat));
 
-	}
+	}return 1;
 }
 
 /*--------------------------------------------------------------------------------*/
