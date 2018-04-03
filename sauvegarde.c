@@ -24,9 +24,10 @@ void sauvegarde(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupl
 	fwrite(&nourriture_genere, sizeof(int),1,fichier);//on sauvegarde la nourritue générée
 	fwrite(&nourriture_accouplement, sizeof(int),1,fichier);//on sauvegarde la nourriture d accouplement
 	fprintf(stderr, "sauvegarde %d,  %d, %d\n", generation, nourriture_genere, nourriture_accouplement);
-	fwrite(&joueur , sizeof(joueur_t),1,fichier);//on sauvegarde le joueur 1 (ses points....)
-	fwrite(&joueur2, sizeof(joueur_t),1,fichier);//on sauvegarde le nb generation (
-
+	fwrite(&(joueur.score) , sizeof(int),1,fichier);//on sauvegarde le joueur 1 (ses points....)
+    fwrite(joueur.nom_joueur , 26,1,fichier);
+	fwrite(&(joueur2.score), sizeof(joueur_t),1,fichier);//on sauvegarde le nb generation (
+    fwrite(joueur2.nom_joueur , 26,1,fichier);
 
 	fprintf(stderr, "sauvegarde de la matrice %d, %d\n", cmat->taille_mat_x, cmat->taille_mat_y);
     fwrite(&(cmat->taille_mat_x), sizeof(int),1, fichier);//on sauvegarde cmat et donc les tailles etc
@@ -52,9 +53,10 @@ void charger(caract_mat_t * cmat,int* nourriture_genere,int* nourriture_accouple
 
 	fread(&nourriture_accouplement, sizeof(int),1,fichier);//on charge la nourriture d accouplement
 
-	fread(&joueur , sizeof(joueur_t),1,fichier);//on charge le joueur 1 (ses points....)
-	fread(&joueur2, sizeof(joueur_t),1,fichier);//on charge le nb generation (
-
+	fread(&(joueur->score) , sizeof(int),1,fichier);//on sauvegarde le joueur 1 (ses points....)
+    fread(joueur->nom_joueur , 26,1,fichier);
+	fread(&(joueur2->score), sizeof(joueur_t),1,fichier);//on sauvegarde le nb generation (
+    fread(joueur2->nom_joueur , 26,1,fichier);
 
     //on enleve les allocations obsoletes de la matrice, on l alloc a la bonne taille, et on y met les donnees
 	fprintf(stderr, "On va supprimer cmat si besoin\n");
