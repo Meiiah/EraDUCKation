@@ -11,7 +11,7 @@
 #include "jeu_solo.h"
 #include "multijoueur.h"
 #include "sauvegarde.h"
-#include "main_reseau.h"
+//#include "main_reseau.h"
 
 
 typedef enum{facile=1,moyen=2,difficile=3}diff_t;
@@ -151,7 +151,7 @@ int main(void){
                 detruire_Cmatrice(cmat);
 				break;
 
-            case reseau : main_reseau();
+            case reseau : //main_reseau();
                 break;
 			case quitter :
 				return 0;
