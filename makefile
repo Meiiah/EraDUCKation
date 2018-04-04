@@ -1,5 +1,5 @@
 # project name (generate executable with this name)
-TARGET   = monsuperprojet
+TARGET   = eraduckation
 
 CC       = gcc
 # compiling flags here
