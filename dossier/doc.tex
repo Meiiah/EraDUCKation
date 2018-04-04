@@ -148,10 +148,11 @@ apporte une nouvelle façon de jouer à EraDUCKation. En effet sur un tour, le p
 \includegraphics[width=0.5\textwidth]{IMG/tour_cam.png}
 \caption{Tour en multi (bon et mauvais dieu}
 \end{figure}
+
 Nous avons aussi commencé un multijoueur en réseau qui utilise ce protocole de communication en réseau.
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.8\textwidth]{IMG/reseau.png}
+\includegraphics[width=1\textwidth]{IMG/reseau.png}
 \caption{protocole de communication}
 \end{figure}
 \newpage
@@ -233,9 +234,9 @@ une décision aléatoire.
     Les modes de jeux solos et multijoueurs sont tout à fait opérationnels, à l’exception d’une fonctionnalité du multijoueur, l’ordre de jeu, que nous avons voulus implémenter, mais à cause d’erreurs non trouvées nous avons dû le laisser de côté. Le reste fonctionne cependant parfaitement, chaque événement agit comme il doit le faire. Les déplacements n’ont pas le moindre effet de bord et réagissent correctement à l'environnement (reproduction possible, vue sur la nourriture…), la génération de nourriture se fait comme elle le doit, tout comme la reproduction. Les canards arrivent dans le labyrinthe en tant que oeufs, et deviennent des adultes à la génération suivante
 \subsection{Fonctionnalités facultatives}
 \subsubsection{Jeu en réseau}
-    Le mode de jeu en réseau ne compile pas, malgré les recherches nous ne trouvons pas l’erreur indiquée par le compilateur.
+    Le mode de jeu en réseau ne fonctionne pas. En effet il se lance, et la connection entre les deux ordinateurs se fait. Cependant côté client il y a une segmentation fault que nous n'avons pas identifiée apres l'entrée du nom du joueur, là où le serveur affiche le labyrinthe.
 \subsubsection{Interface graphique}
-    L’interface graphique dispose d’un menu fonctionnel. Cependant, par manque de temps, l’interface graphique n’est pas complète.
+    L’interface graphique dispose d’un menu fonctionnel. Cependant, par manque de temps, l’interface graphique n’est pas complète, lorsque l'on clique elle fait avancer le proramme sur le terminal.
 \section{Bilans personnels}
 Concernant notre bilan personnel, il y a eu d’importantes révisions et amélioration sur certains points : 
 \begin{enumerate}
