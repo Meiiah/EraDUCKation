@@ -10,6 +10,7 @@ typedef struct joueur_res_s{
     joueur_t joueur;
     clan_t clan;
     void (*choix) (int, caract_mat_t *,joueur_t *, joueur_t * , int* , int*,int );
+
 }joueur_reseau_t;
 
  void envoyer_int(int socket, int valeur);

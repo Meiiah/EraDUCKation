@@ -1,6 +1,9 @@
 #ifndef __MULTIJOUEUR_H__
 #define __MULTIJOUEUR_H__
 
+#include "struct.h"
+#include "matrice.h"
+
 typedef enum { gentil, mechant }clan_t;
 
 typedef struct joueurm_s{

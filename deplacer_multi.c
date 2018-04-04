@@ -6,16 +6,18 @@
 #include "matrice.h"
 #include "deplacer.h"
 #include "outils_reseau.h"
+#include "nourriture.h"
+#include "reproduction.h"
 /*==============================================================================================================================*/
 
-void deplacer_multi_serveur(caract_mat_t * cmat,int nourriture_accouplement,int nourrture_generee, int socket_to_client){
+void deplacer_multi_serveur(caract_mat_t * cmat,int nourriture_accouplement,int nourriture_generee, int socket_to_client, joueur_t joueur, joueur_t joueur2){
     int i,j,k;
     int direction;
     int verif =1;
 
     /*! ENVOI  DU MESSAGE INDIQUANT LE DEBUT DU TRANSFERT DE DEPLACEMENT*/
 
-    send(socket_to_client, debut_message, sizeof(int), 0);
+   envoyer_int(socket_to_client, Debut_message);
 
 
     for(j=0; j< cmat->taille_mat_x ; j++){
@@ -110,16 +112,16 @@ void deplacer_multi_serveur(caract_mat_t * cmat,int nourriture_accouplement,int 
 
 /*==============================================================================================================================*/
 
-void deplacer_multi_client(caract_mat_t * cmat,int nourriture_accouplement, int nourriture_generee, int socket_to_serv){
+void deplacer_multi_client(caract_mat_t * cmat,int nourriture_accouplement, int nourriture_generee, int socket_to_serv, joueur_t joueur, joueur_t joueur2){
 
     int i,j,k;
     int direction;
     int mess;
 
         //RECEPTION DU MESSAGE INDIQUANT LE DEBUT DU TRANSFERT DE DEPLACEMENT
-    recv(socket_to_serv, mess, sizeof(int), 0);
+    recevoir_int(socket_to_serv, &mess);
 
-    if(mess == debut_message){
+    if(mess == Debut_message){
 
         do{
              //TANT QU ON A PAS DEPLACE TOUS LES CANARDS A DEPLACER ON PREND LES DONNEES ET ON LES DEPLACE
