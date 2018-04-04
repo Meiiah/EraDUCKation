@@ -23,7 +23,7 @@ void spawn_nourriture(caract_mat_t * cmat,int nourriture_genere){
 		random_x=rand_map(cmat->taille_mat_x);
 		random_y=rand_map(cmat->taille_mat_y);
 
-		//spawn de nourriture à des endroits aléatoires 
+		//spawn de nourriture a des endroits aleatoires 
 		cmat->matrice[random_x][random_y].pres_nourriture=nourriture_genere;
 	}
 }
@@ -39,10 +39,10 @@ void detruire_nourriture(caract_mat_t * cmat){
 		random_max=rand_map(cmat->taille_mat_y);
 	}while(random_min>random_max && random_min-random_max<5);
 	
-// parcourt une partie de la matrice
+	// parcourt une partie de la matrice
 	for(i=0;i<random_max;i++){
 		for(j=0;j<random_min;j++){
-		//enleve la nourriture périmée
+				//enleve la nourriture perimee
            		if(cmat->matrice[i][j].pres_nourriture>0){
                    		cmat->matrice[i][j].pres_nourriture=0;
                     	}
@@ -54,19 +54,19 @@ void detruire_nourriture(caract_mat_t * cmat){
 void manger(caract_mat_t * cmat,int nourriture_genere){
     int i, j, k;
     int val_nutritive;
-
+    //balayage matrice
     for(i=0; i<cmat->taille_mat_x; i++){
-        for(j=0; j<cmat->taille_mat_y; j++){//balayage matrice
-
-            if(cmat->matrice[i][j].pres_nourriture){ // si il y a de la nourriture sur la case
+        for(j=0; j<cmat->taille_mat_y; j++){
+        	// si il y a de la nourriture sur la case
+            if(cmat->matrice[i][j].pres_nourriture){
                     if(cmat->matrice[i][j].nb_occupant > 0){
                         val_nutritive = rand()%nourriture_genere;
-                        val_nutritive /= cmat->matrice[i][j].nb_occupant;   // on réparti la nourriture entre les canards présents sur la case
-
+                        val_nutritive /= cmat->matrice[i][j].nb_occupant; 
+                         // on reparti la nourriture entre les canards presents sur la case
                         for(k=0 ; k<cmat->matrice[i][j].nb_occupant; k++){
                             cmat->matrice[i][j].tab_canard[k].nourriture += val_nutritive;
                         }
-                    }
+                   }
             }
         }
     }//fin balayage matrice
