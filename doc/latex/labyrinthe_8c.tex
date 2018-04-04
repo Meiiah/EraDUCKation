@@ -11,8 +11,7 @@ Programme comprennant la génération d\textquotesingle{}un labyrinthe.
 {\ttfamily \#include \char`\"{}struct.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}matrice.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}labyrinthe.\+h\char`\"{}}\\*
-Graphe des dépendances par inclusion de labyrinthe.\+c\+:
-\nopagebreak
+Graphe des dépendances par inclusion de labyrinthe.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -23,6 +22,23 @@ Graphe des dépendances par inclusion de labyrinthe.\+c\+:
 \begin{DoxyCompactItemize}
 \item 
 \#define {\bfseries M\+AX}~4\hypertarget{labyrinthe_8c_a392fb874e547e582e9c66a08a1f23326}{}\label{labyrinthe_8c_a392fb874e547e582e9c66a08a1f23326}
+
+\end{DoxyCompactItemize}
+\subsection*{Énumérations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries position\+\_\+t} \{ {\bfseries dessus} = 0, 
+{\bfseries dessous} = 1, 
+{\bfseries gauche} = 2, 
+{\bfseries droite} = 3
+ \}\hypertarget{labyrinthe_8c_a31f24aef3ddd32d2e6538ffff4055d37}{}\label{labyrinthe_8c_a31f24aef3ddd32d2e6538ffff4055d37}
+
+\item 
+enum {\bfseries liberation\+\_\+t} \{ {\bfseries lib\+\_\+haut} = 0, 
+{\bfseries lib\+\_\+bas} = 0, 
+{\bfseries lib\+\_\+gauche} = 1, 
+{\bfseries lib\+\_\+droite} = 1
+ \}\hypertarget{labyrinthe_8c_acdeadb1823be8d83c294c32e8a00b1e2}{}\label{labyrinthe_8c_acdeadb1823be8d83c294c32e8a00b1e2}
 
 \end{DoxyCompactItemize}
 \subsection*{Fonctions}

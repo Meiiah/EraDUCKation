@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>« EraDUCKtion »: Référence du fichier deplacer.c</title>
+<title>« EraDUCKation »: Référence du fichier deplacer.c</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">« EraDUCKtion »
+   <div id="projectname">« EraDUCKation »
    </div>
   </td>
  </tr>
@@ -81,7 +81,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#enum-members">Énumérations</a> &#124;
 <a href="#func-members">Fonctions</a>  </div>
   <div class="headertitle">
 <div class="title">Référence du fichier deplacer.c</div>  </div>
@@ -94,10 +93,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &quot;struct.h&quot;</code><br />
 <code>#include &quot;matrice.h&quot;</code><br />
+<code>#include &quot;deplacer.h&quot;</code><br />
 <code>#include &quot;deplacer_multi.h&quot;</code><br />
 <code>#include &quot;nourriture.h&quot;</code><br />
 <code>#include &quot;reproduction.h&quot;</code><br />
 <code>#include &quot;labyrinthe.h&quot;</code><br />
+<code>#include &quot;canard.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de deplacer.c:</div>
 <div class="dyncontent">
@@ -112,26 +113,10 @@ Graphe des dépendances par inclusion de deplacer.c:</div>
 </map>
 </div>
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Énumérations</h2></td></tr>
-<tr class="memitem:aec4e3894aa763e81148b2241ff730790"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec4e3894aa763e81148b2241ff730790"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>t_direction</b> { <br />
-&#160;&#160;<b>Aucune_direction</b> = -1, 
-<b>Est</b> = 1, 
-<b>Ouest</b> =2, 
-<b>Sud</b> =3, 
-<br />
-&#160;&#160;<b>Nord</b> = 4, 
-<b>Pas_besoin_de_bouger</b> =42
-<br />
- }</td></tr>
-<tr class="separator:aec4e3894aa763e81148b2241ff730790"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:aac3daab5047434d650d678ec8422a9eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcanard__s.html">canard_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deplacer_8c.html#aac3daab5047434d650d678ec8422a9eb">canard_vide</a> (void)</td></tr>
-<tr class="separator:aac3daab5047434d650d678ec8422a9eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e22fe142b851f5f06136b6092396121"><td class="memItemLeft" align="right" valign="top">t_direction&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deplacer_8c.html#a2e22fe142b851f5f06136b6092396121">voit_nourriture</a> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, int i, int j, int k)</td></tr>
-<tr class="separator:a2e22fe142b851f5f06136b6092396121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c22bacf691471b6c3b3b41d92bafc59"><td class="memItemLeft" align="right" valign="top">t_direction&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deplacer_8c.html#a5c22bacf691471b6c3b3b41d92bafc59">voit_nourriture</a> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, int i, int j)</td></tr>
+<tr class="separator:a5c22bacf691471b6c3b3b41d92bafc59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3fbfab570f87f6a6c9ce3865f3de477"><td class="memItemLeft" align="right" valign="top">t_direction&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deplacer_8c.html#aa3fbfab570f87f6a6c9ce3865f3de477">voit_accouplement</a> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, int nourriture_accouplement, int i, int j, int kiem_canard)</td></tr>
 <tr class="separator:aa3fbfab570f87f6a6c9ce3865f3de477"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbd99be705318964b6f5c30d9f1557c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deplacer_8c.html#adbd99be705318964b6f5c30d9f1557c8">deplacer_canard</a> (<a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, int i, int j, int k, int direction)</td></tr>
@@ -148,23 +133,6 @@ Fonctions</h2></td></tr>
 <dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>19 mars 2018 </dd></dl>
 </div><h2 class="groupheader">Documentation des fonctions</h2>
-<a class="anchor" id="aac3daab5047434d650d678ec8422a9eb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structcanard__s.html">canard_t</a> canard_vide </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>renvoit un canard inexistant </p>
-
-</div>
-</div>
 <a class="anchor" id="a82b2efb2b6ecb9d0e5dacddae31eb7d1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -301,7 +269,7 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2e22fe142b851f5f06136b6092396121"></a>
+<a class="anchor" id="a5c22bacf691471b6c3b3b41d92bafc59"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -321,13 +289,7 @@ Fonctions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>j</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>k</em>&#160;</td>
+          <td class="paramname"><em>j</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -336,7 +298,7 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>fonction qui renvoit la direction dans laquelle le canard k de la case i;j voit de la nouriture (-1 si pas de vision dessus)</p>
+<p>fonction qui renvoit la direction dans laquelle le canard de la case i;j voit de la nouriture (-1 si pas de vision dessus)</p>
 <p>SI pas de mur enregistré on regarde si il y a un fruit, si c est le cas on break, puis on regarde si il y a un mur, et si il y a on memorise qu il y en a un et on verifie que tous les murs soient pas trouvés</p>
 
 </div>

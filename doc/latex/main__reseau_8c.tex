@@ -1,0 +1,115 @@
+\hypertarget{main__reseau_8c}{}\section{Référence du fichier main\+\_\+reseau.\+c}
+\label{main__reseau_8c}\index{main\+\_\+reseau.\+c@{main\+\_\+reseau.\+c}}
+
+
+fonctions des main serveur et client pour le jeu en r�seau  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}struct.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}piege.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}joueur.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}canard.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}multijoueur\+\_\+reseau.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}client\+\_\+reseau.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}connection.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}deplacer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}deplacer\+\_\+multi.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}outils\+\_\+reseau.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fonction\+\_\+multi\+\_\+reseau.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nourriture.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}matrice.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}labyrinthe.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}outils.\+h\char`\"{}}\\*
+Graphe des dépendances par inclusion de main\+\_\+reseau.\+c\+:
+% FIG 0
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main__reseau_8c_a9fbfe0027471d746308b640fcb918558}{jeu\+\_\+client} (int socket, \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__res__s}{joueur\+\_\+reseau\+\_\+t} tab\mbox{[}$\,$\mbox{]}, int nourriture\+\_\+accouplement, int nourriture\+\_\+generee)
+\item 
+void \hyperlink{main__reseau_8c_a3231f6313e3453572424724930521620}{main\+\_\+client} (void)
+\begin{DoxyCompactList}\small\item\em Deroulement du jeu pour le client. \end{DoxyCompactList}\item 
+void \hyperlink{main__reseau_8c_a645193044f21b99ebd5fbf2ec0093fde}{jeu\+\_\+serv} (int socket, \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__res__s}{joueur\+\_\+reseau\+\_\+t} tab\mbox{[}$\,$\mbox{]}, int nourriture\+\_\+accouplement, int nourriture\+\_\+generee)
+\begin{DoxyCompactList}\small\item\em main pour le client \end{DoxyCompactList}\item 
+void \hyperlink{main__reseau_8c_ab9bb00758b522e3cb3f24dc82c8fef68}{main\+\_\+serveur} (void)
+\begin{DoxyCompactList}\small\item\em Deroulement du jeu pour le serveur. \end{DoxyCompactList}\item 
+void \hyperlink{main__reseau_8c_a7c7cdefe4429f5cbff11c2fb58483fbc}{main\+\_\+reseau} (void)
+\begin{DoxyCompactList}\small\item\em foncion main pour le serveur en mode r�seau \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+fonctions des main serveur et client pour le jeu en r�seau 
+
+\begin{DoxyAuthor}{Auteur}
+Maxime.\+T 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+5 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+20 / 02 / 2018 
+\end{DoxyDate}
+
+
+\subsection{Documentation des fonctions}
+\index{main\+\_\+reseau.\+c@{main\+\_\+reseau.\+c}!jeu\+\_\+client@{jeu\+\_\+client}}
+\index{jeu\+\_\+client@{jeu\+\_\+client}!main\+\_\+reseau.\+c@{main\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{jeu\+\_\+client(int socket, caract\+\_\+mat\+\_\+t $\ast$cmat, joueur\+\_\+reseau\+\_\+t tab[], int nourriture\+\_\+accouplement, int nourriture\+\_\+generee)}{jeu_client(int socket, caract_mat_t *cmat, joueur_reseau_t tab[], int nourriture_accouplement, int nourriture_generee)}}]{\setlength{\rightskip}{0pt plus 5cm}void jeu\+\_\+client (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf joueur\+\_\+reseau\+\_\+t}}]{tab\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{nourriture\+\_\+accouplement, }
+\item[{int}]{nourriture\+\_\+generee}
+\end{DoxyParamCaption}
+)}\hypertarget{main__reseau_8c_a9fbfe0027471d746308b640fcb918558}{}\label{main__reseau_8c_a9fbfe0027471d746308b640fcb918558}
+Deroulement du jeu pour le client \index{main\+\_\+reseau.\+c@{main\+\_\+reseau.\+c}!jeu\+\_\+serv@{jeu\+\_\+serv}}
+\index{jeu\+\_\+serv@{jeu\+\_\+serv}!main\+\_\+reseau.\+c@{main\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{jeu\+\_\+serv(int socket, caract\+\_\+mat\+\_\+t $\ast$cmat, joueur\+\_\+reseau\+\_\+t tab[], int nourriture\+\_\+accouplement, int nourriture\+\_\+generee)}{jeu_serv(int socket, caract_mat_t *cmat, joueur_reseau_t tab[], int nourriture_accouplement, int nourriture_generee)}}]{\setlength{\rightskip}{0pt plus 5cm}void jeu\+\_\+serv (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf joueur\+\_\+reseau\+\_\+t}}]{tab\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{nourriture\+\_\+accouplement, }
+\item[{int}]{nourriture\+\_\+generee}
+\end{DoxyParamCaption}
+)}\hypertarget{main__reseau_8c_a645193044f21b99ebd5fbf2ec0093fde}{}\label{main__reseau_8c_a645193044f21b99ebd5fbf2ec0093fde}
+
+
+main pour le client 
+
+Deroulement du jeu pour le serveur \index{main\+\_\+reseau.\+c@{main\+\_\+reseau.\+c}!main\+\_\+client@{main\+\_\+client}}
+\index{main\+\_\+client@{main\+\_\+client}!main\+\_\+reseau.\+c@{main\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{main\+\_\+client(void)}{main_client(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void main\+\_\+client (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{main__reseau_8c_a3231f6313e3453572424724930521620}{}\label{main__reseau_8c_a3231f6313e3453572424724930521620}
+
+
+Deroulement du jeu pour le client. 
+
+main pour le client \index{main\+\_\+reseau.\+c@{main\+\_\+reseau.\+c}!main\+\_\+reseau@{main\+\_\+reseau}}
+\index{main\+\_\+reseau@{main\+\_\+reseau}!main\+\_\+reseau.\+c@{main\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{main\+\_\+reseau(void)}{main_reseau(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void main\+\_\+reseau (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{main__reseau_8c_a7c7cdefe4429f5cbff11c2fb58483fbc}{}\label{main__reseau_8c_a7c7cdefe4429f5cbff11c2fb58483fbc}
+
+
+foncion main pour le serveur en mode r�seau 
+
+Le main en multijoueur qui permet de choisir si on est serveur ou client, et de lancer le main assici� \index{main\+\_\+reseau.\+c@{main\+\_\+reseau.\+c}!main\+\_\+serveur@{main\+\_\+serveur}}
+\index{main\+\_\+serveur@{main\+\_\+serveur}!main\+\_\+reseau.\+c@{main\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{main\+\_\+serveur(void)}{main_serveur(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void main\+\_\+serveur (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{main__reseau_8c_ab9bb00758b522e3cb3f24dc82c8fef68}{}\label{main__reseau_8c_ab9bb00758b522e3cb3f24dc82c8fef68}
+
+
+Deroulement du jeu pour le serveur. 
+
+foncion main pour le serveur en mode r�seau 

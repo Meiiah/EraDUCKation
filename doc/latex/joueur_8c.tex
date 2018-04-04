@@ -11,8 +11,9 @@ programme qui gere tout ce qui est en rapport avec le joueur
 {\ttfamily \#include \char`\"{}matrice.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}event.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}string.\+h\char`\"{}}\\*
-Graphe des dépendances par inclusion de joueur.\+c\+:
-\nopagebreak
+{\ttfamily \#include \char`\"{}sauvegarde.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}joueur.\+h\char`\"{}}\\*
+Graphe des dépendances par inclusion de joueur.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -38,13 +39,13 @@ void \hyperlink{joueur_8c_ac45960f5f46db2ff59140d731408b4a3}{tab\+\_\+event\+\_\
 void \hyperlink{joueur_8c_a78c07d9604fba01b03805482806cb0e2}{tab\+\_\+event\+\_\+bon} (int $\ast$choix1, int $\ast$choix2, int $\ast$choix3)\hypertarget{joueur_8c_a78c07d9604fba01b03805482806cb0e2}{}\label{joueur_8c_a78c07d9604fba01b03805482806cb0e2}
 
 \begin{DoxyCompactList}\small\item\em choisit 3 bons evenements random \end{DoxyCompactList}\item 
-void \hyperlink{joueur_8c_a21f905f6f541961cde54b018f809411b}{choix\+\_\+mechant} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__s}{joueur\+\_\+t} joueur, \hyperlink{structjoueur__s}{joueur\+\_\+t} joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement)\hypertarget{joueur_8c_a21f905f6f541961cde54b018f809411b}{}\label{joueur_8c_a21f905f6f541961cde54b018f809411b}
+void \hyperlink{joueur_8c_a85307dcac0d210235eed714c834a8df5}{choix\+\_\+mechant} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, int generation)\hypertarget{joueur_8c_a85307dcac0d210235eed714c834a8df5}{}\label{joueur_8c_a85307dcac0d210235eed714c834a8df5}
 
 \begin{DoxyCompactList}\small\item\em choix random parmis les evenements mauvais \end{DoxyCompactList}\item 
-void \hyperlink{joueur_8c_adb1f4df3ebe94410f2c0bb0b1d43bdfa}{choix\+\_\+bon} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__s}{joueur\+\_\+t} joueur, \hyperlink{structjoueur__s}{joueur\+\_\+t} joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement)\hypertarget{joueur_8c_adb1f4df3ebe94410f2c0bb0b1d43bdfa}{}\label{joueur_8c_adb1f4df3ebe94410f2c0bb0b1d43bdfa}
+void \hyperlink{joueur_8c_a08e1d07549734ec909fac0ea9a3822e9}{choix\+\_\+bon} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, int generation)\hypertarget{joueur_8c_a08e1d07549734ec909fac0ea9a3822e9}{}\label{joueur_8c_a08e1d07549734ec909fac0ea9a3822e9}
 
 \begin{DoxyCompactList}\small\item\em choix random parmis les evenements bon \end{DoxyCompactList}\item 
-void \hyperlink{joueur_8c_a7032945ab7c4c1e6f628de8ec013596e}{choix\+\_\+joueur} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__s}{joueur\+\_\+t} joueur, \hyperlink{structjoueur__s}{joueur\+\_\+t} joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement)\hypertarget{joueur_8c_a7032945ab7c4c1e6f628de8ec013596e}{}\label{joueur_8c_a7032945ab7c4c1e6f628de8ec013596e}
+void \hyperlink{joueur_8c_af1160afd8514f45d07c9c141a926a7ea}{choix\+\_\+joueur} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, int generation)\hypertarget{joueur_8c_af1160afd8514f45d07c9c141a926a7ea}{}\label{joueur_8c_af1160afd8514f45d07c9c141a926a7ea}
 
 \begin{DoxyCompactList}\small\item\em choix du joueur parmis les evenements \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -100,7 +101,8 @@ saisi du pseudo du joueur
     \textcolor{stringliteral}{"Génération de nourriture augmentée"},
     \textcolor{stringliteral}{"Rien changer"},
     \textcolor{stringliteral}{"Libère entre 0 et 5 canards"},
-    \textcolor{stringliteral}{"Rend un canard invincible"}\}
+    \textcolor{stringliteral}{"Rend un canard invincible"}
+\}
 \end{DoxyCode}
 \index{joueur.\+c@{joueur.\+c}!mauv\+\_\+evts@{mauv\+\_\+evts}}
 \index{mauv\+\_\+evts@{mauv\+\_\+evts}!joueur.\+c@{joueur.\+c}}
@@ -108,7 +110,7 @@ saisi du pseudo du joueur
 {\bfseries Valeur initiale \+:}
 \begin{DoxyCode}
 =\{
-    \textcolor{stringliteral}{"Lance un tsunami sur le labyrinthe"}, 
+    \textcolor{stringliteral}{"Lance un tsunami sur le labyrinthe"},
     \textcolor{stringliteral}{"Lance une tempete sur le labyrinthe"},
     \textcolor{stringliteral}{"Famine : Réduit la nourriture générée"},
     \textcolor{stringliteral}{"Réduit la reproduction des canards"},
