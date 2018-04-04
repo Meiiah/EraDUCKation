@@ -15,13 +15,13 @@
 void detruire_Cmatrice(caract_mat_t * cmat){
 	if(cmat){
 		if( cmat->matrice!=NULL){
-			fprintf(stderr, "Avant le free\n");
+			
 			free(cmat->matrice[0]);
-			fprintf(stderr, "Avant le free\n");
+			
 			free(cmat->matrice);
 		}
 	
-		fprintf(stderr, "Avant le free cmat\n");
+		
 		free(cmat);
 		cmat = NULL;
 	}
@@ -71,7 +71,7 @@ void init_matrice(caract_mat_t * cmat){
 				cmat->matrice[i][j].pres_nourriture=0;
 				cmat->matrice[i][j].pres_piege=0;
 			}else{
-				fprintf(stderr, "ERREUR - sortie de matrice : fonction init_matrice dans matrice.c");
+				
 				exit(0);
 			}
 		}

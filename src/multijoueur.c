@@ -107,7 +107,9 @@ int boucle_multi(caract_mat_t * cmat,joueur_t joueur1, joueur_t joueur2, int nou
 		printf("Nourriture générée: %i\n",nourriture_genere);
 		printf("Nombre de canard: %i \n",nombre_canard(cmat));
 
-	}return 1;
+	}
+	if(nb_gen >= 100) printf("Félicitation !!! Vous avez gagné");
+	return 1;
 }
 
 /*--------------------------------------------------------------------------------*/

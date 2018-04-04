@@ -38,5 +38,6 @@ int jeu_solo(caract_mat_t * cmat,int nourriture_genere,int nourriture_accoupleme
 		detruire_nourriture(cmat);
 		nb_gen++;
 	}
+	if(nb_gen >= 100) printf("Félicitation !!! Vous avez gagné");
 	return 1;
 }
