@@ -17,3 +17,97 @@ Fonctions propres au client.
 {\ttfamily \#include \char`\"{}struct.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}fonction\+\_\+multi\+\_\+reseau.\+h\char`\"{}}\\*
 Graphe des dépendances par inclusion de client\+\_\+reseau.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{client__reseau_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{client__reseau_8c_a2c10c5cd9b03fc4d4b1fe1d6b63dbc76}{recevoir\+\_\+laby} (int socket, \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat)
+\item 
+\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$ \hyperlink{client__reseau_8c_af0d6afab321c03f6be3e81e9c6268b2e}{recev\+\_\+init\+\_\+laby} (int socket)
+\begin{DoxyCompactList}\small\item\em \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$ \hyperlink{client__reseau_8c_af0d6afab321c03f6be3e81e9c6268b2e}{recev\+\_\+init\+\_\+laby(int socket)} \end{DoxyCompactList}\item 
+void \hyperlink{client__reseau_8c_a53a1eb99eddbb426d27524edd34673da}{commence\+\_\+client} (int socket, int role, \hyperlink{structjoueur__res__s}{joueur\+\_\+reseau\+\_\+t} tab\+\_\+joueurs\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Fonction qui recoit la cmat pour l initialisation. \end{DoxyCompactList}\item 
+void \hyperlink{client__reseau_8c_a6690ecc5be97a64dac05488b8404303c}{quel\+\_\+role\+\_\+client} (int socket, \hyperlink{structjoueur__res__s}{joueur\+\_\+reseau\+\_\+t} tab\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Demande au serveur si il veut commencer, et renvoit qui commencera. \end{DoxyCompactList}\item 
+void \hyperlink{client__reseau_8c_a2bb88ec4b5e6fdd4b8ca5577658c35b9}{demander\+\_\+nom\+\_\+client} (int socket, \hyperlink{structjoueur__res__s}{joueur\+\_\+reseau\+\_\+t} tab\+\_\+joueurs\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em void demander\+\_\+nom\+\_\+client(joueur\+\_\+reseau\+\_\+t tab\mbox{[}$\,$\mbox{]}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Fonctions propres au client. 
+
+\begin{DoxyAuthor}{Auteur}
+Maxime.\+T 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+5 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+20 / 02 / 2018 
+\end{DoxyDate}
+
+
+\subsection{Documentation des fonctions}
+\index{client\+\_\+reseau.\+c@{client\+\_\+reseau.\+c}!commence\+\_\+client@{commence\+\_\+client}}
+\index{commence\+\_\+client@{commence\+\_\+client}!client\+\_\+reseau.\+c@{client\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{commence\+\_\+client(int socket, int role, joueur\+\_\+reseau\+\_\+t tab\+\_\+joueurs[])}{commence_client(int socket, int role, joueur_reseau_t tab_joueurs[])}}]{\setlength{\rightskip}{0pt plus 5cm}void commence\+\_\+client (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{int}]{role, }
+\item[{{\bf joueur\+\_\+reseau\+\_\+t}}]{tab\+\_\+joueurs\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{client__reseau_8c_a53a1eb99eddbb426d27524edd34673da}{}\label{client__reseau_8c_a53a1eb99eddbb426d27524edd34673da}
+
+
+Fonction qui recoit la cmat pour l initialisation. 
+
+Demande au client si il veut commencer et initialise le tableau avec l ordre de jeu \index{client\+\_\+reseau.\+c@{client\+\_\+reseau.\+c}!demander\+\_\+nom\+\_\+client@{demander\+\_\+nom\+\_\+client}}
+\index{demander\+\_\+nom\+\_\+client@{demander\+\_\+nom\+\_\+client}!client\+\_\+reseau.\+c@{client\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{demander\+\_\+nom\+\_\+client(int socket, joueur\+\_\+reseau\+\_\+t tab\+\_\+joueurs[])}{demander_nom_client(int socket, joueur_reseau_t tab_joueurs[])}}]{\setlength{\rightskip}{0pt plus 5cm}void demander\+\_\+nom\+\_\+client (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{{\bf joueur\+\_\+reseau\+\_\+t}}]{tab\+\_\+joueurs\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{client__reseau_8c_a2bb88ec4b5e6fdd4b8ca5577658c35b9}{}\label{client__reseau_8c_a2bb88ec4b5e6fdd4b8ca5577658c35b9}
+
+
+void demander\+\_\+nom\+\_\+client(joueur\+\_\+reseau\+\_\+t tab\mbox{[}$\,$\mbox{]}) 
+
+Demande le nom du client et recupere celui du serveur puis met les deux dans le tableau joueur \index{client\+\_\+reseau.\+c@{client\+\_\+reseau.\+c}!quel\+\_\+role\+\_\+client@{quel\+\_\+role\+\_\+client}}
+\index{quel\+\_\+role\+\_\+client@{quel\+\_\+role\+\_\+client}!client\+\_\+reseau.\+c@{client\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{quel\+\_\+role\+\_\+client(int socket, joueur\+\_\+reseau\+\_\+t tab[])}{quel_role_client(int socket, joueur_reseau_t tab[])}}]{\setlength{\rightskip}{0pt plus 5cm}void quel\+\_\+role\+\_\+client (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{{\bf joueur\+\_\+reseau\+\_\+t}}]{tab\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{client__reseau_8c_a6690ecc5be97a64dac05488b8404303c}{}\label{client__reseau_8c_a6690ecc5be97a64dac05488b8404303c}
+
+
+Demande au serveur si il veut commencer, et renvoit qui commencera. 
+
+demande au client quel role il veut jouer et initialise les roles dans le tableau \index{client\+\_\+reseau.\+c@{client\+\_\+reseau.\+c}!recev\+\_\+init\+\_\+laby@{recev\+\_\+init\+\_\+laby}}
+\index{recev\+\_\+init\+\_\+laby@{recev\+\_\+init\+\_\+laby}!client\+\_\+reseau.\+c@{client\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{recev\+\_\+init\+\_\+laby(int socket)}{recev_init_laby(int socket)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf caract\+\_\+mat\+\_\+t}$\ast$ recev\+\_\+init\+\_\+laby (
+\begin{DoxyParamCaption}
+\item[{int}]{socket}
+\end{DoxyParamCaption}
+)}\hypertarget{client__reseau_8c_af0d6afab321c03f6be3e81e9c6268b2e}{}\label{client__reseau_8c_af0d6afab321c03f6be3e81e9c6268b2e}
+
+
+\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$ \hyperlink{client__reseau_8c_af0d6afab321c03f6be3e81e9c6268b2e}{recev\+\_\+init\+\_\+laby(int socket)} 
+
+Fonction qui tecoit le laby. fonction qui recoit le laby en faisant l allocation et return la cmat \index{client\+\_\+reseau.\+c@{client\+\_\+reseau.\+c}!recevoir\+\_\+laby@{recevoir\+\_\+laby}}
+\index{recevoir\+\_\+laby@{recevoir\+\_\+laby}!client\+\_\+reseau.\+c@{client\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{recevoir\+\_\+laby(int socket, caract\+\_\+mat\+\_\+t $\ast$cmat)}{recevoir_laby(int socket, caract_mat_t *cmat)}}]{\setlength{\rightskip}{0pt plus 5cm}void recevoir\+\_\+laby (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat}
+\end{DoxyParamCaption}
+)}\hypertarget{client__reseau_8c_a2c10c5cd9b03fc4d4b1fe1d6b63dbc76}{}\label{client__reseau_8c_a2c10c5cd9b03fc4d4b1fe1d6b63dbc76}
+Fonction qui met a jour le labyrinthe en fonction de celui de l adversaire 

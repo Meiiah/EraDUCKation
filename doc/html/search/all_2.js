@@ -17,5 +17,6 @@ var searchData=
   ['client_5freseau_2ec',['client_reseau.c',['../client__reseau_8c.html',1,'']]],
   ['commence_5fclient',['commence_client',['../client__reseau_8c.html#a53a1eb99eddbb426d27524edd34673da',1,'client_reseau.c']]],
   ['coord_5fcase',['coord_case',['../labyrinthe_8c.html#a97c8cd519ab9fe6f41571f8d77cfebce',1,'labyrinthe.c']]],
+  ['credit',['credit',['../Fonction__SDL_8c.html#ae8c725282989bb1aa4b6bce3f880707f',1,'Fonction_SDL.c']]],
   ['creer_5flabyrinthe',['creer_labyrinthe',['../labyrinthe_8c.html#a9c756383ac514e4057850665d5b510a2',1,'labyrinthe.c']]]
 ];
