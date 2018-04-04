@@ -1,0 +1,235 @@
+\hypertarget{fonction__multi__reseau_8c}{}\section{Référence du fichier fonction\+\_\+multi\+\_\+reseau.\+c}
+\label{fonction__multi__reseau_8c}\index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+
+
+programme qui gere tout ce qui est en rapport avec le joueur  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}struct.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}matrice.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}event.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}outils\+\_\+reseau.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}joueur.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}multijoueur.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}client\+\_\+reseau.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}multijoueur\+\_\+reseau.\+h\char`\"{}}\\*
+Graphe des dépendances par inclusion de fonction\+\_\+multi\+\_\+reseau.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries nb\+\_\+event}~5\hypertarget{fonction__multi__reseau_8c_a7dfdd4832588adc97043924fb55d4bd5}{}\label{fonction__multi__reseau_8c_a7dfdd4832588adc97043924fb55d4bd5}
+
+\end{DoxyCompactItemize}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{fonction__multi__reseau_8c_a04b3ffd23e25f2c5d77ad17eb031030b}{envoyer\+\_\+situation} (int socket, \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int nourriture\+\_\+genere, int nouriture\+\_\+acouplement)
+\item 
+void \hyperlink{fonction__multi__reseau_8c_a0815d7741627e3e6d7d66b8cea0382e8}{recevoir\+\_\+situation} (int socket, \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int $\ast$nourriture\+\_\+genere, int $\ast$nouriture\+\_\+acouplement)
+\item 
+void \hyperlink{fonction__multi__reseau_8c_aa7be3a31d7b532a43b2ec1fa5df87e4c}{choix\+\_\+mechant\+\_\+quijoue} (int socket, \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, int generation)
+\item 
+void \hyperlink{fonction__multi__reseau_8c_a8f5bcacaed036d3a4687e0da3b4cdce8}{choix\+\_\+mechant\+\_\+quirecoit} (int socket, \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, int generation)
+\begin{DoxyCompactList}\small\item\em fonction qui permet de choisir entre 3 evenements mauvais \end{DoxyCompactList}\item 
+void \hyperlink{fonction__multi__reseau_8c_adf7f06433a3d925672be32ea8e9d49c3}{choix\+\_\+gentil\+\_\+quijoue} (int socket, \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, int generation)
+\begin{DoxyCompactList}\small\item\em fonction qui applique le choix mechant effectu� par l adversaire \end{DoxyCompactList}\item 
+void \hyperlink{fonction__multi__reseau_8c_ab0809e7a8eb4e825ea07886e8a2b31c8}{choix\+\_\+gentil\+\_\+quirecoit} (int socket, \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, int generation)
+\begin{DoxyCompactList}\small\item\em fonction qui permet de choisir entre 3 evenements gentil \end{DoxyCompactList}\item 
+\hyperlink{structjoueur__res__s}{joueur\+\_\+reseau\+\_\+t} \hyperlink{fonction__multi__reseau_8c_a815ad5ffa92a39d372ba2511cc5237b7}{joueur\+\_\+gentil\+\_\+res} (void($\ast$choix)(int, \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$, int $\ast$, int $\ast$, int))
+\item 
+\hyperlink{structjoueur__res__s}{joueur\+\_\+reseau\+\_\+t} \hyperlink{fonction__multi__reseau_8c_ab06d10a852b9f7713683eaa57818d3d9}{joueur\+\_\+mechant\+\_\+res} (void($\ast$choix)(int, \hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$, \hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$, int $\ast$, int $\ast$, int))
+\item 
+void \hyperlink{fonction__multi__reseau_8c_a8291ba58b1856ef9768a2fec6610f0b1}{init\+\_\+joueurs\+\_\+serv} (\hyperlink{structjoueur__res__s}{joueur\+\_\+reseau\+\_\+t} tab\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em fonction qui applique le choix gentil effectu� par l adversaire \end{DoxyCompactList}\item 
+void \hyperlink{fonction__multi__reseau_8c_a1cc2bd63d07102358d521858317b5d3b}{init\+\_\+joueurs\+\_\+client} (\hyperlink{structjoueur__res__s}{joueur\+\_\+reseau\+\_\+t} tab\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em initialise le tableau joueurs du serveur \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ {\bfseries mauv\+\_\+evts\+\_\+m} \mbox{[}$\,$\mbox{]}
+\item 
+const char $\ast$ {\bfseries bon\+\_\+evts\+\_\+m} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+programme qui gere tout ce qui est en rapport avec le joueur 
+
+\begin{DoxyAuthor}{Auteur}
+T\+O\+U\+ZE Maxime 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+5 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+31 mars 2018 
+\end{DoxyDate}
+
+
+\subsection{Documentation des fonctions}
+\index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}!choix\+\_\+gentil\+\_\+quijoue@{choix\+\_\+gentil\+\_\+quijoue}}
+\index{choix\+\_\+gentil\+\_\+quijoue@{choix\+\_\+gentil\+\_\+quijoue}!fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{choix\+\_\+gentil\+\_\+quijoue(int socket, caract\+\_\+mat\+\_\+t $\ast$cmat, joueur\+\_\+t $\ast$joueur, joueur\+\_\+t $\ast$joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, int generation)}{choix_gentil_quijoue(int socket, caract_mat_t *cmat, joueur_t *joueur, joueur_t *joueur2, int *nourriture_genere, int *nourriture_accouplement, int generation)}}]{\setlength{\rightskip}{0pt plus 5cm}void choix\+\_\+gentil\+\_\+quijoue (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf joueur\+\_\+t} $\ast$}]{joueur, }
+\item[{{\bf joueur\+\_\+t} $\ast$}]{joueur2, }
+\item[{int $\ast$}]{nourriture\+\_\+genere, }
+\item[{int $\ast$}]{nourriture\+\_\+accouplement, }
+\item[{int}]{generation}
+\end{DoxyParamCaption}
+)}\hypertarget{fonction__multi__reseau_8c_adf7f06433a3d925672be32ea8e9d49c3}{}\label{fonction__multi__reseau_8c_adf7f06433a3d925672be32ea8e9d49c3}
+
+
+fonction qui applique le choix mechant effectu� par l adversaire 
+
+fonction qui permet de choisir entre 3 evenements gentil \index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}!choix\+\_\+gentil\+\_\+quirecoit@{choix\+\_\+gentil\+\_\+quirecoit}}
+\index{choix\+\_\+gentil\+\_\+quirecoit@{choix\+\_\+gentil\+\_\+quirecoit}!fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{choix\+\_\+gentil\+\_\+quirecoit(int socket, caract\+\_\+mat\+\_\+t $\ast$cmat, joueur\+\_\+t $\ast$joueur, joueur\+\_\+t $\ast$joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, int generation)}{choix_gentil_quirecoit(int socket, caract_mat_t *cmat, joueur_t *joueur, joueur_t *joueur2, int *nourriture_genere, int *nourriture_accouplement, int generation)}}]{\setlength{\rightskip}{0pt plus 5cm}void choix\+\_\+gentil\+\_\+quirecoit (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf joueur\+\_\+t} $\ast$}]{joueur, }
+\item[{{\bf joueur\+\_\+t} $\ast$}]{joueur2, }
+\item[{int $\ast$}]{nourriture\+\_\+genere, }
+\item[{int $\ast$}]{nourriture\+\_\+accouplement, }
+\item[{int}]{generation}
+\end{DoxyParamCaption}
+)}\hypertarget{fonction__multi__reseau_8c_ab0809e7a8eb4e825ea07886e8a2b31c8}{}\label{fonction__multi__reseau_8c_ab0809e7a8eb4e825ea07886e8a2b31c8}
+
+
+fonction qui permet de choisir entre 3 evenements gentil 
+
+fonction qui applique le choix gentil effectué par l adversaire \index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}!choix\+\_\+mechant\+\_\+quijoue@{choix\+\_\+mechant\+\_\+quijoue}}
+\index{choix\+\_\+mechant\+\_\+quijoue@{choix\+\_\+mechant\+\_\+quijoue}!fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{choix\+\_\+mechant\+\_\+quijoue(int socket, caract\+\_\+mat\+\_\+t $\ast$cmat, joueur\+\_\+t $\ast$joueur, joueur\+\_\+t $\ast$joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, int generation)}{choix_mechant_quijoue(int socket, caract_mat_t *cmat, joueur_t *joueur, joueur_t *joueur2, int *nourriture_genere, int *nourriture_accouplement, int generation)}}]{\setlength{\rightskip}{0pt plus 5cm}void choix\+\_\+mechant\+\_\+quijoue (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf joueur\+\_\+t} $\ast$}]{joueur, }
+\item[{{\bf joueur\+\_\+t} $\ast$}]{joueur2, }
+\item[{int $\ast$}]{nourriture\+\_\+genere, }
+\item[{int $\ast$}]{nourriture\+\_\+accouplement, }
+\item[{int}]{generation}
+\end{DoxyParamCaption}
+)}\hypertarget{fonction__multi__reseau_8c_aa7be3a31d7b532a43b2ec1fa5df87e4c}{}\label{fonction__multi__reseau_8c_aa7be3a31d7b532a43b2ec1fa5df87e4c}
+fonction qui permet de choisir entre 3 evenements mauvais \index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}!choix\+\_\+mechant\+\_\+quirecoit@{choix\+\_\+mechant\+\_\+quirecoit}}
+\index{choix\+\_\+mechant\+\_\+quirecoit@{choix\+\_\+mechant\+\_\+quirecoit}!fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{choix\+\_\+mechant\+\_\+quirecoit(int socket, caract\+\_\+mat\+\_\+t $\ast$cmat, joueur\+\_\+t $\ast$joueur, joueur\+\_\+t $\ast$joueur2, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, int generation)}{choix_mechant_quirecoit(int socket, caract_mat_t *cmat, joueur_t *joueur, joueur_t *joueur2, int *nourriture_genere, int *nourriture_accouplement, int generation)}}]{\setlength{\rightskip}{0pt plus 5cm}void choix\+\_\+mechant\+\_\+quirecoit (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf joueur\+\_\+t} $\ast$}]{joueur, }
+\item[{{\bf joueur\+\_\+t} $\ast$}]{joueur2, }
+\item[{int $\ast$}]{nourriture\+\_\+genere, }
+\item[{int $\ast$}]{nourriture\+\_\+accouplement, }
+\item[{int}]{generation}
+\end{DoxyParamCaption}
+)}\hypertarget{fonction__multi__reseau_8c_a8f5bcacaed036d3a4687e0da3b4cdce8}{}\label{fonction__multi__reseau_8c_a8f5bcacaed036d3a4687e0da3b4cdce8}
+
+
+fonction qui permet de choisir entre 3 evenements mauvais 
+
+fonction qui applique le choix mechant effectué par l adversaire \index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}!envoyer\+\_\+situation@{envoyer\+\_\+situation}}
+\index{envoyer\+\_\+situation@{envoyer\+\_\+situation}!fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{envoyer\+\_\+situation(int socket, caract\+\_\+mat\+\_\+t $\ast$cmat, int nourriture\+\_\+genere, int nouriture\+\_\+acouplement)}{envoyer_situation(int socket, caract_mat_t *cmat, int nourriture_genere, int nouriture_acouplement)}}]{\setlength{\rightskip}{0pt plus 5cm}void envoyer\+\_\+situation (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{int}]{nourriture\+\_\+genere, }
+\item[{int}]{nouriture\+\_\+acouplement}
+\end{DoxyParamCaption}
+)}\hypertarget{fonction__multi__reseau_8c_a04b3ffd23e25f2c5d77ad17eb031030b}{}\label{fonction__multi__reseau_8c_a04b3ffd23e25f2c5d77ad17eb031030b}
+Envoie toutes les données de jeu pouvant etre changées de facon aléatoire \index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}!init\+\_\+joueurs\+\_\+client@{init\+\_\+joueurs\+\_\+client}}
+\index{init\+\_\+joueurs\+\_\+client@{init\+\_\+joueurs\+\_\+client}!fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{init\+\_\+joueurs\+\_\+client(joueur\+\_\+reseau\+\_\+t tab[])}{init_joueurs_client(joueur_reseau_t tab[])}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+joueurs\+\_\+client (
+\begin{DoxyParamCaption}
+\item[{{\bf joueur\+\_\+reseau\+\_\+t}}]{tab\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{fonction__multi__reseau_8c_a1cc2bd63d07102358d521858317b5d3b}{}\label{fonction__multi__reseau_8c_a1cc2bd63d07102358d521858317b5d3b}
+
+
+initialise le tableau joueurs du serveur 
+
+initialise le tableau joueurs du client \index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}!init\+\_\+joueurs\+\_\+serv@{init\+\_\+joueurs\+\_\+serv}}
+\index{init\+\_\+joueurs\+\_\+serv@{init\+\_\+joueurs\+\_\+serv}!fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{init\+\_\+joueurs\+\_\+serv(joueur\+\_\+reseau\+\_\+t tab[])}{init_joueurs_serv(joueur_reseau_t tab[])}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+joueurs\+\_\+serv (
+\begin{DoxyParamCaption}
+\item[{{\bf joueur\+\_\+reseau\+\_\+t}}]{tab\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{fonction__multi__reseau_8c_a8291ba58b1856ef9768a2fec6610f0b1}{}\label{fonction__multi__reseau_8c_a8291ba58b1856ef9768a2fec6610f0b1}
+
+
+fonction qui applique le choix gentil effectu� par l adversaire 
+
+initialise le tableau joueurs du serveur \index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}!joueur\+\_\+gentil\+\_\+res@{joueur\+\_\+gentil\+\_\+res}}
+\index{joueur\+\_\+gentil\+\_\+res@{joueur\+\_\+gentil\+\_\+res}!fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{joueur\+\_\+gentil\+\_\+res(void($\ast$choix)(int, caract\+\_\+mat\+\_\+t $\ast$, joueur\+\_\+t $\ast$, joueur\+\_\+t $\ast$, int $\ast$, int $\ast$, int))}{joueur_gentil_res(void(*choix)(int, caract_mat_t *, joueur_t *, joueur_t *, int *, int *, int))}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf joueur\+\_\+reseau\+\_\+t} joueur\+\_\+gentil\+\_\+res (
+\begin{DoxyParamCaption}
+\item[{void($\ast$)(int, {\bf caract\+\_\+mat\+\_\+t} $\ast$, {\bf joueur\+\_\+t} $\ast$, {\bf joueur\+\_\+t} $\ast$, int $\ast$, int $\ast$, int)}]{choix}
+\end{DoxyParamCaption}
+)}\hypertarget{fonction__multi__reseau_8c_a815ad5ffa92a39d372ba2511cc5237b7}{}\label{fonction__multi__reseau_8c_a815ad5ffa92a39d372ba2511cc5237b7}
+initialise un joueur en joueur gentil 
+\begin{DoxyParams}{Paramètres}
+{\em choix} & \\
+\hline
+{\em fonction} & choix du joueur gentil \\
+\hline
+\end{DoxyParams}
+\index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}!joueur\+\_\+mechant\+\_\+res@{joueur\+\_\+mechant\+\_\+res}}
+\index{joueur\+\_\+mechant\+\_\+res@{joueur\+\_\+mechant\+\_\+res}!fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{joueur\+\_\+mechant\+\_\+res(void($\ast$choix)(int, caract\+\_\+mat\+\_\+t $\ast$, joueur\+\_\+t $\ast$, joueur\+\_\+t $\ast$, int $\ast$, int $\ast$, int))}{joueur_mechant_res(void(*choix)(int, caract_mat_t *, joueur_t *, joueur_t *, int *, int *, int))}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf joueur\+\_\+reseau\+\_\+t} joueur\+\_\+mechant\+\_\+res (
+\begin{DoxyParamCaption}
+\item[{void($\ast$)(int, {\bf caract\+\_\+mat\+\_\+t} $\ast$, {\bf joueur\+\_\+t} $\ast$, {\bf joueur\+\_\+t} $\ast$, int $\ast$, int $\ast$, int)}]{choix}
+\end{DoxyParamCaption}
+)}\hypertarget{fonction__multi__reseau_8c_ab06d10a852b9f7713683eaa57818d3d9}{}\label{fonction__multi__reseau_8c_ab06d10a852b9f7713683eaa57818d3d9}
+initialise un joueur en joueur gentil 
+\begin{DoxyParams}{Paramètres}
+{\em choix} & \\
+\hline
+{\em fonction} & choix du joueur gentil \\
+\hline
+\end{DoxyParams}
+\index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}!recevoir\+\_\+situation@{recevoir\+\_\+situation}}
+\index{recevoir\+\_\+situation@{recevoir\+\_\+situation}!fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{recevoir\+\_\+situation(int socket, caract\+\_\+mat\+\_\+t $\ast$cmat, int $\ast$nourriture\+\_\+genere, int $\ast$nouriture\+\_\+acouplement)}{recevoir_situation(int socket, caract_mat_t *cmat, int *nourriture_genere, int *nouriture_acouplement)}}]{\setlength{\rightskip}{0pt plus 5cm}void recevoir\+\_\+situation (
+\begin{DoxyParamCaption}
+\item[{int}]{socket, }
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{int $\ast$}]{nourriture\+\_\+genere, }
+\item[{int $\ast$}]{nouriture\+\_\+acouplement}
+\end{DoxyParamCaption}
+)}\hypertarget{fonction__multi__reseau_8c_a0815d7741627e3e6d7d66b8cea0382e8}{}\label{fonction__multi__reseau_8c_a0815d7741627e3e6d7d66b8cea0382e8}
+Recoit toutes les données de jeu pouvant etre changées de facon aléatoire 
+
+\subsection{Documentation des variables}
+\index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}!bon\+\_\+evts\+\_\+m@{bon\+\_\+evts\+\_\+m}}
+\index{bon\+\_\+evts\+\_\+m@{bon\+\_\+evts\+\_\+m}!fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{bon\+\_\+evts\+\_\+m}{bon_evts_m}}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ bon\+\_\+evts\+\_\+m\mbox{[}$\,$\mbox{]}}\hypertarget{fonction__multi__reseau_8c_a0f95e77357dc5c8e84d6e04f51c52ed8}{}\label{fonction__multi__reseau_8c_a0f95e77357dc5c8e84d6e04f51c52ed8}
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}
+=\{
+    \textcolor{stringliteral}{"Accelère la reproduction des canards"},
+    \textcolor{stringliteral}{"Génération de nourriture augmentée"},
+    \textcolor{stringliteral}{"Rien changer"},
+    \textcolor{stringliteral}{"Libère entre 0 et 5 canards"},
+    \textcolor{stringliteral}{"Rend un canard invincible"}
+\}
+\end{DoxyCode}
+\index{fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}!mauv\+\_\+evts\+\_\+m@{mauv\+\_\+evts\+\_\+m}}
+\index{mauv\+\_\+evts\+\_\+m@{mauv\+\_\+evts\+\_\+m}!fonction\+\_\+multi\+\_\+reseau.\+c@{fonction\+\_\+multi\+\_\+reseau.\+c}}
+\subsubsection[{\texorpdfstring{mauv\+\_\+evts\+\_\+m}{mauv_evts_m}}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ mauv\+\_\+evts\+\_\+m\mbox{[}$\,$\mbox{]}}\hypertarget{fonction__multi__reseau_8c_ae6014ea9aae6ae5f6dce5b8475930e62}{}\label{fonction__multi__reseau_8c_ae6014ea9aae6ae5f6dce5b8475930e62}
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}
+=\{
+    \textcolor{stringliteral}{"Lance un tsunami sur le labyrinthe"},
+    \textcolor{stringliteral}{"Lance une tempete sur le labyrinthe"},
+    \textcolor{stringliteral}{"Famine : Réduit la nourriture générée"},
+    \textcolor{stringliteral}{"Réduit la reproduction des canards"},
+    \textcolor{stringliteral}{"Appartion de 0 à 5 prédateurs de canards"}
+\}
+\end{DoxyCode}

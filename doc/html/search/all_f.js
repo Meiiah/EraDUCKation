@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['valeur_5fcase',['valeur_case',['../labyrinthe_8c.html#afa2b95a96ad18258e75b6e8018a841d1',1,'labyrinthe.c']]],
-  ['voit_5faccouplement',['voit_accouplement',['../deplacer_8c.html#aa3fbfab570f87f6a6c9ce3865f3de477',1,'deplacer.c']]],
-  ['voit_5fnourriture',['voit_nourriture',['../deplacer_8c.html#a2e22fe142b851f5f06136b6092396121',1,'deplacer.c']]]
+  ['tab_5fevent_5fbon',['tab_event_bon',['../joueur_8c.html#a78c07d9604fba01b03805482806cb0e2',1,'joueur.c']]],
+  ['tab_5fevent_5fmauvais',['tab_event_mauvais',['../joueur_8c.html#ac45960f5f46db2ff59140d731408b4a3',1,'joueur.c']]],
+  ['tour_5fmultijoueur',['tour_multijoueur',['../multijoueur_8c.html#a4208d6e0692cb5efaca7d4a1c8cbabfe',1,'multijoueur.c']]]
 ];

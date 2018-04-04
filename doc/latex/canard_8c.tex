@@ -2,15 +2,14 @@
 \label{canard_8c}\index{canard.\+c@{canard.\+c}}
 
 
-Fonctions outils multijoueur.  
+Fonctions a propos du canard.  
 
 
 {\ttfamily \#include $<$stdio.\+h$>$}\\*
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}struct.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}matrice.\+h\char`\"{}}\\*
-Graphe des dépendances par inclusion de canard.\+c\+:
-\nopagebreak
+Graphe des dépendances par inclusion de canard.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -19,6 +18,8 @@ Graphe des dépendances par inclusion de canard.\+c\+:
 \end{figure}
 \subsection*{Fonctions}
 \begin{DoxyCompactItemize}
+\item 
+\hyperlink{structcanard__s}{canard\+\_\+t} \hyperlink{canard_8c_aac3daab5047434d650d678ec8422a9eb}{canard\+\_\+vide} (void)
 \item 
 void \hyperlink{canard_8c_a90ecbbfe8dc92a0c4a3038a6abb20124}{init\+\_\+canard} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat)
 \item 
@@ -31,10 +32,10 @@ int \hyperlink{canard_8c_a4716b2bc2c62ac9e65d49e81113bd511}{oeuf\+\_\+to\+\_\+ad
 
 
 \subsection{Description détaillée}
-Fonctions outils multijoueur. 
+Fonctions a propos du canard. 
 
 \begin{DoxyAuthor}{Auteur}
-Camille.\+V 
+Camille V\+A\+I\+D\+IE 
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
 1.\+1 
@@ -45,7 +46,14 @@ Camille.\+V
 
 
 \subsection{Documentation des fonctions}
-\index{canard.\+c@{canard.\+c}!init\+\_\+canard@{init\+\_\+canard}}
+\index{canard.\+c@{canard.\+c}!canard\+\_\+vide@{canard\+\_\+vide}}
+\index{canard\+\_\+vide@{canard\+\_\+vide}!canard.\+c@{canard.\+c}}
+\subsubsection[{\texorpdfstring{canard\+\_\+vide(void)}{canard_vide(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf canard\+\_\+t} canard\+\_\+vide (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{canard_8c_aac3daab5047434d650d678ec8422a9eb}{}\label{canard_8c_aac3daab5047434d650d678ec8422a9eb}
+renvoit un canard inexistant \index{canard.\+c@{canard.\+c}!init\+\_\+canard@{init\+\_\+canard}}
 \index{init\+\_\+canard@{init\+\_\+canard}!canard.\+c@{canard.\+c}}
 \subsubsection[{\texorpdfstring{init\+\_\+canard(caract\+\_\+mat\+\_\+t $\ast$cmat)}{init_canard(caract_mat_t *cmat)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+canard (
 \begin{DoxyParamCaption}

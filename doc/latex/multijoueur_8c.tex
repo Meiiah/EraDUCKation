@@ -16,33 +16,9 @@ Fonctions outils multijoueur.
 {\ttfamily \#include \char`\"{}deplacer.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}deplacer\+\_\+multi.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}labyrinthe.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}multijoueur.\+h\char`\"{}}\\*
 Graphe des dépendances par inclusion de multijoueur.\+c\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{multijoueur_8c__incl}
-\end{center}
-\end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{structjoueurm__s}{joueurm\+\_\+s}
-\end{DoxyCompactItemize}
-\subsection*{Définitions de type}
-\begin{DoxyCompactItemize}
-\item 
-typedef struct \hyperlink{structjoueurm__s}{joueurm\+\_\+s} {\bfseries joueur\+\_\+multi\+\_\+t}\hypertarget{multijoueur_8c_a9bcbc24bf919d5b65615b47468540f2c}{}\label{multijoueur_8c_a9bcbc24bf919d5b65615b47468540f2c}
-
-\end{DoxyCompactItemize}
-\subsection*{Énumérations}
-\begin{DoxyCompactItemize}
-\item 
-enum {\bfseries clan\+\_\+t} \{ {\bfseries bon}, 
-{\bfseries mechant}
- \}\hypertarget{multijoueur_8c_a9cd6b5b7fe4ffceb64fcbf577e93d286}{}\label{multijoueur_8c_a9cd6b5b7fe4ffceb64fcbf577e93d286}
-
-\end{DoxyCompactItemize}
+% FIG 0
 \subsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
@@ -50,14 +26,15 @@ enum {\bfseries clan\+\_\+t} \{ {\bfseries bon},
 \item 
 \hyperlink{structjoueurm__s}{joueur\+\_\+multi\+\_\+t} \hyperlink{multijoueur_8c_a5934823e38db1e7f75825bbf0ab7b141}{joueur\+\_\+mechant} ()
 \item 
-void {\bfseries tour\+\_\+multijoueur} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, \hyperlink{structjoueurm__s}{joueur\+\_\+multi\+\_\+t} tab\mbox{[}$\,$\mbox{]}, int tour, int tampon)\hypertarget{multijoueur_8c_a4208d6e0692cb5efaca7d4a1c8cbabfe}{}\label{multijoueur_8c_a4208d6e0692cb5efaca7d4a1c8cbabfe}
-
+void \hyperlink{multijoueur_8c_a4208d6e0692cb5efaca7d4a1c8cbabfe}{tour\+\_\+multijoueur} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, \hyperlink{structjoueurm__s}{joueur\+\_\+multi\+\_\+t} tab\mbox{[}$\,$\mbox{]}, int tour, int tampon)
 \item 
 int \hyperlink{multijoueur_8c_a514eac63a82d5da1b2afffa9cd49a085}{qui\+\_\+commence} (void)
 \item 
-void \hyperlink{multijoueur_8c_a63eb3a0f31964563c84357d1c6a76ce1}{init\+\_\+tab\+\_\+joueurs} (\hyperlink{structjoueurm__s}{joueur\+\_\+multi\+\_\+t} $\ast$tab, int tampon)
-\begin{DoxyCompactList}\small\item\em met le premier joueur a jouer en premiere place dans le tableau \end{DoxyCompactList}\item 
-int \hyperlink{multijoueur_8c_aa63b77a0b502529327c465a68b5bde50}{main\+\_\+multijoueur} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int nourriture\+\_\+genere, int nourriture\+\_\+accouplement)
+void \hyperlink{multijoueur_8c_a4db4d85f20641e4a5467cff380ad88ea}{init\+\_\+tab\+\_\+joueurs} (\hyperlink{structjoueur__s}{joueur\+\_\+t} $\ast$tab, int tampon)
+\begin{DoxyCompactList}\small\item\em met le nom du premier joueur a jouer en premiere place dans le tableau \end{DoxyCompactList}\item 
+int \hyperlink{multijoueur_8c_ad56084052276e565587126f9cef02114}{boucle\+\_\+multi} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, \hyperlink{structjoueur__s}{joueur\+\_\+t} joueur1, \hyperlink{structjoueur__s}{joueur\+\_\+t} joueur2, int nourriture\+\_\+genere, int nourriture\+\_\+accouplement, int nb\+\_\+gen, int tampon)
+\item 
+int \hyperlink{multijoueur_8c_a03d2c8daaba0a3cadb621b810ee8df30}{main\+\_\+multijoueur} (\hyperlink{structcaract__mat__t}{caract\+\_\+mat\+\_\+t} $\ast$cmat, int nourriture\+\_\+genere, int nourriture\+\_\+accouplement, int nb\+\_\+gen)
 \end{DoxyCompactItemize}
 
 
@@ -76,17 +53,30 @@ Maxime.\+T
 
 
 \subsection{Documentation des fonctions}
-\index{multijoueur.\+c@{multijoueur.\+c}!init\+\_\+tab\+\_\+joueurs@{init\+\_\+tab\+\_\+joueurs}}
-\index{init\+\_\+tab\+\_\+joueurs@{init\+\_\+tab\+\_\+joueurs}!multijoueur.\+c@{multijoueur.\+c}}
-\subsubsection[{\texorpdfstring{init\+\_\+tab\+\_\+joueurs(joueur\+\_\+multi\+\_\+t $\ast$tab, int tampon)}{init_tab_joueurs(joueur_multi_t *tab, int tampon)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+tab\+\_\+joueurs (
+\index{multijoueur.\+c@{multijoueur.\+c}!boucle\+\_\+multi@{boucle\+\_\+multi}}
+\index{boucle\+\_\+multi@{boucle\+\_\+multi}!multijoueur.\+c@{multijoueur.\+c}}
+\subsubsection[{\texorpdfstring{boucle\+\_\+multi(caract\+\_\+mat\+\_\+t $\ast$cmat, joueur\+\_\+t joueur1, joueur\+\_\+t joueur2, int nourriture\+\_\+genere, int nourriture\+\_\+accouplement, int nb\+\_\+gen, int tampon)}{boucle_multi(caract_mat_t *cmat, joueur_t joueur1, joueur_t joueur2, int nourriture_genere, int nourriture_accouplement, int nb_gen, int tampon)}}]{\setlength{\rightskip}{0pt plus 5cm}int boucle\+\_\+multi (
 \begin{DoxyParamCaption}
-\item[{{\bf joueur\+\_\+multi\+\_\+t} $\ast$}]{tab, }
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{{\bf joueur\+\_\+t}}]{joueur1, }
+\item[{{\bf joueur\+\_\+t}}]{joueur2, }
+\item[{int}]{nourriture\+\_\+genere, }
+\item[{int}]{nourriture\+\_\+accouplement, }
+\item[{int}]{nb\+\_\+gen, }
 \item[{int}]{tampon}
 \end{DoxyParamCaption}
-)}\hypertarget{multijoueur_8c_a63eb3a0f31964563c84357d1c6a76ce1}{}\label{multijoueur_8c_a63eb3a0f31964563c84357d1c6a76ce1}
+)}\hypertarget{multijoueur_8c_ad56084052276e565587126f9cef02114}{}\label{multijoueur_8c_ad56084052276e565587126f9cef02114}
+fonction qui initialise les fonctions des joueurs en mettant leur jooueur\+\_\+t passé en param, et qui fait le déroulement du jeu \index{multijoueur.\+c@{multijoueur.\+c}!init\+\_\+tab\+\_\+joueurs@{init\+\_\+tab\+\_\+joueurs}}
+\index{init\+\_\+tab\+\_\+joueurs@{init\+\_\+tab\+\_\+joueurs}!multijoueur.\+c@{multijoueur.\+c}}
+\subsubsection[{\texorpdfstring{init\+\_\+tab\+\_\+joueurs(joueur\+\_\+t $\ast$tab, int tampon)}{init_tab_joueurs(joueur_t *tab, int tampon)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+tab\+\_\+joueurs (
+\begin{DoxyParamCaption}
+\item[{{\bf joueur\+\_\+t} $\ast$}]{tab, }
+\item[{int}]{tampon}
+\end{DoxyParamCaption}
+)}\hypertarget{multijoueur_8c_a4db4d85f20641e4a5467cff380ad88ea}{}\label{multijoueur_8c_a4db4d85f20641e4a5467cff380ad88ea}
 
 
-met le premier joueur a jouer en premiere place dans le tableau 
+met le nom du premier joueur a jouer en premiere place dans le tableau 
 
 
 \begin{DoxyParams}{Paramètres}
@@ -111,13 +101,14 @@ initialise un joueur en joueur gentil \index{multijoueur.\+c@{multijoueur.\+c}!j
 )}\hypertarget{multijoueur_8c_a5934823e38db1e7f75825bbf0ab7b141}{}\label{multijoueur_8c_a5934823e38db1e7f75825bbf0ab7b141}
 initialise un joueur en tant que mechant \index{multijoueur.\+c@{multijoueur.\+c}!main\+\_\+multijoueur@{main\+\_\+multijoueur}}
 \index{main\+\_\+multijoueur@{main\+\_\+multijoueur}!multijoueur.\+c@{multijoueur.\+c}}
-\subsubsection[{\texorpdfstring{main\+\_\+multijoueur(caract\+\_\+mat\+\_\+t $\ast$cmat, int nourriture\+\_\+genere, int nourriture\+\_\+accouplement)}{main_multijoueur(caract_mat_t *cmat, int nourriture_genere, int nourriture_accouplement)}}]{\setlength{\rightskip}{0pt plus 5cm}int main\+\_\+multijoueur (
+\subsubsection[{\texorpdfstring{main\+\_\+multijoueur(caract\+\_\+mat\+\_\+t $\ast$cmat, int nourriture\+\_\+genere, int nourriture\+\_\+accouplement, int nb\+\_\+gen)}{main_multijoueur(caract_mat_t *cmat, int nourriture_genere, int nourriture_accouplement, int nb_gen)}}]{\setlength{\rightskip}{0pt plus 5cm}int main\+\_\+multijoueur (
 \begin{DoxyParamCaption}
 \item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
 \item[{int}]{nourriture\+\_\+genere, }
-\item[{int}]{nourriture\+\_\+accouplement}
+\item[{int}]{nourriture\+\_\+accouplement, }
+\item[{int}]{nb\+\_\+gen}
 \end{DoxyParamCaption}
-)}\hypertarget{multijoueur_8c_aa63b77a0b502529327c465a68b5bde50}{}\label{multijoueur_8c_aa63b77a0b502529327c465a68b5bde50}
+)}\hypertarget{multijoueur_8c_a03d2c8daaba0a3cadb621b810ee8df30}{}\label{multijoueur_8c_a03d2c8daaba0a3cadb621b810ee8df30}
 fait le jeu en multi sur meme pc \index{multijoueur.\+c@{multijoueur.\+c}!qui\+\_\+commence@{qui\+\_\+commence}}
 \index{qui\+\_\+commence@{qui\+\_\+commence}!multijoueur.\+c@{multijoueur.\+c}}
 \subsubsection[{\texorpdfstring{qui\+\_\+commence(void)}{qui_commence(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int qui\+\_\+commence (
@@ -130,3 +121,16 @@ demande quel joueur commence
 \begin{DoxyReturn}{Renvoie}
 renvoit 0 si c est le gentil et 1 si c est le mechant 
 \end{DoxyReturn}
+\index{multijoueur.\+c@{multijoueur.\+c}!tour\+\_\+multijoueur@{tour\+\_\+multijoueur}}
+\index{tour\+\_\+multijoueur@{tour\+\_\+multijoueur}!multijoueur.\+c@{multijoueur.\+c}}
+\subsubsection[{\texorpdfstring{tour\+\_\+multijoueur(caract\+\_\+mat\+\_\+t $\ast$cmat, int $\ast$nourriture\+\_\+genere, int $\ast$nourriture\+\_\+accouplement, joueur\+\_\+multi\+\_\+t tab[], int tour, int tampon)}{tour_multijoueur(caract_mat_t *cmat, int *nourriture_genere, int *nourriture_accouplement, joueur_multi_t tab[], int tour, int tampon)}}]{\setlength{\rightskip}{0pt plus 5cm}void tour\+\_\+multijoueur (
+\begin{DoxyParamCaption}
+\item[{{\bf caract\+\_\+mat\+\_\+t} $\ast$}]{cmat, }
+\item[{int $\ast$}]{nourriture\+\_\+genere, }
+\item[{int $\ast$}]{nourriture\+\_\+accouplement, }
+\item[{{\bf joueur\+\_\+multi\+\_\+t}}]{tab\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{tour, }
+\item[{int}]{tampon}
+\end{DoxyParamCaption}
+)}\hypertarget{multijoueur_8c_a4208d6e0692cb5efaca7d4a1c8cbabfe}{}\label{multijoueur_8c_a4208d6e0692cb5efaca7d4a1c8cbabfe}
+Fonction qui defini le contenu d\textquotesingle{}un tour de jeu en multi joueur 

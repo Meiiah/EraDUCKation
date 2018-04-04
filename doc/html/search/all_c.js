@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['qui_5fcommence',['qui_commence',['../multijoueur_8c.html#a514eac63a82d5da1b2afffa9cd49a085',1,'multijoueur.c']]]
+  ['piege_2ec',['piege.c',['../piege_8c.html',1,'']]],
+  ['presence_5fcanard',['presence_canard',['../canard_8c.html#aa035ff52c520519ec35815a8d064f3ca',1,'canard.c']]]
 ];

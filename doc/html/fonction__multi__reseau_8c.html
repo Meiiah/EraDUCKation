@@ -1,0 +1,589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>« EraDUCKation »: Référence du fichier fonction_multi_reseau.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">« EraDUCKation »
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Membres&#160;de&#160;fichier</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier fonction_multi_reseau.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>programme qui gere tout ce qui est en rapport avec le joueur  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &quot;struct.h&quot;</code><br />
+<code>#include &quot;matrice.h&quot;</code><br />
+<code>#include &quot;event.h&quot;</code><br />
+<code>#include &quot;outils_reseau.h&quot;</code><br />
+<code>#include &quot;joueur.h&quot;</code><br />
+<code>#include &quot;multijoueur.h&quot;</code><br />
+<code>#include &quot;client_reseau.h&quot;</code><br />
+<code>#include &quot;multijoueur_reseau.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de fonction_multi_reseau.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="fonction__multi__reseau_8c__incl.png" border="0" usemap="#fonction__multi__reseau_8c" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a7dfdd4832588adc97043924fb55d4bd5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7dfdd4832588adc97043924fb55d4bd5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>nb_event</b>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a7dfdd4832588adc97043924fb55d4bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a04b3ffd23e25f2c5d77ad17eb031030b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonction__multi__reseau_8c.html#a04b3ffd23e25f2c5d77ad17eb031030b">envoyer_situation</a> (int socket, <a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, int nourriture_genere, int nouriture_acouplement)</td></tr>
+<tr class="separator:a04b3ffd23e25f2c5d77ad17eb031030b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0815d7741627e3e6d7d66b8cea0382e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonction__multi__reseau_8c.html#a0815d7741627e3e6d7d66b8cea0382e8">recevoir_situation</a> (int socket, <a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, int *nourriture_genere, int *nouriture_acouplement)</td></tr>
+<tr class="separator:a0815d7741627e3e6d7d66b8cea0382e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7be3a31d7b532a43b2ec1fa5df87e4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonction__multi__reseau_8c.html#aa7be3a31d7b532a43b2ec1fa5df87e4c">choix_mechant_quijoue</a> (int socket, <a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, <a class="el" href="structjoueur__s.html">joueur_t</a> *joueur, <a class="el" href="structjoueur__s.html">joueur_t</a> *joueur2, int *nourriture_genere, int *nourriture_accouplement, int generation)</td></tr>
+<tr class="separator:aa7be3a31d7b532a43b2ec1fa5df87e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f5bcacaed036d3a4687e0da3b4cdce8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonction__multi__reseau_8c.html#a8f5bcacaed036d3a4687e0da3b4cdce8">choix_mechant_quirecoit</a> (int socket, <a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, <a class="el" href="structjoueur__s.html">joueur_t</a> *joueur, <a class="el" href="structjoueur__s.html">joueur_t</a> *joueur2, int *nourriture_genere, int *nourriture_accouplement, int generation)</td></tr>
+<tr class="memdesc:a8f5bcacaed036d3a4687e0da3b4cdce8"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui permet de choisir entre 3 evenements mauvais  <a href="#a8f5bcacaed036d3a4687e0da3b4cdce8">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a8f5bcacaed036d3a4687e0da3b4cdce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf7f06433a3d925672be32ea8e9d49c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonction__multi__reseau_8c.html#adf7f06433a3d925672be32ea8e9d49c3">choix_gentil_quijoue</a> (int socket, <a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, <a class="el" href="structjoueur__s.html">joueur_t</a> *joueur, <a class="el" href="structjoueur__s.html">joueur_t</a> *joueur2, int *nourriture_genere, int *nourriture_accouplement, int generation)</td></tr>
+<tr class="memdesc:adf7f06433a3d925672be32ea8e9d49c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui applique le choix mechant effectu� par l adversaire  <a href="#adf7f06433a3d925672be32ea8e9d49c3">Plus de détails...</a><br /></td></tr>
+<tr class="separator:adf7f06433a3d925672be32ea8e9d49c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0809e7a8eb4e825ea07886e8a2b31c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonction__multi__reseau_8c.html#ab0809e7a8eb4e825ea07886e8a2b31c8">choix_gentil_quirecoit</a> (int socket, <a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *cmat, <a class="el" href="structjoueur__s.html">joueur_t</a> *joueur, <a class="el" href="structjoueur__s.html">joueur_t</a> *joueur2, int *nourriture_genere, int *nourriture_accouplement, int generation)</td></tr>
+<tr class="memdesc:ab0809e7a8eb4e825ea07886e8a2b31c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui permet de choisir entre 3 evenements gentil  <a href="#ab0809e7a8eb4e825ea07886e8a2b31c8">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab0809e7a8eb4e825ea07886e8a2b31c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a815ad5ffa92a39d372ba2511cc5237b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structjoueur__res__s.html">joueur_reseau_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonction__multi__reseau_8c.html#a815ad5ffa92a39d372ba2511cc5237b7">joueur_gentil_res</a> (void(*choix)(int, <a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *, <a class="el" href="structjoueur__s.html">joueur_t</a> *, <a class="el" href="structjoueur__s.html">joueur_t</a> *, int *, int *, int))</td></tr>
+<tr class="separator:a815ad5ffa92a39d372ba2511cc5237b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab06d10a852b9f7713683eaa57818d3d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structjoueur__res__s.html">joueur_reseau_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonction__multi__reseau_8c.html#ab06d10a852b9f7713683eaa57818d3d9">joueur_mechant_res</a> (void(*choix)(int, <a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *, <a class="el" href="structjoueur__s.html">joueur_t</a> *, <a class="el" href="structjoueur__s.html">joueur_t</a> *, int *, int *, int))</td></tr>
+<tr class="separator:ab06d10a852b9f7713683eaa57818d3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8291ba58b1856ef9768a2fec6610f0b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonction__multi__reseau_8c.html#a8291ba58b1856ef9768a2fec6610f0b1">init_joueurs_serv</a> (<a class="el" href="structjoueur__res__s.html">joueur_reseau_t</a> tab[])</td></tr>
+<tr class="memdesc:a8291ba58b1856ef9768a2fec6610f0b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui applique le choix gentil effectu� par l adversaire  <a href="#a8291ba58b1856ef9768a2fec6610f0b1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a8291ba58b1856ef9768a2fec6610f0b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cc2bd63d07102358d521858317b5d3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonction__multi__reseau_8c.html#a1cc2bd63d07102358d521858317b5d3b">init_joueurs_client</a> (<a class="el" href="structjoueur__res__s.html">joueur_reseau_t</a> tab[])</td></tr>
+<tr class="memdesc:a1cc2bd63d07102358d521858317b5d3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise le tableau joueurs du serveur  <a href="#a1cc2bd63d07102358d521858317b5d3b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a1cc2bd63d07102358d521858317b5d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ae6014ea9aae6ae5f6dce5b8475930e62"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><b>mauv_evts_m</b> []</td></tr>
+<tr class="separator:ae6014ea9aae6ae5f6dce5b8475930e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f95e77357dc5c8e84d6e04f51c52ed8"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><b>bon_evts_m</b> []</td></tr>
+<tr class="separator:a0f95e77357dc5c8e84d6e04f51c52ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>programme qui gere tout ce qui est en rapport avec le joueur </p>
+<dl class="section author"><dt>Auteur</dt><dd>TOUZE Maxime </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.5 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>31 mars 2018 </dd></dl>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="adf7f06433a3d925672be32ea8e9d49c3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void choix_gentil_quijoue </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>socket</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structjoueur__s.html">joueur_t</a> *&#160;</td>
+          <td class="paramname"><em>joueur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structjoueur__s.html">joueur_t</a> *&#160;</td>
+          <td class="paramname"><em>joueur2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>nourriture_genere</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>nourriture_accouplement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>generation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui applique le choix mechant effectu� par l adversaire </p>
+<p>fonction qui permet de choisir entre 3 evenements gentil </p>
+
+</div>
+</div>
+<a class="anchor" id="ab0809e7a8eb4e825ea07886e8a2b31c8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void choix_gentil_quirecoit </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>socket</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structjoueur__s.html">joueur_t</a> *&#160;</td>
+          <td class="paramname"><em>joueur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structjoueur__s.html">joueur_t</a> *&#160;</td>
+          <td class="paramname"><em>joueur2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>nourriture_genere</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>nourriture_accouplement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>generation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui permet de choisir entre 3 evenements gentil </p>
+<p>fonction qui applique le choix gentil effectué par l adversaire </p>
+
+</div>
+</div>
+<a class="anchor" id="aa7be3a31d7b532a43b2ec1fa5df87e4c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void choix_mechant_quijoue </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>socket</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structjoueur__s.html">joueur_t</a> *&#160;</td>
+          <td class="paramname"><em>joueur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structjoueur__s.html">joueur_t</a> *&#160;</td>
+          <td class="paramname"><em>joueur2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>nourriture_genere</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>nourriture_accouplement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>generation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>fonction qui permet de choisir entre 3 evenements mauvais </p>
+
+</div>
+</div>
+<a class="anchor" id="a8f5bcacaed036d3a4687e0da3b4cdce8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void choix_mechant_quirecoit </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>socket</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structjoueur__s.html">joueur_t</a> *&#160;</td>
+          <td class="paramname"><em>joueur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structjoueur__s.html">joueur_t</a> *&#160;</td>
+          <td class="paramname"><em>joueur2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>nourriture_genere</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>nourriture_accouplement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>generation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui permet de choisir entre 3 evenements mauvais </p>
+<p>fonction qui applique le choix mechant effectué par l adversaire </p>
+
+</div>
+</div>
+<a class="anchor" id="a04b3ffd23e25f2c5d77ad17eb031030b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void envoyer_situation </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>socket</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nourriture_genere</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nouriture_acouplement</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Envoie toutes les données de jeu pouvant etre changées de facon aléatoire </p>
+
+</div>
+</div>
+<a class="anchor" id="a1cc2bd63d07102358d521858317b5d3b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_joueurs_client </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structjoueur__res__s.html">joueur_reseau_t</a>&#160;</td>
+          <td class="paramname"><em>tab</em>[]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>initialise le tableau joueurs du serveur </p>
+<p>initialise le tableau joueurs du client </p>
+
+</div>
+</div>
+<a class="anchor" id="a8291ba58b1856ef9768a2fec6610f0b1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_joueurs_serv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structjoueur__res__s.html">joueur_reseau_t</a>&#160;</td>
+          <td class="paramname"><em>tab</em>[]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui applique le choix gentil effectu� par l adversaire </p>
+<p>initialise le tableau joueurs du serveur </p>
+
+</div>
+</div>
+<a class="anchor" id="a815ad5ffa92a39d372ba2511cc5237b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structjoueur__res__s.html">joueur_reseau_t</a> joueur_gentil_res </td>
+          <td>(</td>
+          <td class="paramtype">void(*)(int, <a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *, <a class="el" href="structjoueur__s.html">joueur_t</a> *, <a class="el" href="structjoueur__s.html">joueur_t</a> *, int *, int *, int)&#160;</td>
+          <td class="paramname"><em>choix</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>initialise un joueur en joueur gentil </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">choix</td><td></td></tr>
+    <tr><td class="paramname">fonction</td><td>choix du joueur gentil </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab06d10a852b9f7713683eaa57818d3d9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structjoueur__res__s.html">joueur_reseau_t</a> joueur_mechant_res </td>
+          <td>(</td>
+          <td class="paramtype">void(*)(int, <a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *, <a class="el" href="structjoueur__s.html">joueur_t</a> *, <a class="el" href="structjoueur__s.html">joueur_t</a> *, int *, int *, int)&#160;</td>
+          <td class="paramname"><em>choix</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>initialise un joueur en joueur gentil </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">choix</td><td></td></tr>
+    <tr><td class="paramname">fonction</td><td>choix du joueur gentil </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0815d7741627e3e6d7d66b8cea0382e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void recevoir_situation </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>socket</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcaract__mat__t.html">caract_mat_t</a> *&#160;</td>
+          <td class="paramname"><em>cmat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>nourriture_genere</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>nouriture_acouplement</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Recoit toutes les données de jeu pouvant etre changées de facon aléatoire </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a class="anchor" id="a0f95e77357dc5c8e84d6e04f51c52ed8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* bon_evts_m[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur initiale :</b><div class="fragment"><div class="line">={</div><div class="line">    <span class="stringliteral">&quot;Accelère la reproduction des canards&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;Génération de nourriture augmentée&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;Rien changer&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;Libère entre 0 et 5 canards&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;Rend un canard invincible&quot;</span></div><div class="line">}</div></div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ae6014ea9aae6ae5f6dce5b8475930e62"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* mauv_evts_m[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur initiale :</b><div class="fragment"><div class="line">={</div><div class="line">    <span class="stringliteral">&quot;Lance un tsunami sur le labyrinthe&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;Lance une tempete sur le labyrinthe&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;Famine : Réduit la nourriture générée&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;Réduit la reproduction des canards&quot;</span>,</div><div class="line">    <span class="stringliteral">&quot;Appartion de 0 à 5 prédateurs de canards&quot;</span></div><div class="line">}</div></div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>
