@@ -197,8 +197,9 @@ int canard_invincible(caract_mat_t * cmat, joueur_t * joueur,joueur_t * joueur2,
 		random_y=rand_map(cmat->taille_mat_y);
 	}while(cmat->matrice[random_x][random_y].nb_occupant==0);
 	
-	//Rempli les poches du canards
+	//Rempli les poches du canards et change son état pour qu'il ne soit plus affecter par des événements
 	cmat->matrice[random_x][random_y].tab_canard[0].nourriture=100;
+	cmat->matrice[random_x][random_y].tab_canard[0].etat=2;	//etat invincible
 	return 1;
 }
 //Tableau contenant les fonctions mauvaises
