@@ -3,6 +3,7 @@
 #include "matrice.h"
 #include "joueur.h"
 #include "outils.h"
+#include "canard.h"
 #include <stdio.h>
 #define M 10
 
@@ -189,16 +190,29 @@ int liberation_canard(caract_mat_t * cmat, joueur_t * joueur,joueur_t * joueur2,
 /** \fn int canard_invincible(caract_mat_t,joueur_t*,joueur_t*,int*,int*)*/
 int canard_invincible(caract_mat_t * cmat, joueur_t * joueur,joueur_t * joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	ajout_score(104,joueur,joueur2);
-	int random_x;
-	int random_y;
-	//choisit une case ou il y a des canards
-	do{
-		random_x=rand_map(cmat->taille_mat_x);
-		random_y=rand_map(cmat->taille_mat_y);
-	}while(cmat->matrice[random_x][random_y].nb_occupant==0);
 	
-	//Rempli les poches du canards
-	cmat->matrice[random_x][random_y].tab_canard[0].nourriture=100;
+	//choisit une case ou il y a des canards
+	int nbr_canard=nombre_canard(cmat);
+	//Random dans le nombre de canard
+	int random=(rand()%nbr_canard)+1;
+	int i,j;
+	int compteur=0;
+	//Balayage de la matrice
+	for(i=0;i<cmat->taille_mat_x;i++){
+		for(j=0;j<cmat->taille_mat_y;j++){	
+				//Choisit un canard présent dans la matrice
+				if(compteur==random){
+					//Rempli les poches du canards et change l'etat du canard pour pas qu'il soit affecté par d'autre evenement
+					cmat->matrice[i][j].tab_canard[0].nourriture=100;
+					cmat->matrice[i][j].tab_canard[0].etat=2;
+					return 1;
+				}
+				if(cmat->matrice[i][j].nb_occupant!=0){
+					//Si y a un canard on incrémente
+					compteur++;	
+				}
+		}
+	}
 	return 1;
 }
 //Tableau contenant les fonctions mauvaises
