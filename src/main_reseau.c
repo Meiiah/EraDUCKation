@@ -43,7 +43,7 @@ void jeu_client(int socket, caract_mat_t * cmat, joueur_reseau_t tab[], int nour
 		nb_gen++;
 
 		printf("Nourriture accouplement: %i\n",nourriture_accouplement);
-		printf("Nourriture g�n�r�e: %i\n",nourriture_generee);
+		printf("Nourriture generee: %i\n",nourriture_generee);
 		printf("Nombre de canard: %i \n",nombre_canard(cmat));
 
 	}
@@ -58,7 +58,7 @@ void main_client(void){/** main pour le client */
     caract_mat_t * cmat;
 
     socket = menu_client(); // socket client
-
+    sprintf(stderr, "Connection réussie!");
     cmat = recev_init_laby(socket); //la cmat envoy�e par le client
 
     quel_role_client(socket, tab_joueurs); //initialise les roles dans ordre de jeu serveur -> client
@@ -97,7 +97,7 @@ void jeu_serv(int socket, caract_mat_t * cmat, joueur_reseau_t tab[],  int nourr
 		nb_gen++;
 
 		printf("Nourriture accouplement: %i\n",nourriture_accouplement);
-		printf("Nourriture g�n�r�e: %i\n",nourriture_generee);
+		printf("Nourriture generee: %i\n",nourriture_generee);
 		printf("Nombre de canard: %i \n",nombre_canard(cmat));
 
 	}
@@ -114,7 +114,7 @@ void main_serveur(void){ /** foncion main pour le serveur en mode r�seau*/
     int ty = 10;
 
     socket = menu_serveur(); // socket client
-
+    fprintf(stderr ,"\nConnection réussie!");
     cmat = creation_matrice(tx, ty);
 
     init_matrice(cmat); //la cmat envoy�e par le client
