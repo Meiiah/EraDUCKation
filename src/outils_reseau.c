@@ -16,13 +16,18 @@
 #include "connection.h"
 
 /** \fn void envoyer_int(int socket, int valeur)*/
- void envoyer_int(int socket, int valeur){ /** Fonction qui envoie un int a la socket donn�e en parametre */
-    send(socket, &valeur, sizeof(int), 0);
+ void envoyer_int(int socket, int valeur){ /** Fonction qui envoie un int a la socket donnee en parametre */
+    fprintf(stderr, "DEBUT envoyer_int\n");
+ 	 send(socket, &valeur, sizeof(int), 0);
+ 	 fprintf(stderr, "FIN envoyer_int\n");
  }
 
  /** \fn void recevoir_int(int socket, int * valeur) */
-void recevoir_int(int socket, int * valeur){/** fonction qui recoit un int de la socket pass�e en parametre*/
-    recv(socket, valeur, sizeof(int), 0);
+void recevoir_int(int socket, int * valeur){/** fonction qui recoit un int de la socket passee en parametre*/
+    fprintf(stderr, "DEBUT recevoir_int\n");
+    memset(valeur, 0, sizeof(int));
+	recv(socket, valeur, sizeof(int), 0);
+	fprintf(stderr, "FIN recevoir_int\n");
  }
 
 /**\fn  int demander_qui_commence(void)*/
@@ -35,7 +40,7 @@ int demander_qui_commence(){/** Demande si la personne veut commencer ou non */
 }
 
 /**\fn void saisir_role(int * role) */
-void saisir_role(int * role){ /** Demande quel r�le le joueur veut jouer */
+void saisir_role(int * role){ /** Demande quel role le joueur veut jouer */
 	printf("quel role voulez vous endosser ? \n");
 	printf("	Le mechant tapez 0\n");
 	printf("	Le gentil tapez 1\n");

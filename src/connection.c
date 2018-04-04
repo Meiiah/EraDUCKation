@@ -11,10 +11,6 @@ void prendreIP(char nom[]){
 	
 	struct hostent *host = gethostbyname(res);
 	
-
-	
-
-	
 	strcpy(nom, (inet_ntoa(**( (struct in_addr**)host->h_addr_list))) );
 
 }
@@ -89,7 +85,7 @@ int menu_client(void){ /** demande au client le port et l ip du serveur, et cré
 	  	exit(0);
 	}
 	/* -------------- */
-
+	printf(" Adversaire trouvé ! ");
     return to_server_socket;
 } /**  \return retourne la socket pour communiquer avec le serveur*/
 
