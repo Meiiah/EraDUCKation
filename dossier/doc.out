@@ -1,0 +1,20 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Organisation du travail}{}% 2
+\BOOKMARK [1][-]{section.3}{Analyse - Comment jouer ?}{}% 3
+\BOOKMARK [1][-]{section.4}{Conception}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{Labyrinthe al\351atoire}{section.4}% 5
+\BOOKMARK [2][-]{subsection.4.2}{Le multijoueur}{section.4}% 6
+\BOOKMARK [1][-]{section.5}{Programmation}{}% 7
+\BOOKMARK [2][-]{subsection.5.1}{Programmation modulaire}{section.5}% 8
+\BOOKMARK [2][-]{subsection.5.2}{Labyrinthe}{section.5}% 9
+\BOOKMARK [2][-]{subsection.5.3}{D\351placer}{section.5}% 10
+\BOOKMARK [2][-]{subsection.5.4}{SDL}{section.5}% 11
+\BOOKMARK [1][-]{section.6}{R\351sultats}{}% 12
+\BOOKMARK [2][-]{subsection.6.1}{Fonctionnalit\351s obligatoires}{section.6}% 13
+\BOOKMARK [3][-]{subsubsection.6.1.1}{Sauvegarde et chargement}{subsection.6.1}% 14
+\BOOKMARK [3][-]{subsubsection.6.1.2}{G\351n\351ration du labyrinthe}{subsection.6.1}% 15
+\BOOKMARK [3][-]{subsubsection.6.1.3}{Jeu solo et multijoueur, et leurs fonctionnalit\351s }{subsection.6.1}% 16
+\BOOKMARK [2][-]{subsection.6.2}{Fonctionnalit\351s facultatives}{section.6}% 17
+\BOOKMARK [3][-]{subsubsection.6.2.1}{Jeu en r\351seau}{subsection.6.2}% 18
+\BOOKMARK [3][-]{subsubsection.6.2.2}{Interface graphique}{subsection.6.2}% 19
+\BOOKMARK [1][-]{section.7}{Bilans personnels}{}% 20

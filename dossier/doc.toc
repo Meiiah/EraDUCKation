@@ -1,0 +1,20 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {2}Organisation du travail}{4}{section.2}
+\contentsline {section}{\numberline {3}Analyse - Comment jouer ?}{6}{section.3}
+\contentsline {section}{\numberline {4}Conception}{8}{section.4}
+\contentsline {subsection}{\numberline {4.1}Labyrinthe al\IeC {\'e}atoire}{8}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Le multijoueur}{9}{subsection.4.2}
+\contentsline {section}{\numberline {5}Programmation}{10}{section.5}
+\contentsline {subsection}{\numberline {5.1}Programmation modulaire}{10}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Labyrinthe}{10}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}D\IeC {\'e}placer}{12}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}SDL}{13}{subsection.5.4}
+\contentsline {section}{\numberline {6}R\IeC {\'e}sultats}{14}{section.6}
+\contentsline {subsection}{\numberline {6.1}Fonctionnalit\IeC {\'e}s obligatoires}{14}{subsection.6.1}
+\contentsline {subsubsection}{\numberline {6.1.1}Sauvegarde et chargement}{14}{subsubsection.6.1.1}
+\contentsline {subsubsection}{\numberline {6.1.2}G\IeC {\'e}n\IeC {\'e}ration du labyrinthe}{14}{subsubsection.6.1.2}
+\contentsline {subsubsection}{\numberline {6.1.3}Jeu solo et multijoueur, et leurs fonctionnalit\IeC {\'e}s }{14}{subsubsection.6.1.3}
+\contentsline {subsection}{\numberline {6.2}Fonctionnalit\IeC {\'e}s facultatives}{15}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}Jeu en r\IeC {\'e}seau}{15}{subsubsection.6.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2}Interface graphique}{15}{subsubsection.6.2.2}
+\contentsline {section}{\numberline {7}Bilans personnels}{15}{section.7}
