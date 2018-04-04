@@ -1,0 +1,82 @@
+ITARGET = Era
+CC=gcc
+CFLAGS=-Wall -g
+
+SRCDIR= src
+BINDIR = bin
+OBJ=  canard.o deplacer.o event.o matrice.o outils.o jeu_solo.o joueur.o labyrinthe.o main.o nourriture.o piege.o reproduction.o sauvegarde.o multijoueur.o
+
+DIRS = $(OBJ) $(BINDIR) 
+
+.PHONY: DIRS
+	all: $(DIRS) $(BINDIR)/$(TARGET)
+
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+
+
+SOURCES  := $(wildcard $(SRCDIR)/*.c)
+INCLUDES := $(wildcard $(SRCDIR)/*.h)
+OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+rm       = rm -f
+
+
+canard.o: canard.c 
+	${CC} -c canard.c ${FLAGS}
+
+deplacer.o: deplacer.c 
+	${CC} -c deplacer.c ${FLAGS}
+
+event.o: event.c 
+	${CC} -c event.c ${FLAGS}
+	
+outils.o: outils.c 
+	${CC} -c outils.c ${FLAGS}
+
+jeu_solo.o: jeu_solo.c 
+	${CC} -c jeu_solo.c ${FLAGS}
+
+joueur.o: joueur.c 
+	${CC} -c joueur.c ${FLAGS}
+
+labyrinthe.o: labyrinthe.c 
+	${CC} -c labyrinthe.c ${FLAGS}
+
+main.o: main.c 
+	${CC} -c main.c ${FLAGS}
+
+nourriture.o: nourriture.c 
+	${CC} -c nourriture.c ${FLAGS}
+
+piege.o: piege.c 
+	${CC} -c piege.c ${FLAGS}
+
+reproduction.o: reproduction.c 
+	${CC} -c reproduction.c ${FLAGS}
+
+sauvegarde.o: sauvegarde.c 
+	${CC} -c sauvegarde.c ${FLAGS}
+
+matrice.o: matrice.c
+	${CC} -c matrice.c ${FLAGS}
+
+fonction_multi_reseau.o: fonction_multi_reseau.c
+	${CC} -c fonction_multi_reseau.c ${FLAGS}
+
+multijoueur.o: multijoueur.c 
+	${CC} -c multijoueur.c ${FLAGS}
+
+	@echo "Compiled "$<" successfully!"
+
+
+.PHONY: clean
+clean:
+	@$(rm) $(OBJECTS)
+	@echo "Cleanup complete!"
+
+.PHONY: remove
+remove: clean
+	@$(rm) $(BINDIR)/$(TARGET)
+	@echo "Executable removed!"
+
