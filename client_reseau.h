@@ -1,7 +1,7 @@
 #ifndef  __CLIENT_RESEAU_H__
 #define __CLIENT_RESEAU_H__
 
-#include "matrice.c"
+#include "matrice.h"
 #include "outils_reseau.h"
 
 void recevoir_laby(int socket, caract_mat_t * cmat);     /** Fonction qui tecoit le laby */

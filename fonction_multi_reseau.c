@@ -7,6 +7,8 @@
 #include "outils_reseau.h"
 #include "joueur.h"
 #include "multijoueur.h"
+#include "client_reseau.h"
+#include "multijoueur_reseau.h"
 
 /**
 *\file fonction_multi_reseau.c
@@ -16,9 +18,22 @@
 *\date 31 mars 2018
 */
 
-char * mauv_evts={"tsunami", "tempete","famine","reproduction_ralenti","predateur"};
-char * bon_evts={"plus_nourriture","joker_nourriture","liberation_canard","canard_invassible","reproduction_accelere"};
+#define nb_event 5
 
+const char *mauv_evts_m[]={
+	"Lance un tsunami sur le labyrinthe",
+	"Lance une tempete sur le labyrinthe",
+	"Famine : Réduit la nourriture générée",
+	"Réduit la reproduction des canards",
+	"Appartion de 0 à 5 prédateurs de canards"
+};
+ const char *bon_evts_m[]={
+	"Accelère la reproduction des canards",
+	"Génération de nourriture augmentée",
+	"Rien changer",
+	"Libère entre 0 et 5 canards",
+	"Rend un canard invincible"
+};
 
 /**\fn  void envoyer_situation(int socket ,caract_mat_t * cmat, int nourriture_genere, int nouriture_acouplement)*/
 void envoyer_situation(int socket ,caract_mat_t * cmat, int nourriture_genere, int nouriture_acouplement){/** Envoie toutes les données de jeu pouvant etre changées de facon aléatoire */
@@ -80,11 +95,11 @@ void choix_mechant_quirecoit(int socket, caract_mat_t * cmat,joueur_t * joueur, 
 	recevoir_int(socket, &choix3);
 
     printf("Le joueur adverse a le choix entre : \n");
-	printf("\nChoix 1 : %s\n",mauv_evts[choix1]);  // Affichage des choix si ils sont differents du premier
+	printf("\nChoix 1 : %s\n",mauv_evts_m[choix1]);  // Affichage des choix si ils sont differents du premier
 	if(choix1 != choix2)
-		printf("Choix 2 : %s\n",mauv_evts[choix2]);
+		printf("Choix 2 : %s\n",mauv_evts_m[choix2]);
 	if(choix1 != choix3 && choix2 != choix3)
-		printf("Choix 3 : %s\n",mauv_evts[choix3]);
+		printf("Choix 3 : %s\n",mauv_evts_m[choix3]);
 
 	printf("en attente du choix du joueur ..... \n");
 
@@ -108,7 +123,7 @@ void choix_mechant_quirecoit(int socket, caract_mat_t * cmat,joueur_t * joueur, 
 
 
 /** \fn void choix_gentil_quijoue(int socket, caract_mat_t * cmat,joueur_t joueur, joueur_t joueur2, int * nourriture_genere, int * nourriture_accouplement,int generation)*/
-void choix_gentil_quijoue(int socket, caract_mat_t * cmat,joueur_t * joueur, joueur_t * joueur2, int * nourriture_genere, int * nourriture_accouplement,int generation){/** fonction qui permet de choisir entre 3 evenements gentil*/
+void choix_gentil_quijoue(int socket, caract_mat_t * cmat,joueur_t * joueur, joueur_t * joueur2, int * nourriture_genere, 						int * nourriture_accouplement,int generation){/** fonction qui permet de choisir entre 3 evenements gentil*/
 	int choix1, choix2, choix3;
 	tab_event_bon(&choix1, &choix2, &choix3);
 
@@ -146,11 +161,11 @@ void choix_gentil_quirecoit(int socket, caract_mat_t * cmat,joueur_t * joueur, j
 	recevoir_int(socket, &choix3);
 
     printf("Le joueur adverse a le choix entre : \n");
-	printf("\nChoix 1 : %s\n",bon_evts[choix1]);  // Affichage des choix si ils sont differents du premier
+	printf("\nChoix 1 : %s\n",bon_evts_m[choix1]);  // Affichage des choix si ils sont differents du premier
 	if(choix1 != choix2)
-		printf("Choix 2 : %s\n",bon_evts[choix2]);
+		printf("Choix 2 : %s\n",bon_evts_m[choix2]);
 	if(choix1 != choix3 && choix2 != choix3)
-		printf("Choix 3 : %s\n",bon_evts[choix3]);
+		printf("Choix 3 : %s\n",bon_evts_m[choix3]);
 
 	printf("en attente du choix du joueur ..... \n");
 
@@ -196,7 +211,7 @@ joueur_reseau_t joueur_mechant_res(void (*choix) (int, caract_mat_t *,joueur_t *
 
 /** \fn void init_joueurs_serv(joueur_reseau_t tab[]) */
 void init_joueurs_serv(joueur_reseau_t tab[]){/** initialise le tableau joueurs du serveur */
-    if(tab[0].clan = gentil){ //vu que le serveur joue en premier il sera sur le rang 0 et c est donc a ce rang qu on affectera la fonction qui envoie
+    if(tab[0].clan == gentil){ //vu que le serveur joue en premier il sera sur le rang 0 et c est donc a ce rang qu on affectera la fonction qui envoie
         tab[0] = joueur_gentil_res( choix_gentil_quijoue );
         tab[1] = joueur_mechant_res(choix_mechant_quirecoit);
     }else{
@@ -207,7 +222,7 @@ void init_joueurs_serv(joueur_reseau_t tab[]){/** initialise le tableau joueurs 
 
 /** \fn void init_joueurs_client(joueur_reseau_t tab[]) */
 void init_joueurs_client(joueur_reseau_t tab[]){/** initialise le tableau joueurs du client */
-    if(tab[1].clan = gentil){ //vu que le client joue en deuxiemeil sera sur le rang 1
+    if(tab[1].clan == gentil){ //vu que le client joue en deuxiemeil sera sur le rang 1
         tab[1] = joueur_gentil_res( choix_gentil_quijoue );
         tab[0] = joueur_mechant_res(choix_mechant_quirecoit);
     }else{

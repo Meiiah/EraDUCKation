@@ -191,6 +191,7 @@ int liberation_canard(caract_mat_t * cmat, joueur_t * joueur,joueur_t * joueur2,
 int canard_invincible(caract_mat_t * cmat, joueur_t * joueur,joueur_t * joueur2,int* nourriture_genere,int* nourriture_accouplement){
 	ajout_score(104,joueur,joueur2);
 	
+<<<<<<< HEAD
 	//choisit une case ou il y a des canards
 	int nbr_canard=nombre_canard(cmat);
 	//Random dans le nombre de canard
@@ -213,6 +214,11 @@ int canard_invincible(caract_mat_t * cmat, joueur_t * joueur,joueur_t * joueur2,
 				}
 		}
 	}
+=======
+	//Rempli les poches du canards et change son état pour qu'il ne soit plus affecter par des événements
+	cmat->matrice[random_x][random_y].tab_canard[0].nourriture=100;
+	cmat->matrice[random_x][random_y].tab_canard[0].etat=2;	//etat invincible
+>>>>>>> 3ea8dd94572ae96bcb076960f265a98d31a827da
 	return 1;
 }
 //Tableau contenant les fonctions mauvaises

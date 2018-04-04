@@ -1,4 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "include_connection.h"
+#include <string.h>
 
 /**********************************************		UTILS		*****************************************/
 
@@ -8,7 +11,7 @@ void prendreIP(char nom[]){
 	
 	struct hostent *host = gethostbyname(res);
 	
-	struct in_addr ** adresse;
+
 	
 
 	

@@ -1,6 +1,6 @@
 /**
  * \file main_reseau.c
- * \brief fonctions des main serveur et client pour le jeu en réseau
+ * \brief fonctions des main serveur et client pour le jeu en rï¿½seau
  * \author Maxime.T
  * \version 0.5
  * \date 20 / 02 / 2018
@@ -8,7 +8,10 @@
 
 
 #include <stdio.h>
-#include <stdlib.h>
+#include "struct.h"
+#include "piege.h"
+#include "joueur.h"
+#include "canard.h"
 #include "multijoueur_reseau.h"
 #include "client_reseau.h"
 #include "connection.h"
@@ -18,6 +21,8 @@
 #include "fonction_multi_reseau.h"
 #include "nourriture.h"
 #include "matrice.h"
+#include "labyrinthe.h"
+#include "outils.h"
 
 /* ************************************    CLIENT     ****************************************** */
 /**\fn  void jeu_client(int socket, caract_mat_t * cmat, joueur_reseau_t tab[], int nourriture_accouplement, int nourriture_generee)*/
@@ -27,7 +32,7 @@ void jeu_client(int socket, caract_mat_t * cmat, joueur_reseau_t tab[], int nour
 
     while ( nb_gen<100 && presence_canard(cmat)==1){ // fin du jeu
 
-        recevoir_laby(socket, cmat); // le client déplace et envoie le labyrinthe
+        recevoir_laby(socket, cmat); // le client dï¿½place et envoie le labyrinthe
 
         affichage_laby(cmat);
 
@@ -38,7 +43,7 @@ void jeu_client(int socket, caract_mat_t * cmat, joueur_reseau_t tab[], int nour
 		nb_gen++;
 
 		printf("Nourriture accouplement: %i\n",nourriture_accouplement);
-		printf("Nourriture générée: %i\n",nourriture_generee);
+		printf("Nourriture gï¿½nï¿½rï¿½e: %i\n",nourriture_generee);
 		printf("Nombre de canard: %i \n",nombre_canard(cmat));
 
 	}
@@ -54,7 +59,7 @@ void main_client(void){/** main pour le client */
 
     socket = menu_client(); // socket client
 
-    cmat = recev_init_laby(socket); //la cmat envoyée par le client
+    cmat = recev_init_laby(socket); //la cmat envoyï¿½e par le client
 
     quel_role_client(socket, tab_joueurs); //initialise les roles dans ordre de jeu serveur -> client
 
@@ -81,7 +86,7 @@ void jeu_serv(int socket, caract_mat_t * cmat, joueur_reseau_t tab[],  int nourr
         spawn_nourriture(cmat, nourriture_generee);
         piege(cmat);
         deplacer(cmat, nourriture_accouplement, nourriture_generee, tab[0].joueur, tab[1].joueur);
-        envoyer_laby(socket, cmat); // le client déplace et envoie le labyrinthe
+        envoyer_laby(socket, cmat); // le client dï¿½place et envoie le labyrinthe
 
         affichage_laby(cmat);
 
@@ -92,7 +97,7 @@ void jeu_serv(int socket, caract_mat_t * cmat, joueur_reseau_t tab[],  int nourr
 		nb_gen++;
 
 		printf("Nourriture accouplement: %i\n",nourriture_accouplement);
-		printf("Nourriture générée: %i\n",nourriture_generee);
+		printf("Nourriture gï¿½nï¿½rï¿½e: %i\n",nourriture_generee);
 		printf("Nombre de canard: %i \n",nombre_canard(cmat));
 
 	}
@@ -101,7 +106,7 @@ void jeu_serv(int socket, caract_mat_t * cmat, joueur_reseau_t tab[],  int nourr
 }
 
 /**\fn void main_serveur(void) */
-void main_serveur(void){ /** foncion main pour le serveur en mode réseau*/
+void main_serveur(void){ /** foncion main pour le serveur en mode rï¿½seau*/
     int socket;
     joueur_reseau_t tab_joueurs[2];
     caract_mat_t * cmat;
@@ -112,7 +117,7 @@ void main_serveur(void){ /** foncion main pour le serveur en mode réseau*/
 
     cmat = creation_matrice(tx, ty);
 
-    init_matrice(cmat); //la cmat envoyée par le client
+    init_matrice(cmat); //la cmat envoyï¿½e par le client
 
     main_laby(cmat); // generation laby
 
@@ -122,7 +127,7 @@ void main_serveur(void){ /** foncion main pour le serveur en mode réseau*/
 
     init_joueurs_serv(tab_joueurs); // initialise les fonctions et ce qui se rapporte aux joueurs
 
-    demander_nom_serv(tab_joueurs); // Prise et envoi des noms
+    demander_nom_serv(tab_joueurs, socket); // Prise et envoi des noms
 
     int nourriture_accouplement = 50;
     int nourriture_generee = 10;
@@ -135,15 +140,15 @@ void main_serveur(void){ /** foncion main pour le serveur en mode réseau*/
 /* **************************************** GENERAL ************************************************* */
 
 /**\fn void main_reseau(void)  */
-void main_reseau(void){/** Le main en multijoueur qui permet de choisir si on est serveur ou client, et de lancer le main assicié */
+void main_reseau(void){/** Le main en multijoueur qui permet de choisir si on est serveur ou client, et de lancer le main assiciï¿½ */
     int choix;
     do{
-        system("cls");
+        //system("CLEAR");
         printf("Bienvenue dans la partie multijoueur d' EraDUCKation, souhaitez vous etre hote ou rejoindre un ami pret a vous recevoir ? \n");
         printf("        Si vous voulez etre l'hote de la partie tapez 1 ;\n");
         printf("        Si vous voulez rejoindre un ami  tapez 2 ;\n");
-        entrer_int(&choix);
-    }while(choix <1 || choix >2);
+        scanf("%i", &choix);
+    }while(choix != 1 && choix != 2);
 
     switch(choix){
 

@@ -5,20 +5,25 @@
  * \version 0.5
  * \date 20 / 02 / 2018
 */
-
+#include <stdio.h>
+#include <stdlib.h>
 #include "include_connection.h"
-#include "multijoueur.c"
+#include "multijoueur.h"
 #include "deplacer_multi.h"
 #include "outils.h"
 #include "outils_reseau.h"
 #include "connection.h"
 #include "joueur.h"
+#include "matrice.h"
+#include "struct.h"
+#include "fonction_multi_reseau.h"
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /**  \fn void envoyer_laby(int socket, caract_mat_t * cmat)*/
 void envoyer_laby(int socket, caract_mat_t * cmat){/** Fonction qui envoit le laby */
 
-    send(socket, *(cmat->matrice[0]) ,sizeof(t_case) * cmat->taille_mat_x * cmat->taille_mat_y ,0);
+    send(socket, cmat->matrice[0]  ,sizeof(case_t) * cmat->taille_mat_x * cmat->taille_mat_y ,0);
 }
 
 /**  \fn void envoyer_cmat(int socket, caract_mat_t * cmat)*/
@@ -34,7 +39,7 @@ void envoyer_cmat(int socket, caract_mat_t * cmat){/** Fonction qui envoit la cm
 /* *********************************************		INITIALISATION TOUR DE JEU		*******************************************/
 
 /** \fn void commence_serveur(int socket, int role, joueur_reseau_t tab[])*/
-void commence_serveur(int socket, int role, joueur_reseau_t tab[]){ /** Demande au serveur si il veut commencer, et renvoit qui commencera */
+void commence_serveur(int socket, int role, joueur_reseau_t tab_joueurs[]){ /** Demande au serveur si il veut commencer, et renvoit qui commencera */
 	int qui_s, qui_c;
 
 	qui_s = demander_qui_commence();
@@ -42,18 +47,11 @@ void commence_serveur(int socket, int role, joueur_reseau_t tab[]){ /** Demande 
 	recevoir_int(socket, &qui_c);
 
 	if(qui_s == qui_c)
-		qui_s = rand%2;
+		qui_s = rand()%2;
 
 	envoyer_int(socket, qui_s);
 
-	if(role == 0){
-		tab_joueurs[qui_s+1%2]= joueur_mechant();
-		tab_joueurs[qui_s]= joueur_gentil();
-	}
-	else{
-		tab_joueurs[qui_s+1%2]= joueur_gentil();
-		tab_joueurs[qui_s]= joueur_mechant();
-	}
+	init_joueurs_serv(tab_joueurs);
 
 }
 
@@ -82,12 +80,12 @@ void quel_role_serveur(int socket, joueur_reseau_t tab[]){ /** demande au serveu
 }
 
 /** void demander_nom_serv(joueur_reseau_t tab[]) */
-void demander_nom_serv(joueur_reseau_t tab[]){ /** Demande le nom du serveur et recupere celui du client puis met les deux dans le tableau joueur */
+void demander_nom_serv(joueur_reseau_t tab_joueurs[], int socket){ /** Demande le nom du serveur et recupere celui du client puis met les deux dans le tableau joueur */
     printf("\nQuel sera votre nom ?\n");
     scanf("%s", tab_joueurs[0].joueur.nom_joueur);
     printf("En attente de la réponse de votre adversaire ... \n");
-    send(socket, tab_joueurs[0].joueur.nom_joueur, 25, 0 );
-    recv(socket, tab_joueurs[1].joueur.nom_joueur, 25, 0);
+    send(socket, &(tab_joueurs[0].joueur.nom_joueur), 25, 0 );
+    recv(socket, &(tab_joueurs[1].joueur.nom_joueur), 25, 0);
 }
 
 

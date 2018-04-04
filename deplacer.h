@@ -1,6 +1,7 @@
 #ifndef __DEPLACER_H__
 #define __DEPLACER_H__
 
+
 typedef enum{Aucune_direction = -1, Est = 1, Ouest=2, Sud =3, Nord = 4, Pas_besoin_de_bouger =42} t_direction;
 
 t_direction voit_accouplement(caract_mat_t * cmat,int nourriture_accouplement,int i,int j,int k);

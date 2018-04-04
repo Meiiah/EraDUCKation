@@ -11,23 +11,15 @@
 #include "jeu_solo.h"
 #include "multijoueur.h"
 #include "sauvegarde.h"
-//#include "main_reseau.h"
+#include "main_reseau.h"
 
-/**
-* \file main.c
-* \brief Main du jeu
-* \author PHILIPPE Marion
-* \version 1.0
-* \date 4 avril 2018
-*/ 
 
 typedef enum{facile=1,moyen=2,difficile=3}diff_t;
 typedef enum{solo=1,multi=2}nb_joueur_t;
 typedef enum{jouer=1,charger_partie=2,reseau=3, quitter=4}menu_t;
 
-//fonction qui permet de choisir la difficulté
-/** \fn int choix_difficultee(int)*/
 int choix_difficultee(int choix){
+
 	switch(choix){
 		case facile :
 			return 6;
@@ -41,20 +33,42 @@ int choix_difficultee(int choix){
 	}
 	return 1;
 }
+int choix_nbr_joueur(int choix,joueur_t * joueur,joueur_t * joueur2){
+	int nbr_joueur;
+	switch(choix){
+		case solo :
+			caract_joueur(joueur);
+			joueur->score=0;
+			joueur2->score=0;
+			return nbr_joueur=1;
+		break;
+		case multi:
+			caract_joueur(joueur);
+			caract_joueur(joueur2);
+			joueur->score=0;
+			joueur2->score=0;
+			return nbr_joueur=2;
+		break;
+	}
+	return 1;
+}
+
 
 int main(void){
+
 	//definition matrice
 	caract_mat_t * cmat = NULL;
+	//malloc(sizeof(caract_mat_t));
+
+
 
 	//definition joueur
 	joueur_t * joueur=malloc(sizeof(joueur_t));
 	joueur_t * joueur2=malloc(sizeof(joueur_t));
-	
-	//Initialisation des joueurs
+
 	joueur->score = 0;
 	joueur2->score = 0;
-	
-	//Permet de savoir si le joueur 2 existe ou pas
+
 	joueur2->nom_joueur[0]='n';
 	joueur2->nom_joueur[1]='u';
 	joueur2->nom_joueur[2]='l';
@@ -69,44 +83,39 @@ int main(void){
 	int choix_j; // Choix du nb joueur
 	int nbr_joueur;
 
-	int nb_gen=0; //Nombre de génération
+	int nb_gen=0;
 
-	init_tab_event_mauvais();//Initialisation du tableau des événements mauvais
-	init_tab_event_bon(); // Initialisation du tableau des événements bons
+	init_tab_event_mauvais();
+	init_tab_event_bon();
 
 	printf("EraDUCKation\n\n");
 
 	printf("1 : Jouer à EraDUCKation sur ce PC\n");
 	printf("2 : Jouer une partie chargée\n");
-	printf("3 : Jouer à EraDUCKation en réseau(non disponible)\n");
+	printf("3 : multi ");
 	printf("4 : Quitter\n");
 
 	do{
 		printf("Saisir un choix: ");
 		scanf(" %i",&choix);
 		switch(choix){
-			
 			case jouer :
+
 				/* Nombre de Joueur */
 				printf("1 : 1 joueur\n");
 				printf("2 : 2 joueurs\n");
 				do{
 					printf("Saisir un choix: ");
 					scanf(" %i",&choix_j);
+
 				}while(choix_j!=1 && choix_j!=2);
-				
-				if(choix_j == 1){
-						caract_joueur(joueur);
-						joueur->score=0;
-						joueur2->score=0;
-						return nbr_joueur=1;
-				}
+				if(choix_j == 1)
+						nbr_joueur=choix_nbr_joueur(choix_j,joueur,joueur2);
 
 				/* Difficulté*/
 				printf("1 : Facile\n");
 				printf("2 : Intermédiaire\n");
 				printf("3 : Difficile\n");
-				
 				do{
 					printf("Saisir un choix: ");
 					scanf(" %i",&choix_niv);
@@ -120,44 +129,42 @@ int main(void){
 				init_matrice(cmat);
 
 				/*Creation du Labyrinthe*/
+
+
 				main_laby(cmat);
+
+
 
 				//Apparition de canard
 				init_canard(cmat);
-				
-				//lance une partie solo ou multijoueur
+
 				if(nbr_joueur==1){
 					jeu_solo(cmat,nourriture_genere,nourriture_accouplement,joueur,joueur2,nb_gen);
 
 				}else{
 					main_multijoueur(cmat, nourriture_genere, nourriture_accouplement, nb_gen);
 				}
-				//détruit la matrice
 				detruire_Cmatrice(cmat);
 				break;
 
 			case charger_partie :
-				//Permet de charger une partie
 				charger(cmat,&nourriture_genere, &nourriture_accouplement, joueur, joueur2, &nb_gen);
                 detruire_Cmatrice(cmat);
 				break;
 
-            case reseau : //main_reseau();
-            	//Permet de faire une partie en réseau
+            case reseau :
+				main_reseau();
                 break;
 			case quitter :
-				//Permet de quitter le jeu
 				return 0;
 				break;
 
 		}
-		//Affichage du score final
 	}while(choix!=1 && choix!=2 && choix!=3);
 	printf("Le score total du joueur 1 est : %i\n",joueur->score);
 	if(strcmp(joueur2->nom_joueur,"null")){
 		printf("Le score total du joueur 2 est : %i\n",joueur2->score);
 	}
-	//Libération des joueurs
 	free(joueur);
 	free(joueur2);
 	return 1;
