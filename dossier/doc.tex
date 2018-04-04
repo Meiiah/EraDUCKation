@@ -20,7 +20,7 @@
 \date \today }
 \maketitle 
 \begin {figure}
-\begin{center}\includegraphics[width=0.15\textwidth]{images.png} \end{center}
+\begin{center}\includegraphics[width=0.15\textwidth]{IMG/images.png} \end{center}
 \hspace{100pt}
 \end {figure}
 \newpage
@@ -50,7 +50,7 @@ On a mis en place un Github dès la première séance qui a servi tout au long d
 \\On a donc dès la première séance décidé de se répartir les tâches en fonction des envies et aptitudes de chacun. On a aussi décidé de celles qui seraient obligatoires pour notre projet et celles qui seraient optionnelles. Ce qui nous a amené à cette organisation prevu :
 Ainsi ce qui est présent en orange est optionnel, le reste obligatoire. \\
 \begin {figure}[h]
-\includegraphics[width=1\textwidth]{prevision.png}
+\includegraphics[width=1\textwidth]{IMG/prevision.png}
 \caption{\label {ref2}Organisation prévue au début du projet}
 \end {figure}
 
@@ -61,9 +61,9 @@ Puis, après des recherches, on a codé le labyrinthe en unicode.
 \\
 On a commencé le jeu en solo puis en multijoueur local. On a aussi dès la cinquième séance commencé les recherches concernant la SDL et ce qu'on pourrait faire avec notre jeu. Ensuite on a passé la fin du projet à déboguer nos codes, à tester nos erreurs, améliorer nos codes ainsi que le jeu.
 \begin {figure}[h]
-\includegraphics[width=0.3\textwidth]{debbeug.png}
+\includegraphics[width=0.3\textwidth]{IMG/debbeug.png}
 \hspace{100pt}
-\includegraphics[width=0.3\textwidth]{debug.png}
+\includegraphics[width=0.3\textwidth]{IMG/debug.png}
 \caption{\label {ref3}débogage}
 \end {figure}
 \\
@@ -71,12 +71,12 @@ On a commencé le jeu en solo puis en multijoueur local. On a aussi dès la cinq
 Puis on a continué à développer le multijoueur local et en réseau.
 En conclusion notre organisation finale du projet a été la suivante :
 \begin {figure}[h]
-\includegraphics[width=1.1\textwidth]{grantt.png}
+\includegraphics[width=1.1\textwidth]{IMG/grantt.png}
 \caption{\label {ref4}Organisation réelle du projet}
 \end {figure}
 Et a une répartition finale plutot équilibré entre chaque membre du groupe : \\
 \begin {figure}[h]
-\includegraphics[width=1.1\textwidth]{pourc.png}
+\includegraphics[width=1.1\textwidth]{IMG/pourc.png}
 \caption{\label {ref4}répartition réelle du projet}
 \end {figure}
 \newpage
@@ -109,7 +109,7 @@ On a la possibilité de faire des choix dans deux catégories:
 \end{enumerate}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\textwidth]{event.png}
+\includegraphics[width=0.6\textwidth]{IMG/event.png}
 \caption{Exemple de bons et mauvais événements.}
 \end{figure}
 Comme vu dans les règles en solo le joueur utilise des événements bon et mauvais,
@@ -135,7 +135,7 @@ Il permet aussi de gérer un mode de jeu solo, mais aussi multijoueur.
 \subsection{Labyrinthe aléatoire}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\textwidth]{laby_dern.png}
+\includegraphics[width=0.6\textwidth]{IMG/laby_dern.png}
 \caption{labyrinthe généré aléatoirement en difficulté facile}
 \end{figure}
 \newpage
@@ -144,14 +144,14 @@ La mise en place du labyrinthe aléatoire permet d'instaurer une rejouabilité e
 Le multijoueur apporte un plus au jeu. Tout comme le labyrinthe aléatoire, le multi
 apporte une nouvelle façon de jouer à EraDUCKation. En effet sur un tour, le premier joueur est le “bon” dieu (ici joueur : killian) et il a le choix entre des événements favorable à ses canards. Alors que deuxième joueur (ici camille), est le “mauvais” dieu, et à lui le choix entre des événements défavorables aux canards.
 \begin{figure}[h]
-\includegraphics[width=0.5\textwidth]{tour_kiki.png}
-\includegraphics[width=0.5\textwidth]{tour_cam.png}
+\includegraphics[width=0.5\textwidth]{IMG/tour_kiki.png}
+\includegraphics[width=0.5\textwidth]{IMG/tour_cam.png}
 \caption{Tour en multi (bon et mauvais dieu}
 \end{figure}
 Nous avons aussi commencé un multijoueur en réseau qui utilise ce protocole de communication en réseau.
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.8\textwidth]{reseau.png}
+\includegraphics[width=0.8\textwidth]{IMG/reseau.png}
 \caption{protocole de communication}
 \end{figure}
 \newpage
@@ -160,7 +160,7 @@ Nous avons aussi commencé un multijoueur en réseau qui utilise ce protocole de
 EraDUCKation contient différents types de modules : des modules liés au contenu du jeu lui-même (module canard, piège, nourriture, déplacer, structure, reproduction, matrice, joueur, événement), des modules liés à des fonctionnalités (sauvegarde, multijoueur joueur local et réseau, connexion) et enfin des modules boîtes à outils.
 \begin{figure}[h]
 \centering
-\includegraphics[width=1\textwidth]{module.png}
+\includegraphics[width=1\textwidth]{IMG/module.png}
 \caption{Schéma modulaire}
 \end{figure}
 \subsection{Labyrinthe}
@@ -174,29 +174,32 @@ Cet algorithme contient de nombreuses vérifications : mise en place des coins d
 Pour ce qui est de l’affichage, nous avons d’abord utilisé pour la vérification du bon fonctionnement de l’algorithme, un affichage basique, où l’on affichait simplement l’état de chaque case sous forme de tableau à l’écran.\\
 \begin{figure}[h]
 \centering
-\includegraphics[width=1\textwidth]{laby_prem.png}
+\includegraphics[width=1\textwidth]{IMG/laby_prem.png}
 \caption{Première version du laby}
 \end{figure}
 \\
 Dans un second temps, nous avons affiché le labyrinthe avec des caractères simple du clavier. Principalement des espaces, des "$|$" ou encore "\_".\\
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
-\includegraphics[width=0.3\textwidth]{laby_deux.png}
+\includegraphics[width=0.3\textwidth]{IMG/laby_deux.png}
 \caption{Seconde version du laby}
 \end{figure}
+\\
+\\
+\\
 \\
 \\
 Enfin nous arriver à créer une fonction d’affichage, qui nous permet d’afficher un labyrinthe propre à l’écran. C’est-à-dire qu’à l’aide de code unicode nous avons des bordures sans espace, ce qui permet d’avoir un labyrinthe fermé. \\
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.4\textwidth]{laby_dern.png}
+\includegraphics[width=0.4\textwidth]{IMG/laby_dern.png}
 \caption{Dernière version du labyrinthe}
 \end{figure}
 \subsection{Déplacer}
 La principale fonctionnalité liée aux canards est le déplacement qui contient un rapport avec la nourriture et les autres canards. Elle consiste à faire déplacer une fois sur trois les canards adultes présents dans la matrice. Elle permet aussi de créer le comportement des canards, ils vont chercher à s’accoupler en priorité puis ensuite se nourrir. \\
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.8\textwidth]{deplacer.png}
+\includegraphics[width=0.8\textwidth]{IMG/deplacer.png}
 \caption{Déplacement}
 \end{figure}
 \subsection{SDL}
@@ -207,7 +210,7 @@ Notre interface graphique consiste essentiellement au menu de départ, composé 
 En appuyant sur Play, rien ne se passe sur la fenêtre SDL, mais dans le terminal de l’ordinateur le jeu se lance.\\
 \begin{figure}[h]
 \centering
-\includegraphics[width=1\textwidth]{jeu.png}
+\includegraphics[width=1\textwidth]{IMG/jeu.png}
 \caption{Menu SDL : lancement du terminal}
 \end{figure}
 \newpage
