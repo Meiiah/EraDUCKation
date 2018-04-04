@@ -69,7 +69,7 @@ int main(int argc, char** argv)
 	}
 
 
-	if( (police = TTF_OpenFont("Fresco Stamp.ttf", 20)) == NULL){
+	if( (police = TTF_OpenFont("FrescoStamp.ttf", 20)) == NULL){
 		fprintf(stderr, "erreur chargement font\n");
 		exit(EXIT_FAILURE);
 	}

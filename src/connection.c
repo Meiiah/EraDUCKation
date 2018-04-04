@@ -3,6 +3,8 @@
 #include "include_connection.h"
 #include <string.h>
 
+#define h_addr h_addr_list[0]
+
 /**********************************************		UTILS		*****************************************/
 
 void prendreIP(char nom[]){
