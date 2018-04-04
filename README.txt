@@ -1,9 +1,10 @@
 Comment installer EraDUCKation?
 
 1. Il faut avoir la SDL d’installée : SDL2_ttf-2.0.4.14 ,SDL2_image-2.0.3,SDL2-2.0.8. 
-2. Exécuter le makefile dans un terminal
-3. Lancer l’executable générer (Era)
-4. Jouer
+2. Etre sous Linux
+3. Exécuter le makefile dans un terminal
+4. Lancer l’executable générer (Era)
+5. Jouer
 
 
 Comment utiliser EraDUCKation?
