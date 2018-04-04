@@ -11,23 +11,27 @@
  * \date 19 Mars 2018
 */
 
-
+/** \fn void detruire_Cmatrice(caract_mat_t)*/
+// La fonction detuire ne marche pas dans notre jeu
+// mais elle marche pour une autre matrice
+// nous n'avons pas trouvé le problème
 void detruire_Cmatrice(caract_mat_t * cmat){
 	if(cmat){
+		//Si la matrice n'est pas vide on libère tout
 		if( cmat->matrice!=NULL){
-			fprintf(stderr, "Avant le free\n");
+			fprintf(stderr, "Premier free réussit\n");
 			free(cmat->matrice[0]);
-			fprintf(stderr, "Avant le free\n");
+			fprintf(stderr, "Deuxieme free réussit\n");
 			free(cmat->matrice);
 		}
-	
-		fprintf(stderr, "Avant le free cmat\n");
+		fprintf(stderr, "Troisième free réussit\n");
 		free(cmat);
 		cmat = NULL;
 	}
 }
 
 /** \fn int est_dans_matrice(caract_mat_t,int,int)*/
+//Permet de savoir si on est bien dans la matrice
 int est_dans_matrice(caract_mat_t * cmat,int x, int y){
 	return(x>=0 && x<cmat->taille_mat_x && y>=0 && y<cmat->taille_mat_y);
 }
@@ -38,6 +42,8 @@ caract_mat_t *  creation_matrice(int x, int y){/*definition de la matrice */
 	cmat->taille_mat_x=x;
 	cmat->taille_mat_y=y;
 	
+	//La matrice est composée d'un grand tableau à une dimension
+	//et d'un autre tableau contenant les pointeurs vers chaque début de ligne pour faire fabriquer une matrice 
 	case_t * GT = malloc(sizeof(case_t)*cmat->taille_mat_x*cmat->taille_mat_y);
 	cmat->matrice =malloc(sizeof(case_t *)*cmat->taille_mat_y);
 	int i;
