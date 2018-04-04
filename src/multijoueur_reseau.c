@@ -76,7 +76,7 @@ void quel_role_serveur(int socket, joueur_reseau_t tab[]){ /** demande au serveu
 
 	afficher_role(role);
 
-	commence_serveur( socket, role, tab);
+	//commence_serveur( socket, role, tab);
 }
 
 /** void demander_nom_serv(joueur_reseau_t tab[]) */
@@ -84,8 +84,8 @@ void demander_nom_serv(joueur_reseau_t tab_joueurs[], int socket){ /** Demande l
     printf("\nQuel sera votre nom ?\n");
     scanf("%s", tab_joueurs[0].joueur.nom_joueur);
     printf("En attente de la réponse de votre adversaire ... \n");
-    send(socket, &(tab_joueurs[0].joueur.nom_joueur), 25, 0 );
-    recv(socket, &(tab_joueurs[1].joueur.nom_joueur), 25, 0);
+    send(socket, &(tab_joueurs[0].joueur.nom_joueur), 26, 0 );
+    recv(socket, &(tab_joueurs[1].joueur.nom_joueur), 26, 0);
 }
 
 

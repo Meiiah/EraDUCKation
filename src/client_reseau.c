@@ -81,8 +81,8 @@ void demander_nom_client(int socket, joueur_reseau_t tab_joueurs[]){ /** Demande
     printf("\nQuel sera votre nom ?\n");
     scanf("%s", tab_joueurs[1].joueur.nom_joueur);
     printf("En attente de la réponse de votre adversaire ... \n");
-    recv(socket, &(tab_joueurs[0].joueur.nom_joueur), 25, 0 );
-    send(socket, &(tab_joueurs[1].joueur.nom_joueur), 25, 0);
+    recv(socket, &(tab_joueurs[0].joueur.nom_joueur), 26, 0 );
+    send(socket, &(tab_joueurs[1].joueur.nom_joueur), 26, 0);
 }
 
 
